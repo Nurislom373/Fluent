@@ -35,6 +35,11 @@
             <version>${org.springframework.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.khasanof</groupId>
+            <artifactId>khasanof-common-util</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.10.2</version>
