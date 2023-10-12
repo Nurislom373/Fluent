@@ -1,13 +1,13 @@
 package org.khasanof.executors.matcher;
 
-import org.khasanof.utils.ReflectionUtils;
-import org.reflections.Reflections;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Modifier;
 import java.util.AbstractMap;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -18,13 +18,13 @@ import java.util.function.Supplier;
  * @since 24.06.2023 1:14
  */
 @Component
-public class AdapterMatcher {
+public class AdapterMatcher implements InitializingBean {
 
-    private final Set<GenericMatcher> matchers = new HashSet<>();
-    private final Reflections reflections = ReflectionUtils.getReflections();
+    private final ApplicationContext applicationContext;
+    private final Map<Class<? extends Annotation>, GenericMatcher> matchers = new HashMap<>();
 
-    public AdapterMatcher() {
-        setMatchers();
+    public AdapterMatcher(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
     }
 
     public void setUp(Set<Class<? extends Annotation>> classes, Map<Class<? extends Annotation>, Supplier<GenericMatcher>> supplierMap) {
@@ -34,20 +34,17 @@ public class AdapterMatcher {
     }
 
     public GenericMatcher findMatcher(Class<? extends Annotation> annotation) {
-        return matchers.stream().filter(matcher -> matcher.getType().equals(annotation))
-                .findFirst().orElseThrow(() -> new RuntimeException("Matcher not found!"));
+        return matchers.get(annotation);
     }
 
-    void setMatchers() {
-        for (Class<? extends GenericMatcher> aClass : reflections.getSubTypesOf(GenericMatcher.class)) {
-            try {
-                if (!Modifier.isAbstract(aClass.getModifiers())) {
-                    matchers.add(aClass.newInstance());
-                }
-            } catch (InstantiationException | IllegalAccessException e) {
-                throw new RuntimeException(e);
+    @Override
+    @SuppressWarnings("unchecked")
+    public void afterPropertiesSet() {
+        applicationContext.getBeansOfType(GenericMatcher.class).forEach((beanName, instance) -> {
+            if (!Modifier.isAbstract(instance.getClass().getModifiers())) {
+                matchers.put(instance.getType(), instance);
             }
-        }
+        });
     }
 
 }
