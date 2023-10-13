@@ -9,7 +9,19 @@ import lombok.RequiredArgsConstructor;
  */
 @RequiredArgsConstructor
 public enum ProcessType {
+
+    /**
+     *
+     */
     BOTH,
+
+    /**
+     * State ProcessType only works after state dependency is added.
+     */
     STATE,
+
+    /**
+     *
+     */
     UPDATE;
 }

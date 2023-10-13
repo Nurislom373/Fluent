@@ -3,27 +3,21 @@ package org.khasanof.executors.invoker;
 import jakarta.annotation.PostConstruct;
 import org.khasanof.FluentBot;
 import org.khasanof.annotation.exception.HandleException;
-import org.khasanof.annotation.extra.HandleState;
 import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
 import org.khasanof.condition.Condition;
 import org.khasanof.enums.InvokerType;
-import org.khasanof.executors.expression.ExpressionMatcher;
 import org.khasanof.executors.expression.ExpressionVariables;
 import org.khasanof.model.InvokerMethod;
-import org.khasanof.model.InvokerModel;
 import org.khasanof.model.InvokerModelV2;
 import org.khasanof.model.additional.checks.ACInvokerMethod;
 import org.khasanof.model.additional.param.APAnnotationMap;
 import org.khasanof.model.additional.param.APUpdateObject;
-import org.khasanof.model.condition.ClassCondition;
 import org.khasanof.model.condition.MethodCondition;
-import org.khasanof.state.State;
 import org.khasanof.utils.AnnotationUtils;
 import org.khasanof.utils.UpdateUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -53,7 +47,7 @@ public class DefaultInvokerFunctions {
     public static final String HANDLE_ANY_UPDATE = "handleAnyUpdate";
     public static final String HANDLE_STATE = "handleState";
 
-    public DefaultInvokerFunctions(InvokerFunctions functions, DefaultInvokerMatcher invokerMatcher,
+    public DefaultInvokerFunctions(InvokerFunctionsImpl functions, DefaultInvokerMatcher invokerMatcher,
                                    ApplicationContext applicationContext, ExpressionVariables matcher) {
         this.matcher = matcher;
         this.functions = functions;
@@ -73,7 +67,7 @@ public class DefaultInvokerFunctions {
                 .isInputSystem(false)
                 .canBeNoParam(true)
                 .build();
-        functions.addInvokerModelV2(handleAny);
+        functions.add(handleAny);
 
         InvokerModelV2 handleMessageScopeVarExpression = InvokerModelV2.builder()
                 .name(HANDLE_UPDATE_W_VAR_EXPRESSION)
@@ -87,7 +81,7 @@ public class DefaultInvokerFunctions {
                 .isInputSystem(false)
                 .canBeNoParam(false)
                 .build();
-        functions.addInvokerModelV2(handleMessageScopeVarExpression);
+        functions.add(handleMessageScopeVarExpression);
 
         InvokerModelV2 handleException = InvokerModelV2.builder()
                 .name(EXCEPTION_NAME)
@@ -98,7 +92,7 @@ public class DefaultInvokerFunctions {
                 .isInputSystem(true)
                 .canBeNoParam(false)
                 .build();
-        functions.addInvokerModelV2(handleException);
+        functions.add(handleException);
 
         InvokerModelV2 handleProcessFile = InvokerModelV2.builder()
                 .name(HANDLE_UPDATE_W_PROCESS_FL)
@@ -111,7 +105,7 @@ public class DefaultInvokerFunctions {
                 .isInputSystem(false)
                 .canBeNoParam(false)
                 .build();
-        functions.addInvokerModelV2(handleProcessFile);
+        functions.add(handleProcessFile);
 
         InvokerModelV2 handleUpdates = InvokerModelV2.builder()
                 .name(HANDLE_UPDATE)
@@ -122,7 +116,7 @@ public class DefaultInvokerFunctions {
                 .isInputSystem(false)
                 .canBeNoParam(false)
                 .build();
-        functions.addInvokerModelV2(handleUpdates);
+        functions.add(handleUpdates);
 
     }
 

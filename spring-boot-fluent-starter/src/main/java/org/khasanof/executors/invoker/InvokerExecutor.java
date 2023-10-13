@@ -31,11 +31,11 @@ import java.util.Objects;
 public class InvokerExecutor implements Invoker {
 
     private final Collector<Class<? extends Annotation>> collector;
-    private final InvokerFunctions invokerFunctions;
+    private final InvokerFunctionsImpl invokerFunctions;
     private final InvokerResultService resultService;
     private final ApplicationEventPublisher applicationEventPublisher;
 
-    public InvokerExecutor(Collector<Class<? extends Annotation>> collector, InvokerFunctions invokerFunctions, InvokerResultService resultService, ApplicationEventPublisher applicationEventPublisher) {
+    public InvokerExecutor(Collector<Class<? extends Annotation>> collector, InvokerFunctionsImpl invokerFunctions, InvokerResultService resultService, ApplicationEventPublisher applicationEventPublisher) {
         this.collector = collector;
         this.invokerFunctions = invokerFunctions;
         this.resultService = resultService;

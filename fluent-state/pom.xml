@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.khasanof</groupId>
     <artifactId>fluent-state</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>fluent-state</name>
     <description>fluent-state</description>
 

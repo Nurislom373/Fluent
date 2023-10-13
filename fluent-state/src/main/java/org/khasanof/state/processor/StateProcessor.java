@@ -10,6 +10,8 @@ import org.khasanof.state.configurer.StateConfigurerImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 /**
  * @author Nurislom
  * @see org.khasanof.state.processor

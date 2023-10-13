@@ -5,6 +5,7 @@ import org.khasanof.custom.BreakerForEach;
 import org.khasanof.custom.FluentContext;
 import org.khasanof.executors.invoker.Invoker;
 import org.khasanof.executors.invoker.InvokerFunctions;
+import org.khasanof.executors.invoker.InvokerFunctionsImpl;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -23,7 +24,7 @@ public class CommonUpdateExecutor extends AbstractExecutor {
     private final Invoker invoker; // method invoker
     private final FluentBot fluentBot; // bot instance
 
-    public CommonUpdateExecutor(InvokerFunctions invokerFunctions, DeterminationUpdate determinationUpdateType, Invoker invoker, @Lazy FluentBot fluentBot) {
+    public CommonUpdateExecutor(InvokerFunctionsImpl invokerFunctions, DeterminationUpdate determinationUpdateType, Invoker invoker, @Lazy FluentBot fluentBot) {
         this.invokerFunctions = invokerFunctions;
         this.determination = determinationUpdateType;
         this.invoker = invoker;
@@ -40,7 +41,7 @@ public class CommonUpdateExecutor extends AbstractExecutor {
         BreakerForEach.forEach(determination.determinationV2(update).stream(),
                 ((entry, breaker) -> {
                     if (!FluentContext.updateExecutorBoolean.get()) {
-                        invoker.invokeV2(invokerFunctions.fillAndGetV2(entry, update, fluentBot));
+                        invoker.invokeV2(invokerFunctions.fillAndGet(entry, update, fluentBot));
                     } else {
                         breaker.stop();
                     }
