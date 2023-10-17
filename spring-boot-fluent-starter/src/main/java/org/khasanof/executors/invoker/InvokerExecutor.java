@@ -31,7 +31,7 @@ import java.util.Objects;
 public class InvokerExecutor implements Invoker {
 
     private final Collector<Class<? extends Annotation>> collector;
-    private final InvokerFunctionsImpl invokerFunctions;
+    private final InvokerFunctions invokerFunctions;
     private final InvokerResultService resultService;
     private final ApplicationEventPublisher applicationEventPublisher;
 
@@ -101,7 +101,7 @@ public class InvokerExecutor implements Invoker {
         if (Objects.isNull(exceptionHandleMethod)) {
             throw throwable;
         }
-        InvokerModelV2 invokerModel = invokerFunctions.fillAndGetV2(exceptionHandleMethod, throwable,
+        InvokerModelV2 invokerModel = invokerFunctions.fillAndGet(exceptionHandleMethod, throwable,
                 MethodUtils.getArg(prevInvoker.getArgs(), Update.class), MethodUtils.getArg(
                         prevInvoker.getArgs(), AbsSender.class));
         invokeV2(invokerModel);
