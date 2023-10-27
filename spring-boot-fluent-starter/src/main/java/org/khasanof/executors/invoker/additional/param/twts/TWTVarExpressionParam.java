@@ -4,7 +4,7 @@ import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.additional.AdditionalParamType;
 import org.khasanof.executors.invoker.additional.param.TWT;
 import org.khasanof.model.AdditionalParam;
-import org.khasanof.model.InvokerModelV2;
+import org.khasanof.model.InvokerModel;
 import org.khasanof.utils.MethodUtils;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -25,7 +25,7 @@ public class TWTVarExpressionParam implements TWT {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Object getValue(InvokerModelV2 invokerModel, Object[] args, Method method) {
+    public Object getValue(InvokerModel invokerModel, Object[] args, Method method) {
         AdditionalParam additionalParam = invokerModel.getAdditionalParam();
         Annotation[] annotations = method.getDeclaredAnnotations();
         Annotation fAnn = Arrays.stream(annotations).filter(annotation -> annotation.annotationType()

@@ -1,84 +1,46 @@
 package org.khasanof.model;
 
 import lombok.*;
+import org.khasanof.enums.InvokerType;
+import org.khasanof.model.condition.Condition;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**
  * @author Nurislom
  * @see org.khasanof.model
- * @since 13.07.2023 21:16
+ * @since 8/19/2023 6:31 PM
  */
 @Getter
 @Setter
+@Builder
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class InvokerModel {
 
+    private InvokerType type;
     private String name;
-    private Class<? extends Annotation> annotation;
-    private List<Class<?>> methodParams;
+    private InvokerResult invokerReference;
+    private Condition condition;
     private AdditionalParam additionalParam;
-    private Object[] args;
-    private Map.Entry<Method, Object> classEntry;
     private AdditionalChecks additionalChecks;
-    private boolean isSuperAnnotation;
-    private boolean hasMainParam;
+    private List<Class<?>> methodParams;
+    private Object[] args;
     private boolean isInputSystem;
-    private boolean hasClassEntry;
     private boolean canBeNoParam;
 
-    public InvokerModel(String name, boolean isSuperAnnotation, Class<? extends Annotation> annotation,
-                        List<Class<?>> methodParams, boolean hasMainParam, AdditionalParam mainParam) {
-        this.name = name;
-        this.isSuperAnnotation = isSuperAnnotation;
-        this.annotation = annotation;
-        this.methodParams = methodParams;
-        this.hasMainParam = hasMainParam;
-        this.additionalParam = mainParam;
+    public boolean hasAdditionalParam() {
+        return Objects.nonNull(this.additionalParam);
     }
 
-    public InvokerModel(String name, boolean isSuperAnnotation, Class<? extends Annotation> annotation,
-                        List<Class<?>> methodParams, boolean hasMainParam, AdditionalParam mainParam, AdditionalChecks checks) {
-        this.name = name;
-        this.isSuperAnnotation = isSuperAnnotation;
-        this.annotation = annotation;
-        this.methodParams = methodParams;
-        this.hasMainParam = hasMainParam;
-        this.additionalParam = mainParam;
-        this.additionalChecks = checks;
+    public boolean hasAdditionalChecks() {
+        return Objects.nonNull(this.additionalChecks);
     }
 
-    public InvokerModel(String name, boolean isSuperAnnotation, Class<? extends Annotation> annotation,
-                        List<Class<?>> methodParams, boolean hasMainParam, AdditionalParam mainParam, boolean canBeNoParam) {
-        this.name = name;
-        this.isSuperAnnotation = isSuperAnnotation;
-        this.annotation = annotation;
-        this.methodParams = methodParams;
-        this.hasMainParam = hasMainParam;
-        this.additionalParam = mainParam;
-        this.canBeNoParam = canBeNoParam;
-    }
-
-    public InvokerModel(String name, boolean isSuperAnnotation, Class<? extends Annotation> annotation,
-                        List<Class<?>> methodParams, boolean hasMainParam, boolean isInputSystem) {
-        this.name = name;
-        this.isSuperAnnotation = isSuperAnnotation;
-        this.annotation = annotation;
-        this.methodParams = methodParams;
-        this.hasMainParam = hasMainParam;
-        this.isInputSystem = isInputSystem;
-    }
-
-    public InvokerModel methodSClass(Map.Entry<Method, Object> entry) {
-        this.classEntry = entry;
-        this.hasClassEntry = Objects.nonNull(entry);
-        return this;
+    public boolean hasReference() {
+        return Objects.nonNull(invokerReference);
     }
 
 }

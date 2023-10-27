@@ -1,8 +1,11 @@
 package org.khasanof;
 
+import org.khasanof.query.QueriesEnum;
+import org.khasanof.query.QueryRepository;
 import org.khasanof.state.State;
 import org.khasanof.state.repository.StateRepositoryStrategy;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -16,15 +19,26 @@ import java.util.Optional;
 @Repository
 public class PostgresqlRepositoryStrategy implements StateRepositoryStrategy {
 
-    private final DataSourceProperties dataSourceProperties;
+    private final JdbcTemplate jdbcTemplate;
+    private final StateRowMapper stateRowMapper;
+    private final QueryRepository queryRepository;
+    private final NamedParameterJdbcTemplate parameterJdbcTemplate;
+    private final SqlParameterSourceComposite parameterSourceComposite;
 
-    public PostgresqlRepositoryStrategy(DataSourceProperties dataSourceProperties) {
-        this.dataSourceProperties = dataSourceProperties;
+    public PostgresqlRepositoryStrategy(NamedParameterJdbcTemplate parameterJdbcTemplate, DataSourceFactory dataSourceFactory,
+                                        QueryRepository queryRepository, StateRowMapper stateRowMapper,
+                                        SqlParameterSourceComposite parameterSourceComposite) {
+        this.parameterJdbcTemplate = parameterJdbcTemplate;
+        this.queryRepository = queryRepository;
+        this.stateRowMapper = stateRowMapper;
+        this.parameterSourceComposite = parameterSourceComposite;
+        this.jdbcTemplate = new JdbcTemplate(dataSourceFactory.createDataSource());
     }
 
     @Override
     public Optional<State> findById(Long id) {
-        return Optional.empty();
+        return parameterJdbcTemplate.queryForObject(queryRepository.get(QueriesEnum.SELECT_ONE),
+                parameterSourceComposite.create(QueriesEnum.SELECT_ONE, id), this.stateRowMapper);
     }
 
     @Override

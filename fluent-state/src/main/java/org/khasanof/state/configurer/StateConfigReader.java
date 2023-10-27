@@ -9,4 +9,6 @@ import org.khasanof.state.StateTransmit;
  */
 public interface StateConfigReader extends StateTransmit {
 
+    Class getStateType();
+
 }

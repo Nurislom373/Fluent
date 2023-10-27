@@ -11,7 +11,7 @@ import org.khasanof.condition.Condition;
 import org.khasanof.enums.InvokerType;
 import org.khasanof.executors.expression.ExpressionVariables;
 import org.khasanof.model.InvokerMethod;
-import org.khasanof.model.InvokerModelV2;
+import org.khasanof.model.InvokerModel;
 import org.khasanof.model.additional.checks.ACInvokerMethod;
 import org.khasanof.model.additional.param.APAnnotationMap;
 import org.khasanof.model.additional.param.APUpdateObject;
@@ -58,7 +58,7 @@ public class DefaultInvokerFunctions {
     @PostConstruct
     void afterPropertiesSet() {
 
-        InvokerModelV2 handleAny = InvokerModelV2.builder()
+        InvokerModel handleAny = InvokerModel.builder()
                 .name(HANDLE_ANY_UPDATE)
                 .type(InvokerType.METHOD)
                 .condition((MethodCondition) (invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
@@ -69,7 +69,7 @@ public class DefaultInvokerFunctions {
                 .build();
         functions.add(handleAny);
 
-        InvokerModelV2 handleMessageScopeVarExpression = InvokerModelV2.builder()
+        InvokerModel handleMessageScopeVarExpression = InvokerModel.builder()
                 .name(HANDLE_UPDATE_W_VAR_EXPRESSION)
                 .type(InvokerType.METHOD)
                 .condition((MethodCondition) (invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
@@ -83,7 +83,7 @@ public class DefaultInvokerFunctions {
                 .build();
         functions.add(handleMessageScopeVarExpression);
 
-        InvokerModelV2 handleException = InvokerModelV2.builder()
+        InvokerModel handleException = InvokerModel.builder()
                 .name(EXCEPTION_NAME)
                 .type(InvokerType.METHOD)
                 .condition((MethodCondition) (invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
@@ -94,7 +94,7 @@ public class DefaultInvokerFunctions {
                 .build();
         functions.add(handleException);
 
-        InvokerModelV2 handleProcessFile = InvokerModelV2.builder()
+        InvokerModel handleProcessFile = InvokerModel.builder()
                 .name(HANDLE_UPDATE_W_PROCESS_FL)
                 .type(InvokerType.METHOD)
                 .condition((MethodCondition) (this::handleUpdateWithProcessFileMethodCondition))
@@ -107,7 +107,7 @@ public class DefaultInvokerFunctions {
                 .build();
         functions.add(handleProcessFile);
 
-        InvokerModelV2 handleUpdates = InvokerModelV2.builder()
+        InvokerModel handleUpdates = InvokerModel.builder()
                 .name(HANDLE_UPDATE)
                 .type(InvokerType.METHOD)
                 .condition((MethodCondition) (invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),

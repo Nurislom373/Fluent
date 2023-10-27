@@ -1,7 +1,7 @@
 package org.khasanof.executors.invoker.additional.param;
 
 import org.khasanof.model.AdditionalType;
-import org.khasanof.model.InvokerModelV2;
+import org.khasanof.model.InvokerModel;
 
 import java.lang.reflect.Method;
 
@@ -14,6 +14,6 @@ import java.lang.reflect.Method;
  */
 public interface TWT extends AdditionalType {
 
-    Object getValue(InvokerModelV2 invokerModel, Object[] args, Method method);
+    Object getValue(InvokerModel invokerModel, Object[] args, Method method);
 
 }

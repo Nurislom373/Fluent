@@ -6,7 +6,6 @@ import org.khasanof.custom.FluentContext;
 import org.khasanof.event.MethodV1Event;
 import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.model.InvokerModel;
-import org.khasanof.model.InvokerModelV2;
 import org.khasanof.model.InvokerResult;
 import org.khasanof.utils.MethodUtils;
 import org.springframework.context.ApplicationEventPublisher;
@@ -43,12 +42,7 @@ public class InvokerExecutor implements Invoker {
     }
 
     @Override
-    public void invoke(InvokerModel invokerModel) {
-        throw new RuntimeException("Not Implemented!");
-    }
-
-    @Override
-    public void invokeV2(InvokerModelV2 invokerModelV2) {
+    public void invoke(InvokerModel invokerModelV2) {
         try {
             absInvoker(invokerModelV2);
         } catch (InstantiationException | IllegalAccessException e) {
@@ -63,7 +57,7 @@ public class InvokerExecutor implements Invoker {
         }
     }
 
-    private void absInvoker(InvokerModelV2 invokerModel) throws InstantiationException, IllegalAccessException, InvocationTargetException {
+    private void absInvoker(InvokerModel invokerModel) throws InstantiationException, IllegalAccessException, InvocationTargetException {
         if (Objects.isNull(invokerModel.getAdditionalParam())) {
             checkListParams(invokerModel.getMethodParams(), invokerModel.getArgs());
         }
@@ -84,7 +78,7 @@ public class InvokerExecutor implements Invoker {
         }
     }
 
-    private void execute(InvokerModelV2 invokerModel, Map.Entry<Method, Object> classEntry, Method method) {
+    private void execute(InvokerModel invokerModel, Map.Entry<Method, Object> classEntry, Method method) {
         applicationEventPublisher.publishEvent(new MethodV1Event(this, invokerModel, classEntry, method));
     }
 
@@ -96,15 +90,15 @@ public class InvokerExecutor implements Invoker {
         }
     }
 
-    private void exceptionDirector(Throwable throwable, InvokerModelV2 prevInvoker) throws Throwable {
+    private void exceptionDirector(Throwable throwable, InvokerModel prevInvoker) throws Throwable {
         InvokerResult exceptionHandleMethod = getExceptionHandleMethod(throwable);
         if (Objects.isNull(exceptionHandleMethod)) {
             throw throwable;
         }
-        InvokerModelV2 invokerModel = invokerFunctions.fillAndGet(exceptionHandleMethod, throwable,
+        InvokerModel invokerModel = invokerFunctions.fillAndGet(exceptionHandleMethod, throwable,
                 MethodUtils.getArg(prevInvoker.getArgs(), Update.class), MethodUtils.getArg(
                         prevInvoker.getArgs(), AbsSender.class));
-        invokeV2(invokerModel);
+        invoke(invokerModel);
     }
 
     private InvokerResult getExceptionHandleMethod(Throwable throwable) throws Throwable {

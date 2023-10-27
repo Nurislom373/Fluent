@@ -8,7 +8,7 @@ import org.khasanof.event.exceptionDirector.ExceptionDirectorEvent;
 import org.khasanof.executors.invoker.Invoker;
 import org.khasanof.executors.invoker.InvokerFunctions;
 import org.khasanof.executors.invoker.InvokerFunctionsImpl;
-import org.khasanof.model.InvokerModelV2;
+import org.khasanof.model.InvokerModel;
 import org.khasanof.model.InvokerResult;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
@@ -39,8 +39,8 @@ public class ExceptionDirectorEventListener implements ApplicationListener<Excep
     public void onApplicationEvent(ExceptionDirectorEvent event) {
         if (collector.hasHandle(HandleException.class)) {
             InvokerResult result = collector.getInvokerResult(event.getThrowable(), HandleException.class);
-            InvokerModelV2 modelV2 = invokerFunctions.fillAndGet(result, event.getUpdate(), event.getAbsSender(), event.getThrowable());
-            invoker.invokeV2(modelV2);
+            InvokerModel modelV2 = invokerFunctions.fillAndGet(result, event.getUpdate(), event.getAbsSender(), event.getThrowable());
+            invoker.invoke(modelV2);
         } else {
             throw event.getThrowable();
         }

@@ -41,7 +41,7 @@ public class CommonUpdateExecutor extends AbstractExecutor {
         BreakerForEach.forEach(determination.determinationV2(update).stream(),
                 ((entry, breaker) -> {
                     if (!FluentContext.updateExecutorBoolean.get()) {
-                        invoker.invokeV2(invokerFunctions.fillAndGet(entry, update, fluentBot));
+                        invoker.invoke(invokerFunctions.fillAndGet(entry, update, fluentBot));
                     } else {
                         breaker.stop();
                     }

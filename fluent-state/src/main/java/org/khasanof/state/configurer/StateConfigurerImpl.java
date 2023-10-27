@@ -38,4 +38,8 @@ public class StateConfigurerImpl implements StateConfigurer<Enum>, StateConfigRe
         return this.states;
     }
 
+    @Override
+    public Class getStateType() {
+        return this.initial.getClass();
+    }
 }
