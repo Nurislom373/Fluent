@@ -1,11 +1,12 @@
 package org.khasanof.executors;
 
 import org.khasanof.MainHandler;
+import org.khasanof.custom.ExecutorServiceFactory;
+import org.khasanof.custom.UpdateTask;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Author: Nurislom
@@ -20,16 +21,16 @@ import java.util.concurrent.Executors;
 public class CommonMainHandler implements MainHandler {
 
     private final ExecutorService executorService;
-    private final CommonUpdateExecutor executor;
+    private final UpdateExecutor executor;
 
-    public CommonMainHandler(CommonUpdateExecutor executor) {
+    public CommonMainHandler(CommonUpdateExecutor executor, ExecutorServiceFactory serviceFactory) {
         this.executor = executor;
-        this.executorService = Executors.newCachedThreadPool();
+        this.executorService = serviceFactory.createExecutorService();
     }
 
     @Override
     public void process(Update update) {
-        executorService.execute(() -> executor.executeV2(update));
+        executorService.execute(new UpdateTask(update, () -> executor.execute(update)));
     }
 
 }

@@ -1,6 +1,6 @@
 package org.khasanof.executors.invoker;
 
-import org.khasanof.model.InvokerModel;
+import org.khasanof.model.SampleModel;
 import org.khasanof.model.InvokerResult;
 
 /**
@@ -10,10 +10,10 @@ import org.khasanof.model.InvokerResult;
  */
 public interface InvokerFunctions {
 
-    void add(InvokerModel modelV2);
+    void add(SampleModel modelV2);
 
-    InvokerModel findByName(String name);
+    SampleModel findByName(String name);
 
-    InvokerModel fillAndGet(InvokerResult result, Object... args);
+    SampleModel fillAndGet(InvokerResult result, Object... args);
 
 }

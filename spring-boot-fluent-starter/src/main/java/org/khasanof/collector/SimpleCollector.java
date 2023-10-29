@@ -1,4 +1,5 @@
 package org.khasanof.collector;
+
 import org.khasanof.collector.questMethod.QuestMethod;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.HandleType;

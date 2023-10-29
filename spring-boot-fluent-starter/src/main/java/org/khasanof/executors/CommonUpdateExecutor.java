@@ -17,7 +17,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  * @since 24.06.2023 0:46
  */
 @Component
-public class CommonUpdateExecutor extends AbstractExecutor {
+public class CommonUpdateExecutor extends AbstractUpdateExecutor {
 
     private final InvokerFunctions invokerFunctions; // specifies the methods that can be invoked.
     private final DeterminationUpdate determination; // gathers the methods corresponding to the incoming update.
@@ -37,7 +37,8 @@ public class CommonUpdateExecutor extends AbstractExecutor {
      *
      * @param update from telegram is coming.
      */
-    public void executeV2(Update update) {
+    @Override
+    public void execute(Update update) {
         BreakerForEach.forEach(determination.determinationV2(update).stream(),
                 ((entry, breaker) -> {
                     if (!FluentContext.updateExecutorBoolean.get()) {

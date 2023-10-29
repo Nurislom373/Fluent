@@ -1,7 +1,9 @@
 package org.khasanof.collector.questMethod;
 
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.khasanof.collector.GenericMethodContext;
+import org.khasanof.context.FluentContextHolder;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.HandleType;
 import org.khasanof.executors.matcher.CompositeMatcher;
@@ -21,19 +23,23 @@ import java.util.stream.Collectors;
  * @see org.khasanof.collector.questMethod
  * @since 23.06.2023 23:46
  */
+@Slf4j
 @Component
 public class AsyncSimpleQuestMethod implements QuestMethod<HandleClasses> {
 
     private final GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext;
+    private final FluentContextHolder contextHolder;
     private final CompositeMatcher matcher;
 
-    public AsyncSimpleQuestMethod(GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext, CompositeMatcher matcher) {
+    public AsyncSimpleQuestMethod(GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext, FluentContextHolder contextHolder, CompositeMatcher matcher) {
         this.methodContext = methodContext;
+        this.contextHolder = contextHolder;
         this.matcher = matcher;
     }
 
     @Override
     public InvokerResult getMethodValueAnn(Object value, HandleClasses type) {
+        log.info("contextHolder.getCurrentUpdate() = " + contextHolder.getCurrentUpdate());
         System.out.printf("Enter type - %s, value - %s \n", type, value);
         CompletableFuture<Map.Entry<Method, Object>> supplyAsync;
         if (type.isHasSubType()) {
@@ -66,6 +72,7 @@ public class AsyncSimpleQuestMethod implements QuestMethod<HandleClasses> {
     @Override
     @SneakyThrows
     public InvokerResult getHandleAnyMethod(HandleType handleType) {
+        log.info("contextHolder.getCurrentUpdate() = " + contextHolder.getCurrentUpdate());
         return CompletableFuture.supplyAsync(() -> methodContext.containsKey(HandleClasses.HANDLE_ANY) ?
                 methodContext.getMethodsByGenericKey(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(
                                 clazz -> matcher.chooseMatcher(clazz.getKey(), handleType))
@@ -75,6 +82,7 @@ public class AsyncSimpleQuestMethod implements QuestMethod<HandleClasses> {
     @SneakyThrows
     @Override
     public Set<InvokerResult> getAllHandleAnyMethod(HandleType handleType) {
+        log.info("contextHolder.getCurrentUpdate() = " + contextHolder.getCurrentUpdate());
         return CompletableFuture.supplyAsync(() -> methodContext.containsKey(HandleClasses.HANDLE_ANY) ?
                 methodContext.getMethodsByGenericKey(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(
                                 clazz -> matcher.chooseMatcher(clazz.getKey(), handleType))

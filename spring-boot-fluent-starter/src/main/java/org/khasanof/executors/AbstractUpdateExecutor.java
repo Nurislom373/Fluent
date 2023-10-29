@@ -9,6 +9,6 @@ package org.khasanof.executors;
  * <br/>
  * Package: org.khasanof.core.executors
  */
-public abstract class AbstractExecutor {
+public abstract class AbstractUpdateExecutor implements UpdateExecutor {
 
 }

@@ -1,6 +1,6 @@
 package org.khasanof.executors.invoker;
 
-import org.khasanof.model.InvokerModel;
+import org.khasanof.model.SampleModel;
 
 /**
  * @author Nurislom
@@ -12,6 +12,6 @@ public interface Invoker {
      *
      * @param invokerModelV2
      */
-    void invoke(InvokerModel invokerModelV2);
+    void invoke(SampleModel invokerModelV2);
 
 }

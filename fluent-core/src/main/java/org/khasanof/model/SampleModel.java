@@ -18,7 +18,7 @@ import java.util.Objects;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class InvokerModel {
+public class SampleModel {
 
     private InvokerType type;
     private String name;
