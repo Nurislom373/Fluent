@@ -1,9 +1,12 @@
 package org.khasanof.strategy;
 
+import org.khasanof.InlineKeyboardButtonBuilder;
 import org.khasanof.RowKeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Nurislom
@@ -12,9 +15,25 @@ import java.util.List;
  */
 public class RowListInlineKeyboardsBuildStrategy implements InlineKeyboardBuildStrategy<List<RowKeyboardButton>> {
 
+    private final InlineKeyboardButtonBuilder buttonBuilder = new InlineKeyboardButtonBuilder();
+
     @Override
     public InlineKeyboardMarkup build(List<RowKeyboardButton> rowKeyboardButtons) {
-        throw new RuntimeException("Not Implemented!");
+        List<List<InlineKeyboardButton>> list = new ArrayList<>();
+        InlineKeyboardMarkup keyboardMarkup = new InlineKeyboardMarkup();
+
+        Map<Integer, List<RowKeyboardButton>> collectMap = rowKeyboardButtons.stream()
+                .collect(Collectors.groupingBy(RowKeyboardButton::getRow));
+        Set<Integer> rows = new TreeSet<>(collectMap.keySet());
+        rows.forEach(row -> list.add((row - 1), collectMap.get(row).stream()
+                .map(this::buildButton).toList()));
+
+        keyboardMarkup.setKeyboard(list);
+        return keyboardMarkup;
+    }
+
+    private InlineKeyboardButton buildButton(RowKeyboardButton button) {
+        return buttonBuilder.builder(button);
     }
 
 }

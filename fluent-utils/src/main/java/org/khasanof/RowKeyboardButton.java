@@ -5,7 +5,7 @@ package org.khasanof;
  * @see org.khasanof
  * @since 10/29/2023 11:26 PM
  */
-public class RowKeyboardButton extends KeyboardButton {
+public class RowKeyboardButton extends KeyboardButton implements Comparable<RowKeyboardButton> {
 
     private Integer row;
 
@@ -39,5 +39,10 @@ public class RowKeyboardButton extends KeyboardButton {
         return "RowKeyboardButton{" +
                 "row=" + row +
                 '}';
+    }
+
+    @Override
+    public int compareTo(RowKeyboardButton button) {
+        return this.row - button.row;
     }
 }
