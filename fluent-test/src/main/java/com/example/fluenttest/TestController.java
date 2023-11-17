@@ -17,7 +17,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @UpdateController
 public class TestController {
 
-    @HandleMessage(value = "/start", scope = MatchScope.START_WITH)
+    @HandleMessage(value = "/start")
     void test(Update update, AbsSender sender) throws TelegramApiException {
         String text = update.getMessage().getText();
         SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
@@ -39,7 +39,7 @@ public class TestController {
         sender.execute(message);
     }
 
-    @HandleMessage(value = "start {name:[a-z]} -> {look:[1-5]}", scope = MatchScope.VAR_EXPRESSION)
+    @HandleMessage(value = "/start {name:[a-z]} -> {look:[1-5]}", scope = MatchScope.VAR_EXPRESSION)
     public void testExp3(Update update, AbsSender sender, @BotVariable("name") String name, @BotVariable("look") String look) throws TelegramApiException {
         System.out.println("name = " + name);
         System.out.println("look = " + look);

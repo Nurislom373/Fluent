@@ -15,9 +15,11 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FltStateTable {
+
     private Long id;
     private String state;
-    private String userId;
+    private Long userId;
     private Instant createdAt;
     private Instant updatedAt;
+
 }

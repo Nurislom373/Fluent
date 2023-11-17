@@ -7,6 +7,6 @@ package org.khasanof.query;
  */
 public enum QueriesEnum {
 
-    COUNT, SELECT_ALL, SELECT_ONE, INSERT
+    COUNT, SELECT_ALL, SELECT_ONE, INSERT, EXIST, UPDATE
 
 }

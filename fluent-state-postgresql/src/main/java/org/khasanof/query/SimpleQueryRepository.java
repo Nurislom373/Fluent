@@ -14,6 +14,8 @@ import java.util.Map;
 @Component
 public class SimpleQueryRepository implements QueryRepository, InitializingBean {
 
+    private static final String GET_COUNT_QUERY = "select count(*) from :table";
+    private static final String EQUALS_CONDITION_STRING = "WHERE id = :value";
     private final Map<QueriesEnum, String> queries = new HashMap<>();
 
     @Override
@@ -24,7 +26,9 @@ public class SimpleQueryRepository implements QueryRepository, InitializingBean 
     @Override
     public void afterPropertiesSet() throws Exception {
         queries.put(QueriesEnum.SELECT_ALL, "select * from :table");
-        queries.put(QueriesEnum.COUNT, "select count(*) from :table");
+        queries.put(QueriesEnum.COUNT, GET_COUNT_QUERY);
         queries.put(QueriesEnum.SELECT_ONE, "select * from :table where user_id = :user_id");
+        queries.put(QueriesEnum.INSERT, "insert into :table values (:state, :userId)");
+        queries.put(QueriesEnum.EXIST, GET_COUNT_QUERY.concat(" ".concat(EQUALS_CONDITION_STRING)));
     }
 }

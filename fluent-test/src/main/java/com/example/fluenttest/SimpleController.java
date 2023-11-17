@@ -2,6 +2,7 @@ package com.example.fluenttest;
 
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.annotation.UpdateController;
+import org.khasanof.annotation.extra.BotVariable;
 import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.MatchScope;
@@ -28,8 +29,9 @@ public class SimpleController {
         sender.execute(message);
     }
 
-    @HandleMessage(value = "abs", scope = MatchScope.START_WITH)
-    void startWithAbsHandler(Update update, AbsSender sender) throws TelegramApiException {
+    @HandleMessage(value = "/username : {name:[a-z]}", scope = MatchScope.VAR_EXPRESSION)
+    void startWithAbsHandler(Update update, AbsSender sender, @BotVariable("name") String username) throws TelegramApiException {
+        System.out.println("username = " + username);
         String chatId = update.getMessage().getChatId().toString();
         String text = update.getMessage().getText();
         log.info("Handle Start With 'abs' : {}", text);

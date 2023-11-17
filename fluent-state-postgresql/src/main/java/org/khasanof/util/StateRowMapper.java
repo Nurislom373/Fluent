@@ -1,4 +1,4 @@
-package org.khasanof;
+package org.khasanof.util;
 
 import org.khasanof.state.State;
 import org.khasanof.state.StateBuilder;
@@ -18,7 +18,7 @@ import java.util.Optional;
  * @since 10/27/2023 11:12 PM
  */
 @Component
-public class StateRowMapper implements RowMapper<Optional<State>> {
+public class StateRowMapper implements RowMapper<State> {
 
     private final StateConfigReader configReader;
 
@@ -27,16 +27,12 @@ public class StateRowMapper implements RowMapper<Optional<State>> {
     }
 
     @Override
-    public Optional<State> mapRow(ResultSet rs, int rowNum) throws SQLException {
-        String stateColumn = rs.getString("state");
-        if (Objects.nonNull(stateColumn)) {
-            return Optional.of(stateBuilder(stateColumn));
-        }
-        return Optional.empty();
+    public State mapRow(ResultSet rs, int rowNum) throws SQLException {
+        return stateBuilder(rs.getString("state"), rs.getLong("userId"));
     }
 
-    private State stateBuilder(String state) {
-        return StateBuilder.create(Enum.valueOf(configReader.getStateType(), state));
+    private State stateBuilder(String state, Long userId) {
+        return StateBuilder.create(Enum.valueOf(configReader.getStateType(), state), userId);
     }
 
 }

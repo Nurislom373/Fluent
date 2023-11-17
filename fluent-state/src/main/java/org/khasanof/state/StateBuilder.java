@@ -11,4 +11,8 @@ public interface StateBuilder {
         return new StateImpl(state);
     }
 
+    static State create(Enum state, Long userId) {
+        return new StateWithId(state, userId);
+    }
+
 }

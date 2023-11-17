@@ -22,8 +22,7 @@ public class StartState implements StateAction<SimpleState> {
     @Override
     public void onReceive(Update update, AbsSender sender, State state) throws Exception {
         log.info("Hello World I'm Start State");
-        sender.execute(new SendMessage(update.getMessage().getChatId().toString(),
-                "Hello World I'm Start State"));
+        sender.execute(new SendMessage(update.getMessage().getChatId().toString(), "Hello World I'm Start State"));
         state.nextState();
     }
 

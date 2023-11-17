@@ -1,6 +1,5 @@
 package org.khasanof.annotation.methods.inline;
 
-
 import org.khasanof.enums.MatchScope;
 
 import java.lang.annotation.ElementType;

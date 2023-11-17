@@ -1,6 +1,5 @@
-package org.khasanof;
+package org.khasanof.parameter;
 
-import org.khasanof.parameter.SqlParameterStrategy;
 import org.khasanof.query.QueriesEnum;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
@@ -16,12 +15,12 @@ import java.util.Map;
  * @since 10/27/2023 11:34 PM
  */
 @Component
-public class SqlParameterSourceComposite implements InitializingBean {
+public class SqlParameterSourceAdapter implements InitializingBean {
 
     private final ApplicationContext applicationContext;
     private final Map<QueriesEnum, SqlParameterStrategy> strategyMap = new HashMap<>();
 
-    public SqlParameterSourceComposite(ApplicationContext applicationContext) {
+    public SqlParameterSourceAdapter(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
