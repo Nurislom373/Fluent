@@ -16,7 +16,7 @@ public class FluentTestApplication implements StateConfigurerAdapter<SimpleState
 
     @Override
     public void configure(StateConfigurer<SimpleState> state) {
-        state.initial(SimpleState.START)
+        state.initial(SimpleState.END)
                 .states(EnumSet.allOf(SimpleState.class));
     }
 
