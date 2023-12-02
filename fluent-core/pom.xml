@@ -10,7 +10,7 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-core</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <properties>
         <java.version>17</java.version>
@@ -32,9 +32,9 @@
     </issueManagement>
 
     <scm>
-        <connection>scm:git:git@github.com:Nurislom373/fluent.git</connection>
-        <url>scm:git:git@github.com:Nurislom373/fluent.git</url>
-        <developerConnection>scm:git:git@github.com:Nurislom373/fluent.git</developerConnection>
+        <connection>scm:git:git@github.com:Nurislom373/Fluent.git</connection>
+        <url>scm:git:git@github.com:Nurislom373/Fluent.git</url>
+        <developerConnection>scm:git:git@github.com:Nurislom373/Fluent.git</developerConnection>
         <tag>fluent-core-1.0.0</tag>
     </scm>
 
