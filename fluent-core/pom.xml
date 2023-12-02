@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -12,7 +10,7 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-core</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
         <java.version>17</java.version>
@@ -37,7 +35,7 @@
         <connection>scm:git:git@github.com:Nurislom373/fluent.git</connection>
         <url>scm:git:git@github.com:Nurislom373/fluent.git</url>
         <developerConnection>scm:git:git@github.com:Nurislom373/fluent.git</developerConnection>
-        <tag>fluent-1.0.0</tag>
+        <tag>fluent-core-1.0.0</tag>
     </scm>
 
     <distributionManagement>
