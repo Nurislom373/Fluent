@@ -18,6 +18,7 @@ import java.util.function.Supplier;
  * @since 24.06.2023 1:14
  */
 @Component
+@SuppressWarnings({"rawtypes"})
 public class AdapterMatcher implements InitializingBean {
 
     private final ApplicationContext applicationContext;

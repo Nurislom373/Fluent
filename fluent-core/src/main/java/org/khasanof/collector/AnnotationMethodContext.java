@@ -4,7 +4,7 @@ import java.lang.annotation.Annotation;
 
 /**
  * @author Nurislom
- * @see org.khasanof.springbootstarterfluent.core.collector
+ * @see org.khasanof.collector
  * @since 8/19/2023 12:27 PM
  */
 public interface AnnotationMethodContext<R> {

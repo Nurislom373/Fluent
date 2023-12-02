@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
  * @author Nurislom
- * @see org.khasanof.springbootstarterfluent.core.model.additional
+ * @see org.khasanof.model.additional.param
  * @since 8/10/2023 8:05 AM
  */
 public interface APUpdateObject extends AdditionalParam<Update, Object> {

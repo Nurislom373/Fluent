@@ -16,6 +16,7 @@ import static org.khasanof.executors.matcher.MatcherConstants.*;
  * @see org.khasanof.executors.matcher
  * @since 03.07.2023 17:47
  */
+@SuppressWarnings({"rawtypes"})
 public abstract class AbstractMatcher {
 
     protected final Map<String, ExpressionMatcher> expressionMatcherMap;

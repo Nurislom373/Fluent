@@ -7,6 +7,7 @@ import org.khasanof.collector.questMethod.QuestMethod;
  * @see org.khasanof.collector
  * @since 25.06.2023 21:04
  */
+@SuppressWarnings({"rawtypes"})
 public abstract class AbstractCollector {
 
     protected final QuestMethod questMethod;

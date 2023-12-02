@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -10,13 +11,14 @@
     </parent>
 
     <groupId>org.khasanof</groupId>
-    <artifactId>spring-boot-fluent-starter</artifactId>
-    <version>1.0.0-RELEASE</version>
-    <name>spring-boot-fluent-starter</name>
-    <description>spring-boot-fluent-starter</description>
+    <artifactId>spring-boot-starter-fluent</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <name>spring-boot-starter-fluent</name>
+    <description>spring-boot-starter-fluent</description>
 
     <properties>
         <java.version>17</java.version>
+        <fluent-core.version>1.0.0</fluent-core.version>
     </properties>
 
     <licenses>
@@ -68,9 +70,9 @@
             <version>0.10.2</version>
         </dependency>
         <dependency>
-            <groupId>org.khasanof</groupId>
+            <groupId>io.github.nurislom373</groupId>
             <artifactId>fluent-core</artifactId>
-            <version>1.0.0</version>
+            <version>${fluent-core.version}</version>
         </dependency>
     </dependencies>
 
@@ -90,43 +92,6 @@
                 <configuration>
                     <mainClass>org.khasanof.FluentStarter</mainClass>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven-resources-plugin.version}</version>
-                <executions>
-                    <execution>
-                        <id>default-resources</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/classes</outputDirectory>
-                            <useDefaultDelimiters>false</useDefaultDelimiters>
-                            <delimiters>
-                                <delimiter>#</delimiter>
-                            </delimiters>
-                            <resources>
-                                <resource>
-                                    <directory>src/main/resources/</directory>
-                                    <filtering>true</filtering>
-                                    <includes>
-                                        <include>config/*.yml</include>
-                                    </includes>
-                                </resource>
-                                <resource>
-                                    <directory>src/main/resources/</directory>
-                                    <filtering>false</filtering>
-                                    <excludes>
-                                        <exclude>config/*.yml</exclude>
-                                    </excludes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

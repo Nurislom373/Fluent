@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * @author Nurislom
- * @see org.khasanof.model.additional
+ * @see org.khasanof.model.additional.param
  * @since 8/10/2023 8:03 AM
  */
 public interface APAnnotationMap extends AdditionalParam<Map.Entry<Update, Annotation>, Map<String, String>> {

@@ -14,7 +14,7 @@ import java.util.Map;
  * Take Additional Param With Type
  *
  * @author Nurislom
- * @see org.khasanof.executors.invoker.additional
+ * @see org.khasanof.executors.invoker
  * @since 8/13/2023 7:02 PM
  */
 @Component(TWTCommonAdapter.NAME)

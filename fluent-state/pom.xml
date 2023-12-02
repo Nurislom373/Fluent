@@ -34,7 +34,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.khasanof</groupId>
+            <groupId>io.github.nurislom373</groupId>
             <artifactId>fluent-core</artifactId>
             <version>1.0.0</version>
         </dependency>

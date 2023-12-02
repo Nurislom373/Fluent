@@ -3,11 +3,15 @@ package com.example.fluenttest;
 import org.khasanof.annotation.UpdateController;
 import org.khasanof.annotation.extra.BotVariable;
 import org.khasanof.annotation.methods.HandleMessage;
+import org.khasanof.annotation.methods.HandlePhoto;
 import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.scopes.PhotoScope;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.io.InputStream;
 
 /**
  * @author Nurislom
@@ -19,6 +23,13 @@ public class TestController {
 
     @HandleMessage(value = "/start")
     void test(Update update, AbsSender sender) throws TelegramApiException {
+        String text = update.getMessage().getText();
+        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
+        sender.execute(message);
+    }
+
+    @HandlePhoto(value = "today:", scope = PhotoScope.CAPTION, match = MatchScope.START_WITH)
+    void handlePhoto(Update update, AbsSender sender) throws TelegramApiException {
         String text = update.getMessage().getText();
         SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
         sender.execute(message);
