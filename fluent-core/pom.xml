@@ -11,6 +11,9 @@
     <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-core</artifactId>
     <version>1.0.0</version>
+    <name>Fluent Core</name>
+    <description>Fluent library makes it very easy for you to write telegram bot with Spring framework.</description>
+    <inceptionYear>2023</inceptionYear>
 
     <properties>
         <java.version>17</java.version>
@@ -60,6 +63,7 @@
         <developer>
             <name>Nurislom Xasanov</name>
             <email>khasanof373@gmail.com</email>
+            <url>https://github.com/Nurislom373</url>
             <roles>
                 <role>Lead Developer</role>
             </roles>
