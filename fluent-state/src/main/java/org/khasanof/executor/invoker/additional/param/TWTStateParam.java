@@ -2,7 +2,7 @@ package org.khasanof.executor.invoker.additional.param;
 
 import org.khasanof.enums.additional.AdditionalParamType;
 import org.khasanof.executors.invoker.param.TWT;
-import org.khasanof.model.SampleModel;
+import org.khasanof.model.Invoker;
 import org.khasanof.utils.MethodUtils;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -19,7 +19,7 @@ public class TWTStateParam implements TWT {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Object getValue(SampleModel invokerModel, Object[] args, Method method) {
+    public Object getValue(Invoker invokerModel, Object[] args, Method method) {
         return invokerModel.getAdditionalParam().getParam(MethodUtils.getArg(args, Update.class));
     }
 

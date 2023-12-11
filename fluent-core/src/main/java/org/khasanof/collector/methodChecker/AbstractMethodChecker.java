@@ -1,7 +1,7 @@
 package org.khasanof.collector.methodChecker;
 
 
-import org.khasanof.model.properties.MainParamProperties;
+import org.khasanof.constants.ParamConstants;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -18,7 +18,7 @@ import java.util.Arrays;
  */
 public abstract class AbstractMethodChecker implements AbstractMethodType {
 
-    protected final Class<?>[] MAIN_PARAMS = MainParamProperties.MAIN_PARAMS_ARRAY;
+    protected final Class<?>[] MAIN_PARAMS = ParamConstants.MAIN_PARAMS_ARRAY;
 
     public abstract boolean valid(Method method);
 

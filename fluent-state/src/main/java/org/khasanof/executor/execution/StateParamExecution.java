@@ -17,7 +17,7 @@ import java.lang.reflect.InvocationTargetException;
 public class StateParamExecution extends AbstractExecution implements Execution {
 
     @Override
-    public void run(MethodV1Event methodV1Event) throws InvocationTargetException, IllegalAccessException {
+    public void run(MethodV1Event methodV1Event) throws IllegalAccessException, InvocationTargetException {
         defaultExecution(methodV1Event);
     }
 

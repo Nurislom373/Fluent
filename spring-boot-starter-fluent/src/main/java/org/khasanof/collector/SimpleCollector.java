@@ -4,7 +4,7 @@ import org.khasanof.GenericContains;
 import org.khasanof.collector.questMethod.SearchMethod;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.HandleType;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
@@ -28,17 +28,17 @@ public class SimpleCollector extends AbstractCollector implements Collector<Clas
     }
 
     @Override
-    public InvokerResult getInvokerResult(Object value, Class<? extends Annotation> annotation) {
+    public SimpleInvoker getInvokerResult(Object value, Class<? extends Annotation> annotation) {
         return questMethod.getMethodValueAnn(value, HandleClasses.getHandleWithType(annotation));
     }
 
     @Override
-    public InvokerResult getHandleAnyMethod(HandleType handleType) {
+    public SimpleInvoker getHandleAnyMethod(HandleType handleType) {
         return questMethod.getHandleAnyMethod(handleType);
     }
 
     @Override
-    public Set<InvokerResult> getAllHandleAnyMethod(HandleType handleType) {
+    public Set<SimpleInvoker> getAllHandleAnyMethod(HandleType handleType) {
         return questMethod.getAllHandleAnyMethod(handleType);
     }
 

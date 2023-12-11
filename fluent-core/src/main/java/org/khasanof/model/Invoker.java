@@ -3,6 +3,7 @@ package org.khasanof.model;
 import lombok.*;
 import org.khasanof.enums.InvokerType;
 import org.khasanof.model.condition.Condition;
+import org.khasanof.model.invoker.SimpleInvoker;
 
 import java.util.List;
 import java.util.Objects;
@@ -18,11 +19,11 @@ import java.util.Objects;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class SampleModel {
+public class Invoker {
 
     private InvokerType type;
     private String name;
-    private InvokerResult invokerReference;
+    private SimpleInvoker invokerReference;
     private Condition condition;
     private AdditionalParam additionalParam;
     private AdditionalChecks additionalChecks;

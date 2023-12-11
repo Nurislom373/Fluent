@@ -2,8 +2,8 @@ package org.khasanof.executors.invoker;
 
 import org.khasanof.executors.invoker.param.TWTCommonAdapter;
 import org.khasanof.model.AdditionalParam;
-import org.khasanof.model.SampleModel;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.Invoker;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -19,7 +19,7 @@ import static org.khasanof.executors.invoker.DefaultInvokerFunctions.HANDLE_UPDA
 @Component
 public class InvokerFunctionsImpl implements InvokerFunctions {
 
-    private final Set<SampleModel> invokerModelV2s = new LinkedHashSet<>();
+    private final Set<Invoker> invokerModelV2s = new LinkedHashSet<>();
     private final TWTCommonAdapter twtCommonAdapter;
     private final InvokerResultService resultService;
 
@@ -29,13 +29,13 @@ public class InvokerFunctionsImpl implements InvokerFunctions {
     }
 
     @Override
-    public void add(SampleModel modelV2) {
+    public void add(Invoker modelV2) {
         invokerModelV2s.add(modelV2);
     }
 
     @Override
-    public SampleModel fillAndGet(InvokerResult result, Object... args) {
-        SampleModel modelV2 = invokerModelV2s.stream().filter(invokerModelV2 -> result.getType().equals(invokerModelV2.getType()) &&
+    public Invoker fillAndGet(SimpleInvoker result, Object... args) {
+        Invoker modelV2 = invokerModelV2s.stream().filter(invokerModelV2 -> result.getType().equals(invokerModelV2.getType()) &&
                         invokerModelV2Matcher(invokerModelV2, result))
                 .findFirst().orElseThrow(() -> new RuntimeException("InvokerModel not found!"));
 
@@ -59,13 +59,13 @@ public class InvokerFunctionsImpl implements InvokerFunctions {
     }
 
     @Override
-    public SampleModel findByName(String name) {
+    public Invoker findByName(String name) {
         return invokerModelV2s.parallelStream().filter(invokerModelV2 -> invokerModelV2.getName().equals(name))
                 .findFirst().orElseThrow(() -> new RuntimeException("invoker model not found"));
     }
 
     @SuppressWarnings("unchecked")
-    private boolean invokerModelV2Matcher(SampleModel modelV2, InvokerResult result) {
+    private boolean invokerModelV2Matcher(Invoker modelV2, SimpleInvoker result) {
         if (!modelV2.hasAdditionalChecks()) {
             return modelV2.getCondition().match(result);
         } else {
@@ -76,7 +76,7 @@ public class InvokerFunctionsImpl implements InvokerFunctions {
     }
 
     @SuppressWarnings({"rawtypes"})
-    private Object getAdditionalParamV2(SampleModel invokerModel, Object[] args, Method method) {
+    private Object getAdditionalParamV2(Invoker invokerModel, Object[] args, Method method) {
         AdditionalParam additionalParam = invokerModel.getAdditionalParam();
         return twtCommonAdapter.takeParam(additionalParam.getType(), invokerModel, args, method);
     }

@@ -2,7 +2,7 @@ package org.khasanof.executor.invoker;
 
 import org.khasanof.enums.InvokerType;
 import org.khasanof.executors.invoker.InvokerFunctions;
-import org.khasanof.model.SampleModel;
+import org.khasanof.model.Invoker;
 import org.khasanof.model.additional.param.APUpdateState;
 import org.khasanof.model.condition.ClassCondition;
 import org.khasanof.state.State;
@@ -35,7 +35,7 @@ public class InvokerStateFunction implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        SampleModel stateInvokerModel = SampleModel.builder()
+        Invoker stateInvokerModel = Invoker.builder()
                 .name(HANDLE_STATE)
                 .type(InvokerType.CLASS)
                 .condition((ClassCondition) (invokerClass -> StateAction.class.isAssignableFrom(

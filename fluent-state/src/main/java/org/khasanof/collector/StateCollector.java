@@ -1,7 +1,7 @@
 package org.khasanof.collector;
 
 import org.khasanof.collector.questMethod.SearchMethod;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,7 +20,7 @@ public class StateCollector extends AbstractCollector implements Collector<Enum>
 
     @Override
     @SuppressWarnings("unchecked")
-    public InvokerResult getInvokerResult(Object value, Enum param) {
+    public SimpleInvoker getInvokerResult(Object value, Enum param) {
         return questMethod.getMethodValueAnn(value, param);
     }
 

@@ -3,7 +3,7 @@ package org.khasanof.executors.determination;
 import org.khasanof.config.ApplicationProperties;
 import org.khasanof.config.Config;
 import org.khasanof.enums.ProcessType;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Component
 public class SimpleDeterminationService implements DeterminationService, Config {
 
-    private final Map<Integer, List<BiConsumer<Update, Set<InvokerResult>>>> orderListMap = new TreeMap<>();
+    private final Map<Integer, List<BiConsumer<Update, Set<SimpleInvoker>>>> orderListMap = new TreeMap<>();
     private final ApplicationContext applicationContext;
     private final ApplicationProperties.Bot bot;
 
@@ -30,7 +30,7 @@ public class SimpleDeterminationService implements DeterminationService, Config 
     }
 
     @Override
-    public List<BiConsumer<Update, Set<InvokerResult>>> getDeterminations() {
+    public List<BiConsumer<Update, Set<SimpleInvoker>>> getDeterminations() {
         return orderListMap.values().stream().filter(Objects::nonNull)
                 .flatMap(Collection::stream).collect(Collectors.toList());
     }

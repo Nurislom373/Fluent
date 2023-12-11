@@ -1,7 +1,7 @@
 package org.khasanof.collector.questMethod;
 
 import org.khasanof.enums.HandleType;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvoker;
 
 import java.util.Set;
 
@@ -12,17 +12,17 @@ import java.util.Set;
  */
 public interface SearchMethod<P> {
 
-    InvokerResult getMethodValueAnn(Object value, P param);
+    SimpleInvoker getMethodValueAnn(Object value, P param);
 
     default boolean containsKey(P param) {
         return false;
     }
 
-    default InvokerResult getHandleAnyMethod(HandleType handleType) {
+    default SimpleInvoker getHandleAnyMethod(HandleType handleType) {
         return null;
     }
 
-    default Set<InvokerResult> getAllHandleAnyMethod(HandleType handleType) {
+    default Set<SimpleInvoker> getAllHandleAnyMethod(HandleType handleType) {
         return null;
     }
 

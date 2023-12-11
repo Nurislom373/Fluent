@@ -7,7 +7,7 @@ import org.khasanof.context.FluentContextHolder;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.HandleType;
 import org.khasanof.executors.matcher.CompositeMatcher;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -35,7 +35,7 @@ public class AsyncSimpleQuestMethod implements DefaultSearchMethod {
     }
 
     @Override
-    public InvokerResult getMethodValueAnn(Object value, HandleClasses type) {
+    public SimpleInvoker getMethodValueAnn(Object value, HandleClasses type) {
         log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         System.out.printf("Enter type - %s, value - %s \n", type, value);
         CompletableFuture<Map.Entry<Method, Object>> supplyAsync;
@@ -68,7 +68,7 @@ public class AsyncSimpleQuestMethod implements DefaultSearchMethod {
 
     @Override
     @SneakyThrows
-    public InvokerResult getHandleAnyMethod(HandleType handleType) {
+    public SimpleInvoker getHandleAnyMethod(HandleType handleType) {
         log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         return CompletableFuture.supplyAsync(() -> methodContext.containsKey(HandleClasses.HANDLE_ANY) ?
                 methodContext.getMethodsByGenericKey(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(
@@ -78,7 +78,7 @@ public class AsyncSimpleQuestMethod implements DefaultSearchMethod {
 
     @SneakyThrows
     @Override
-    public Set<InvokerResult> getAllHandleAnyMethod(HandleType handleType) {
+    public Set<SimpleInvoker> getAllHandleAnyMethod(HandleType handleType) {
         log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         return CompletableFuture.supplyAsync(() -> methodContext.containsKey(HandleClasses.HANDLE_ANY) ?
                 methodContext.getMethodsByGenericKey(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(

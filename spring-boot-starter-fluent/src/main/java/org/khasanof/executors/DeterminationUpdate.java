@@ -3,7 +3,7 @@ package org.khasanof.executors;
 import org.khasanof.custom.BreakerForEach;
 import org.khasanof.custom.FluentContext;
 import org.khasanof.executors.determination.DeterminationService;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -26,9 +26,9 @@ public class DeterminationUpdate {
         this.determinationService = determinationService;
     }
 
-    public Set<InvokerResult> determinationV2(Update update) {
-        Set<InvokerResult> invokerResults = new LinkedHashSet<>();
-        List<BiConsumer<Update, Set<InvokerResult>>> list = determinationService.getDeterminations();
+    public Set<SimpleInvoker> determinationV2(Update update) {
+        Set<SimpleInvoker> invokerResults = new LinkedHashSet<>();
+        List<BiConsumer<Update, Set<SimpleInvoker>>> list = determinationService.getDeterminations();
         BreakerForEach.forEach(list.stream(), ((updateMapBiConsumer, breaker) -> {
             if (!FluentContext.determinationServiceBoolean.get()) {
                 updateMapBiConsumer.accept(update, invokerResults);

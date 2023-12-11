@@ -6,8 +6,8 @@ import org.khasanof.condition.Condition;
 import org.khasanof.custom.FluentContext;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.determination.DeterminationFunction;
-import org.khasanof.model.InvokerObject;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvokerObject;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.repository.StateRepositoryStrategy;
 import org.khasanof.utils.UpdateUtils;
@@ -31,7 +31,7 @@ public class HandleStateFunction implements DeterminationFunction {
 
     @Override
     @SuppressWarnings("unchecked")
-    public BiConsumer<Update, Set<InvokerResult>> accept(ApplicationContext applicationContext) {
+    public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
             StateRepositoryStrategy repository = applicationContext.getBean(StateRepositoryStrategy.class);
             Long id = UpdateUtils.getUserId(update);
@@ -41,7 +41,7 @@ public class HandleStateFunction implements DeterminationFunction {
 
             repository.findById(id).ifPresent(state -> {
                 Collector<Enum> collector = applicationContext.getBean(StateCollector.NAME, Collector.class);
-                InvokerResult classEntry = collector.getInvokerResult(state.getState(), state.getState());
+                SimpleInvoker classEntry = collector.getInvokerResult(state.getState(), state.getState());
 
                 Condition.isTrue(Objects.nonNull(classEntry))
                         .thenCall(() -> {
@@ -56,8 +56,8 @@ public class HandleStateFunction implements DeterminationFunction {
         });
     }
 
-    private boolean isNotProcessedUpdates(InvokerResult result) {
-        InvokerObject invokerObject = (InvokerObject) result;
+    private boolean isNotProcessedUpdates(SimpleInvoker result) {
+        SimpleInvokerObject invokerObject = (SimpleInvokerObject) result;
         StateAction stateActions = (StateAction) invokerObject.getReference();
         return !stateActions.updateHandlersProceed();
     }

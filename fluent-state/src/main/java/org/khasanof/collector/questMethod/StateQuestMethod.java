@@ -1,8 +1,8 @@
 package org.khasanof.collector.questMethod;
 
 import org.khasanof.collector.GenericMethodContext;
-import org.khasanof.model.InvokerObject;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvokerObject;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -17,6 +17,7 @@ import java.util.Objects;
 @Component
 public class StateQuestMethod implements SearchMethod<Enum> {
 
+    private static final String executionMethodName = "onReceive";
     private final GenericMethodContext<Enum, Map.Entry<Method, Object>> methodContext;
 
     public StateQuestMethod(GenericMethodContext<Enum, Map.Entry<Method, Object>> methodContext) {
@@ -24,7 +25,7 @@ public class StateQuestMethod implements SearchMethod<Enum> {
     }
 
     @Override
-    public InvokerResult getMethodValueAnn(Object value, Enum param) {
+    public SimpleInvoker getMethodValueAnn(Object value, Enum param) {
         return resultCreator(methodContext.getMethodsByGenericKey(param));
     }
 
@@ -33,10 +34,10 @@ public class StateQuestMethod implements SearchMethod<Enum> {
         return methodContext.containsKey(param);
     }
 
-    private InvokerResult resultCreator(Map.Entry<Method, Object> entry) {
+    private SimpleInvoker resultCreator(Map.Entry<Method, Object> entry) {
         if (Objects.isNull(entry)) {
             return null;
         }
-        return new InvokerObject(entry.getValue(), "onReceive");
+        return new SimpleInvokerObject(entry.getValue(), executionMethodName);
     }
 }

@@ -1,7 +1,7 @@
 package org.khasanof.collector.questMethod;
 
-import org.khasanof.model.InvokerMethod;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvokerMethod;
+import org.khasanof.model.invoker.SimpleInvoker;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -14,8 +14,8 @@ import java.util.Objects;
  */
 public abstract class SearchMethodUtils {
 
-    public static InvokerResult resultCreator(Map.Entry<Method, Object> entry) {
-        return Objects.nonNull(entry) ? new InvokerMethod(entry.getKey(), entry.getValue()) : null;
+    public static SimpleInvoker resultCreator(Map.Entry<Method, Object> entry) {
+        return Objects.nonNull(entry) ? new SimpleInvokerMethod(entry.getKey(), entry.getValue()) : null;
     }
 
 }

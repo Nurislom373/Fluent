@@ -1,11 +1,11 @@
-package org.khasanof.model;
+package org.khasanof.model.invoker;
 
 import lombok.*;
 import org.khasanof.enums.InvokerType;
 
 /**
  * @author Nurislom
- * @see org.khasanof.model
+ * @see org.khasanof.model.invoker
  * @since 8/19/2023 6:16 PM
  */
 @Getter
@@ -14,7 +14,7 @@ import org.khasanof.enums.InvokerType;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class InvokerObject implements InvokerResult {
+public class SimpleInvokerObject implements SimpleInvoker {
 
     private Object reference;
     private String executionMethodName;

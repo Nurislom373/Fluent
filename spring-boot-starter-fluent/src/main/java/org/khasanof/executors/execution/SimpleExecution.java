@@ -13,13 +13,11 @@ import java.lang.reflect.InvocationTargetException;
  * @since 8/13/2023 9:28 PM
  */
 @Component
-public class SimpleExecution implements Execution {
+public class SimpleExecution extends AbstractExecution {
 
     @Override
     public void run(MethodV1Event methodV1Event) throws InvocationTargetException, IllegalAccessException {
-        Object[] objects = MethodUtils.sorterV2(methodV1Event.getInvokerModel().getArgs(),
-                methodV1Event.getMethod().getParameterTypes());
-        methodV1Event.getMethod().invoke(methodV1Event.getClassEntry().getValue(), objects);
+        defaultExecution(methodV1Event);
     }
 
     @Override

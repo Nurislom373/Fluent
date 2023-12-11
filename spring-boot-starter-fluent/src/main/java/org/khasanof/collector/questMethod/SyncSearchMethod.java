@@ -5,8 +5,7 @@ import org.khasanof.collector.GenericMethodContext;
 import org.khasanof.context.FluentContextHolder;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.executors.matcher.CompositeMatcher;
-import org.khasanof.model.InvokerResult;
-import org.springframework.stereotype.Component;
+import org.khasanof.model.invoker.SimpleInvoker;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -34,7 +33,7 @@ public class SyncSearchMethod implements DefaultSearchMethod {
     }
 
     @Override
-    public InvokerResult getMethodValueAnn(Object value, HandleClasses type) {
+    public SimpleInvoker getMethodValueAnn(Object value, HandleClasses type) {
         log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         System.out.printf("Enter type - %s, value - %s \n", type, value);
         if (type.isHasSubType()) {

@@ -1,7 +1,7 @@
 package org.khasanof.executors.determination;
 
 import org.khasanof.config.DefineProcessType;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -15,7 +15,7 @@ import java.util.function.BiConsumer;
  */
 public interface DeterminationFunction extends DefineProcessType {
 
-    BiConsumer<Update, Set<InvokerResult>> accept(ApplicationContext applicationContext);
+    BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext);
 
     Integer getOrder();
 

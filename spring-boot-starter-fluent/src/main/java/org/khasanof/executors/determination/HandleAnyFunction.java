@@ -9,8 +9,8 @@ import org.khasanof.enums.HandleType;
 import org.khasanof.enums.Proceed;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.HandleFunctionsMatcher;
-import org.khasanof.model.InvokerMethod;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.model.invoker.SimpleInvokerMethod;
+import org.khasanof.model.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -35,7 +35,7 @@ public class HandleAnyFunction implements DeterminationFunction {
 
     @Override
     @SuppressWarnings("unchecked")
-    public BiConsumer<Update, Set<InvokerResult>> accept(ApplicationContext applicationContext) {
+    public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
             Collector<Class<? extends Annotation>> collector = applicationContext.getBean(SimpleCollector.NAME, Collector.class);
 
@@ -44,7 +44,7 @@ public class HandleAnyFunction implements DeterminationFunction {
                 Optional<Map.Entry<HandleType, Object>> optional = matcher.matchFunctions(update);
 
                 optional.ifPresentOrElse((handleTypeObjectEntry -> {
-                    Set<InvokerResult> allHandleAnyMethods = collector.getAllHandleAnyMethod(handleTypeObjectEntry.getKey());
+                    Set<SimpleInvoker> allHandleAnyMethods = collector.getAllHandleAnyMethod(handleTypeObjectEntry.getKey());
 
                     if (Objects.nonNull(allHandleAnyMethods)) {
 
@@ -59,8 +59,8 @@ public class HandleAnyFunction implements DeterminationFunction {
         });
     }
 
-    private boolean hasValueNotProceedInMethods(Set<InvokerResult> methods) {
-        return methods.stream().map(result -> ((InvokerMethod) result).getMethod())
+    private boolean hasValueNotProceedInMethods(Set<SimpleInvoker> methods) {
+        return methods.stream().map(result -> ((SimpleInvokerMethod) result).getMethod())
                 .anyMatch(method -> {
                     HandleAny annotation = method.getAnnotation(HandleAny.class);
                     return annotation.proceed().equals(Proceed.NOT_PROCEED);

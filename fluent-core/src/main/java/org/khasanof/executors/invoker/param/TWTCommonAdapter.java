@@ -1,7 +1,7 @@
 package org.khasanof.executors.invoker.param;
 
 import org.khasanof.enums.additional.AdditionalParamType;
-import org.khasanof.model.SampleModel;
+import org.khasanof.model.Invoker;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -28,7 +28,7 @@ public class TWTCommonAdapter implements InitializingBean {
         this.applicationContext = applicationContext;
     }
 
-    public Object takeParam(AdditionalParamType type, SampleModel invokerModel, Object[] args, Method method) {
+    public Object takeParam(AdditionalParamType type, Invoker invokerModel, Object[] args, Method method) {
         return twtMap.get(type).getValue(invokerModel, args, method);
     }
 
