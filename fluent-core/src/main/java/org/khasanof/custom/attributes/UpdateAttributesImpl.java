@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Nurislom
- * @see org.khasanof.custom.scope.fluent
+ * @see org.khasanof.custom.attributes
  * @since 12/10/2023 8:13 PM
  */
 public class UpdateAttributesImpl implements UpdateAttributes {

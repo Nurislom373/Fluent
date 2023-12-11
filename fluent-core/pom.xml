@@ -12,7 +12,7 @@
     <artifactId>fluent-core</artifactId>
     <version>1.0.2</version>
     <name>Fluent Core</name>
-    <description>Fluent library makes it very easy for you to write telegram bot with Spring framework.</description>
+    <description>Fluent - Easy Telegram Bots with Spring!</description>
     <inceptionYear>2023</inceptionYear>
 
     <properties>

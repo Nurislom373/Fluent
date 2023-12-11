@@ -12,10 +12,10 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <inceptionYear>2023</inceptionYear>
     <name>Spring Boot Starter Fluent</name>
-    <description>Fluent - Easy Telegram Bots with Spring</description>
+    <description>Fluent - Easy Telegram Bots with Spring!</description>
 
     <properties>
         <java.version>17</java.version>

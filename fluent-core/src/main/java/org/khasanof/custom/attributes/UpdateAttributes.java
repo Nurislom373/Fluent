@@ -4,7 +4,7 @@ import java.util.Set;
 
 /**
  * @author Nurislom
- * @see org.khasanof.custom.scope.fluent
+ * @see org.khasanof.custom.attributes
  * @since 12/9/2023 2:41 PM
  */
 public interface UpdateAttributes {
