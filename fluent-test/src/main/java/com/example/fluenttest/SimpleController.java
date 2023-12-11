@@ -2,7 +2,7 @@ package com.example.fluenttest;
 
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.annotation.UpdateController;
-import org.khasanof.annotation.extra.BotVariable;
+import org.khasanof.annotation.expression.BotVariable;
 import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.MatchScope;

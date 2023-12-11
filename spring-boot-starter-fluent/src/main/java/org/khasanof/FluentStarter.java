@@ -5,7 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
 import org.springframework.boot.context.TypeExcludeFilter;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
@@ -27,11 +26,12 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 public class FluentStarter {
 
     @Bean
-    CommandLineRunner getRunner(ApplicationContext context) {
+    CommandLineRunner getRunner(MainHandler handler, ApplicationProperties properties, FluentBotSingletonBean singletonBean) {
         return (args -> {
             var registry = new TelegramBotsApi(DefaultBotSession.class);
-            var bot = context.getBean(FluentBot.class);
-            registry.registerBot(bot);
+            FluentBot fluentBot = new FluentBot(handler, properties);
+            singletonBean.setInstance(fluentBot);
+            registry.registerBot(fluentBot);
         });
     }
 

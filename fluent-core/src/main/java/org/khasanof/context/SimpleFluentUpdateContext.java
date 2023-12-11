@@ -1,7 +1,8 @@
 package org.khasanof.context;
 
 import lombok.Data;
-import org.springframework.stereotype.Component;
+import org.khasanof.custom.attributes.UpdateAttributes;
+import org.khasanof.custom.attributes.UpdateAttributesImpl;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Map;
@@ -13,7 +14,6 @@ import java.util.concurrent.ConcurrentHashMap;
  * @see org.khasanof.context
  * @since 10/28/2023 6:53 PM
  */
-@Component
 public class SimpleFluentUpdateContext implements FluentUpdateContext {
 
     private final Map<String, FluentUpdate> updateMap = new ConcurrentHashMap<>();
@@ -34,16 +34,18 @@ public class SimpleFluentUpdateContext implements FluentUpdateContext {
     }
 
     private FluentUpdate fluentUpdateBuilder(Update update) {
-        return new PrivateFluentUpdate(update);
+        return new PrivateFluentUpdate(update, new UpdateAttributesImpl());
     }
 
     @Data
     protected static class PrivateFluentUpdate implements FluentUpdate {
 
         private Update update;
+        private UpdateAttributes attributes;
 
-        public PrivateFluentUpdate(Update update) {
+        public PrivateFluentUpdate(Update update, UpdateAttributes attributes) {
             this.update = update;
+            this.attributes = attributes;
         }
     }
 

@@ -7,7 +7,6 @@ import org.khasanof.context.FluentContextHolder;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.HandleType;
 import org.khasanof.executors.matcher.CompositeMatcher;
-import org.khasanof.model.InvokerMethod;
 import org.khasanof.model.InvokerResult;
 import org.springframework.stereotype.Component;
 
@@ -25,21 +24,19 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
-public class AsyncSimpleQuestMethod implements QuestMethod<HandleClasses> {
+public class AsyncSimpleQuestMethod implements DefaultSearchMethod {
 
     private final GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext;
-    private final FluentContextHolder contextHolder;
     private final CompositeMatcher matcher;
 
-    public AsyncSimpleQuestMethod(GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext, FluentContextHolder contextHolder, CompositeMatcher matcher) {
+    public AsyncSimpleQuestMethod(GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext, CompositeMatcher matcher) {
         this.methodContext = methodContext;
-        this.contextHolder = contextHolder;
         this.matcher = matcher;
     }
 
     @Override
     public InvokerResult getMethodValueAnn(Object value, HandleClasses type) {
-        log.info("contextHolder.getCurrentUpdate() = " + contextHolder.getCurrentUpdate());
+        log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         System.out.printf("Enter type - %s, value - %s \n", type, value);
         CompletableFuture<Map.Entry<Method, Object>> supplyAsync;
         if (type.isHasSubType()) {
@@ -66,36 +63,35 @@ public class AsyncSimpleQuestMethod implements QuestMethod<HandleClasses> {
                                             value, type.getType()))
                                     .findFirst().orElse(null) : null);
         }
-        return supplyAsync.thenApply(this::resultCreator).join();
+        return supplyAsync.thenApply(SearchMethodUtils::resultCreator).join();
     }
 
     @Override
     @SneakyThrows
     public InvokerResult getHandleAnyMethod(HandleType handleType) {
-        log.info("contextHolder.getCurrentUpdate() = " + contextHolder.getCurrentUpdate());
+        log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         return CompletableFuture.supplyAsync(() -> methodContext.containsKey(HandleClasses.HANDLE_ANY) ?
                 methodContext.getMethodsByGenericKey(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(
                                 clazz -> matcher.chooseMatcher(clazz.getKey(), handleType))
-                        .findFirst().orElse(null) : null).thenApply(this::resultCreator).get();
+                        .findFirst().orElse(null) : null).thenApply(SearchMethodUtils::resultCreator).get();
     }
 
     @SneakyThrows
     @Override
     public Set<InvokerResult> getAllHandleAnyMethod(HandleType handleType) {
-        log.info("contextHolder.getCurrentUpdate() = " + contextHolder.getCurrentUpdate());
+        log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         return CompletableFuture.supplyAsync(() -> methodContext.containsKey(HandleClasses.HANDLE_ANY) ?
                 methodContext.getMethodsByGenericKey(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(
                                 clazz -> matcher.chooseMatcher(clazz.getKey(), handleType))
-                        .map(this::resultCreator)
+                        .map(SearchMethodUtils::resultCreator)
                         .collect(Collectors.toSet()) : null)
                 .get();
     }
 
-    private InvokerResult resultCreator(Map.Entry<Method, Object> entry) {
-        if (Objects.isNull(entry)) {
-            return null;
-        }
-        return new InvokerMethod(entry.getKey(), entry.getValue());
+
+    @Override
+    public boolean contains(HandleClasses handleClasses) {
+        return methodContext.containsKey(handleClasses);
     }
 
 }

@@ -18,7 +18,7 @@ Ushbu bo'limda kod yozishgacha bo'lgan jarayoncha nimalarni qilishingiz keraklig
 
 === 1.1 System Requirements
 
-Ushbu fluent librarysidan foydalanish uchun Java 17 versiyasi va Spring boot-ni 3.1 dan baland versiyasi bo'lishi kerak.
+Ushbu fluent librarysidan foydalanish uchun Java 17 versiyasi va Spring boot-ni 3.0 yoki undan baland versiyasi bo'lishi kerak.
 
 === 1.2 Dependency
 
@@ -29,7 +29,7 @@ Fluent dan foydalanish uchun POM faylingizga quyidagi depedency qo'shishingiz ke
 [subs=attributes+]
 ----
 <dependency>
-    <groupId>org.khasanof</groupId>
+    <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -40,7 +40,7 @@ Fluent dan foydalanish uchun POM faylingizga quyidagi depedency qo'shishingiz ke
 [subs=attributes+]
 ....
 dependencies {
-    implementation 'org.khasanof:spring-boot-starter-fluent:1.0.0'
+    implementation 'io.github.nurislom373:spring-boot-starter-fluent:1.0.0'
 }
 ....
 
@@ -494,8 +494,8 @@ image::images/handle_any_2.png[Wolpertinger,pdfwidth=50%,float=center,role=thumb
 
 rasmdagi natijani ko'rgan bo'lsangiz faqat `@HandleAny` method ishladi va undan keyin handlar method bajarilmadi.
 
-`@HandleAny` annotatsiyasi qoyilgan method kirib keladigan parameterlarsiz ham yozishimiz mumkin. Lekin Update yoki
-AbsSender ikklasinidan birini kiritishimiz hozircha mumkin emas!.
+`@HandleAny` annotatsiyasi qoyilgan method parameterlarsiz ham yozishimiz mumkin. Lekin _Update_ yoki _AbsSender_
+ikklasinidan birini kiritishimiz hozircha mumkin emas!. Lekin ikklasini kiritib ishlatishingiz mumkin.
 
 [source,java,indent=0]
 [subs=attributes+]

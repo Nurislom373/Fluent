@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.khasanof</groupId>
+    <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-state-postgresql</artifactId>
     <version>1.0.0</version>
-    <name>fluent-state-postgresql</name>
-    <description>fluent-state-postgresql</description>
+    <name>Fluent State Postgresql</name>
+    <description>Fluent - Easy Telegram Bots with Spring</description>
 
     <properties>
         <java.version>17</java.version>
@@ -30,7 +30,7 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.khasanof</groupId>
+            <groupId>io.github.nurislom373</groupId>
             <artifactId>fluent-state</artifactId>
             <version>${fluent.state.version}</version>
         </dependency>

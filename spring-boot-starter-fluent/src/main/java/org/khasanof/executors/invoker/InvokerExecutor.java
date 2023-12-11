@@ -63,22 +63,17 @@ public class InvokerExecutor implements Invoker {
         }
 
         Map.Entry<Method, Object> classEntry = resultService.getResultEntry(invokerModel.getInvokerReference());
-
         Method method = classEntry.getKey();
         method.setAccessible(true);
 
-        if (invokerModel.isCanBeNoParam()) {
-            if (method.getParameterCount() == 0) {
-                method.invoke(classEntry.getValue());
-            } else {
-                execute(invokerModel, classEntry, method);
-            }
+        if (invokerModel.isCanBeNoParam() && method.getParameterCount() == 0) {
+            method.invoke(classEntry.getValue());
         } else {
-            execute(invokerModel, classEntry, method);
+            pushEvent(invokerModel, classEntry, method);
         }
     }
 
-    private void execute(SampleModel invokerModel, Map.Entry<Method, Object> classEntry, Method method) {
+    private void pushEvent(SampleModel invokerModel, Map.Entry<Method, Object> classEntry, Method method) {
         applicationEventPublisher.publishEvent(new MethodV1Event(this, invokerModel, classEntry, method));
     }
 

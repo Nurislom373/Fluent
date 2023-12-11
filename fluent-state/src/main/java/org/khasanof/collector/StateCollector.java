@@ -1,6 +1,6 @@
 package org.khasanof.collector;
 
-import org.khasanof.collector.questMethod.QuestMethod;
+import org.khasanof.collector.questMethod.SearchMethod;
 import org.khasanof.model.InvokerResult;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ public class StateCollector extends AbstractCollector implements Collector<Enum>
 
     public static final String NAME = "stateCollector";
 
-    public StateCollector(QuestMethod<Enum> questMethod) {
+    public StateCollector(SearchMethod<Enum> questMethod) {
         super(questMethod);
     }
 

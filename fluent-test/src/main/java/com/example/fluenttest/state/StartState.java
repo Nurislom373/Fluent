@@ -33,6 +33,6 @@ public class StartState implements StateAction<SimpleState> {
 
     @Override
     public boolean updateHandlersProceed() {
-        return StateAction.super.updateHandlersProceed();
+        return true;
     }
 }

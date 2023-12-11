@@ -1,5 +1,6 @@
 package org.khasanof.custom;
 
+import org.khasanof.context.FluentContextHolder;
 import org.khasanof.context.FluentUpdateContext;
 import org.springframework.stereotype.Component;
 
@@ -18,24 +19,13 @@ public class CustomExecutorServiceFactory implements ExecutorServiceFactory {
 
     private final FluentUpdateContext fluentUpdateContext;
 
-    public CustomExecutorServiceFactory(FluentUpdateContext fluentUpdateContext) {
-        this.fluentUpdateContext = fluentUpdateContext;
+    public CustomExecutorServiceFactory() {
+        this.fluentUpdateContext = FluentContextHolder.getContext();
     }
 
     @Override
     public ExecutorService createExecutorService() {
-        return new ThreadPoolExecutor(8, 16, 0L,
-                TimeUnit.MILLISECONDS, new LinkedBlockingQueue<>()) {
-
-            @Override
-            protected void beforeExecute(Thread t, Runnable r) {
-                if (r instanceof UpdateTask updateRunnable) {
-                    fluentUpdateContext.addContext(t.getName(), updateRunnable.update());
-                }
-                super.beforeExecute(t, r);
-            }
-
-        };
+        return new FluentThreadPoolExecutor(fluentUpdateContext);
     }
 
 }

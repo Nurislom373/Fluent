@@ -15,7 +15,7 @@ import java.util.Objects;
  * @since 8/19/2023 2:16 PM
  */
 @Component
-public class StateQuestMethod implements QuestMethod<Enum> {
+public class StateQuestMethod implements SearchMethod<Enum> {
 
     private final GenericMethodContext<Enum, Map.Entry<Method, Object>> methodContext;
 

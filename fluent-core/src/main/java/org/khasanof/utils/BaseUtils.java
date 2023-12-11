@@ -1,5 +1,8 @@
 package org.khasanof.utils;
 
+import org.springframework.aop.framework.Advised;
+import org.springframework.aop.support.AopUtils;
+
 import java.util.*;
 
 /**
@@ -7,9 +10,21 @@ import java.util.*;
  * @see org.khasanof.utils
  * @since 25.07.2023 20:55
  */
+@SuppressWarnings({"unchecked"})
 public abstract class BaseUtils {
 
     private static final String[] EMPTY_STRING_ARRAY = {};
+
+    public static <T> T unwrapProxyBean(T proxyBean) {
+        try {
+            if (AopUtils.isAopProxy(proxyBean) && proxyBean instanceof Advised) {
+                return (T) ((Advised) proxyBean).getTargetSource().getTarget();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return proxyBean;
+    }
 
     /**
      * Tokenize the given {@code String} into a {@code String} array via a

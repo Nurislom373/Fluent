@@ -2,12 +2,11 @@ package org.khasanof.collector;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.khasanof.collector.loader.ResourceLoader;
+import org.khasanof.collector.loader.BeansLoader;
 import org.khasanof.collector.methodChecker.MethodCheckerAdapter;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.event.methodContext.MethodCollectedEvent;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
@@ -34,12 +33,12 @@ import java.util.stream.Collectors;
 public class SimpleMethodContextClass implements SimpleMethodContext {
 
     public static final String NAME = "simpleMethodContextClass";
-    private final ResourceLoader resourceLoader;
+    private final BeansLoader resourceLoader;
     private final MethodCheckerAdapter checkerAdapter;
     private final ApplicationEventPublisher eventPublisher;
     private final Map<HandleClasses, Map<Method, Object>> beanMap = new HashMap<>();
 
-    public SimpleMethodContextClass(ResourceLoader resourceLoader, MethodCheckerAdapter checkerAdapter, ApplicationEventPublisher eventPublisher) {
+    public SimpleMethodContextClass(BeansLoader resourceLoader, MethodCheckerAdapter checkerAdapter, ApplicationEventPublisher eventPublisher) {
         this.resourceLoader = resourceLoader;
         this.checkerAdapter = checkerAdapter;
         this.eventPublisher = eventPublisher;

@@ -38,7 +38,7 @@ public class SimpleStateConfigCollector implements StateConfigCollector {
     }
 
     @Override
-    public boolean containsEnum(Enum state) {
+    public boolean contains(Enum state) {
         return this.states.contains(state);
     }
 }

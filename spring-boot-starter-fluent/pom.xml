@@ -6,20 +6,49 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.4</version>
+        <version>3.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.khasanof</groupId>
+    <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
-    <version>1.0.0.RELEASE</version>
-    <name>spring-boot-starter-fluent</name>
-    <description>spring-boot-starter-fluent</description>
+    <version>1.0.0</version>
+    <inceptionYear>2023</inceptionYear>
+    <name>Spring Boot Starter Fluent</name>
+    <description>Fluent - Easy Telegram Bots with Spring</description>
 
     <properties>
         <java.version>17</java.version>
-        <fluent-core.version>1.0.0</fluent-core.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <fluent-core.version>1.0.2</fluent-core.version>
+        <reflections.version>0.10.2</reflections.version>
+        <evalex.version>3.0.5</evalex.version>
+        <gpg.keyname>0x0BF62FA3</gpg.keyname>
     </properties>
+
+    <issueManagement>
+        <system>Gitter Issue Tracker</system>
+        <url>https://app.gitter.im/#/room/#fluent-core:gitter.im</url>
+    </issueManagement>
+
+    <scm>
+        <connection>scm:git:git@github.com:Nurislom373/Fluent.git</connection>
+        <url>scm:git:git@github.com:Nurislom373/Fluent.git</url>
+        <developerConnection>scm:git:git@github.com:Nurislom373/Fluent.git</developerConnection>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <licenses>
         <license>
@@ -30,8 +59,56 @@
 
     <developers>
         <developer>
-            <name>Nurislom</name>
+            <id>khasanof</id>
+            <name>Nurislom Xasanov</name>
             <email>khasanof373@gmail.com</email>
+            <url>https://github.com/Nurislom373</url>
+            <roles>
+                <role>Lead Developer</role>
+            </roles>
+            <organization>DEVOPS LLC</organization>
+        </developer>
+        <developer>
+            <id>jlkesh</id>
+            <name>Javohir Elmurodov</name>
+            <email>jlkeesh@gmail.com</email>
+            <roles>
+                <role>Lead Developer</role>
+            </roles>
+            <organization>Zaytun Tech</organization>
+        </developer>
+        <developer>
+            <name>Abdulloh Shukrullaev</name>
+            <email>programuz@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <organization>DEVOPS LLC</organization>
+        </developer>
+        <developer>
+            <name>Abrorxon A'loxonov</name>
+            <email>abrorxonaloxonov@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <organization>DEVOPS LLC</organization>
+        </developer>
+        <developer>
+            <id>sardorbro</id>
+            <name>Sardor Shorahimov</name>
+            <email>thesardorisfire@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <organization>DEVOPS LLC</organization>
+        </developer>
+        <developer>
+            <name>Abdulloh Xayrulloyev</name>
+            <email>khayrulloev.abdulloh@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <organization>CoreTeam</organization>
         </developer>
     </developers>
 
@@ -62,12 +139,12 @@
         <dependency>
             <groupId>com.ezylang</groupId>
             <artifactId>EvalEx</artifactId>
-            <version>3.0.5</version>
+            <version>${evalex.version}</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
-            <version>0.10.2</version>
+            <version>${reflections.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.nurislom373</groupId>
@@ -79,19 +156,83 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.1.4</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.13</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
                 <executions>
                     <execution>
+                        <id>attach-sources</id>
                         <goals>
-                            <goal>repackage</goal>
+                            <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <mainClass>org.khasanof.FluentStarter</mainClass>
-                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <keyname>${gpg.keyname}</keyname>
+                            <passphraseServerId>${gpg.keyname}</passphraseServerId>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </build>

@@ -1,6 +1,7 @@
 package org.khasanof.collector;
 
-import org.khasanof.collector.questMethod.QuestMethod;
+import org.khasanof.GenericContains;
+import org.khasanof.collector.questMethod.SearchMethod;
 
 /**
  * @author Nurislom
@@ -10,15 +11,22 @@ import org.khasanof.collector.questMethod.QuestMethod;
 @SuppressWarnings({"rawtypes"})
 public abstract class AbstractCollector {
 
-    protected final QuestMethod questMethod;
+    protected final SearchMethod questMethod;
+    protected GenericContains genericContains;
     protected AnnotationMethodContext annotationContext;
 
-    public AbstractCollector(QuestMethod questMethod) {
+    public AbstractCollector(SearchMethod questMethod) {
         this.questMethod = questMethod;
     }
 
-    public AbstractCollector(QuestMethod questMethod, AnnotationMethodContext annotationContext) {
+    public AbstractCollector(SearchMethod questMethod, AnnotationMethodContext annotationContext) {
         this.questMethod = questMethod;
+        this.annotationContext = annotationContext;
+    }
+
+    public AbstractCollector(SearchMethod questMethod, GenericContains genericContains, AnnotationMethodContext annotationContext) {
+        this.questMethod = questMethod;
+        this.genericContains = genericContains;
         this.annotationContext = annotationContext;
     }
 }

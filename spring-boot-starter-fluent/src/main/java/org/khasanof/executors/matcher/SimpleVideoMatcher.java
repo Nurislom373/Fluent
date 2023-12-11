@@ -3,7 +3,6 @@ package org.khasanof.executors.matcher;
 import org.khasanof.annotation.methods.HandleVideo;
 import org.khasanof.config.ApplicationConstants;
 import org.khasanof.enums.scopes.VideoScope;
-import org.khasanof.executors.expression.ExpressionMatcher;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Video;
 
@@ -13,7 +12,7 @@ import java.util.function.Function;
 
 /**
  * @author Nurislom
- * @see org.khasanof.core.executors.matcher.impls
+ * @see org.khasanof.executors.matcher
  * @since 06.07.2023 23:34
  */
 @Component

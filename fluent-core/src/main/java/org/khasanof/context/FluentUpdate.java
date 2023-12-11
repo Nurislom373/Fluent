@@ -1,5 +1,6 @@
 package org.khasanof.context;
 
+import org.khasanof.custom.attributes.UpdateAttributes;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
@@ -10,5 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public interface FluentUpdate {
 
     Update getUpdate();
+
+    UpdateAttributes getAttributes();
 
 }

@@ -1,6 +1,7 @@
 package org.khasanof.collector;
 
-import org.khasanof.collector.questMethod.QuestMethod;
+import org.khasanof.GenericContains;
+import org.khasanof.collector.questMethod.SearchMethod;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.HandleType;
 import org.khasanof.model.InvokerResult;
@@ -16,17 +17,17 @@ import java.util.Set;
  * @see org.khasanof.collector
  * @since 8/19/2023 12:22 PM
  */
+@SuppressWarnings("unchecked")
 @Component(SimpleCollector.NAME)
 public class SimpleCollector extends AbstractCollector implements Collector<Class<? extends Annotation>> {
 
     public static final String NAME = "simpleCollector";
 
-    public SimpleCollector(QuestMethod<HandleClasses> questMethod, AnnotationMethodContext<Map<Method, Object>> annotationContext) {
+    public SimpleCollector(SearchMethod<HandleClasses> questMethod, GenericContains<HandleClasses> genericContains, AnnotationMethodContext<Map<Method, Object>> annotationContext) {
         super(questMethod, annotationContext);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public InvokerResult getInvokerResult(Object value, Class<? extends Annotation> annotation) {
         return questMethod.getMethodValueAnn(value, HandleClasses.getHandleWithType(annotation));
     }
@@ -37,13 +38,11 @@ public class SimpleCollector extends AbstractCollector implements Collector<Clas
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public Set<InvokerResult> getAllHandleAnyMethod(HandleType handleType) {
         return questMethod.getAllHandleAnyMethod(handleType);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public boolean hasHandle(Class<? extends Annotation> annotation) {
         return annotationContext.containsKey(annotation);
     }

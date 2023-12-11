@@ -1,6 +1,6 @@
 package org.khasanof.executors.execution;
 
-import org.khasanof.annotation.extra.BotVariable;
+import org.khasanof.annotation.expression.BotVariable;
 import org.khasanof.enums.additional.AdditionalParamType;
 import org.khasanof.event.MethodV1Event;
 import org.khasanof.utils.MethodUtils;

@@ -25,12 +25,12 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.khasanof</groupId>
+            <groupId>io.github.nurislom373</groupId>
             <artifactId>spring-boot-starter-fluent</artifactId>
-            <version>1.0.0.RELEASE</version>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.khasanof</groupId>
+            <groupId>io.github.nurislom373</groupId>
             <artifactId>fluent-state</artifactId>
             <version>1.0.0</version>
         </dependency>

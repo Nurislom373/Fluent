@@ -1,7 +1,6 @@
 package org.khasanof;
 
 import org.khasanof.config.ApplicationProperties;
-import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
@@ -13,8 +12,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  * <br/>
  * Package: org.khasanof.main
  */
-@Service
-public class FluentBot extends FluentBotFactory {
+public class FluentBot extends AbstractFluentBot {
 
     public FluentBot(MainHandler handler, ApplicationProperties properties) {
         super(handler, properties.getBot());

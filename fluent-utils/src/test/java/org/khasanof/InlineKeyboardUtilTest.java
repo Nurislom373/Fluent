@@ -1,6 +1,9 @@
 package org.khasanof;
 
 import org.junit.jupiter.api.Test;
+import org.khasanof.button.InlineKeyboardUtil;
+import org.khasanof.button.KeyboardButton;
+import org.khasanof.button.SimpleInlineKeyboardUtil;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package org.khasanof.collector;
 
 import lombok.extern.slf4j.Slf4j;
-import org.khasanof.collector.loader.ResourceLoader;
+import org.khasanof.collector.loader.BeansLoader;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.collector.StateValidator;
 import org.khasanof.utils.MethodUtils;
@@ -17,17 +17,18 @@ import java.util.Map;
  * @since 8/19/2023 12:05 AM
  */
 @Slf4j
+@SuppressWarnings({"rawtypes"})
 @Component(StateMethodContext.NAME)
 public class StateMethodContext implements GenericMethodContext<Enum, Map.Entry<Method, Object>>, AssembleMethods {
 
     public static final String NAME = "stateMethodContext";
 
-    private final ResourceLoader resourceLoader;
+    private final BeansLoader beansLoader;
     private final StateValidator stateValidator;
     private final Map<Enum, Map.Entry<Method, Object>> invokerMethodsMap = new HashMap<>();
 
-    public StateMethodContext(ResourceLoader resourceLoader, StateValidator stateValidator) {
-        this.resourceLoader = resourceLoader;
+    public StateMethodContext(BeansLoader resourceLoader, StateValidator stateValidator) {
+        this.beansLoader = resourceLoader;
         this.stateValidator = stateValidator;
     }
 
@@ -43,7 +44,7 @@ public class StateMethodContext implements GenericMethodContext<Enum, Map.Entry<
 
     @Override
     public void assembleMethods() {
-        resourceLoader.getBeansOfType(StateAction.class).forEach((s, stateActions) -> {
+        beansLoader.getBeansOfType(StateAction.class).forEach((s, stateActions) -> {
             if (stateValidator.valid(stateActions)) {
                 if (invokerMethodsMap.containsKey(stateActions.state())) {
                     log.warn("this enum already used! state must be unique");

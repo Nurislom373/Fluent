@@ -10,7 +10,7 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-core</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <name>Fluent Core</name>
     <description>Fluent library makes it very easy for you to write telegram bot with Spring framework.</description>
     <inceptionYear>2023</inceptionYear>
@@ -23,7 +23,7 @@
         <khasanof.common.util.version>1.0.0</khasanof.common.util.version>
         <org.springframework.version>6.0.11</org.springframework.version>
         <reflections.version>0.10.2</reflections.version>
-        <telegrambots.version>6.3.0</telegrambots.version>
+        <telegrambots.version>6.8.0</telegrambots.version>
         <spring-boot.version>3.0.0</spring-boot.version>
         <lombok.version>1.18.24</lombok.version>
         <gpg.keyname>0x0BF62FA3</gpg.keyname>
