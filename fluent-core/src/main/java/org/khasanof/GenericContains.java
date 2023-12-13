@@ -5,8 +5,8 @@ package org.khasanof;
  * @see org.khasanof
  * @since 8/19/2023 12:34 AM
  */
-public interface GenericContains<T> {
+public interface GenericContains<P> {
 
-    boolean contains(T t);
+    boolean contains(P p);
 
 }

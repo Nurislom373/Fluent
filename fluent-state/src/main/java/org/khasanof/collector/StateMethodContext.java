@@ -22,6 +22,7 @@ import java.util.Map;
 public class StateMethodContext implements GenericMethodContext<Enum, Map.Entry<Method, Object>>, AssembleMethods {
 
     public static final String NAME = "stateMethodContext";
+    public static final String METHOD_NAME = "onReceive";
 
     private final BeansLoader beansLoader;
     private final StateValidator stateValidator;
@@ -33,28 +34,34 @@ public class StateMethodContext implements GenericMethodContext<Enum, Map.Entry<
     }
 
     @Override
-    public Map.Entry<Method, Object> getMethodsByGenericKey(Enum key) {
+    public Map.Entry<Method, Object> find(Enum key) {
         return invokerMethodsMap.get(key);
     }
 
     @Override
-    public boolean containsKey(Enum anEnum) {
+    public boolean contains(Enum anEnum) {
         return invokerMethodsMap.containsKey(anEnum);
     }
 
     @Override
     public void assembleMethods() {
-        beansLoader.getBeansOfType(StateAction.class).forEach((s, stateActions) -> {
-            if (stateValidator.valid(stateActions)) {
-                if (invokerMethodsMap.containsKey(stateActions.state())) {
-                    log.warn("this enum already used! state must be unique");
-                } else {
-                    invokerMethodsMap.put(stateActions.state(),
-                            Map.entry(MethodUtils.getClassMethodByName(stateActions, "onReceive"),
-                                    stateActions));
-                }
-            }
-        });
+        beansLoader.getBeansOfType(StateAction.class).forEach((s, stateActions) -> putState(stateActions));
         log.info("HANDLE_STATE : {}", invokerMethodsMap.size());
     }
+
+    private void putState(StateAction stateActions) {
+        if (stateValidator.valid(stateActions)) {
+            putStateContext(stateActions);
+        }
+    }
+
+    private void putStateContext(StateAction stateActions) {
+        if (invokerMethodsMap.containsKey(stateActions.state())) {
+            log.warn("this enum already used! state must be unique");
+        } else {
+            invokerMethodsMap.put(stateActions.state(),
+                    Map.entry(MethodUtils.getClassMethodByName(stateActions, METHOD_NAME), stateActions));
+        }
+    }
+
 }

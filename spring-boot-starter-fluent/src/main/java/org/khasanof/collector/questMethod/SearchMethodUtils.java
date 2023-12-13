@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 public abstract class SearchMethodUtils {
 
-    public static SimpleInvoker resultCreator(Map.Entry<Method, Object> entry) {
+    public static SimpleInvoker createResultInvoker(Map.Entry<Method, Object> entry) {
         return Objects.nonNull(entry) ? new SimpleInvokerMethod(entry.getKey(), entry.getValue()) : null;
     }
 

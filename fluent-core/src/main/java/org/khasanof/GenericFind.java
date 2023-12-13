@@ -1,7 +1,5 @@
 package org.khasanof;
 
-import java.util.Set;
-
 /**
  * @author Nurislom
  * @see org.khasanof
@@ -9,8 +7,6 @@ import java.util.Set;
  */
 public interface GenericFind<P, R> {
 
-    R findOne(P p);
-
-    Set<R> findAll(P p);
+    R find(P p);
 
 }

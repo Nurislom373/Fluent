@@ -23,7 +23,7 @@ public class SimpleCollector extends AbstractCollector implements Collector<Clas
 
     public static final String NAME = "simpleCollector";
 
-    public SimpleCollector(SearchMethod<HandleClasses> questMethod, GenericContains<HandleClasses> genericContains, AnnotationMethodContext<Map<Method, Object>> annotationContext) {
+    public SimpleCollector(SearchMethod<HandleClasses> questMethod, AnnotationMethodContext<HandleClasses, Map<Method, Object>> annotationContext) {
         super(questMethod, annotationContext);
     }
 
@@ -44,7 +44,7 @@ public class SimpleCollector extends AbstractCollector implements Collector<Clas
 
     @Override
     public boolean hasHandle(Class<? extends Annotation> annotation) {
-        return annotationContext.containsKey(annotation);
+        return annotationContext.containsByAnnotationClass(annotation);
     }
 
 }

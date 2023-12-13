@@ -7,10 +7,10 @@ import java.lang.annotation.Annotation;
  * @see org.khasanof.collector
  * @since 8/19/2023 12:27 PM
  */
-public interface AnnotationMethodContext<R> {
+public interface AnnotationMethodContext<P, R> extends GenericMethodContext<P, R> {
 
-    R getMethodsWithAnnotation(Class<? extends Annotation> annotation);
+    R findByAnnotationClass(Class<? extends Annotation> annotation);
 
-    boolean containsKey(Class<? extends Annotation> annotation);
+    boolean containsByAnnotationClass(Class<? extends Annotation> annotation);
 
 }

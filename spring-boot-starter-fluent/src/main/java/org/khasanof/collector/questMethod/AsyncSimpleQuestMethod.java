@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  * @since 23.06.2023 23:46
  */
 @Slf4j
-@Component
+//@Component
 public class AsyncSimpleQuestMethod implements DefaultSearchMethod {
 
     private final GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext;
@@ -40,15 +40,15 @@ public class AsyncSimpleQuestMethod implements DefaultSearchMethod {
         System.out.printf("Enter type - %s, value - %s \n", type, value);
         CompletableFuture<Map.Entry<Method, Object>> supplyAsync;
         if (type.isHasSubType()) {
-            supplyAsync = CompletableFuture.supplyAsync(() -> methodContext.containsKey(type) ?
-                            methodContext.getMethodsByGenericKey(type).entrySet()
+            supplyAsync = CompletableFuture.supplyAsync(() -> methodContext.contains(type) ?
+                            methodContext.find(type).entrySet()
                                     .parallelStream().filter(aClass -> matcher.chooseMatcher(aClass.getKey(),
                                             value, type.getType()))
                                     .findFirst().orElse(null) : null)
                     .thenComposeAsync(s -> CompletableFuture.supplyAsync(() -> {
                         if (Objects.isNull(s)) {
-                            return methodContext.containsKey(type.getSubHandleClasses()) ?
-                                    methodContext.getMethodsByGenericKey(type.getSubHandleClasses()).entrySet()
+                            return methodContext.contains(type.getSubHandleClasses()) ?
+                                    methodContext.find(type.getSubHandleClasses()).entrySet()
                                             .parallelStream().filter(aClass -> matcher.chooseMatcher(aClass.getKey(),
                                                     value, type.getSubHandleClasses().getType()))
                                             .findFirst().orElse(null) : null;
@@ -57,41 +57,40 @@ public class AsyncSimpleQuestMethod implements DefaultSearchMethod {
                     }));
         } else {
             supplyAsync = CompletableFuture.supplyAsync(
-                    () -> methodContext.containsKey(type) ?
-                            methodContext.getMethodsByGenericKey(type).entrySet()
+                    () -> methodContext.contains(type) ?
+                            methodContext.find(type).entrySet()
                                     .parallelStream().filter(aClass -> matcher.chooseMatcher(aClass.getKey(),
                                             value, type.getType()))
                                     .findFirst().orElse(null) : null);
         }
-        return supplyAsync.thenApply(SearchMethodUtils::resultCreator).join();
+        return supplyAsync.thenApply(SearchMethodUtils::createResultInvoker).join();
     }
 
     @Override
     @SneakyThrows
     public SimpleInvoker getHandleAnyMethod(HandleType handleType) {
         log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
-        return CompletableFuture.supplyAsync(() -> methodContext.containsKey(HandleClasses.HANDLE_ANY) ?
-                methodContext.getMethodsByGenericKey(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(
+        return CompletableFuture.supplyAsync(() -> methodContext.contains(HandleClasses.HANDLE_ANY) ?
+                methodContext.find(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(
                                 clazz -> matcher.chooseMatcher(clazz.getKey(), handleType))
-                        .findFirst().orElse(null) : null).thenApply(SearchMethodUtils::resultCreator).get();
+                        .findFirst().orElse(null) : null).thenApply(SearchMethodUtils::createResultInvoker).get();
     }
 
     @SneakyThrows
     @Override
     public Set<SimpleInvoker> getAllHandleAnyMethod(HandleType handleType) {
         log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
-        return CompletableFuture.supplyAsync(() -> methodContext.containsKey(HandleClasses.HANDLE_ANY) ?
-                methodContext.getMethodsByGenericKey(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(
+        return CompletableFuture.supplyAsync(() -> methodContext.contains(HandleClasses.HANDLE_ANY) ?
+                methodContext.find(HandleClasses.HANDLE_ANY).entrySet().parallelStream().filter(
                                 clazz -> matcher.chooseMatcher(clazz.getKey(), handleType))
-                        .map(SearchMethodUtils::resultCreator)
+                        .map(SearchMethodUtils::createResultInvoker)
                         .collect(Collectors.toSet()) : null)
                 .get();
     }
 
-
     @Override
     public boolean contains(HandleClasses handleClasses) {
-        return methodContext.containsKey(handleClasses);
+        return methodContext.contains(handleClasses);
     }
 
 }

@@ -14,6 +14,7 @@ import java.util.Map;
  * <br/>
  * Package: org.khasanof.core.executors.matcher
  */
+@SuppressWarnings({"rawtypes"})
 public abstract class GenericMatcher<T extends Annotation, V> extends AbstractMatcher {
 
     public GenericMatcher(Map<String, ExpressionMatcher> expressionMatcherMap) {

@@ -26,12 +26,12 @@ public class StateQuestMethod implements SearchMethod<Enum> {
 
     @Override
     public SimpleInvoker getMethodValueAnn(Object value, Enum param) {
-        return resultCreator(methodContext.getMethodsByGenericKey(param));
+        return resultCreator(methodContext.find(param));
     }
 
     @Override
     public boolean containsKey(Enum param) {
-        return methodContext.containsKey(param);
+        return methodContext.contains(param);
     }
 
     private SimpleInvoker resultCreator(Map.Entry<Method, Object> entry) {
