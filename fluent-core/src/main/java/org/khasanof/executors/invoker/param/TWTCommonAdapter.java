@@ -1,7 +1,7 @@
 package org.khasanof.executors.invoker.param;
 
 import org.khasanof.enums.additional.AdditionalParamType;
-import org.khasanof.model.Invoker;
+import org.khasanof.models.Invoker;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;

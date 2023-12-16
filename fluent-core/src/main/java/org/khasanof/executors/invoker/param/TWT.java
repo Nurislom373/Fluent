@@ -1,7 +1,7 @@
 package org.khasanof.executors.invoker.param;
 
-import org.khasanof.model.AdditionalType;
-import org.khasanof.model.Invoker;
+import org.khasanof.models.AdditionalType;
+import org.khasanof.models.Invoker;
 
 import java.lang.reflect.Method;
 

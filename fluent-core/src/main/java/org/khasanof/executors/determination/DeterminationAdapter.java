@@ -2,7 +2,7 @@ package org.khasanof.executors.determination;
 
 import org.khasanof.custom.ProcessTypeResolver;
 import org.khasanof.enums.ProcessType;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 

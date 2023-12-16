@@ -1,9 +1,9 @@
-package org.khasanof.model;
+package org.khasanof.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.khasanof.model.condition.Condition;
+import org.khasanof.models.condition.Condition;
 
 import java.lang.reflect.Method;
 import java.util.List;

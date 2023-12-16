@@ -2,9 +2,9 @@ package org.khasanof.executor.invoker;
 
 import org.khasanof.enums.InvokerType;
 import org.khasanof.executors.invoker.InvokerFunctions;
-import org.khasanof.model.Invoker;
-import org.khasanof.model.additional.param.APUpdateState;
-import org.khasanof.model.condition.ClassCondition;
+import org.khasanof.models.Invoker;
+import org.khasanof.models.additional.param.APUpdateState;
+import org.khasanof.models.condition.ClassCondition;
 import org.khasanof.state.State;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.repository.StateRepositoryStrategy;

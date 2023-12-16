@@ -7,7 +7,7 @@ import org.khasanof.condition.Condition;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.HandleFunctionsMatcher;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;

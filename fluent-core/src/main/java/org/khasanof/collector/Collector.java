@@ -1,6 +1,6 @@
 package org.khasanof.collector;
 
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 
 /**
  * Author: Nurislom

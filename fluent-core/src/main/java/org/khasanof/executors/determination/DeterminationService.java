@@ -1,6 +1,6 @@
 package org.khasanof.executors.determination;
 
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;

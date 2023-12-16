@@ -1,9 +1,9 @@
 package org.khasanof.executors.invoker;
 
 import org.khasanof.executors.invoker.param.TWTCommonAdapter;
-import org.khasanof.model.AdditionalParam;
-import org.khasanof.model.Invoker;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.AdditionalParam;
+import org.khasanof.models.Invoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;

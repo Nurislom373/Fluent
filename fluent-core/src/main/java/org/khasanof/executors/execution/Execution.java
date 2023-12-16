@@ -2,7 +2,7 @@ package org.khasanof.executors.execution;
 
 
 import org.khasanof.event.MethodV1Event;
-import org.khasanof.model.AdditionalType;
+import org.khasanof.models.AdditionalType;
 
 import java.lang.reflect.InvocationTargetException;
 

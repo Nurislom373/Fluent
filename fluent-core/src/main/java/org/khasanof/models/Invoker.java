@@ -1,16 +1,16 @@
-package org.khasanof.model;
+package org.khasanof.models;
 
 import lombok.*;
 import org.khasanof.enums.InvokerType;
-import org.khasanof.model.condition.Condition;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.condition.Condition;
+import org.khasanof.models.invoker.SimpleInvoker;
 
 import java.util.List;
 import java.util.Objects;
 
 /**
  * @author Nurislom
- * @see org.khasanof.model
+ * @see org.khasanof.models
  * @since 8/19/2023 6:31 PM
  */
 @Getter

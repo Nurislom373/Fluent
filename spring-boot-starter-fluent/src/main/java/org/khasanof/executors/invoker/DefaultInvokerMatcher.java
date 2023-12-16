@@ -2,7 +2,7 @@ package org.khasanof.executors.invoker;
 
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.MatchScope;
-import org.khasanof.model.invoker.SimpleInvokerMethod;
+import org.khasanof.models.invoker.SimpleInvokerMethod;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;

@@ -1,10 +1,9 @@
 package org.khasanof.collector;
 
-import org.khasanof.GenericContains;
 import org.khasanof.collector.questMethod.SearchMethod;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.HandleType;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;

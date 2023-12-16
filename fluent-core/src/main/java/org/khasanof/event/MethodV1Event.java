@@ -3,7 +3,7 @@ package org.khasanof.event;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.khasanof.model.Invoker;
+import org.khasanof.models.Invoker;
 import org.springframework.context.ApplicationEvent;
 
 import java.lang.reflect.Method;

@@ -2,7 +2,7 @@ package org.khasanof.executors.invoker.additional.param;
 
 import org.khasanof.enums.additional.AdditionalParamType;
 import org.khasanof.executors.invoker.param.TWT;
-import org.khasanof.model.Invoker;
+import org.khasanof.models.Invoker;
 import org.khasanof.utils.MethodUtils;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;

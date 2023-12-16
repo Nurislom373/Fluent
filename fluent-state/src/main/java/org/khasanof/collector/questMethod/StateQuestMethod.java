@@ -1,8 +1,8 @@
 package org.khasanof.collector.questMethod;
 
 import org.khasanof.collector.GenericMethodContext;
-import org.khasanof.model.invoker.SimpleInvokerObject;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.invoker.SimpleInvokerObject;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;

@@ -1,7 +1,7 @@
 package org.khasanof.executors.invoker;
 
-import org.khasanof.model.Invoker;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.Invoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 
 /**
  * @author Nurislom

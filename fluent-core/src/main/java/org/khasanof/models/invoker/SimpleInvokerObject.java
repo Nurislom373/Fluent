@@ -1,11 +1,11 @@
-package org.khasanof.model.invoker;
+package org.khasanof.models.invoker;
 
 import lombok.*;
 import org.khasanof.enums.InvokerType;
 
 /**
  * @author Nurislom
- * @see org.khasanof.model.invoker
+ * @see org.khasanof.models.invoker
  * @since 8/19/2023 6:16 PM
  */
 @Getter
@@ -17,6 +17,7 @@ import org.khasanof.enums.InvokerType;
 public class SimpleInvokerObject implements SimpleInvoker {
 
     private Object reference;
+    // TODO change method! idiot!
     private String executionMethodName;
 
     @Override

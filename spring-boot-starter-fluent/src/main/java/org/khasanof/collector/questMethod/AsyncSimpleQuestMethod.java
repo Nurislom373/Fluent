@@ -7,8 +7,7 @@ import org.khasanof.context.FluentContextHolder;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.HandleType;
 import org.khasanof.executors.matcher.CompositeMatcher;
-import org.khasanof.model.invoker.SimpleInvoker;
-import org.springframework.stereotype.Component;
+import org.khasanof.models.invoker.SimpleInvoker;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -24,7 +23,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 //@Component
-public class AsyncSimpleQuestMethod implements DefaultSearchMethod {
+public class AsyncSimpleQuestMethod implements BaseSearchMethod {
 
     private final GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext;
     private final CompositeMatcher matcher;

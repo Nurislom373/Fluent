@@ -7,8 +7,8 @@ import org.khasanof.collector.Collector;
 import org.khasanof.event.exceptionDirector.ExceptionDirectorEvent;
 import org.khasanof.executors.invoker.InvokerFunctions;
 import org.khasanof.executors.invoker.InvokerFunctionsImpl;
-import org.khasanof.model.Invoker;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.Invoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
 package org.khasanof.collector.questMethod;
 
 import org.khasanof.enums.HandleType;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 
 import java.util.Set;
 

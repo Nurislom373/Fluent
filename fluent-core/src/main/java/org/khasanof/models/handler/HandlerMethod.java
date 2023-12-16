@@ -1,14 +1,14 @@
-package org.khasanof.model.handler;
+package org.khasanof.models.handler;
 
 import lombok.*;
-import org.khasanof.model.condition.Condition;
+import org.khasanof.models.condition.Condition;
 
 import java.lang.reflect.Method;
 import java.util.List;
 
 /**
  * @author Nurislom
- * @see org.khasanof.model.handler
+ * @see org.khasanof.models.handler
  * @since 10/19/2023 7:58 PM
  */
 @Getter

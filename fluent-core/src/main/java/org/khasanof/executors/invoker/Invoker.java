@@ -10,6 +10,6 @@ public interface Invoker {
      *
      * @param invokerModelV2
      */
-    void invoke(org.khasanof.model.Invoker invokerModelV2);
+    void invoke(org.khasanof.models.Invoker invokerModelV2);
 
 }

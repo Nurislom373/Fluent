@@ -1,7 +1,7 @@
 package org.khasanof.collector;
 
 import org.khasanof.collector.questMethod.SearchMethod;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 /**

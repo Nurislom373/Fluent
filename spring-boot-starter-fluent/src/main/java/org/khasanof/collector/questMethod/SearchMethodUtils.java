@@ -1,7 +1,7 @@
 package org.khasanof.collector.questMethod;
 
-import org.khasanof.model.invoker.SimpleInvokerMethod;
-import org.khasanof.model.invoker.SimpleInvoker;
+import org.khasanof.models.invoker.SimpleInvokerMethod;
+import org.khasanof.models.invoker.SimpleInvoker;
 
 import java.lang.reflect.Method;
 import java.util.Map;

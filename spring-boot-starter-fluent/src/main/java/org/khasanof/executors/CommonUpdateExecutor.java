@@ -35,7 +35,7 @@ public class CommonUpdateExecutor extends AbstractUpdateExecutor {
     }
 
     /**
-     * Using the {@link DeterminationUpdate#determinationV2(Update)} method, update collects the matching methods.
+     * Using the {@link DeterminationUpdate#determinationInvokers(Update)} method, update collects the matching methods.
      * iterates the collected methods one by one. If an error or something happens, the execution of methods is stopped.
      *
      * @param update from telegram is coming.
@@ -43,7 +43,7 @@ public class CommonUpdateExecutor extends AbstractUpdateExecutor {
     @Override
     public void execute(Update update) {
         FluentBot instance = checkBotInstance();
-        BreakerForEach.forEach(determination.determinationV2(update).stream(),
+        BreakerForEach.forEach(determination.determinationInvokers(update).stream(),
                 ((entry, breaker) -> {
                     if (!FluentContext.updateExecutorBoolean.get()) {
                         invoker.invoke(invokerFunctions.fillAndGet(entry, update, instance));
