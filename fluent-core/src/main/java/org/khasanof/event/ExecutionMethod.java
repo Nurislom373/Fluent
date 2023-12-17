@@ -17,16 +17,12 @@ import java.util.Map;
 @Getter
 @Setter
 @ToString
-public class MethodV1Event extends ApplicationEvent {
+public class ExecutionMethod extends ApplicationEvent {
 
     private Invoker invokerModel;
-    private Map.Entry<Method, Object> classEntry;
-    private Method method;
 
-    public MethodV1Event(Object source, Invoker invokerModel, Map.Entry<Method, Object> classEntry, Method method) {
+    public ExecutionMethod(Object source, Invoker invokerModel) {
         super(source);
         this.invokerModel = invokerModel;
-        this.classEntry = classEntry;
-        this.method = method;
     }
 }

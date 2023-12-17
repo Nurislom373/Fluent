@@ -5,6 +5,7 @@ import org.khasanof.enums.HandleClasses;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author Nurislom
@@ -14,7 +15,7 @@ import java.util.Map;
 public interface SimpleMethodContext extends AssembleMethods, AnnotationMethodContext<HandleClasses, Map<Method, Object>> {
 
     @Override
-    default Map<Method, Object> findByAnnotationClass(Class<? extends Annotation> annotation) {
+    default Optional<Map<Method, Object>> findByAnnotationClass(Class<? extends Annotation> annotation) {
         return find(HandleClasses.getHandleWithType(annotation));
     }
 

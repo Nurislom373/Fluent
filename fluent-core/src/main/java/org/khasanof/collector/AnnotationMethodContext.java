@@ -1,6 +1,7 @@
 package org.khasanof.collector;
 
 import java.lang.annotation.Annotation;
+import java.util.Optional;
 
 /**
  * @author Nurislom
@@ -9,7 +10,7 @@ import java.lang.annotation.Annotation;
  */
 public interface AnnotationMethodContext<P, R> extends GenericMethodContext<P, R> {
 
-    R findByAnnotationClass(Class<? extends Annotation> annotation);
+    Optional<R> findByAnnotationClass(Class<? extends Annotation> annotation);
 
     boolean containsByAnnotationClass(Class<? extends Annotation> annotation);
 

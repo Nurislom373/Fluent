@@ -2,6 +2,8 @@ package org.khasanof.collector;
 
 import org.khasanof.models.invoker.SimpleInvoker;
 
+import java.util.Optional;
+
 /**
  * Author: Nurislom
  * <br/>
@@ -13,7 +15,7 @@ import org.khasanof.models.invoker.SimpleInvoker;
  */
 public interface Collector<P> extends HandleTypeCollector {
 
-    SimpleInvoker getInvokerResult(Object value, P param);
+    Optional<SimpleInvoker> getInvokerResult(Object value, P param);
 
     boolean hasHandle(P param);
 

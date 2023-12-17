@@ -2,14 +2,14 @@ package org.khasanof.models.additional.checks;
 
 import org.khasanof.enums.additional.AdditionalParamType;
 import org.khasanof.models.AdditionalChecks;
-import org.khasanof.models.invoker.SimpleInvokerMethod;
+import org.khasanof.models.invoker.SimpleInvoker;
 
 /**
  * @author Nurislom
  * @see org.khasanof.models.additional
  * @since 8/20/2023 3:27 PM
  */
-public interface ACInvokerMethod extends AdditionalChecks<SimpleInvokerMethod> {
+public interface ACInvokerMethod extends AdditionalChecks<SimpleInvoker> {
 
     @Override
     default AdditionalParamType getType() {

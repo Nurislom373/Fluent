@@ -5,7 +5,7 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.khasanof.custom.FluentContext;
-import org.khasanof.event.MethodV1Event;
+import org.khasanof.event.ExecutionMethod;
 import org.khasanof.event.exceptionDirector.ExceptionDirectorEvent;
 import org.khasanof.utils.MethodUtils;
 import org.springframework.context.ApplicationEventPublisher;
@@ -37,7 +37,7 @@ public class ExecutionExceptionAspect {
     private void afterThrowing(JoinPoint joinPoint, Throwable ex) throws Throwable {
         FluentContext.updateExecutorBoolean.set(true);
         if (ex.getClass().equals(InvocationTargetException.class)) {
-            MethodV1Event event = MethodUtils.getArg(joinPoint.getArgs(), MethodV1Event.class);
+            ExecutionMethod event = MethodUtils.getArg(joinPoint.getArgs(), ExecutionMethod.class);
             Object[] args = event.getInvokerModel().getArgs();
             AbsSender sender = MethodUtils.getArg(args, AbsSender.class);
             Update update = MethodUtils.getArg(args, Update.class);

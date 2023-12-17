@@ -22,8 +22,8 @@ public class MethodInvokerV1EventListener {
     }
 
     @Async
-    @EventListener(value = MethodV1Event.class)
-    public void onApplicationEvent(MethodV1Event methodV1Event) {
+    @EventListener(value = ExecutionMethod.class)
+    public void onApplicationEvent(ExecutionMethod methodV1Event) {
         log.debug("event listen invoker name : {}", methodV1Event.getInvokerModel().getName());
         commonExecutionAdapter.execution(methodV1Event);
     }

@@ -5,7 +5,8 @@ package org.khasanof.executors.invoker;
  * @see org.khasanof.executors
  * @since 04.07.2023 22:22
  */
-public interface Invoker {
+public interface InvokerExecutor {
+
     /**
      *
      * @param invokerModelV2

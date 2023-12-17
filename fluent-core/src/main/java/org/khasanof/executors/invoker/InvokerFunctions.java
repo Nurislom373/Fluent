@@ -1,19 +1,21 @@
 package org.khasanof.executors.invoker;
 
 import org.khasanof.models.Invoker;
-import org.khasanof.models.invoker.SimpleInvoker;
+
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author Nurislom
  * @see org.khasanof.executors.invoker
  * @since 10/13/2023 11:40 PM
  */
-public interface InvokerFunctions {
+public interface InvokerFunctions extends InvokerFunctionsAdaptee {
 
-    void add(Invoker modelV2);
+    void add(Invoker invoker);
 
-    Invoker findByName(String name);
+    Optional<Invoker> findByName(String name);
 
-    Invoker fillAndGet(SimpleInvoker result, Object... args);
+    Set<Invoker> getAll();
 
 }

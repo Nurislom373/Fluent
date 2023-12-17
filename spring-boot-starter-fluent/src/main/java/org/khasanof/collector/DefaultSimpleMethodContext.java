@@ -45,8 +45,8 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
     }
 
     @Override
-    public Map<Method, Object> find(HandleClasses classes) {
-        return beanMap.getOrDefault(classes, Collections.emptyMap());
+    public Optional<Map<Method, Object>> find(HandleClasses classes) {
+        return Optional.of(beanMap.getOrDefault(classes, Collections.emptyMap()));
     }
 
     @Override

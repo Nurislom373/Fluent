@@ -1,4 +1,4 @@
-package org.khasanof.factories.invoker;
+package org.khasanof.factories.invoker.method;
 
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.models.invoker.SimpleInvokerMethod;
@@ -16,8 +16,8 @@ import java.util.Map;
 public class DefaultInvokerMethodFactory implements InvokerMethodFactory {
 
     @Override
-    public SimpleInvoker create(Map.Entry<Method, Object> methodObjectEntry) {
-        return new SimpleInvokerMethod(methodObjectEntry.getKey(), methodObjectEntry.getValue());
+    public SimpleInvoker create(Map.Entry<Method, Object> entry) {
+        return new SimpleInvokerMethod(entry.getKey(), entry.getValue());
     }
 
 }

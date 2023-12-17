@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -27,12 +28,12 @@ public class SimpleCollector extends AbstractCollector implements Collector<Clas
     }
 
     @Override
-    public SimpleInvoker getInvokerResult(Object value, Class<? extends Annotation> annotation) {
+    public Optional<SimpleInvoker> getInvokerResult(Object value, Class<? extends Annotation> annotation) {
         return questMethod.getMethodValueAnn(value, HandleClasses.getHandleWithType(annotation));
     }
 
     @Override
-    public SimpleInvoker getHandleAnyMethod(HandleType handleType) {
+    public Optional<SimpleInvoker> getHandleAnyMethod(HandleType handleType) {
         return questMethod.getHandleAnyMethod(handleType);
     }
 

@@ -1,5 +1,7 @@
 package org.khasanof;
 
+import java.util.Optional;
+
 /**
  * @author Nurislom
  * @see org.khasanof
@@ -7,6 +9,6 @@ package org.khasanof;
  */
 public interface GenericFind<P, R> {
 
-    R find(P p);
+    Optional<R> find(P p);
 
 }

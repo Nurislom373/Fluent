@@ -1,4 +1,4 @@
-package org.khasanof.factories.invoker;
+package org.khasanof.factories.invoker.method;
 
 import org.khasanof.factories.GenericFactory;
 import org.khasanof.models.invoker.SimpleInvoker;

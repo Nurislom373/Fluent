@@ -22,8 +22,7 @@ public class InvokerResultService {
     public Map.Entry<Method, Object> getResultEntry(SimpleInvoker result) {
         if (result.getType().equals(InvokerType.CLASS)) {
             SimpleInvokerObject invokerObject = (SimpleInvokerObject) result;
-            return new AbstractMap.SimpleEntry<>(MethodUtils.getClassMethodByName(invokerObject.getReference(),
-                    invokerObject.getExecutionMethodName()), invokerObject.getReference());
+            return new AbstractMap.SimpleEntry<>(invokerObject.getMethod(), invokerObject.getReference());
         } else {
             SimpleInvokerMethod invokerMethod = (SimpleInvokerMethod) result;
             return new AbstractMap.SimpleEntry<>(invokerMethod.getMethod(), invokerMethod.getReference());

@@ -1,14 +1,14 @@
 package org.khasanof.executors.execution;
 
 
-import org.khasanof.event.MethodV1Event;
+import org.khasanof.event.ExecutionMethod;
 import org.khasanof.models.AdditionalType;
 
 import java.lang.reflect.InvocationTargetException;
 
 /**
  * The {@link Execution} interface serves as a specification for expressing various methods to be executed.
- * It has a single run method that expects a {@link MethodV1Event} class parameter.
+ * It has a single run method that expects a {@link ExecutionMethod} class parameter.
  *
  * @author Nurislom
  * @see org.khasanof.executors.execution
@@ -23,6 +23,6 @@ public interface Execution extends AdditionalType {
      * @throws InvocationTargetException The exception that is thrown when the method is executed
      * @throws IllegalAccessException Exception thrown without access to method input
      */
-    void run(MethodV1Event methodV1Event) throws InvocationTargetException, IllegalAccessException;
+    void run(ExecutionMethod methodV1Event) throws InvocationTargetException, IllegalAccessException;
 
 }

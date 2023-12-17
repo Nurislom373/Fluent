@@ -41,14 +41,8 @@ public class HandleUpdateFunction implements DeterminationFunction {
                 if (HandleType.hasHandleAnnotation(handleTypeObjectEntry.getKey())) {
                     Collector<Class<? extends Annotation>> collector = applicationContext.getBean(SimpleCollector.NAME, Collector.class);
 
-                    SimpleInvoker classEntry = collector.getInvokerResult(handleTypeObjectEntry.getValue(),
-                            handleTypeObjectEntry.getKey().getHandleClasses().getType());
-
-                    Condition.isTrue(Objects.nonNull(classEntry))
-                            .thenCall(() -> {
-                                invokerResults.add(classEntry);
-                            })
-                            .elseCall(() -> log.warn("Method not found!"));
+                    collector.getInvokerResult(handleTypeObjectEntry.getValue(), handleTypeObjectEntry.getKey().getHandleClasses().getType())
+                            .ifPresentOrElse(invokerResults::add, () -> log.warn("Method not found!"));
                 }
             }));
         });

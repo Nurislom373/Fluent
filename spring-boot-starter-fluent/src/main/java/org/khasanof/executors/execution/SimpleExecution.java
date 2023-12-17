@@ -1,8 +1,7 @@
 package org.khasanof.executors.execution;
 
 import org.khasanof.enums.additional.AdditionalParamType;
-import org.khasanof.event.MethodV1Event;
-import org.khasanof.utils.MethodUtils;
+import org.khasanof.event.ExecutionMethod;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
@@ -16,7 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 public class SimpleExecution extends AbstractExecution {
 
     @Override
-    public void run(MethodV1Event methodV1Event) throws InvocationTargetException, IllegalAccessException {
+    public void run(ExecutionMethod methodV1Event) throws InvocationTargetException, IllegalAccessException {
         defaultExecution(methodV1Event);
     }
 

@@ -4,9 +4,9 @@ import org.khasanof.FluentBot;
 import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.custom.BreakerForEach;
 import org.khasanof.custom.FluentContext;
-import org.khasanof.executors.invoker.Invoker;
-import org.khasanof.executors.invoker.InvokerFunctions;
-import org.khasanof.executors.invoker.InvokerFunctionsImpl;
+import org.khasanof.executors.invoker.InvokerExecutor;
+import org.khasanof.executors.invoker.DefaultInvokerFunctions;
+import org.khasanof.executors.invoker.InvokerFunctionsAdaptee;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -21,14 +21,14 @@ import java.util.Objects;
 @Component
 public class CommonUpdateExecutor extends AbstractUpdateExecutor {
 
-    private final InvokerFunctions invokerFunctions; // specifies the methods that can be invoked.
+    private final InvokerFunctionsAdaptee invokerFunctionsAdaptee; // specifies the methods that can be invoked.
     private final DeterminationUpdate determination; // gathers the methods corresponding to the incoming update.
-    private final Invoker invoker; // method invoker
+    private final InvokerExecutor invoker; // method invoker
     private final GenericSingleton<FluentBot> fluentBot; // bot instance
 
-    public CommonUpdateExecutor(InvokerFunctionsImpl invokerFunctions, DeterminationUpdate determinationUpdateType,
-                                Invoker invoker, GenericSingleton<FluentBot> fluentBot) {
-        this.invokerFunctions = invokerFunctions;
+    public CommonUpdateExecutor(DefaultInvokerFunctions invokerFunctions, DeterminationUpdate determinationUpdateType,
+                                InvokerExecutor invoker, GenericSingleton<FluentBot> fluentBot) {
+        this.invokerFunctionsAdaptee = invokerFunctions;
         this.determination = determinationUpdateType;
         this.fluentBot = fluentBot;
         this.invoker = invoker;
@@ -46,7 +46,7 @@ public class CommonUpdateExecutor extends AbstractUpdateExecutor {
         BreakerForEach.forEach(determination.determinationInvokers(update).stream(),
                 ((entry, breaker) -> {
                     if (!FluentContext.updateExecutorBoolean.get()) {
-                        invoker.invoke(invokerFunctions.fillAndGet(entry, update, instance));
+                        invoker.invoke(invokerFunctionsAdaptee.adaptee(entry, update, instance));
                     } else {
                         breaker.stop();
                     }

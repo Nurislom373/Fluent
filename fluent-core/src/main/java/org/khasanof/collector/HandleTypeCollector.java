@@ -3,6 +3,7 @@ package org.khasanof.collector;
 import org.khasanof.enums.HandleType;
 import org.khasanof.models.invoker.SimpleInvoker;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Set;
  */
 public interface HandleTypeCollector {
 
-    default SimpleInvoker getHandleAnyMethod(HandleType handleType) {
+    default Optional<SimpleInvoker> getHandleAnyMethod(HandleType handleType) {
         throw new RuntimeException("Not implemented!");
     }
 

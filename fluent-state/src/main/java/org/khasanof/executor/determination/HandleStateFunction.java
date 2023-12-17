@@ -25,12 +25,12 @@ import java.util.function.BiConsumer;
  * @since 16.07.2023 19:05
  */
 @Component(HandleStateFunction.NAME)
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class HandleStateFunction implements DeterminationFunction {
 
     public static final String NAME = "handleStateFunction";
 
     @Override
-    @SuppressWarnings("unchecked")
     public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
             StateRepositoryStrategy repository = applicationContext.getBean(StateRepositoryStrategy.class);
@@ -41,24 +41,18 @@ public class HandleStateFunction implements DeterminationFunction {
 
             repository.findById(id).ifPresent(state -> {
                 Collector<Enum> collector = applicationContext.getBean(StateCollector.NAME, Collector.class);
-                SimpleInvoker classEntry = collector.getInvokerResult(state.getState(), state.getState());
-
-                Condition.isTrue(Objects.nonNull(classEntry))
-                        .thenCall(() -> {
-                            invokerResults.add(classEntry);
-                            Condition.isTrueThen(isNotProcessedUpdates(classEntry))
-                                    .thenCall(() -> {
-                                        FluentContext.determinationServiceBoolean.set(true);
-                                    });
-                        })
-                        .elseDoNothing();
+                collector.getInvokerResult(state.getState(), state.getState())
+                        .ifPresent(simpleInvoker -> {
+                            invokerResults.add(simpleInvoker);
+                            Condition.isTrueThen(isNotProcessedUpdates(simpleInvoker))
+                                    .thenCall(() -> FluentContext.determinationServiceBoolean.set(true));
+                        });
             });
         });
     }
 
     private boolean isNotProcessedUpdates(SimpleInvoker result) {
-        SimpleInvokerObject invokerObject = (SimpleInvokerObject) result;
-        StateAction stateActions = (StateAction) invokerObject.getReference();
+        StateAction stateActions = (StateAction) result.getReference();
         return !stateActions.updateHandlersProceed();
     }
 

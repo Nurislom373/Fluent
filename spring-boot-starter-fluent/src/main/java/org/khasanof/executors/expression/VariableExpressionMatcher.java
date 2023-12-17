@@ -25,11 +25,6 @@ public class VariableExpressionMatcher implements ExpressionMatcher<String>, Exp
     }
 
     @Override
-    public boolean doMatch(String expression) {
-        return false;
-    }
-
-    @Override
     public Map<String, String> getMatchVariables(String expression, String value) {
         List<String> expList = StringTokenizerUtils.getTokenWithList(expression, " ");
         List<String> valList = StringTokenizerUtils.getTokenWithList(value, " ");

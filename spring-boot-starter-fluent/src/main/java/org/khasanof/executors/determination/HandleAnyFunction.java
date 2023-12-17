@@ -60,7 +60,7 @@ public class HandleAnyFunction implements DeterminationFunction {
     }
 
     private boolean hasValueNotProceedInMethods(Set<SimpleInvoker> methods) {
-        return methods.stream().map(result -> ((SimpleInvokerMethod) result).getMethod())
+        return methods.stream().map(SimpleInvoker::getMethod)
                 .anyMatch(method -> {
                     HandleAny annotation = method.getAnnotation(HandleAny.class);
                     return annotation.proceed().equals(Proceed.NOT_PROCEED);

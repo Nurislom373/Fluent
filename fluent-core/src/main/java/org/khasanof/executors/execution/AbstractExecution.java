@@ -1,10 +1,11 @@
 package org.khasanof.executors.execution;
 
-import lombok.SneakyThrows;
-import org.khasanof.event.MethodV1Event;
+import org.khasanof.event.ExecutionMethod;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.utils.MethodUtils;
 
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * The {@link AbstractExecution} class is used to declare the methods and variables needed
@@ -17,14 +18,21 @@ import java.lang.reflect.InvocationTargetException;
 public abstract class AbstractExecution implements Execution {
 
     /**
-     * The {@link AbstractExecution#defaultExecution} method is the method that calls the simple methods.
+     * The method is the method that calls the simple methods.
      *
-     * @param methodV1Event Which method should be called in the {@link MethodV1Event} class comes in and is called.
+     * @param executionMethod Which method should be called in the {@link ExecutionMethod} class comes in and is called.
      */
-    protected void defaultExecution(MethodV1Event methodV1Event) throws InvocationTargetException, IllegalAccessException {
-        Object[] objects = MethodUtils.sorterV2(methodV1Event.getInvokerModel().getArgs(),
-                methodV1Event.getMethod().getParameterTypes());
-        methodV1Event.getMethod().invoke(methodV1Event.getClassEntry().getValue(), objects);
+    protected void defaultExecution(ExecutionMethod executionMethod) throws InvocationTargetException, IllegalAccessException {
+        SimpleInvoker simpleInvoker = executionMethod.getInvokerModel().getInvokerReference();
+        getInvokerMethod(simpleInvoker).invoke(simpleInvoker.getReference(), methodParameterSorter(executionMethod, simpleInvoker));
+    }
+
+    protected static Object[] methodParameterSorter(ExecutionMethod executionMethod, SimpleInvoker simpleInvoker) {
+        return MethodUtils.sorterV2(executionMethod.getInvokerModel().getArgs(), getInvokerMethod(simpleInvoker).getParameterTypes());
+    }
+
+    protected static Method getInvokerMethod(SimpleInvoker simpleInvoker) {
+        return simpleInvoker.getMethod();
     }
 
 }

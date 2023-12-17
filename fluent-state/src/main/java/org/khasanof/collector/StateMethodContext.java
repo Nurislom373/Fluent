@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author Nurislom
@@ -34,8 +35,8 @@ public class StateMethodContext implements GenericMethodContext<Enum, Map.Entry<
     }
 
     @Override
-    public Map.Entry<Method, Object> find(Enum key) {
-        return invokerMethodsMap.get(key);
+    public Optional<Map.Entry<Method, Object>> find(Enum key) {
+        return Optional.ofNullable(invokerMethodsMap.get(key));
     }
 
     @Override

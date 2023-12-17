@@ -2,7 +2,7 @@ package org.khasanof.executors.execution;
 
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.enums.additional.AdditionalParamType;
-import org.khasanof.event.MethodV1Event;
+import org.khasanof.event.ExecutionMethod;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -27,11 +27,11 @@ public class CommonExecutionAdapter implements ApplicationContextAware {
     private final Map<AdditionalParamType, Execution> executions = new ConcurrentHashMap<>();
     private Execution simpleExecution;
 
-    public void execution(MethodV1Event event) {
+    public void execution(ExecutionMethod event) {
         tryExecution(event);
     }
 
-    private void tryExecution(MethodV1Event event) {
+    private void tryExecution(ExecutionMethod event) {
         try {
             if (Objects.isNull(event.getInvokerModel().getAdditionalParam())) {
                 simpleExecution.run(event);
@@ -40,11 +40,11 @@ public class CommonExecutionAdapter implements ApplicationContextAware {
             }
         } catch (InvocationTargetException | IllegalAccessException e) {
             log.warn("exception throwing. method name : {}, exception cause : {}",
-                    event.getMethod().getName(), e.getCause().getMessage());
+                    event.getInvokerModel().getInvokerReference().getMethod().getName(), e.getCause().getMessage());
         }
     }
 
-    private AdditionalParamType getAdditionalParamType(MethodV1Event event) {
+    private AdditionalParamType getAdditionalParamType(ExecutionMethod event) {
         return event.getInvokerModel().getAdditionalParam().getType();
     }
 
