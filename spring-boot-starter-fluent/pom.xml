@@ -25,7 +25,7 @@
         <fluent-core.version>1.0.3</fluent-core.version>
         <reflections.version>0.10.2</reflections.version>
         <evalex.version>3.0.5</evalex.version>
-        <gpg.keyname>0x0BF62FA3</gpg.keyname>
+        <gpg.keyname>0x9D13AEE9</gpg.keyname>
     </properties>
 
     <issueManagement>
