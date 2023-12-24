@@ -10,9 +10,9 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-core</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>Fluent Core</name>
-    <description>Fluent - Easy Telegram Bots with Spring!</description>
+    <description>Fluent - Easy Telegram Bots with Spring</description>
     <inceptionYear>2023</inceptionYear>
 
     <properties>
