@@ -18,13 +18,13 @@ import java.util.stream.Collectors;
  * @since 16.07.2023 17:00
  */
 @Component
-public class SimpleDeterminationService implements DeterminationService, Config {
+public class DefaultDeterminationService implements DeterminationService, Config {
 
     private final Map<Integer, List<BiConsumer<Update, Set<SimpleInvoker>>>> orderListMap = new TreeMap<>();
     private final ApplicationContext applicationContext;
     private final ApplicationProperties.Bot bot;
 
-    public SimpleDeterminationService(ApplicationContext applicationContext, ApplicationProperties properties) {
+    public DefaultDeterminationService(ApplicationContext applicationContext, ApplicationProperties properties) {
         this.applicationContext = applicationContext;
         this.bot = properties.getBot();
     }

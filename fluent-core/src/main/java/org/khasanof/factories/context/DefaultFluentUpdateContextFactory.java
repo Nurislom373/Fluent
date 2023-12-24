@@ -1,4 +1,7 @@
-package org.khasanof.context;
+package org.khasanof.factories.context;
+
+import org.khasanof.context.FluentUpdateContext;
+import org.khasanof.context.SimpleFluentUpdateContext;
 
 import java.util.Objects;
 
@@ -7,13 +10,13 @@ import java.util.Objects;
  * @see org.khasanof.context
  * @since 12/9/2023 7:00 PM
  */
-public abstract class FluentUpdateContextFactory {
+public abstract class DefaultFluentUpdateContextFactory {
 
     private static FluentUpdateContext INSTANCE;
 
     public static FluentUpdateContext create() {
         if (Objects.isNull(INSTANCE)) {
-            synchronized (FluentUpdateContextFactory.class) {
+            synchronized (DefaultFluentUpdateContextFactory.class) {
                 if (Objects.isNull(INSTANCE)) {
                     INSTANCE = new SimpleFluentUpdateContext();
                 }

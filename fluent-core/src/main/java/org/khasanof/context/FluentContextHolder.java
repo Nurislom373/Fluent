@@ -1,6 +1,8 @@
 package org.khasanof.context;
 
+import lombok.Getter;
 import org.khasanof.custom.attributes.UpdateAttributes;
+import org.khasanof.factories.context.DefaultFluentUpdateContextFactory;
 
 /**
  * @author Nurislom
@@ -9,7 +11,8 @@ import org.khasanof.custom.attributes.UpdateAttributes;
  */
 public abstract class FluentContextHolder {
 
-    private static final FluentUpdateContext context = FluentUpdateContextFactory.create();
+    @Getter
+    private static final FluentUpdateContext context = DefaultFluentUpdateContextFactory.create();
 
     public static FluentUpdate getCurrentUpdate() {
         return context.getFluentUpdate(getThreadName())
@@ -22,10 +25,6 @@ public abstract class FluentContextHolder {
 
     private static String getThreadName() {
         return Thread.currentThread().getName();
-    }
-
-    public static FluentUpdateContext getContext() {
-        return context;
     }
 
 }

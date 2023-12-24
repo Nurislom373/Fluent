@@ -5,6 +5,9 @@ import org.khasanof.annotation.expression.BotVariable;
 import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleMessage;
+import org.khasanof.context.FluentContextHolder;
+import org.khasanof.context.FluentUpdateContext;
+import org.khasanof.custom.attributes.UpdateAttributes;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.MatchScope;
 import org.telegram.telegrambots.meta.api.methods.send.SendAudio;
@@ -26,6 +29,7 @@ public class FluentController {
 
     @HandleMessage(value = "/start", scope = MatchScope.START_WITH)
     public void fluent(Update update, AbsSender sender) throws TelegramApiException {
+        UpdateAttributes attributes = FluentContextHolder.getAttributes();
         String text = update.getMessage().getText();
         SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
         sender.execute(message);
@@ -33,6 +37,8 @@ public class FluentController {
 
     @HandleAny(type = HandleType.MESSAGE)
     private void handleAnyMessages(Update update, AbsSender sender) throws TelegramApiException {
+        UpdateAttributes attributes = FluentContextHolder.getAttributes();
+        attributes.setAttribute("foo", "bar");
         String text = "I'm handle any messages";
         SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
         sender.execute(message);

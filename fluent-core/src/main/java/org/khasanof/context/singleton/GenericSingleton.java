@@ -11,6 +11,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public abstract class GenericSingleton<T> {
 
     private T INSTANCE;
+    private boolean isSetReference;
     private final ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
 
     public T getInstance() {
@@ -25,9 +26,16 @@ public abstract class GenericSingleton<T> {
     public void setInstance(T INSTANCE) {
         readWriteLock.writeLock().lock();
         try {
-            this.INSTANCE = INSTANCE;
+           trySetInstance(INSTANCE);
         } finally {
             readWriteLock.writeLock().unlock();
+        }
+    }
+
+    private void trySetInstance(T INSTANCE) {
+        if (!isSetReference) {
+            this.INSTANCE = INSTANCE;
+            isSetReference = true;
         }
     }
 

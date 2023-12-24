@@ -6,7 +6,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.khasanof.custom.FluentContext;
 import org.khasanof.event.ExecutionMethod;
-import org.khasanof.event.exceptionDirector.ExceptionDirectorEvent;
+import org.khasanof.event.exception.ThrowExceptionEvent;
 import org.khasanof.utils.MethodUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -22,11 +22,11 @@ import java.lang.reflect.InvocationTargetException;
  */
 @Aspect
 @Component
-public class ExecutionExceptionAspect {
+public class ExecutionExceptionHandlerAspect {
 
     private final ApplicationEventPublisher publisher;
 
-    public ExecutionExceptionAspect(ApplicationEventPublisher publisher) {
+    public ExecutionExceptionHandlerAspect(ApplicationEventPublisher publisher) {
         this.publisher = publisher;
     }
 
@@ -34,17 +34,25 @@ public class ExecutionExceptionAspect {
     void executionRunMethodPointcut(){}
 
     @AfterThrowing(value = "executionRunMethodPointcut()", throwing = "ex")
-    private void afterThrowing(JoinPoint joinPoint, Throwable ex) throws Throwable {
+    private void handleException(JoinPoint joinPoint, Throwable ex) throws Throwable {
         FluentContext.updateExecutorBoolean.set(true);
+        redirectExceptionHandlerOrThrow(joinPoint, ex);
+    }
+
+    private void redirectExceptionHandlerOrThrow(JoinPoint joinPoint, Throwable ex) throws Throwable {
         if (ex.getClass().equals(InvocationTargetException.class)) {
-            ExecutionMethod event = MethodUtils.getArg(joinPoint.getArgs(), ExecutionMethod.class);
-            Object[] args = event.getInvokerModel().getArgs();
-            AbsSender sender = MethodUtils.getArg(args, AbsSender.class);
-            Update update = MethodUtils.getArg(args, Update.class);
-            publisher.publishEvent(new ExceptionDirectorEvent(this, update, sender, ex.getCause()));
+            publishExceptionEvent(joinPoint, ex);
         } else {
             throw ex;
         }
+    }
+
+    private void publishExceptionEvent(JoinPoint joinPoint, Throwable ex) {
+        ExecutionMethod event = MethodUtils.getArg(joinPoint.getArgs(), ExecutionMethod.class);
+        Object[] args = event.getInvokerModel().getArgs();
+        AbsSender sender = MethodUtils.getArg(args, AbsSender.class);
+        Update update = MethodUtils.getArg(args, Update.class);
+        publisher.publishEvent(new ThrowExceptionEvent(this, update, sender, ex.getCause()));
     }
 
 }
