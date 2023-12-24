@@ -1,5 +1,7 @@
 package org.khasanof.models.executors;
 
+import org.khasanof.enums.HandleType;
+
 /**
  * @author Nurislom
  * @see org.khasanof.models.executors
@@ -7,6 +9,13 @@ package org.khasanof.models.executors;
  */
 public enum UpdateType {
 
-    MESSAGE, CALLBACK
+    MESSAGE, CALLBACK;
+
+    public HandleType asHandleType() {
+        return switch (this) {
+            case MESSAGE -> HandleType.MESSAGE;
+            case CALLBACK -> HandleType.CALLBACK;
+        };
+    }
 
 }

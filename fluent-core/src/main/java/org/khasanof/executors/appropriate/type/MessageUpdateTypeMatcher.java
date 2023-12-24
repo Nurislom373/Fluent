@@ -1,5 +1,6 @@
-package org.khasanof.executors.matcher.methods;
+package org.khasanof.executors.appropriate.type;
 
+import org.khasanof.executors.appropriate.AppropriateUpdateType;
 import org.khasanof.models.executors.AppropriateType;
 import org.khasanof.models.executors.UpdateType;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ import java.util.Objects;
  * @since 12/24/2023 7:42 PM
  */
 @Service
-public class MessageUpdateTypeMatcher implements UpdateTypeMatcher {
+public class MessageUpdateTypeMatcher implements AppropriateUpdateType {
 
     @Override
     public boolean isMatch(Update update) {

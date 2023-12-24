@@ -1,14 +1,14 @@
-package org.khasanof.executors.matcher.methods;
+package org.khasanof.executors.appropriate;
 
 import org.khasanof.models.executors.AppropriateType;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
  * @author Nurislom
- * @see org.khasanof.executors.matcher.methods
+ * @see org.khasanof.executors.appropriate
  * @since 12/24/2023 7:39 PM
  */
-public interface UpdateTypeMatcher {
+public interface AppropriateUpdateType {
 
     boolean isMatch(Update update);
 

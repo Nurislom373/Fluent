@@ -1,7 +1,9 @@
 package org.khasanof.executors.determination;
 
+import org.jetbrains.annotations.NotNull;
 import org.khasanof.config.ApplicationProperties;
 import org.khasanof.config.Config;
+import org.khasanof.custom.ProcessTypeResolver;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
@@ -10,6 +12,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.*;
 import java.util.function.BiConsumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -37,12 +40,30 @@ public class DefaultDeterminationService implements DeterminationService, Config
 
     @Override
     public void runnable() {
-        DeterminationAdapter determinationAdapter = new DeterminationAdapter();
-        determinationAdapter.fillMap(orderListMap, applicationContext, this.bot.getProcessType());
+        applicationContext.getBeansOfType(DeterminationFunction.class)
+                .values().stream().filter(determinationPredicate())
+                .forEach(this::addDeterminationFunction);
+    }
+
+    @NotNull
+    private Predicate<DeterminationFunction> determinationPredicate() {
+        return orderFunction -> ProcessTypeResolver.hasAcceptProcessType(orderFunction, this.bot.getProcessType());
+    }
+
+    private void addDeterminationFunction(DeterminationFunction orderFunction) {
+        if (orderListMap.containsKey(orderFunction.getOrder())) {
+            List<BiConsumer<Update, Set<SimpleInvoker>>> list = orderListMap.get(orderFunction.getOrder());
+            list.add(orderFunction.accept(applicationContext));
+        } else {
+            orderListMap.put(orderFunction.getOrder(), new ArrayList<>() {{
+                add(orderFunction.accept(applicationContext));
+            }});
+        }
     }
 
     @Override
     public ProcessType processType() {
         return ProcessType.BOTH;
     }
+
 }
