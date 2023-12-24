@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public enum HandleClasses {
 
-    HANDLE_STATE(HandleState.class, false),
     HANDLE_ANY(HandleAny.class, false),
     HANDLE_INLINE_QUERY(HandleInlineQuery.class, false),
     HANDLE_EXCEPTION(HandleException.class, false),

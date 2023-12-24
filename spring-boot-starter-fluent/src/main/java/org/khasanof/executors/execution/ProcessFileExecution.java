@@ -1,7 +1,8 @@
 package org.khasanof.executors.execution;
 
 import org.khasanof.enums.additional.AdditionalParamType;
-import org.khasanof.event.MethodV1Event;
+import org.khasanof.event.ExecutionMethod;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
@@ -16,15 +17,16 @@ import java.util.Arrays;
 public class ProcessFileExecution implements Execution {
 
     @Override
-    public void run(MethodV1Event methodV1Event) throws InvocationTargetException, IllegalAccessException {
-        AdditionalParamType paramType = methodV1Event.getInvokerModel().getAdditionalParam().getType();
-        Object extraParam = Arrays.stream(methodV1Event.getInvokerModel().getArgs())
+    public void run(ExecutionMethod executionMethod) throws InvocationTargetException, IllegalAccessException {
+        SimpleInvoker simpleInvoker = executionMethod.getInvokerModel().getInvokerReference();
+        AdditionalParamType paramType = executionMethod.getInvokerModel().getAdditionalParam().getType();
+        Object extraParam = Arrays.stream(executionMethod.getInvokerModel().getArgs())
                 .filter(o -> o.getClass().equals(paramType.getParmaType()))
                 .findFirst().orElseThrow(() -> new RuntimeException("Match object not found!"));
-        int length = methodV1Event.getInvokerModel().getArgs().length;
-        Object[] copy = Arrays.copyOf(methodV1Event.getInvokerModel().getArgs(), length + 1);
+        int length = executionMethod.getInvokerModel().getArgs().length;
+        Object[] copy = Arrays.copyOf(executionMethod.getInvokerModel().getArgs(), length + 1);
         copy[copy.length - 1] = extraParam;
-        methodV1Event.getClassEntry().getKey().invoke(methodV1Event.getClassEntry().getValue(), copy);
+        simpleInvoker.getMethod().invoke(simpleInvoker.getReference(), copy);
     }
 
     @Override

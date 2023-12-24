@@ -1,131 +1,77 @@
 package org.khasanof.executors.invoker;
 
-import jakarta.annotation.PostConstruct;
-import org.khasanof.FluentBot;
-import org.khasanof.annotation.exception.HandleException;
-import org.khasanof.annotation.methods.HandleAny;
-import org.khasanof.annotation.methods.HandleMessage;
-import org.khasanof.annotation.process.ProcessFile;
-import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.condition.Condition;
-import org.khasanof.enums.InvokerType;
-import org.khasanof.executors.expression.ExpressionVariables;
-import org.khasanof.model.InvokerMethod;
-import org.khasanof.model.SampleModel;
-import org.khasanof.model.additional.checks.ACInvokerMethod;
-import org.khasanof.model.additional.param.APAnnotationMap;
-import org.khasanof.model.additional.param.APUpdateObject;
-import org.khasanof.model.condition.MethodCondition;
-import org.khasanof.utils.AnnotationUtils;
-import org.khasanof.utils.UpdateUtils;
-import org.springframework.context.ApplicationContext;
+import org.jetbrains.annotations.NotNull;
+import org.khasanof.executors.invoker.param.TWTCommonAdapter;
+import org.khasanof.models.AdditionalParam;
+import org.khasanof.models.Invoker;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.bots.AbsSender;
 
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Method;
+import java.util.*;
+
+import static org.khasanof.factories.invoker.HandleProcessFileFactory.HANDLE_UPDATE_PROCESS_FILE;
 
 /**
  * @author Nurislom
  * @see org.khasanof.executors.invoker
- * @since 8/11/2023 9:43 PM
+ * @since 15.07.2023 23:59
  */
-@Component
-public class DefaultInvokerFunctions {
+@Component(DefaultInvokerFunctions.NAME)
+public class DefaultInvokerFunctions extends AbstractInvokerFunctions {
 
-    private final InvokerFunctions functions;
-    private final DefaultInvokerMatcher invokerMatcher;
-    private final ApplicationContext applicationContext;
-    private final ExpressionVariables matcher;
+    public static final String NAME = "defaultInvokerFunctions";
+    private final TWTCommonAdapter twtCommonAdapter;
 
-    public static final String EXCEPTION_NAME = "handleException";
-    public static final String HANDLE_UPDATE = "handleUpdate";
-    public static final String HANDLE_UPDATE_W_PROCESS_FL = "handleUpdateWithProcessFile";
-    public static final String HANDLE_UPDATE_W_VAR_EXPRESSION = "handleUpdateWithVariableExpression";
-    public static final String HANDLE_ANY_UPDATE = "handleAnyUpdate";
-    public static final String HANDLE_STATE = "handleState";
-
-    public DefaultInvokerFunctions(InvokerFunctionsImpl functions, DefaultInvokerMatcher invokerMatcher,
-                                   ApplicationContext applicationContext, ExpressionVariables matcher) {
-        this.matcher = matcher;
-        this.functions = functions;
-        this.invokerMatcher = invokerMatcher;
-        this.applicationContext = applicationContext;
+    public DefaultInvokerFunctions(TWTCommonAdapter twtCommonAdapter) {
+        this.twtCommonAdapter = twtCommonAdapter;
     }
 
-    @PostConstruct
-    void afterPropertiesSet() {
-
-        SampleModel handleAny = SampleModel.builder()
-                .name(HANDLE_ANY_UPDATE)
-                .type(InvokerType.METHOD)
-                .condition((MethodCondition) (invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
-                        HandleAny.class, false)))
-                .methodParams(List.of(Update.class, AbsSender.class))
-                .isInputSystem(false)
-                .canBeNoParam(true)
-                .build();
-        functions.add(handleAny);
-
-        SampleModel handleMessageScopeVarExpression = SampleModel.builder()
-                .name(HANDLE_UPDATE_W_VAR_EXPRESSION)
-                .type(InvokerType.METHOD)
-                .condition((MethodCondition) (invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
-                        HandleMessage.class, false)))
-                .additionalParam((APAnnotationMap) (entry -> matcher.getMatchVariables(((HandleMessage)
-                        entry.getValue()).value(), entry.getKey().getMessage().getText())))
-                .additionalChecks((ACInvokerMethod) invokerMatcher::messageScopeEq)
-                .methodParams(List.of(Update.class, AbsSender.class, Map.class))
-                .isInputSystem(false)
-                .canBeNoParam(false)
-                .build();
-        functions.add(handleMessageScopeVarExpression);
-
-        SampleModel handleException = SampleModel.builder()
-                .name(EXCEPTION_NAME)
-                .type(InvokerType.METHOD)
-                .condition((MethodCondition) (invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
-                        HandleException.class, false)))
-                .methodParams(List.of(Update.class, AbsSender.class, Throwable.class))
-                .isInputSystem(true)
-                .canBeNoParam(false)
-                .build();
-        functions.add(handleException);
-
-        SampleModel handleProcessFile = SampleModel.builder()
-                .name(HANDLE_UPDATE_W_PROCESS_FL)
-                .type(InvokerType.METHOD)
-                .condition((MethodCondition) (this::handleUpdateWithProcessFileMethodCondition))
-                .additionalParam((APUpdateObject) (update ->
-                        UpdateUtils.getInputStreamWithFileId(UpdateUtils.getFileId(update),
-                                applicationContext.getBean(FluentBot.class))))
-                .methodParams(List.of(Update.class, AbsSender.class, InputStream.class))
-                .isInputSystem(false)
-                .canBeNoParam(false)
-                .build();
-        functions.add(handleProcessFile);
-
-        SampleModel handleUpdates = SampleModel.builder()
-                .name(HANDLE_UPDATE)
-                .type(InvokerType.METHOD)
-                .condition((MethodCondition) (invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
-                        ProcessUpdate.class, true)))
-                .methodParams(List.of(Update.class, AbsSender.class))
-                .isInputSystem(false)
-                .canBeNoParam(false)
-                .build();
-        functions.add(handleUpdates);
-
+    @Override
+    public Invoker adaptee(SimpleInvoker simpleInvoker, Object... args) {
+        Invoker invoker = findInvoker(simpleInvoker);
+        fillInvokerArguments(simpleInvoker, args, invoker);
+        return invoker;
     }
 
-    private boolean handleUpdateWithProcessFileMethodCondition(InvokerMethod invokerMethod) {
-        return Condition.orElse(() -> {
-            return AnnotationUtils.hasAnnotation(invokerMethod.getMethod(), ProcessFile.class, true) &&
-                    (invokerMethod.getMethod().getParameterCount() > 2);
-        }, true, false);
+    private Invoker findInvoker(SimpleInvoker simpleInvoker) {
+        return getAll().stream().filter(invoker -> invokerMatcher(invoker, simpleInvoker))
+                .findFirst().orElseThrow(() -> new RuntimeException("InvokerModel not found!"));
+    }
 
+    private void fillInvokerArguments(SimpleInvoker simpleInvoker, Object[] args, Invoker modelV2) {
+        modelV2.setArgs(getInvokerArguments(simpleInvoker, args, modelV2));
+        modelV2.setInvokerReference(simpleInvoker);
+    }
+
+    @NotNull
+    private Object[] getInvokerArguments(SimpleInvoker simpleInvoker, Object[] args, Invoker modelV2) {
+        List<Object> objects = new ArrayList<>();
+        if (modelV2.hasAdditionalParam() && !modelV2.isInputSystem()) {
+            Method invokerMethod = simpleInvoker.getMethod();
+            if (modelV2.getName().equals(HANDLE_UPDATE_PROCESS_FILE)) {
+                int parameterCount = invokerMethod.getParameterCount();
+                if (parameterCount > 2) {
+                    objects.add(getAdditionalParamV2(modelV2, args, invokerMethod));
+                }
+            } else {
+                objects.add(getAdditionalParamV2(modelV2, args, invokerMethod));
+            }
+        }
+        objects.addAll(Arrays.asList(args));
+        return objects.toArray();
+    }
+
+    @SuppressWarnings("unchecked")
+    private boolean invokerMatcher(Invoker invoker, SimpleInvoker simpleInvoker) {
+        return invoker.getCondition().match(simpleInvoker) && (!invoker.hasAdditionalChecks() ||
+                invoker.getAdditionalChecks().check(simpleInvoker));
+    }
+
+    @SuppressWarnings({"rawtypes"})
+    private Object getAdditionalParamV2(Invoker invoker, Object[] args, Method method) {
+        AdditionalParam additionalParam = invoker.getAdditionalParam();
+        return twtCommonAdapter.takeParam(additionalParam.getType(), invoker, args, method);
     }
 
 }

@@ -1,9 +1,10 @@
 package org.khasanof.executors;
 
+import org.jetbrains.annotations.NotNull;
 import org.khasanof.custom.BreakerForEach;
 import org.khasanof.custom.FluentContext;
 import org.khasanof.executors.determination.DeterminationService;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -26,17 +27,29 @@ public class DeterminationUpdate {
         this.determinationService = determinationService;
     }
 
-    public Set<InvokerResult> determinationV2(Update update) {
-        Set<InvokerResult> invokerResults = new LinkedHashSet<>();
-        List<BiConsumer<Update, Set<InvokerResult>>> list = determinationService.getDeterminations();
-        BreakerForEach.forEach(list.stream(), ((updateMapBiConsumer, breaker) -> {
-            if (!FluentContext.determinationServiceBoolean.get()) {
-                updateMapBiConsumer.accept(update, invokerResults);
-            } else {
-                FluentContext.determinationServiceBoolean.set(true);
-            }
-        }), () -> FluentContext.determinationServiceBoolean.set(false));
+    public Set<SimpleInvoker> determinationInvokers(Update update) {
+        return getSimpleInvokers(update);
+    }
+
+    @NotNull
+    private Set<SimpleInvoker> getSimpleInvokers(Update update) {
+        Set<SimpleInvoker> invokerResults = new LinkedHashSet<>();
+        assembleInvokers(update, invokerResults);
         return invokerResults;
+    }
+
+    private void assembleInvokers(Update update, Set<SimpleInvoker> invokerResults) {
+        BreakerForEach.forEach(determinationService.getDeterminations().stream(),
+                ((determination, breaker) -> determinationAccept(update, invokerResults, determination)),
+                () -> FluentContext.determinationServiceBoolean.set(false));
+    }
+
+    private void determinationAccept(Update update, Set<SimpleInvoker> invokerResults, BiConsumer<Update, Set<SimpleInvoker>> determination) {
+        if (!FluentContext.determinationServiceBoolean.get()) {
+            determination.accept(update, invokerResults);
+        } else {
+            FluentContext.determinationServiceBoolean.set(true);
+        }
     }
 
 }

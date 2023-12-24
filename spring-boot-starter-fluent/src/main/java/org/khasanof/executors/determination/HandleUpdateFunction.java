@@ -7,7 +7,7 @@ import org.khasanof.condition.Condition;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.HandleFunctionsMatcher;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -32,7 +32,7 @@ public class HandleUpdateFunction implements DeterminationFunction {
 
     @Override
     @SuppressWarnings("unchecked")
-    public BiConsumer<Update, Set<InvokerResult>> accept(ApplicationContext applicationContext) {
+    public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
             HandleFunctionsMatcher anyFunctionMatcher = applicationContext.getBean(HandleFunctionsMatcher.class);
             Optional<Map.Entry<HandleType, Object>> optional = anyFunctionMatcher.matchFunctions(update);
@@ -41,14 +41,8 @@ public class HandleUpdateFunction implements DeterminationFunction {
                 if (HandleType.hasHandleAnnotation(handleTypeObjectEntry.getKey())) {
                     Collector<Class<? extends Annotation>> collector = applicationContext.getBean(SimpleCollector.NAME, Collector.class);
 
-                    InvokerResult classEntry = collector.getInvokerResult(handleTypeObjectEntry.getValue(),
-                            handleTypeObjectEntry.getKey().getHandleClasses().getType());
-
-                    Condition.isTrue(Objects.nonNull(classEntry))
-                            .thenCall(() -> {
-                                invokerResults.add(classEntry);
-                            })
-                            .elseCall(() -> log.warn("Method not found!"));
+                    collector.getInvokerResult(handleTypeObjectEntry.getValue(), handleTypeObjectEntry.getKey().getHandleClasses().getType())
+                            .ifPresentOrElse(invokerResults::add, () -> log.warn("Method not found!"));
                 }
             }));
         });

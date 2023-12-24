@@ -24,4 +24,5 @@ public class MethodCollectedEvent extends ApplicationEvent {
         super(source);
         this.longMap = longMap;
     }
+
 }

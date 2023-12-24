@@ -6,8 +6,8 @@ import org.khasanof.condition.Condition;
 import org.khasanof.custom.FluentContext;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.determination.DeterminationFunction;
-import org.khasanof.model.InvokerObject;
-import org.khasanof.model.InvokerResult;
+import org.khasanof.models.invoker.SimpleInvokerObject;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.repository.StateRepositoryStrategy;
 import org.khasanof.utils.UpdateUtils;
@@ -25,13 +25,13 @@ import java.util.function.BiConsumer;
  * @since 16.07.2023 19:05
  */
 @Component(HandleStateFunction.NAME)
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class HandleStateFunction implements DeterminationFunction {
 
     public static final String NAME = "handleStateFunction";
 
     @Override
-    @SuppressWarnings("unchecked")
-    public BiConsumer<Update, Set<InvokerResult>> accept(ApplicationContext applicationContext) {
+    public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
             StateRepositoryStrategy repository = applicationContext.getBean(StateRepositoryStrategy.class);
             Long id = UpdateUtils.getUserId(update);
@@ -41,24 +41,18 @@ public class HandleStateFunction implements DeterminationFunction {
 
             repository.findById(id).ifPresent(state -> {
                 Collector<Enum> collector = applicationContext.getBean(StateCollector.NAME, Collector.class);
-                InvokerResult classEntry = collector.getInvokerResult(state.getState(), state.getState());
-
-                Condition.isTrue(Objects.nonNull(classEntry))
-                        .thenCall(() -> {
-                            invokerResults.add(classEntry);
-                            Condition.isTrueThen(isNotProcessedUpdates(classEntry))
-                                    .thenCall(() -> {
-                                        FluentContext.determinationServiceBoolean.set(true);
-                                    });
-                        })
-                        .elseDoNothing();
+                collector.getInvokerResult(state.getState(), state.getState())
+                        .ifPresent(simpleInvoker -> {
+                            invokerResults.add(simpleInvoker);
+                            Condition.isTrueThen(isNotProcessedUpdates(simpleInvoker))
+                                    .thenCall(() -> FluentContext.determinationServiceBoolean.set(true));
+                        });
             });
         });
     }
 
-    private boolean isNotProcessedUpdates(InvokerResult result) {
-        InvokerObject invokerObject = (InvokerObject) result;
-        StateAction stateActions = (StateAction) invokerObject.getReference();
+    private boolean isNotProcessedUpdates(SimpleInvoker result) {
+        StateAction stateActions = (StateAction) result.getReference();
         return !stateActions.updateHandlersProceed();
     }
 

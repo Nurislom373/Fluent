@@ -2,10 +2,13 @@ package org.khasanof.state.collector;
 
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.GenericContains;
+import org.khasanof.collector.GenericMethodContext;
 import org.khasanof.exceptions.InvalidValidationException;
 import org.khasanof.state.StateAction;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -15,12 +18,13 @@ import java.util.Objects;
  */
 @Slf4j
 @Component
+@SuppressWarnings({"rawtypes"})
 public class StateValidator {
 
-    private final GenericContains<Enum> objectContains;
+    private final StateConfigCollector stateConfigCollector;
 
-    public StateValidator(GenericContains<Enum> objectContains) {
-        this.objectContains = objectContains;
+    public StateValidator(StateConfigCollector stateConfigCollector) {
+        this.stateConfigCollector = stateConfigCollector;
     }
 
     public boolean valid(StateAction stateActions) {
@@ -28,7 +32,7 @@ public class StateValidator {
             log.warn("state must not be null in this class : {}", stateActions.getClass());
             throw new InvalidValidationException("state must not be null!");
         }
-        if (!objectContains.contains(stateActions.state())) {
+        if (!stateConfigCollector.contains(stateActions.state())) {
             log.warn("An unregistered enum type was introduced! : {}", stateActions.getClass());
             throw new RuntimeException("An unregistered enum type was introduced");
         }
