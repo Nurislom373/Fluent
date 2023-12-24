@@ -1,9 +1,5 @@
 package org.khasanof;
 
-import org.telegram.telegrambots.meta.api.objects.Update;
-
-import java.util.function.Supplier;
-
 /**
  * @author Nurislom
  * @see org.khasanof

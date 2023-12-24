@@ -20,10 +20,10 @@ import java.util.function.Function;
 public class HandleFunctionsMatcher {
 
     public static final String NAME = "handleAnyFunctionMatcher";
-    private final Function<Update, MatchFunctions.MatchType> function = MatchFunctions.MatchType::getMatchType;
+    private final Function<Update, MMatchFunctions.MatchType> function = MMatchFunctions.MatchType::getMatchType;
 
     public Optional<Map.Entry<HandleType, Object>> matchFunctions(Update update) {
-        MatchFunctions.MatchType matchType = function.apply(update);
+        MMatchFunctions.MatchType matchType = function.apply(update);
         System.out.println("MatchType function result : " + matchType);
         if (Objects.nonNull(matchType)) {
             if (!matchType.isHasSubFunctions()) {
@@ -31,7 +31,7 @@ public class HandleFunctionsMatcher {
                 return Optional.ofNullable(matchType.getSupplyMethod().apply(update));
             } else {
                 System.out.println("Yes Sub Functions : " + matchType);
-                return MatchFunctions.getMatchTypeFunctions(matchType)
+                return MMatchFunctions.getMatchTypeFunctions(matchType)
                         .stream().filter(matchFun -> matchFun.apply(update).supplierEntry().getKey())
                         .map(updateRecordFunctionFunction -> updateRecordFunctionFunction.apply(update)
                                 .supplierEntry().getValue().get())

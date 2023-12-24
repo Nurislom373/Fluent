@@ -47,7 +47,7 @@ public class FluentController {
     @HandleCallback(values = {"EN", "RU", "UZ"})
     private void handleCallback(Update update, AbsSender sender) throws TelegramApiException {
         String text = "Callback handler!";
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
+        SendMessage message = new SendMessage(update.getCallbackQuery().getMessage().getChatId().toString(), text);
         sender.execute(message);
     }
 

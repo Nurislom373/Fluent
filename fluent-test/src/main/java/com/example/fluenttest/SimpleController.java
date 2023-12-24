@@ -5,6 +5,7 @@ import org.khasanof.annotation.UpdateController;
 import org.khasanof.annotation.expression.BotVariable;
 import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.annotation.methods.HandleMessage;
+import org.khasanof.annotation.methods.HandleMessages;
 import org.khasanof.enums.MatchScope;
 import org.khasanof.enums.Proceed;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -26,6 +27,16 @@ public class SimpleController {
         log.info("Handle Any Message!");
         String chatId = update.getMessage().getChatId().toString();
         SendMessage message = new SendMessage(chatId, "Handler Any Message😎");
+        sender.execute(message);
+    }
+
+    @HandleMessages(values = {
+        @HandleMessage(value = "/jeck1", scope = MatchScope.START_WITH),
+        @HandleMessage(value = "/jeck2", scope = MatchScope.START_WITH),
+    })
+    private void handleMessage(Update update, AbsSender sender) throws TelegramApiException {
+        String chatId = update.getMessage().getChatId().toString();
+        SendMessage message = new SendMessage(chatId, "Hi Jecki😎");
         sender.execute(message);
     }
 

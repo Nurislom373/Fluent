@@ -9,6 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
  */
 @Getter
 @RequiredArgsConstructor
-public enum MatchFunctions {
+public enum MMatchFunctions {
 
     M_HS_TEXT((update -> setFunction(update.getMessage(),
             Message::hasText, Message::getText, HandleType.MESSAGE)), MatchType.MESSAGE),
@@ -64,7 +65,7 @@ public enum MatchFunctions {
 
     public static Set<Function<Update, RecordFunction>> getMatchTypeFunctions(MatchType type) {
         return Arrays.stream(values()).filter(matchFunctions -> matchFunctions.matchType.equals(type))
-                .map(MatchFunctions::getMethod).collect(Collectors.toSet());
+                .map(MMatchFunctions::getMethod).collect(Collectors.toSet());
     }
 
     public static <T> RecordFunction setFunction(T message, Function<T, Boolean> booleanFunction, Function<T, Object> objectFunction,
@@ -91,6 +92,11 @@ public enum MatchFunctions {
         public static MatchType getMatchType(Update update) {
             return Arrays.stream(values()).filter(matchType -> matchType.method.apply(update))
                     .findFirst().orElse(null);
+        }
+
+        public static Optional<MatchType> getMatchTypeFunc(Update update) {
+            return Arrays.stream(values()).filter(matchType -> matchType.method.apply(update))
+                    .findFirst();
         }
 
         public static <T> Map.Entry<HandleType, Object> setSupplyMethod(T data, HandleType type) {
