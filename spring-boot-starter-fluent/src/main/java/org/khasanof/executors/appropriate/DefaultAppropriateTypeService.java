@@ -28,9 +28,7 @@ public class DefaultAppropriateTypeService implements AppropriateTypeService, In
 
     @Override
     public Optional<AppropriateType> getAppropriateType(Update update) {
-        Iterator<AppropriateUpdateType> iterator = updateTypeMatchers.iterator();
-        if (iterator.hasNext()) {
-            AppropriateUpdateType typeMatcher = iterator.next();
+        for (AppropriateUpdateType typeMatcher : updateTypeMatchers) {
             if (typeMatcher.isMatch(update)) {
                 return Optional.of(typeMatcher.getAppropriate(update));
             }

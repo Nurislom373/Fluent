@@ -16,5 +16,10 @@ public class AppropriateType {
 
     private UpdateType type;
     private Object value;
+    private boolean hasSubMethods;
 
+    public AppropriateType(UpdateType type, Object value) {
+        this.type = type;
+        this.value = value;
+    }
 }

@@ -23,7 +23,7 @@ public class MessageUpdateTypeMatcher implements AppropriateUpdateType {
 
     @Override
     public AppropriateType getAppropriate(Update update) {
-        return new AppropriateType(UpdateType.MESSAGE, update.getMessage());
+        return new AppropriateType(UpdateType.MESSAGE, update.getMessage(), hasSubMethods());
     }
 
     @Override

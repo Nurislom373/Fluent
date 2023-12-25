@@ -7,6 +7,8 @@ import org.khasanof.condition.Condition;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.HandleFunctionsMatcher;
+import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
+import org.khasanof.models.executors.AppropriateMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -25,27 +27,30 @@ import java.util.function.BiConsumer;
  * @since 16.07.2023 18:58
  */
 @Slf4j
+@SuppressWarnings("unchecked")
 @Component(HandleUpdateFunction.NAME)
 public class HandleUpdateFunction implements DeterminationFunction {
 
     public static final String NAME = "handleUpdateFunction";
 
     @Override
-    @SuppressWarnings("unchecked")
     public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
-            HandleFunctionsMatcher anyFunctionMatcher = applicationContext.getBean(HandleFunctionsMatcher.class);
-            Optional<Map.Entry<HandleType, Object>> optional = anyFunctionMatcher.matchFunctions(update);
+            var appropriateDetermining = applicationContext.getBean(AppropriateDetermining.class);
 
-            optional.ifPresent((handleTypeObjectEntry -> {
-                if (HandleType.hasHandleAnnotation(handleTypeObjectEntry.getKey())) {
-                    Collector<Class<? extends Annotation>> collector = applicationContext.getBean(SimpleCollector.NAME, Collector.class);
-
-                    collector.getInvokerResult(handleTypeObjectEntry.getValue(), handleTypeObjectEntry.getKey().getHandleClasses().getType())
-                            .ifPresentOrElse(invokerResults::add, () -> log.warn("Method not found!"));
-                }
-            }));
+            appropriateDetermining.determining(update)
+                    .ifPresentOrElse(appropriateMethod -> internalAccept(applicationContext, invokerResults, appropriateMethod),
+                            () ->log.warn("Method not found!"));
         });
+    }
+
+    private static void internalAccept(ApplicationContext applicationContext, Set<SimpleInvoker> invokerResults, AppropriateMethod appropriateMethod) {
+        if (appropriateMethod.getHandleType().hasHandleAnnotation()) {
+            Collector<Class<? extends Annotation>> collector = applicationContext.getBean(SimpleCollector.NAME, Collector.class);
+
+            collector.getInvokerResult(appropriateMethod.getValue(), appropriateMethod.getHandleType().getHandleClasses().getType())
+                    .ifPresentOrElse(invokerResults::add, () -> log.warn("Method not found!"));
+        }
     }
 
     @Override

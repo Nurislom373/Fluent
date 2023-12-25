@@ -11,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * @author Nurislom

@@ -33,6 +33,10 @@ public enum HandleType {
 
     private HandleClasses handleClasses;
 
+    public boolean hasHandleAnnotation() {
+        return this.handleClasses != null;
+    }
+
     public static boolean hasHandleAnnotation(HandleType type) {
         return type.handleClasses != null;
     }

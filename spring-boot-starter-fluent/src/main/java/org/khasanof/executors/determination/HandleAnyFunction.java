@@ -9,6 +9,8 @@ import org.khasanof.enums.HandleType;
 import org.khasanof.enums.Proceed;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.HandleFunctionsMatcher;
+import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
+import org.khasanof.models.executors.AppropriateMethod;
 import org.khasanof.models.invoker.SimpleInvokerMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
@@ -28,43 +30,52 @@ import java.util.function.BiConsumer;
  * @since 16.07.2023 19:13
  */
 @Slf4j
+@SuppressWarnings({"unchecked", "rawtypes"})
 @Component(HandleAnyFunction.NAME)
 public class HandleAnyFunction implements DeterminationFunction {
 
     public static final String NAME = "handleAnyFunction";
 
     @Override
-    @SuppressWarnings("unchecked")
     public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
-            Collector<Class<? extends Annotation>> collector = applicationContext.getBean(SimpleCollector.NAME, Collector.class);
+            var collector = applicationContext.getBean(SimpleCollector.NAME, Collector.class);
 
             if (collector.hasHandle(HandleAny.class)) {
-                HandleFunctionsMatcher matcher = applicationContext.getBean(HandleFunctionsMatcher.class);
-                Optional<Map.Entry<HandleType, Object>> optional = matcher.matchFunctions(update);
-
-                optional.ifPresentOrElse((handleTypeObjectEntry -> {
-                    Set<SimpleInvoker> allHandleAnyMethods = collector.getAllHandleAnyMethod(handleTypeObjectEntry.getKey());
-
-                    if (Objects.nonNull(allHandleAnyMethods)) {
-
-                        invokerResults.addAll(allHandleAnyMethods);
-                        if (hasValueNotProceedInMethods(allHandleAnyMethods)) {
-                            FluentContext.determinationServiceBoolean.set(true);
-                        }
-
-                    }
-                }), () -> log.warn("HandleType not found!"));
+                internalAccept(applicationContext, update, invokerResults, collector);
             }
         });
     }
 
+    private void internalAccept(ApplicationContext applicationContext, Update update, Set<SimpleInvoker> invokerResults, Collector collector) {
+        var appropriateDetermining = applicationContext.getBean(AppropriateDetermining.class);
+
+        appropriateDetermining.determining(update)
+                .ifPresentOrElse(appropriateMethod -> foundMethodsAddInvokers(invokerResults, collector, appropriateMethod),
+                        () -> log.warn("HandleType not found!"));
+    }
+
+    private void foundMethodsAddInvokers(Set<SimpleInvoker> invokerResults, Collector collector, AppropriateMethod appropriateMethod) {
+        var allHandleAnyMethods = collector.getAllHandleAnyMethod(appropriateMethod.getHandleType());
+
+        if (Objects.isNull(allHandleAnyMethods)) {
+            return;
+        }
+
+        invokerResults.addAll(allHandleAnyMethods);
+        isCanProcess(allHandleAnyMethods);
+    }
+
+    private void isCanProcess(Set<SimpleInvoker> allHandleAnyMethods) {
+        if (hasValueNotProceedInMethods(allHandleAnyMethods)) {
+            FluentContext.determinationServiceBoolean.set(true);
+        }
+    }
+
     private boolean hasValueNotProceedInMethods(Set<SimpleInvoker> methods) {
-        return methods.stream().map(SimpleInvoker::getMethod)
-                .anyMatch(method -> {
-                    HandleAny annotation = method.getAnnotation(HandleAny.class);
-                    return annotation.proceed().equals(Proceed.NOT_PROCEED);
-                });
+        return methods.stream()
+                .map(SimpleInvoker::getMethod)
+                .anyMatch(method -> method.getAnnotation(HandleAny.class).proceed().equals(Proceed.NOT_PROCEED));
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  * @author Nurislom
- * @see org.khasanof.executors.matcher.methods
+ * @see org.khasanof.executors.appropriate.type
  * @since 12/24/2023 7:51 PM
  */
 @Service

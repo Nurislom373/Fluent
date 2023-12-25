@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  * @author Nurislom
- * @see org.khasanof.executors.matcher.methods
+ * @see org.khasanof.executors.appropriate.type
  * @since 12/24/2023 7:49 PM
  */
 @Service
@@ -23,7 +23,7 @@ public class CallbackUpdateTypeMatcher implements AppropriateUpdateType {
 
     @Override
     public AppropriateType getAppropriate(Update update) {
-        return new AppropriateType(UpdateType.CALLBACK, update.getCallbackQuery().getData());
+        return new AppropriateType(UpdateType.CALLBACK, update.getCallbackQuery().getData(), hasSubMethods());
     }
 
 }
