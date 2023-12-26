@@ -7,7 +7,7 @@ import org.khasanof.condition.Condition;
 import org.khasanof.enums.InvokerType;
 import org.khasanof.models.Invoker;
 import org.khasanof.models.additional.param.APUpdateObject;
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.SimpleInvokerCondition;
 import org.khasanof.utils.AnnotationUtils;
 import org.khasanof.utils.UpdateUtils;
 import org.springframework.context.ApplicationContext;
@@ -54,7 +54,7 @@ public class HandleProcessFileFactory implements InvokerFactory {
     }
 
     @NotNull
-    private static MethodCondition getMethodCondition() {
+    private static SimpleInvokerCondition getMethodCondition() {
         return simpleInvoker -> Condition.orElse(() -> AnnotationUtils.hasAnnotation(simpleInvoker.getMethod(), ProcessFile.class, true)
                 && (simpleInvoker.getMethod().getParameterCount() > 2), true, false);
     }

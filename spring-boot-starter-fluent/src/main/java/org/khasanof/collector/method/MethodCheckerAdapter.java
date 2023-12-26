@@ -1,4 +1,4 @@
-package org.khasanof.collector.methodChecker;
+package org.khasanof.collector.method;
 import org.khasanof.config.ApplicationProperties;
 import org.khasanof.config.Config;
 import org.khasanof.enums.ProcessType;

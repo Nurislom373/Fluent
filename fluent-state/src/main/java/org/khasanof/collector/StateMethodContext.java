@@ -1,7 +1,7 @@
 package org.khasanof.collector;
 
 import lombok.extern.slf4j.Slf4j;
-import org.khasanof.collector.loader.BeansLoader;
+import org.khasanof.collector.loader.HandlerLoader;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.collector.StateValidator;
 import org.khasanof.utils.MethodUtils;
@@ -25,11 +25,11 @@ public class StateMethodContext implements GenericMethodContext<Enum, Map.Entry<
     public static final String NAME = "stateMethodContext";
     public static final String METHOD_NAME = "onReceive";
 
-    private final BeansLoader beansLoader;
+    private final HandlerLoader beansLoader;
     private final StateValidator stateValidator;
     private final Map<Enum, Map.Entry<Method, Object>> invokerMethodsMap = new HashMap<>();
 
-    public StateMethodContext(BeansLoader resourceLoader, StateValidator stateValidator) {
+    public StateMethodContext(HandlerLoader resourceLoader, StateValidator stateValidator) {
         this.beansLoader = resourceLoader;
         this.stateValidator = stateValidator;
     }

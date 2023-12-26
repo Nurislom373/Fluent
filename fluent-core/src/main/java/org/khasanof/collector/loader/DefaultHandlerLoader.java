@@ -11,13 +11,10 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Collectors;
 
 /**
  * Author: Nurislom
@@ -29,14 +26,14 @@ import java.util.stream.Collectors;
  * Package: org.khasanof.core.collector
  */
 @Component
-public class SimpleBeansLoader implements Config, BeansLoader {
+public class DefaultHandlerLoader implements Config, HandlerLoader {
 
     private final ApplicationProperties.Bot bot;
     private final ApplicationContext applicationContext;
     private final Map<String, Object> beanMap = new ConcurrentHashMap<>();
     private final Set<Class<? extends Annotation>> classLevelAnnotations = new HashSet<>();
 
-    public SimpleBeansLoader(ApplicationContext applicationContext, ApplicationProperties properties) {
+    public DefaultHandlerLoader(ApplicationContext applicationContext, ApplicationProperties properties) {
         this.applicationContext = applicationContext;
         this.bot = properties.getBot();
     }
@@ -44,15 +41,6 @@ public class SimpleBeansLoader implements Config, BeansLoader {
     @Override
     public Map<String, Object> getBeans() {
         return this.beanMap;
-    }
-
-    private void beanMapFiller(Map<String, Object> beanMap) {
-        for (Class<? extends Annotation> classLevelAnnotation : classLevelAnnotations) {
-            Map<String, Object> validBeansTake = applicationContext.getBeansWithAnnotation(classLevelAnnotation);
-            if (!validBeansTake.isEmpty()) {
-                beanMap.putAll(validBeansTake);
-            }
-        }
     }
 
     @Override
@@ -63,32 +51,6 @@ public class SimpleBeansLoader implements Config, BeansLoader {
     @Override
     public Map<String, Object> getBeans(Class<? extends Annotation> annotation) {
         return applicationContext.getBeansWithAnnotation(annotation);
-    }
-
-    private Map<String, Object> validBeansTake(Map<String, Object> beanMap) {
-        return beanMap.entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
-
-    private boolean hasAnnotationMethodLevel(Method method, Set<Class<? extends Annotation>> annotations) {
-        int length = method.getAnnotations().length;
-        if (length == 0) {
-            return false;
-        } else if (length == 1) {
-            return annotations.stream()
-                    .anyMatch(method::isAnnotationPresent);
-        } else {
-            int count = 0;
-            for (Annotation annotation : method.getAnnotations()) {
-                if (annotations.contains(annotation.annotationType())) {
-                    count++;
-                }
-            }
-            if (count == 1) {
-                return true;
-            }
-            throw new RuntimeException("handle annotations are required to be single!");
-        }
     }
 
     @Override
@@ -103,7 +65,16 @@ public class SimpleBeansLoader implements Config, BeansLoader {
             this.classLevelAnnotations.add(UpdateController.class);
             this.classLevelAnnotations.add(ExceptionController.class);
         }
-        CompletableFuture.runAsync(() -> beanMapFiller(beanMap));
+        fillBeanMap();
+    }
+
+    private void fillBeanMap() {
+        for (var classLevelAnnotation : classLevelAnnotations) {
+            var validBeansTake = applicationContext.getBeansWithAnnotation(classLevelAnnotation);
+            if (!validBeansTake.isEmpty()) {
+                this.beanMap.putAll(validBeansTake);
+            }
+        }
     }
 
     @Override

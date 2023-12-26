@@ -5,7 +5,7 @@ import org.khasanof.models.invoker.SimpleInvoker;
 /**
  * @author Nurislom
  * @see org.khasanof.models.condition
- * @since 8/19/2023 6:34 PM
+ * @since 8/19/2023 6:35 PM
  */
-public interface ClassCondition extends Condition<SimpleInvoker> {
+public interface SimpleInvokerCondition extends Condition<SimpleInvoker> {
 }

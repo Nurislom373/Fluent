@@ -8,7 +8,7 @@ import java.util.Map;
  * @see org.khasanof.collector.loader
  * @since 8/4/2023 9:03 PM
  */
-public interface BeansLoader {
+public interface HandlerLoader {
 
     Map<String, Object> getBeans();
 

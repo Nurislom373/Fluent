@@ -1,4 +1,4 @@
-package org.khasanof.collector.methodChecker;
+package org.khasanof.collector.method;
 
 import java.lang.annotation.Annotation;
 

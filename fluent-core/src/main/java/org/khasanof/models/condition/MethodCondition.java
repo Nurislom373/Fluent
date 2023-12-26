@@ -1,11 +1,11 @@
 package org.khasanof.models.condition;
 
-import org.khasanof.models.invoker.SimpleInvoker;
+import java.lang.reflect.Method;
 
 /**
  * @author Nurislom
  * @see org.khasanof.models.condition
- * @since 8/19/2023 6:35 PM
+ * @since 12/26/2023 9:24 PM
  */
-public interface MethodCondition extends Condition<SimpleInvoker> {
+public interface MethodCondition extends Condition<Method> {
 }

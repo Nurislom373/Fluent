@@ -1,4 +1,4 @@
-package org.khasanof.collector.methodChecker;
+package org.khasanof.collector.method;
 
 import org.khasanof.annotation.exception.HandleException;
 import org.khasanof.exceptions.InvalidParamsException;

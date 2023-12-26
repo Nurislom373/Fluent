@@ -1,5 +1,4 @@
-package org.khasanof.collector.methodChecker;
-
+package org.khasanof.collector.method.checker;
 
 import org.khasanof.constants.ParamConstants;
 
@@ -8,19 +7,13 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 
 /**
- * Author: Nurislom
- * <br/>
- * Date: 22.06.2023
- * <br/>
- * Time: 23:23
- * <br/>
- * Package: org.khasanof.core.collector.methodChecker
+ * @author Nurislom
+ * @see org.khasanof.collector.method.checker
+ * @since 12/26/2023 10:20 PM
  */
-public abstract class AbstractMethodChecker implements AbstractMethodType {
+public abstract class AbstractHandleMethodChecker implements ProcessTypeHandleMethodChecker {
 
     protected final Class<?>[] MAIN_PARAMS = ParamConstants.MAIN_PARAMS_ARRAY;
-
-    public abstract boolean valid(Method method);
 
     protected boolean paramsTypeCheckV2(Class<?>[] methodParams, Class<?>[] matchParams) {
         return Arrays.stream(matchParams)
@@ -30,15 +23,12 @@ public abstract class AbstractMethodChecker implements AbstractMethodType {
     protected boolean paramsTypeCheckV3(Class<?>[] methodParams, Class<?>[] matchParams) {
         return Arrays.stream(matchParams)
                 .allMatch(param -> Arrays.stream(methodParams)
-                        .anyMatch(methodParam -> param.equals(methodParam) || param.isAssignableFrom(methodParam)));
+                        .anyMatch(methodParam -> param.equals(methodParam) ||
+                                param.isAssignableFrom(methodParam)));
     }
 
     protected boolean hasAnnotation(Method method, Class<? extends Annotation> annotation) {
         return method.isAnnotationPresent(annotation);
-    }
-
-    protected <T extends Annotation> T getAnnotation(Method method, Class<T> annotation) {
-        return method.getAnnotation(annotation);
     }
 
 }

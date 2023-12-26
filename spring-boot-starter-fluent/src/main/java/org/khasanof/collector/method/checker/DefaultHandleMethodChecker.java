@@ -1,40 +1,39 @@
-package org.khasanof.collector.methodChecker;
+package org.khasanof.collector.method.checker;
 
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.exceptions.InvalidExpressionException;
+import org.khasanof.enums.ProcessType;
 import org.khasanof.exceptions.InvalidParamsException;
-import org.khasanof.executors.expression.ExpressionVariables;
+import org.khasanof.factories.method.HandleMethodCheckerConditionFactory;
+import org.khasanof.models.condition.MethodCondition;
 import org.khasanof.utils.AnnotationUtils;
 import org.khasanof.utils.ReflectionUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Nurislom
- * @see org.khasanof.collector.methodChecker
- * @since 19.07.2023 21:40
+ * @see org.khasanof.collector.method.checker
+ * @since 12/26/2023 9:44 PM
  */
 @Component
-public class SimpleMethodChecker extends AbstractMethodChecker {
+public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
 
     private final Set<Class<?>> classes = ReflectionUtils.getSubTypesSuperAnnotation(ProcessUpdate.class);
-    private final ExpressionVariables expressionVariables;
+    private final HandleMethodCheckerConditionFactory conditionFactory;
 
-    public SimpleMethodChecker(ExpressionVariables expressionVariables) {
-        this.expressionVariables = expressionVariables;
+    public DefaultHandleMethodChecker(HandleMethodCheckerConditionFactory conditionFactory) {
+        this.conditionFactory = conditionFactory;
     }
 
     @Override
-    public boolean valid(Method method) {
+    public boolean check(Method method) {
         boolean annotationValid;
         int length = method.getAnnotations().length;
 
@@ -52,16 +51,14 @@ public class SimpleMethodChecker extends AbstractMethodChecker {
         }
 
         int parameterCount = method.getParameterCount();
-
-        boolean profileFile = AnnotationUtils.hasAnnotation(method, ProcessFile.class, true);
-
-        if (profileFile) {
+        if (AnnotationUtils.hasAnnotation(method, ProcessFile.class, true)) {
             return hasProcessFile(method, annotationValid);
         }
 
         return match(method, annotationValid, parameterCount);
     }
 
+    // TODO
     private boolean match(Method method, boolean annotationValid, int parameterCount) {
         boolean parameterValid;
         if (parameterCount != 2) {
@@ -77,33 +74,8 @@ public class SimpleMethodChecker extends AbstractMethodChecker {
         return annotationValid;
     }
 
-    private boolean variableExpMatch(Method method, boolean annotationValid) {
-        HandleMessage annotation = method.getAnnotation(HandleMessage.class);
-        boolean expression = expressionVariables.isExpression(annotation.value());
-        if (!expression) {
-            throw new InvalidExpressionException("Invalid Expression!");
-        }
-
-        List<String> list = Arrays.asList(expressionVariables.getExpression(annotation.value()));
-
-        int parameterCount = method.getParameterCount();
-
-        return annotationValid;
-    }
-
-    @Override
-    public Class<? extends Annotation> getType() {
-        return ProcessUpdate.class;
-    }
-
-    @Override
-    public boolean hasSuperAnnotation() {
-        return true;
-    }
-
-    @Override
-    public boolean hasAny() {
-        return false;
+    private boolean checkAnnotationIsHandleMessage(Method method) {
+        return AnnotationUtils.hasAnnotation(method, HandleMessage.class, false);
     }
 
     private boolean hasProcessFile(Method method, boolean annotationValid) {
@@ -112,23 +84,32 @@ public class SimpleMethodChecker extends AbstractMethodChecker {
 
         if (parameterCount < 2 || parameterCount > 3) {
             throw new InvalidParamsException("There is an error in the method parameters with handle annotations!");
+        }
+
+        if (parameterCount == 3) {
+            Class<?>[] mainParams = new Class[MAIN_PARAMS.length + 1];
+            System.arraycopy(MAIN_PARAMS, 0, mainParams, 0, MAIN_PARAMS.length);
+            mainParams[mainParams.length - 1] = InputStream.class;
+
+            parameterValid = paramsTypeCheckV3(method.getParameterTypes(), mainParams);
         } else {
-            if (parameterCount == 3) {
-                Class<?>[] mainParams = new Class[MAIN_PARAMS.length + 1];
-                System.arraycopy(MAIN_PARAMS, 0, mainParams, 0, MAIN_PARAMS.length);
-                mainParams[mainParams.length - 1] = InputStream.class;
+            parameterValid = paramsTypeCheckV2(method.getParameterTypes(), MAIN_PARAMS);
+        }
 
-                parameterValid = paramsTypeCheckV3(method.getParameterTypes(), mainParams);
-            } else {
-                parameterValid = paramsTypeCheckV2(method.getParameterTypes(), MAIN_PARAMS);
-            }
-
-            if (!parameterValid) {
-                throw new RuntimeException("There is an error in the method parameters with handle annotations!");
-            }
+        if (!parameterValid) {
+            throw new RuntimeException("There is an error in the method parameters with handle annotations!");
         }
 
         return annotationValid;
     }
 
+    @Override
+    public Set<MethodCondition> conditions() {
+        return conditionFactory.cachedCreate();
+    }
+
+    @Override
+    public ProcessType processType() {
+        return ProcessType.UPDATE;
+    }
 }

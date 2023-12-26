@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.khasanof.enums.InvokerType;
 import org.khasanof.models.Invoker;
 import org.khasanof.models.additional.param.APUpdateState;
-import org.khasanof.models.condition.ClassCondition;
+import org.khasanof.models.condition.SimpleInvokerCondition;
 import org.khasanof.state.State;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.repository.StateRepositoryStrategy;
@@ -51,7 +51,7 @@ public class HandleStateInvokerFactory implements InvokerFactory {
     }
 
     @NotNull
-    private static ClassCondition getClassCondition() {
+    private SimpleInvokerCondition getClassCondition() {
         return invokerClass -> StateAction.class.isAssignableFrom(invokerClass.getReference().getClass());
     }
 

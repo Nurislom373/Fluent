@@ -4,14 +4,13 @@ import org.jetbrains.annotations.NotNull;
 import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.enums.InvokerType;
 import org.khasanof.models.Invoker;
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.SimpleInvokerCondition;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 /**
  * @author Nurislom
@@ -37,7 +36,7 @@ public class HandleAnyInvokerFactory implements InvokerFactory {
     }
 
     @NotNull
-    private static MethodCondition getMethodCondition() {
+    private static SimpleInvokerCondition getMethodCondition() {
         return invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
                 HandleAny.class, false);
     }

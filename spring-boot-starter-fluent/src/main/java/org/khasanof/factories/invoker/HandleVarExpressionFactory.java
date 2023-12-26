@@ -9,7 +9,7 @@ import org.khasanof.executors.invoker.DefaultInvokerMatcher;
 import org.khasanof.models.Invoker;
 import org.khasanof.models.additional.checks.ACInvokerMethod;
 import org.khasanof.models.additional.param.APAnnotationMap;
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.SimpleInvokerCondition;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -69,7 +69,7 @@ public class HandleVarExpressionFactory implements InvokerFactory {
     }
 
     @NotNull
-    private static MethodCondition getMethodCondition() {
+    private static SimpleInvokerCondition getMethodCondition() {
         return invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
                 HandleMessage.class, false);
     }
