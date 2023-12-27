@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.collector.loader.HandlerLoader;
 import org.khasanof.collector.method.MethodCheckerAdapter;
+import org.khasanof.collector.method.checker.HandleMethodCheckerAdapter;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.event.methodContext.MethodCollectedEvent;
 import org.springframework.context.ApplicationEventPublisher;
@@ -34,11 +35,14 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
 
     public static final String NAME = "simpleMethodContextClass";
     private final HandlerLoader resourceLoader;
-    private final MethodCheckerAdapter checkerAdapter;
+    private final HandleMethodCheckerAdapter checkerAdapter;
     private final ApplicationEventPublisher eventPublisher;
     private final Map<HandleClasses, Map<Method, Object>> beanMap = new HashMap<>();
 
-    public DefaultSimpleMethodContext(HandlerLoader resourceLoader, MethodCheckerAdapter checkerAdapter, ApplicationEventPublisher eventPublisher) {
+    public DefaultSimpleMethodContext(HandlerLoader resourceLoader,
+                                      HandleMethodCheckerAdapter checkerAdapter,
+                                      ApplicationEventPublisher eventPublisher) {
+
         this.resourceLoader = resourceLoader;
         this.checkerAdapter = checkerAdapter;
         this.eventPublisher = eventPublisher;
@@ -72,7 +76,7 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
                 methods.addAll(Arrays.asList(clazz.getDeclaredMethods()));
             }
             methods.forEach(method -> {
-                if (checkerAdapter.valid(method)) {
+                if (checkerAdapter.check(method)) {
                     HandleClasses key = getMethodAnnotation(method);
                     if (beanMap.containsKey(key)) {
                         beanMap.get(key).put(method, bean);

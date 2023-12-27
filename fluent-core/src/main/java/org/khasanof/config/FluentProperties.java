@@ -1,8 +1,6 @@
 package org.khasanof.config;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.khasanof.enums.ProcessType;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -13,13 +11,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Data
 @ConfigurationProperties(prefix = "fluent")
-public class ApplicationProperties {
+public class FluentProperties {
 
-    @Getter
-    @Setter
     private Bot bot = new Bot();
 
-    @Data
+    @Data // inner class remove
     public static class Bot {
         private String token;
         private String username;

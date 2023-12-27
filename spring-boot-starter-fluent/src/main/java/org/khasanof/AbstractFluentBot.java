@@ -1,6 +1,6 @@
 package org.khasanof;
 
-import org.khasanof.config.ApplicationProperties;
+import org.khasanof.config.FluentProperties;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 /**
@@ -15,9 +15,9 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 public abstract class AbstractFluentBot extends TelegramLongPollingBot {
 
     protected final MainHandler handler;
-    protected final ApplicationProperties.Bot bot;
+    protected final FluentProperties.Bot bot;
 
-    public AbstractFluentBot(MainHandler handler, ApplicationProperties.Bot bot) {
+    public AbstractFluentBot(MainHandler handler, FluentProperties.Bot bot) {
         super(bot.getToken());
         this.handler = handler;
         this.bot = bot;

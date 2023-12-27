@@ -1,6 +1,6 @@
 package org.khasanof;
 
-import org.khasanof.config.ApplicationProperties;
+import org.khasanof.config.FluentProperties;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
 import org.springframework.boot.context.TypeExcludeFilter;
@@ -20,13 +20,13 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
  * <br/>
  * Package: org.khasanof.main
  */
-@EnableConfigurationProperties(value = {ApplicationProperties.class})
+@EnableConfigurationProperties(value = {FluentProperties.class})
 @ComponentScan(excludeFilters = { @ComponentScan.Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
         @ComponentScan.Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) }, basePackages = {"org.khasanof"})
 public class FluentStarter {
 
     @Bean
-    CommandLineRunner getRunner(MainHandler handler, ApplicationProperties properties, FluentBotSingletonBean singletonBean) {
+    CommandLineRunner getRunner(MainHandler handler, FluentProperties properties, FluentBotSingletonBean singletonBean) {
         return (args -> {
             var registry = new TelegramBotsApi(DefaultBotSession.class);
             FluentBot fluentBot = new FluentBot(handler, properties);

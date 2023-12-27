@@ -27,6 +27,7 @@ public class DefaultHandleMethodCheckerAdapter implements HandleMethodCheckerAda
                 .orElse(false);
     }
 
+    @Override
     public void setMethodCheckers(Collection<HandleMethodChecker> methodCheckers) {
         if (Objects.nonNull(methodCheckers) && !methodCheckers.isEmpty()) {
             this.methodCheckers.addAll(methodCheckers);

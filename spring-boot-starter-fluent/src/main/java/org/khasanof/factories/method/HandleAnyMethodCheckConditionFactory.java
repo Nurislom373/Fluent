@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * @author Nurislom
  * @see org.khasanof.factories.method
- * @since 12/26/2023 9:48 PM
+ * @since 12/27/2023 10:09 PM
  */
-public abstract class HandleMethodCheckerConditionFactory extends AbstractCachedGenericFactory<Set<MethodCondition>> {
+public abstract class HandleAnyMethodCheckConditionFactory extends AbstractCachedGenericFactory<Set<MethodCondition>> {
 }

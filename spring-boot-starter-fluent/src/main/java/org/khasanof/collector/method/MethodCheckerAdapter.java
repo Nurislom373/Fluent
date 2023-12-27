@@ -1,5 +1,5 @@
 package org.khasanof.collector.method;
-import org.khasanof.config.ApplicationProperties;
+import org.khasanof.config.FluentProperties;
 import org.khasanof.config.Config;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.utils.AnnotationUtils;
@@ -21,11 +21,11 @@ import java.util.Objects;
 @Component
 public class MethodCheckerAdapter implements Config {
 
-    private final ApplicationProperties.Bot bot;
+    private final FluentProperties.Bot bot;
     private final ApplicationContext applicationContext;
     private final List<AbstractMethodChecker> methodCheckers = new ArrayList<>();
 
-    public MethodCheckerAdapter(ApplicationProperties properties, ApplicationContext applicationContext) {
+    public MethodCheckerAdapter(FluentProperties properties, ApplicationContext applicationContext) {
         this.bot = properties.getBot();
         this.applicationContext = applicationContext;
     }

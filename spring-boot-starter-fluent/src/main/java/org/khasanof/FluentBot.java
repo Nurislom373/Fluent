@@ -1,6 +1,6 @@
 package org.khasanof;
 
-import org.khasanof.config.ApplicationProperties;
+import org.khasanof.config.FluentProperties;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
@@ -14,7 +14,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public class FluentBot extends AbstractFluentBot {
 
-    public FluentBot(MainHandler handler, ApplicationProperties properties) {
+    public FluentBot(MainHandler handler, FluentProperties properties) {
         super(handler, properties.getBot());
     }
 

@@ -5,7 +5,7 @@ import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.exceptions.InvalidParamsException;
-import org.khasanof.factories.method.HandleMethodCheckerConditionFactory;
+import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
 import org.khasanof.models.condition.MethodCondition;
 import org.khasanof.utils.AnnotationUtils;
 import org.khasanof.utils.ReflectionUtils;
@@ -26,9 +26,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
 
     private final Set<Class<?>> classes = ReflectionUtils.getSubTypesSuperAnnotation(ProcessUpdate.class);
-    private final HandleMethodCheckerConditionFactory conditionFactory;
+    private final DefaultMethodCheckConditionFactory conditionFactory;
 
-    public DefaultHandleMethodChecker(HandleMethodCheckerConditionFactory conditionFactory) {
+    public DefaultHandleMethodChecker(DefaultMethodCheckConditionFactory conditionFactory) {
         this.conditionFactory = conditionFactory;
     }
 
@@ -58,7 +58,6 @@ public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
         return match(method, annotationValid, parameterCount);
     }
 
-    // TODO
     private boolean match(Method method, boolean annotationValid, int parameterCount) {
         boolean parameterValid;
         if (parameterCount != 2) {

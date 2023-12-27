@@ -3,7 +3,7 @@ package org.khasanof.collector.loader;
 import org.khasanof.annotation.ExceptionController;
 import org.khasanof.annotation.StateController;
 import org.khasanof.annotation.UpdateController;
-import org.khasanof.config.ApplicationProperties;
+import org.khasanof.config.FluentProperties;
 import org.khasanof.config.Config;
 import org.khasanof.enums.ClassLevelTypes;
 import org.khasanof.enums.ProcessType;
@@ -28,12 +28,12 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class DefaultHandlerLoader implements Config, HandlerLoader {
 
-    private final ApplicationProperties.Bot bot;
+    private final FluentProperties.Bot bot;
     private final ApplicationContext applicationContext;
     private final Map<String, Object> beanMap = new ConcurrentHashMap<>();
     private final Set<Class<? extends Annotation>> classLevelAnnotations = new HashSet<>();
 
-    public DefaultHandlerLoader(ApplicationContext applicationContext, ApplicationProperties properties) {
+    public DefaultHandlerLoader(ApplicationContext applicationContext, FluentProperties properties) {
         this.applicationContext = applicationContext;
         this.bot = properties.getBot();
     }

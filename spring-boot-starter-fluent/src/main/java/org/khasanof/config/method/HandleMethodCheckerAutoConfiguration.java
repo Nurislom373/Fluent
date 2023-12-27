@@ -4,12 +4,9 @@ import org.khasanof.collector.method.checker.DefaultHandleMethodCheckerAdapter;
 import org.khasanof.collector.method.checker.HandleMethodChecker;
 import org.khasanof.collector.method.checker.HandleMethodCheckerAdapter;
 import org.khasanof.collector.method.checker.ProcessTypeHandleMethodChecker;
-import org.khasanof.config.ApplicationProperties;
-import org.khasanof.config.Config;
+import org.khasanof.config.FluentProperties;
 import org.khasanof.custom.ProcessTypeResolver;
 import org.khasanof.enums.ProcessType;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,17 +20,11 @@ import java.util.List;
  * @see org.khasanof.config.method
  * @since 12/26/2023 10:29 PM
  */
-@Configuration(
-        proxyBeanMethods = false
-)
+@Configuration(proxyBeanMethods = false)
 public class HandleMethodCheckerAutoConfiguration {
-
-    @Autowired
-    private ApplicationProperties applicationProperties;
 
     @Bean
     @DependsOn(HandleMethodCheckerConfig.NAME)
-    @ConditionalOnBean(value = {HandleMethodCheckerConfig.class})
     public HandleMethodCheckerAdapter handleMethodCheckerAdapter(HandleMethodCheckerConfig config) {
         var methodCheckerAdapter = new DefaultHandleMethodCheckerAdapter();
         methodCheckerAdapter.setMethodCheckers(config.getHandleMethodChecker());
@@ -41,28 +32,32 @@ public class HandleMethodCheckerAutoConfiguration {
     }
 
     @Bean(HandleMethodCheckerConfig.NAME)
-    public HandleMethodCheckerConfig handleMethodCheckerConfig(ApplicationContext applicationContext) {
-        ApplicationProperties.Bot bot = applicationProperties.getBot();
+    public HandleMethodCheckerConfig handleMethodCheckerConfig(ApplicationContext applicationContext, FluentProperties fluentProperties) {
+        var bot = fluentProperties.getBot();
         return new HandleMethodCheckerConfig(bot.getProcessType(), applicationContext);
     }
 
-    public static class HandleMethodCheckerConfig implements Config {
+    public static class HandleMethodCheckerConfig {
 
         public static final String NAME = "handleMethodCheckerConfig";
         private final ProcessType processType;
         private final ApplicationContext applicationContext;
         private final List<HandleMethodChecker> methodCheckers = new ArrayList<>();
 
-        public HandleMethodCheckerConfig(ProcessType processType, ApplicationContext applicationContext) {
+        public HandleMethodCheckerConfig(ProcessType processType,
+                                         ApplicationContext applicationContext) {
+
             this.processType = processType;
             this.applicationContext = applicationContext;
         }
 
         public List<HandleMethodChecker> getHandleMethodChecker() {
+            if (methodCheckers.isEmpty()) {
+                runnable();
+            }
             return this.methodCheckers;
         }
 
-        @Override
         public void runnable() {
             applicationContext.getBeansOfType(ProcessTypeHandleMethodChecker.class)
                     .values().stream()
@@ -73,11 +68,5 @@ public class HandleMethodCheckerAutoConfiguration {
         private boolean isAcceptProcessType(ProcessTypeHandleMethodChecker processTypeHandleMethodChecker) {
             return ProcessTypeResolver.hasAcceptProcessType(processTypeHandleMethodChecker, processType);
         }
-
-        @Override
-        public ProcessType processType() {
-            return ProcessType.BOTH;
-        }
     }
-
 }

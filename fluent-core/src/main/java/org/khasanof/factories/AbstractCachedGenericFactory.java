@@ -14,7 +14,7 @@ public abstract class AbstractCachedGenericFactory<R> implements CachedNopGeneri
 
     @Override
     public R cachedCreate() {
-        if (Objects.nonNull(instance) && isSetReference) {
+        if (Objects.isNull(instance) || !isSetReference) {
             createInstance();
         }
         return instance;

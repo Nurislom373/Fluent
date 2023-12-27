@@ -3,8 +3,8 @@ package org.khasanof.collector.method.checker;
 import org.junit.jupiter.api.Test;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.MatchScope;
-import org.khasanof.factories.method.DefaultHandleMethodCheckerConditionFactory;
-import org.khasanof.factories.method.HandleMethodCheckerConditionFactory;
+import org.khasanof.factories.method.DefaultMethodCheckConditionFactoryImpl;
+import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
 import org.springframework.util.ReflectionUtils;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
@@ -36,12 +36,12 @@ public class DefaultHandleMethodCheckerTest {
     }
 
     private Method getInvalidHandleMethod() {
-        return ReflectionUtils.findMethod(TestControllerClass.class, "invalidHandleMethod",
+        return ReflectionUtils.findMethod(TestController.class, "invalidHandleMethod",
                 AbsSender.class, Update.class, String.class);
     }
 
     private Method getValidHandleMethod() {
-        return ReflectionUtils.findMethod(TestControllerClass.class, "validHandleMethod",
+        return ReflectionUtils.findMethod(TestController.class, "validHandleMethod",
                 AbsSender.class, Update.class);
     }
 
@@ -49,11 +49,11 @@ public class DefaultHandleMethodCheckerTest {
         return new DefaultHandleMethodChecker(createConditionFactory());
     }
 
-    HandleMethodCheckerConditionFactory createConditionFactory() {
-        return new DefaultHandleMethodCheckerConditionFactory();
+    DefaultMethodCheckConditionFactory createConditionFactory() {
+        return new DefaultMethodCheckConditionFactoryImpl();
     }
 
-    public static class TestControllerClass {
+    public static class TestController {
 
         @HandleMessage(value = "/start", scope = MatchScope.EQUALS)
         public void validHandleMethod(AbsSender sender, Update update) {}

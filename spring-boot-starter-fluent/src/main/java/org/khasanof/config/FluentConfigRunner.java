@@ -23,7 +23,7 @@ public class FluentConfigRunner implements InitializingBean {
     private static final boolean statePresent;
 
     private final ApplicationContext applicationContext;
-    private final ApplicationProperties properties;
+    private final FluentProperties properties;
 
 
     static {
@@ -31,13 +31,13 @@ public class FluentConfigRunner implements InitializingBean {
         statePresent = ClassUtils.isPresent("org.khasanof.FluentStateAutoConfiguration", classLoader);
     }
 
-    public FluentConfigRunner(ApplicationContext applicationContext, ApplicationProperties properties) {
+    public FluentConfigRunner(ApplicationContext applicationContext, FluentProperties properties) {
         this.applicationContext = applicationContext;
         this.properties = properties;
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         Map<String, Config> beans = applicationContext.getBeansOfType(Config.class);
         ProcessType processType = properties.getBot().getProcessType();
         checkDependency(processType);
