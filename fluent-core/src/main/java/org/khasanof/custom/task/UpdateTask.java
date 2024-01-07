@@ -1,4 +1,4 @@
-package org.khasanof.custom;
+package org.khasanof.custom.task;
 
 import org.telegram.telegrambots.meta.api.objects.Update;
 

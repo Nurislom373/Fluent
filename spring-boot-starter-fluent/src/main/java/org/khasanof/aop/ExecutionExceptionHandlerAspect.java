@@ -4,7 +4,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.khasanof.custom.FluentContext;
+import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.event.ExecutionMethod;
 import org.khasanof.event.exception.ThrowExceptionEvent;
 import org.khasanof.utils.MethodUtils;
@@ -35,7 +35,7 @@ public class ExecutionExceptionHandlerAspect {
 
     @AfterThrowing(value = "executionRunMethodPointcut()", throwing = "ex")
     private void handleException(JoinPoint joinPoint, Throwable ex) throws Throwable {
-        FluentContext.updateExecutorBoolean.set(true);
+        FluentThreadLocalContext.updateExecutorBoolean.set(true);
         redirectExceptionHandlerOrThrow(joinPoint, ex);
     }
 

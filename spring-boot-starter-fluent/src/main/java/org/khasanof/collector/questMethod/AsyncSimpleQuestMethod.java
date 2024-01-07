@@ -39,7 +39,7 @@ public class AsyncSimpleQuestMethod implements BaseSearchMethod {
         log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         System.out.printf("Enter type - %s, value - %s \n", type, value);
         CompletableFuture<Map.Entry<Method, Object>> supplyAsync;
-        if (type.isHasSubType()) {
+        if (type.isMultiVersion()) {
             supplyAsync = CompletableFuture.supplyAsync(() -> methodContext.contains(type) ?
                             methodContext.find(type)
                                     .flatMap(functionRefMap -> functionRefMap.entrySet()

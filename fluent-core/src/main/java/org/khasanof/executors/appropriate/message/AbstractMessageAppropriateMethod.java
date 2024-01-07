@@ -2,6 +2,7 @@ package org.khasanof.executors.appropriate.message;
 
 import org.khasanof.enums.HandleType;
 import org.khasanof.executors.appropriate.AppropriateUpdateMethod;
+import org.khasanof.models.executors.AppropriateMethod;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 import java.util.Objects;
@@ -19,8 +20,8 @@ public abstract class AbstractMessageAppropriateMethod extends AppropriateUpdate
         return Objects.equals(supplier.getAsBoolean(), Boolean.TRUE);
     }
 
-    protected org.khasanof.models.executors.AppropriateMethod tryGetAppropriate(Supplier<Object> supplier) {
-        return new org.khasanof.models.executors.AppropriateMethod(handleType(), supplier.get());
+    protected AppropriateMethod tryGetAppropriate(Supplier<Object> supplier) {
+        return new AppropriateMethod(handleType(), supplier.get());
     }
 
     @Override

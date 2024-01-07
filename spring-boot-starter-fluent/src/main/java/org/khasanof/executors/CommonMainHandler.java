@@ -1,8 +1,8 @@
 package org.khasanof.executors;
 
 import org.khasanof.MainHandler;
-import org.khasanof.custom.ExecutorServiceFactory;
-import org.khasanof.custom.UpdateTask;
+import org.khasanof.custom.executor.ExecutorServiceFactory;
+import org.khasanof.custom.task.UpdateTask;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 

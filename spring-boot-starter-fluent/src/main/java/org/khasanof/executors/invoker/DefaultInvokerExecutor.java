@@ -2,7 +2,7 @@ package org.khasanof.executors.invoker;
 
 import org.khasanof.annotation.exception.HandleException;
 import org.khasanof.collector.Collector;
-import org.khasanof.custom.FluentContext;
+import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.event.ExecutionMethod;
 import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.executors.execution.CommonExecutionAdapter;
@@ -49,7 +49,7 @@ public class DefaultInvokerExecutor implements InvokerExecutor {
         } catch (InvocationTargetException e) {
             try {
                 exceptionDirector(e.getCause(), invokerModelV2);
-                FluentContext.updateExecutorBoolean.set(true);
+                FluentThreadLocalContext.updateExecutorBoolean.set(true);
             } catch (Throwable ex) {
                 throw new RuntimeException(ex);
             }

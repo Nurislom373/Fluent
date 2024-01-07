@@ -11,23 +11,18 @@ import java.util.Objects;
 /**
  * @author Nurislom
  * @see org.khasanof.executors.appropriate.type
- * @since 12/24/2023 7:42 PM
+ * @since 1/2/2024 7:10 PM
  */
 @Service
-public class MessageUpdateTypeMatcher implements AppropriateUpdateType {
+public class MyChatMemberTypeMatcher implements AppropriateUpdateType {
 
     @Override
     public boolean isMatch(Update update) {
-        return Objects.equals(update.hasMessage(), Boolean.TRUE);
+        return Objects.equals(update.hasMyChatMember(), Boolean.TRUE);
     }
 
     @Override
     public AppropriateType getAppropriate(Update update) {
-        return new AppropriateType(UpdateType.MESSAGE, update.getMessage(), hasSubMethods());
-    }
-
-    @Override
-    public boolean hasSubMethods() {
-        return true;
+        return new AppropriateType(UpdateType.MY_CHAT_MEMBER, update.getMyChatMember(), hasSubMethods());
     }
 }

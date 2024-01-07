@@ -13,32 +13,27 @@ import lombok.RequiredArgsConstructor;
  * <br/>
  * Package: org.khasanof.core.enums
  */
-@Getter
-@AllArgsConstructor
-@RequiredArgsConstructor
 public enum HandleType {
 
-    MESSAGE(HandleClasses.HANDLE_MESSAGE),
-    CALLBACK(HandleClasses.HANDLE_CALLBACK), STICKER,
-    PHOTO(HandleClasses.HANDLE_PHOTO),
-    DOCUMENT(HandleClasses.HANDLE_DOCUMENT),
-    VIDEO(HandleClasses.HANDLE_VIDEO),
-    INLINE_QUERY(HandleClasses.HANDLE_INLINE_QUERY),
-    VOICE, CONTACT,
-    VIDEO_NOTE(HandleClasses.HANDLE_VIDEO_NOTE),
-    LOCATION, MEDIA_GROUP,
-    AUDIO(HandleClasses.HANDLE_AUDIO),
-    ANIMATION, CHAT_ACTION, VENUE,
-    DICE, POLL;
-
-    private HandleClasses handleClasses;
-
-    public boolean hasHandleAnnotation() {
-        return this.handleClasses != null;
-    }
-
-    public static boolean hasHandleAnnotation(HandleType type) {
-        return type.handleClasses != null;
-    }
+    UNKNOWN, ALL, // special types!
+    MY_CHAT_MEMBER,
+    MESSAGE,
+    CALLBACK,
+    STICKER,
+    PHOTO,
+    DOCUMENT,
+    VIDEO,
+    INLINE_QUERY,
+    VOICE,
+    CONTACT,
+    VIDEO_NOTE,
+    LOCATION,
+    MEDIA_GROUP,
+    AUDIO,
+    ANIMATION,
+    CHAT_ACTION,
+    VENUE,
+    DICE,
+    POLL
 
 }

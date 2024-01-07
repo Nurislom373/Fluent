@@ -1,6 +1,7 @@
 package org.khasanof.collector.questMethod;
 
 import org.khasanof.collector.GenericMethodContext;
+import org.khasanof.converter.HandleTypeConverter;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.executors.matcher.CompositeMatcher;
 import org.khasanof.factories.invoker.method.InvokerMethodFactory;
@@ -23,8 +24,10 @@ public class SearchMethodConfiguration {
     private GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext;
 
     @Bean
-    BaseSearchMethod searchMethod(InvokerMethodFactory invokerMethodFactory, CompositeMatcher matcher) {
-        return new DefaultSearchMethod(invokerMethodFactory, methodContext, matcher);
+    BaseSearchMethod searchMethod(InvokerMethodFactory invokerMethodFactory,
+                                  HandleTypeConverter handleTypeConverter,
+                                  CompositeMatcher matcher) {
+        return new DefaultSearchMethod(handleTypeConverter, invokerMethodFactory, methodContext, matcher);
     }
 
 }

@@ -4,9 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.khasanof.annotation.exception.HandleException;
-import org.khasanof.annotation.extra.HandleState;
 import org.khasanof.annotation.methods.*;
+import org.khasanof.annotation.methods.chat.HandleMyChatMember;
 import org.khasanof.annotation.methods.inline.HandleInlineQuery;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
@@ -27,6 +28,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public enum HandleClasses {
 
+    UNKNOWN(Annotation.class, false),
+
+    HANDLE_MY_CHAT_MEMBER(HandleMyChatMember.class, false),
     HANDLE_ANY(HandleAny.class, false),
     HANDLE_INLINE_QUERY(HandleInlineQuery.class, false),
     HANDLE_EXCEPTION(HandleException.class, false),
@@ -48,30 +52,33 @@ public enum HandleClasses {
     HANDLE_DOCUMENT(HandleDocument.class, true, HANDLE_DOCUMENTS);
 
     private final Class<? extends Annotation> type;
-    private final boolean hasSubType;
+    private final boolean isMultiVersion;
     private HandleClasses subHandleClasses;
     private boolean isSuperAnnotation;
 
     HandleClasses(Class<? extends Annotation> type, boolean hasSubType, HandleClasses subHandleClasses) {
         this.type = type;
-        this.hasSubType = hasSubType;
+        this.isMultiVersion = hasSubType;
         this.subHandleClasses = subHandleClasses;
     }
 
     HandleClasses(Class<? extends Annotation> type, boolean hasSubType, boolean isSuperAnnotation) {
         this.type = type;
-        this.hasSubType = hasSubType;
+        this.isMultiVersion = hasSubType;
         this.isSuperAnnotation = isSuperAnnotation;
     }
 
     public static Set<Class<? extends Annotation>> getAllAnnotations() {
-        return Arrays.stream(values()).map(an -> an.type)
+        return Arrays.stream(values())
+                .map(an -> an.type)
                 .collect(Collectors.toSet());
     }
 
     public static HandleClasses getHandleWithType(Class<? extends Annotation> annotation) {
-        return Arrays.stream(values()).filter(handle -> handle.type.equals(annotation))
-                .findFirst().orElseThrow(() -> new RuntimeException("Match type not found!"));
+        return Arrays.stream(values())
+                .filter(handle -> handle.type.equals(annotation))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Match type not found!"));
     }
 
     private static boolean hasSuperAnnotation(Class<? extends Annotation> superAnn, Class<? extends Annotation> ann) {

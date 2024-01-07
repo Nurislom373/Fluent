@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
 import org.khasanof.collector.GenericMethodContext;
 import org.khasanof.context.FluentContextHolder;
+import org.khasanof.converter.HandleTypeConverter;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.HandleType;
 import org.khasanof.executors.matcher.CompositeMatcher;
@@ -22,12 +23,16 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DefaultSearchMethod implements BaseSearchMethod {
 
+    private final CompositeMatcher matcher;
+    private final HandleTypeConverter handleTypeConverter;
     private final InvokerMethodFactory invokerMethodFactory;
     private final GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext;
-    private final CompositeMatcher matcher;
 
-    public DefaultSearchMethod(InvokerMethodFactory invokerMethodFactory, GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext,
+    public DefaultSearchMethod(HandleTypeConverter handleTypeConverter,
+                               InvokerMethodFactory invokerMethodFactory,
+                               GenericMethodContext<HandleClasses, Map<Method, Object>> methodContext,
                                CompositeMatcher matcher) {
+        this.handleTypeConverter = handleTypeConverter;
         this.invokerMethodFactory = invokerMethodFactory;
         this.methodContext = methodContext;
         this.matcher = matcher;
@@ -51,8 +56,9 @@ public class DefaultSearchMethod implements BaseSearchMethod {
     }
 
     private Optional<SimpleInvoker> getInvokerWithHandleType(HandleType handleType) {
-        return methodContext.find(handleType.getHandleClasses())
-                .flatMap(functionRefMap -> functionRefMap.entrySet().stream()
+        return methodContext.find(handleTypeConverter.fromConvert(handleType))
+                .flatMap(functionRefMap -> functionRefMap.entrySet()
+                        .stream()
                         .filter(clazz -> matcher.chooseMatcher(clazz.getKey(), handleType))
                         .findFirst().map(invokerMethodFactory::create));
     }
@@ -69,7 +75,7 @@ public class DefaultSearchMethod implements BaseSearchMethod {
 
     @Nullable
     private SimpleInvoker findInvoker(Object value, HandleClasses type) {
-        if (type.isHasSubType()) {
+        if (type.isMultiVersion()) {
             return getHasSubTypeInvoker(value, type);
         } else {
             return getInvokerWithHandleType(value, type);

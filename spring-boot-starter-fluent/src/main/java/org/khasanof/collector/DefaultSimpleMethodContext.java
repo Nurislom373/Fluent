@@ -3,7 +3,6 @@ package org.khasanof.collector;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.collector.loader.HandlerLoader;
-import org.khasanof.collector.method.MethodCheckerAdapter;
 import org.khasanof.collector.method.checker.HandleMethodCheckerAdapter;
 import org.khasanof.enums.HandleClasses;
 import org.khasanof.event.methodContext.MethodCollectedEvent;
@@ -66,7 +65,7 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
 
     // TODO rewrite it!
     void setMethodClassMap() {
-        resourceLoader.getBeans().values().forEach(bean -> {
+        resourceLoader.getHandlers().values().forEach(bean -> {
             final Class<?> clazz = bean.getClass();
             List<Method> methods = new ArrayList<>();
             if (hasInterface(clazz)) {

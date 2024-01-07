@@ -25,17 +25,19 @@ public abstract class UpdateUtils {
     public static Long getUserId(Update update) {
         if (update.hasMessage()) {
             return update.getMessage().getFrom().getId();
-        } else {
+        } else if (update.hasCallbackQuery()) {
             return update.getCallbackQuery().getFrom().getId();
         }
+        return Long.MIN_VALUE;
     }
 
     public static User getFrom(Update update) {
         if (update.hasMessage()) {
             return update.getMessage().getFrom();
-        } else {
+        } else if (update.hasCallbackQuery()) {
             return update.getCallbackQuery().getFrom();
         }
+        return null;
     }
 
     public static String getFileId(Update update) {

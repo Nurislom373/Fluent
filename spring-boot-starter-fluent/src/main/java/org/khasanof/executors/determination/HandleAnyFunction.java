@@ -4,23 +4,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.collector.Collector;
 import org.khasanof.collector.SimpleCollector;
-import org.khasanof.custom.FluentContext;
-import org.khasanof.enums.HandleType;
+import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.enums.Proceed;
 import org.khasanof.enums.ProcessType;
-import org.khasanof.executors.HandleFunctionsMatcher;
 import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
 import org.khasanof.models.executors.AppropriateMethod;
-import org.khasanof.models.invoker.SimpleInvokerMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.lang.annotation.Annotation;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
@@ -68,7 +62,7 @@ public class HandleAnyFunction implements DeterminationFunction {
 
     private void isCanProcess(Set<SimpleInvoker> allHandleAnyMethods) {
         if (hasValueNotProceedInMethods(allHandleAnyMethods)) {
-            FluentContext.determinationServiceBoolean.set(true);
+            FluentThreadLocalContext.determinationServiceBoolean.set(true);
         }
     }
 

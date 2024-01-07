@@ -1,4 +1,4 @@
-package org.khasanof.custom;
+package org.khasanof.custom.executor;
 
 import java.util.concurrent.ExecutorService;
 

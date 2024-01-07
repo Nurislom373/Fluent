@@ -5,6 +5,7 @@ import org.khasanof.annotation.expression.BotVariable;
 import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleMessage;
+import org.khasanof.annotation.methods.chat.HandleMyChatMember;
 import org.khasanof.context.FluentContextHolder;
 import org.khasanof.context.FluentUpdateContext;
 import org.khasanof.custom.attributes.UpdateAttributes;
@@ -12,6 +13,7 @@ import org.khasanof.enums.HandleType;
 import org.khasanof.enums.MatchScope;
 import org.telegram.telegrambots.meta.api.methods.send.SendAudio;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.ChatMemberUpdated;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
@@ -33,6 +35,12 @@ public class FluentController {
         String text = update.getMessage().getText();
         SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
         sender.execute(message);
+    }
+
+    @HandleMyChatMember
+    public void checkMyChatMember(Update update, AbsSender sender) {
+        ChatMemberUpdated myChatMember = update.getMyChatMember();
+        System.out.println("myChatMember = " + myChatMember);
     }
 
     @HandleAny(type = HandleType.MESSAGE)

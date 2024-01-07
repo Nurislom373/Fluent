@@ -46,7 +46,8 @@ public class StateMethodContext implements GenericMethodContext<Enum, Map.Entry<
 
     @Override
     public void assembleMethods() {
-        beansLoader.getBeansOfType(StateAction.class).forEach((s, stateActions) -> putState(stateActions));
+        beansLoader.getHandlersOfType(StateAction.class)
+                .forEach((s, stateActions) -> putState(stateActions));
         log.info("HANDLE_STATE : {}", invokerMethodsMap.size());
     }
 

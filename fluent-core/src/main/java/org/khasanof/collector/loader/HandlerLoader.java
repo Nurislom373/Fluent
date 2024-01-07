@@ -10,10 +10,10 @@ import java.util.Map;
  */
 public interface HandlerLoader {
 
-    Map<String, Object> getBeans();
+    Map<String, Object> getHandlers();
 
-    <T> Map<String, T> getBeansOfType(Class<T> type);
+    <T> Map<String, T> getHandlersOfType(Class<T> type);
 
-    Map<String, Object> getBeans(Class<? extends Annotation> annotation);
+    Map<String, Object> getHandlers(Class<? extends Annotation> annotation);
 
 }

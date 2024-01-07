@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 
 /**
  * @author Nurislom
- * @see org.khasanof.executors.matcher.methods.message
+ * @see org.khasanof.executors.appropriate.message
  * @since 12/24/2023 8:13 PM
  */
 @Service

@@ -3,7 +3,7 @@ package org.khasanof.executors;
 import org.khasanof.FluentBot;
 import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.custom.BreakerForEach;
-import org.khasanof.custom.FluentContext;
+import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.executors.invoker.InvokerExecutor;
 import org.khasanof.executors.invoker.DefaultInvokerFunctions;
 import org.khasanof.executors.invoker.InvokerFunctionsAdaptee;
@@ -45,12 +45,12 @@ public class CommonUpdateExecutor extends AbstractUpdateExecutor {
         FluentBot instance = checkBotInstance();
         BreakerForEach.forEach(determination.determinationInvokers(update).stream(),
                 ((entry, breaker) -> {
-                    if (!FluentContext.updateExecutorBoolean.get()) {
+                    if (!FluentThreadLocalContext.updateExecutorBoolean.get()) {
                         invoker.invoke(invokerFunctionsAdaptee.adaptee(entry, update, instance));
                     } else {
                         breaker.stop();
                     }
-                }), () -> FluentContext.updateExecutorBoolean.set(false));
+                }), () -> FluentThreadLocalContext.updateExecutorBoolean.set(false));
     }
 
     private FluentBot checkBotInstance() {

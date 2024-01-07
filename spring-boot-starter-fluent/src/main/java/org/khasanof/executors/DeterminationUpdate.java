@@ -2,14 +2,13 @@ package org.khasanof.executors;
 
 import org.jetbrains.annotations.NotNull;
 import org.khasanof.custom.BreakerForEach;
-import org.khasanof.custom.FluentContext;
+import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.executors.determination.DeterminationService;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
@@ -41,14 +40,14 @@ public class DeterminationUpdate {
     private void assembleInvokers(Update update, Set<SimpleInvoker> invokerResults) {
         BreakerForEach.forEach(determinationService.getDeterminations().stream(),
                 ((determination, breaker) -> determinationAccept(update, invokerResults, determination)),
-                () -> FluentContext.determinationServiceBoolean.set(false));
+                () -> FluentThreadLocalContext.determinationServiceBoolean.set(false));
     }
 
     private void determinationAccept(Update update, Set<SimpleInvoker> invokerResults, BiConsumer<Update, Set<SimpleInvoker>> determination) {
-        if (!FluentContext.determinationServiceBoolean.get()) {
+        if (!FluentThreadLocalContext.determinationServiceBoolean.get()) {
             determination.accept(update, invokerResults);
         } else {
-            FluentContext.determinationServiceBoolean.set(true);
+            FluentThreadLocalContext.determinationServiceBoolean.set(true);
         }
     }
 

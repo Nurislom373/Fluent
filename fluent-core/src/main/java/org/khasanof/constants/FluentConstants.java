@@ -12,7 +12,4 @@ public abstract class FluentConstants {
     public static final int DEFAULT_ORDER = 5;
     public static final int LOW_ORDER = 10;
 
-    // Scope
-    public static final String FLUENT_SCOPE = "fluent";
-
 }

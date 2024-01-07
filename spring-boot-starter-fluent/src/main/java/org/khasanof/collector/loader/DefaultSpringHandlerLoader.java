@@ -3,8 +3,8 @@ package org.khasanof.collector.loader;
 import org.khasanof.annotation.ExceptionController;
 import org.khasanof.annotation.StateController;
 import org.khasanof.annotation.UpdateController;
-import org.khasanof.config.FluentProperties;
 import org.khasanof.config.Config;
+import org.khasanof.config.FluentProperties;
 import org.khasanof.enums.ClassLevelTypes;
 import org.khasanof.enums.ProcessType;
 import org.springframework.context.ApplicationContext;
@@ -26,46 +26,53 @@ import java.util.concurrent.ConcurrentHashMap;
  * Package: org.khasanof.core.collector
  */
 @Component
-public class DefaultHandlerLoader implements Config, HandlerLoader {
+public class DefaultSpringHandlerLoader implements Config, HandlerLoader {
 
-    private final FluentProperties.Bot bot;
+    private final FluentProperties.Bot bot = new FluentProperties.Bot();
     private final ApplicationContext applicationContext;
     private final Map<String, Object> beanMap = new ConcurrentHashMap<>();
     private final Set<Class<? extends Annotation>> classLevelAnnotations = new HashSet<>();
 
-    public DefaultHandlerLoader(ApplicationContext applicationContext, FluentProperties properties) {
+    public DefaultSpringHandlerLoader(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
-        this.bot = properties.getBot();
     }
 
     @Override
-    public Map<String, Object> getBeans() {
+    public Map<String, Object> getHandlers() {
         return this.beanMap;
     }
 
     @Override
-    public <T> Map<String, T> getBeansOfType(Class<T> type) {
+    public <T> Map<String, T> getHandlersOfType(Class<T> type) {
         return applicationContext.getBeansOfType(type);
     }
 
     @Override
-    public Map<String, Object> getBeans(Class<? extends Annotation> annotation) {
+    public Map<String, Object> getHandlers(Class<? extends Annotation> annotation) {
         return applicationContext.getBeansWithAnnotation(annotation);
     }
 
     @Override
     public void runnable() {
         ProcessType processType = bot.getProcessType();
+        addAnnotationWithProcessType(processType);
+        fillBeanMap();
+    }
+
+    private void addAnnotationWithProcessType(ProcessType processType) {
         if (processType.equals(ProcessType.BOTH)) {
             this.classLevelAnnotations.addAll(ClassLevelTypes.getAllAnnotations());
         } else {
-            if (processType.equals(ProcessType.STATE)) {
-                this.classLevelAnnotations.add(StateController.class);
-            }
-            this.classLevelAnnotations.add(UpdateController.class);
-            this.classLevelAnnotations.add(ExceptionController.class);
+            internalAddAnnotationWithProcessType(processType);
         }
-        fillBeanMap();
+    }
+
+    private void internalAddAnnotationWithProcessType(ProcessType processType) {
+        if (processType.equals(ProcessType.STATE)) {
+            this.classLevelAnnotations.add(StateController.class);
+        }
+        this.classLevelAnnotations.add(UpdateController.class);
+        this.classLevelAnnotations.add(ExceptionController.class);
     }
 
     private void fillBeanMap() {

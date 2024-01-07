@@ -23,7 +23,8 @@ public class SimpleCollector extends AbstractCollector implements Collector<Clas
 
     public static final String NAME = "simpleCollector";
 
-    public SimpleCollector(SearchMethod<HandleClasses> questMethod, AnnotationMethodContext<HandleClasses, Map<Method, Object>> annotationContext) {
+    public SimpleCollector(SearchMethod<HandleClasses> questMethod,
+                           AnnotationMethodContext<HandleClasses, Map<Method, Object>> annotationContext) {
         super(questMethod, annotationContext);
     }
 

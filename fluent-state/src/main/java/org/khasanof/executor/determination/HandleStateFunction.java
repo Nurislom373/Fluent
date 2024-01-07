@@ -3,10 +3,9 @@ package org.khasanof.executor.determination;
 import org.khasanof.collector.Collector;
 import org.khasanof.collector.StateCollector;
 import org.khasanof.condition.Condition;
-import org.khasanof.custom.FluentContext;
+import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.determination.DeterminationFunction;
-import org.khasanof.models.invoker.SimpleInvokerObject;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.repository.StateRepositoryStrategy;
@@ -14,6 +13,7 @@ import org.khasanof.utils.UpdateUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.User;
 
 import java.util.Objects;
 import java.util.Set;
@@ -37,7 +37,12 @@ public class HandleStateFunction implements DeterminationFunction {
             Long id = UpdateUtils.getUserId(update);
 
             Condition.isFalseThen(repository.existById(id))
-                    .thenCall(() -> repository.addState(UpdateUtils.getFrom(update).getId()));
+                    .thenCall(() -> {
+                        User from = UpdateUtils.getFrom(update);
+                        if (Objects.nonNull(from)) {
+                            repository.addState(from.getId());
+                        }
+                    });
 
             repository.findById(id).ifPresent(state -> {
                 Collector<Enum> collector = applicationContext.getBean(StateCollector.NAME, Collector.class);
@@ -45,7 +50,7 @@ public class HandleStateFunction implements DeterminationFunction {
                         .ifPresent(simpleInvoker -> {
                             invokerResults.add(simpleInvoker);
                             Condition.isTrueThen(isNotProcessedUpdates(simpleInvoker))
-                                    .thenCall(() -> FluentContext.determinationServiceBoolean.set(true));
+                                    .thenCall(() -> FluentThreadLocalContext.determinationServiceBoolean.set(true));
                         });
             });
         });
