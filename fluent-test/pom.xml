@@ -12,6 +12,15 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <fluent-core.version>1.0.3</fluent-core.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.nurislom373</groupId>
+            <artifactId>fluent-core</artifactId>
+            <version>${fluent-core.version}</version>
+        </dependency>
+    </dependencies>
     
 </project>

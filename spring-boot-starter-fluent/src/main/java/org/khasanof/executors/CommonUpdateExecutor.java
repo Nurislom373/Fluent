@@ -22,6 +22,7 @@ import java.util.Objects;
 public class CommonUpdateExecutor extends AbstractUpdateExecutor {
 
     private final InvokerFunctionsAdaptee invokerFunctionsAdaptee; // specifies the methods that can be invoked.
+    // TODO remove tightly coupled dependency.
     private final DeterminationUpdate determination; // gathers the methods corresponding to the incoming update.
     private final InvokerExecutor invoker; // method invoker
     private final GenericSingleton<FluentBot> fluentBot; // bot instance
