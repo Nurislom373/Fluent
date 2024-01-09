@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 1/9/2024 9:33 PM
  */
 @Configuration
-public class UpdateCreateFacadeConfiguration {
+public class UpdateFactoryFacadeConfiguration {
 
     @Bean
     public UpdateFactoryFacade updateCreatorFacade() {

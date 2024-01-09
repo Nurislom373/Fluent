@@ -21,15 +21,15 @@ public class ExecuteMethodCollectorConfiguration {
     }
 
     @Bean
-    public ExecuteMethodCollectorDataConfig executeMethodCollectorDataConfig(ExecuteMethodCollector methodCollector) {
-        return new ExecuteMethodCollectorDataConfig(new DefaultExecuteMethodDataAdapter(methodCollector));
+    public ExecuteMethodCollectorConfig executeMethodCollectorDataConfig(ExecuteMethodCollector methodCollector) {
+        return new ExecuteMethodCollectorConfig(new DefaultExecuteMethodDataAdapter(methodCollector));
     }
 
-    public static class ExecuteMethodCollectorDataConfig implements InitializingBean {
+    public static class ExecuteMethodCollectorConfig implements InitializingBean {
 
         private final DefaultExecuteMethodDataAdapter defaultExecuteMethodDataAdapter;
 
-        public ExecuteMethodCollectorDataConfig(DefaultExecuteMethodDataAdapter defaultExecuteMethodDataAdapter) {
+        public ExecuteMethodCollectorConfig(DefaultExecuteMethodDataAdapter defaultExecuteMethodDataAdapter) {
             this.defaultExecuteMethodDataAdapter = defaultExecuteMethodDataAdapter;
         }
 
