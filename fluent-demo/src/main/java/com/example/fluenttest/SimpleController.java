@@ -22,14 +22,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @UpdateController
 public class SimpleController {
 
-    @HandleAny(proceed = Proceed.PROCEED)
-    void handleAnyMessage(Update update, AbsSender sender) throws TelegramApiException {
-        log.info("Handle Any Message!");
-        String chatId = update.getMessage().getChatId().toString();
-        SendMessage message = new SendMessage(chatId, "Handler Any Message😎");
-        sender.execute(message);
-    }
-
     @HandleMessages(values = {
         @HandleMessage(value = "/jeck1", scope = MatchScope.START_WITH),
         @HandleMessage(value = "/jeck2", scope = MatchScope.START_WITH),

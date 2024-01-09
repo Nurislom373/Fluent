@@ -1,4 +1,4 @@
-package org.khasanof.factories;
+package org.khasanof.factories.proxy;
 
 import org.khasanof.FluentBot;
 import org.khasanof.memento.MethodInvokeHistory;

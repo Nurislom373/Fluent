@@ -23,7 +23,9 @@ public class CommonMainHandler implements MainHandler {
     private final ExecutorService executorService;
     private final UpdateExecutor executor;
 
-    public CommonMainHandler(CommonUpdateExecutor executor, ExecutorServiceFactory serviceFactory) {
+    public CommonMainHandler(CommonUpdateExecutor executor,
+                             ExecutorServiceFactory serviceFactory) {
+
         this.executor = executor;
         this.executorService = serviceFactory.createExecutorService();
     }

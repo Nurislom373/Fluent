@@ -1,5 +1,6 @@
 package org.khasanof;
 
+import lombok.NoArgsConstructor;
 import org.khasanof.config.FluentProperties;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -12,6 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  * <br/>
  * Package: org.khasanof.main
  */
+@NoArgsConstructor
 public class FluentBot extends AbstractFluentBot {
 
     public FluentBot(MainHandler handler, FluentProperties properties) {

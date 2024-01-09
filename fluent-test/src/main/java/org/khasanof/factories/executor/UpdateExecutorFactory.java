@@ -1,4 +1,4 @@
-package org.khasanof.factories;
+package org.khasanof.factories.executor;
 
 import org.khasanof.FluentBot;
 import org.khasanof.executors.UpdateExecutor;

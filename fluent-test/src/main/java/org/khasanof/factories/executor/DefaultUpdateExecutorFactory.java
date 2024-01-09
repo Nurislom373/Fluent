@@ -1,4 +1,4 @@
-package org.khasanof.factories;
+package org.khasanof.factories.executor;
 
 import jakarta.validation.constraints.NotNull;
 import org.khasanof.FluentBot;

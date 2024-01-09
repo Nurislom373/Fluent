@@ -1,4 +1,4 @@
-package org.khasanof;
+package org.khasanof.verifier.assertions.strategy;
 
 import org.khasanof.memento.MethodInvokeMemento;
 
@@ -7,7 +7,7 @@ import org.khasanof.memento.MethodInvokeMemento;
  * @see org.khasanof
  * @since 1/9/2024 12:07 AM
  */
-public class StringVerifierAssertions implements InternalVerifierAssertions<String> {
+public class StringVerifierAssertionStrategy implements VerifierAssertionStrategy<String> {
 
     @Override
     public boolean assertMatch(MethodInvokeMemento memento, String data) {

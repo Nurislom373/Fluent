@@ -18,7 +18,9 @@ public class DefaultMethodInvokeHistory implements MethodInvokeHistory {
 
     @Override
     public MethodInvokeMemento getFirstHistory() {
-        return this.invokeMementos.firstElement();
+        MethodInvokeMemento methodInvokeMemento = this.invokeMementos.firstElement();
+        this.invokeMementos.remove(methodInvokeMemento);
+        return methodInvokeMemento;
     }
 
     @Override

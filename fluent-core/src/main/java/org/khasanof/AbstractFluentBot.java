@@ -1,5 +1,6 @@
 package org.khasanof;
 
+import lombok.NoArgsConstructor;
 import org.khasanof.config.FluentProperties;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
@@ -12,10 +13,11 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
  * <br/>
  * Package: org.khasanof.main
  */
+@NoArgsConstructor
 public abstract class AbstractFluentBot extends TelegramLongPollingBot {
 
-    protected final MainHandler handler;
-    protected final FluentProperties.Bot bot;
+    protected MainHandler handler;
+    protected FluentProperties.Bot bot;
 
     public AbstractFluentBot(MainHandler handler, FluentProperties.Bot bot) {
         super(bot.getToken());

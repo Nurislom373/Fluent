@@ -1,4 +1,4 @@
-package org.khasanof;
+package org.khasanof.handler;
 
 import java.lang.reflect.Method;
 

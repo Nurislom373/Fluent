@@ -4,6 +4,8 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
+import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -12,6 +14,7 @@ import java.util.Arrays;
  */
 public class DefaultExecuteMethodDataAdapter {
 
+    private final Set<String> ignoreMethodNames = Set.of("toString", "equals", "hashCode");
     private final ExecuteMethodCollector executeMethodCollector;
 
     public DefaultExecuteMethodDataAdapter(ExecuteMethodCollector executeMethodCollector) {
@@ -21,6 +24,7 @@ public class DefaultExecuteMethodDataAdapter {
     public void addDefaultMethods() {
         Arrays.stream(AbsSender.class.getMethods())
                 .filter(method -> !Modifier.isFinal(method.getModifiers()))
+                .filter(method -> !ignoreMethodNames.contains(method.getName()))
                 .forEach(executeMethodCollector::addMethod);
     }
 

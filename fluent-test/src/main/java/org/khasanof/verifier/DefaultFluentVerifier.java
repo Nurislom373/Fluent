@@ -1,14 +1,21 @@
 package org.khasanof.verifier;
 
-import org.khasanof.DefaultVerifierAssertionsBuilder;
+import org.khasanof.verifier.assertions.DefaultVerifierAssertionsBuilder;
 import org.khasanof.FluentBot;
-import org.khasanof.VerifierAssertions;
+import org.khasanof.MainHandler;
+import org.khasanof.verifier.assertions.VerifierAssertions;
 import org.khasanof.executors.UpdateExecutor;
-import org.khasanof.factories.ProxyFluentBotFactory;
-import org.khasanof.factories.UpdateExecutorFactory;
+import org.khasanof.factories.proxy.ProxyFluentBotFactory;
+import org.khasanof.factories.executor.UpdateExecutorFactory;
+import org.khasanof.factories.executor.SimulateExecutorServiceFactory;
+import org.khasanof.factories.handler.DefaultSimulateMainHandlerFactory;
+import org.khasanof.factories.handler.SimulateMainHandlerFactory;
 import org.khasanof.memento.DefaultMethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeHistory;
 import org.telegram.telegrambots.meta.api.objects.Update;
+
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
 
 /**
  * @author Nurislom
@@ -19,25 +26,41 @@ public class DefaultFluentVerifier implements FluentVerifier {
 
     private final ProxyFluentBotFactory proxyFluentBotFactory;
     private final UpdateExecutorFactory updateExecutorFactory;
+    private final SimulateExecutorServiceFactory serviceFactory;
 
     public DefaultFluentVerifier(ProxyFluentBotFactory proxyFluentBotFactory,
-                                 UpdateExecutorFactory updateExecutorFactory) {
+                                 UpdateExecutorFactory updateExecutorFactory,
+                                 SimulateExecutorServiceFactory serviceFactory) {
 
         this.proxyFluentBotFactory = proxyFluentBotFactory;
         this.updateExecutorFactory = updateExecutorFactory;
+        this.serviceFactory = serviceFactory;
     }
 
     @Override
-    public VerifierAssertions create(Update update) {
+    public VerifierAssertions execute(Update update) {
         var history = createHistory();
         executeUpdate(update, history);
         return createDefaultVerifier(history);
     }
 
     private void executeUpdate(Update update, MethodInvokeHistory history) {
+        try {
+           tryExecuteUpdate(update, history);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void tryExecuteUpdate(Update update, MethodInvokeHistory history) throws InterruptedException {
+        CountDownLatch countDownLatch = new CountDownLatch(1);
         FluentBot fluentBot = proxyFluentBotFactory.create(history);
         UpdateExecutor updateExecutor = updateExecutorFactory.create(fluentBot);
-        updateExecutor.execute(update);
+        ExecutorService executorService = serviceFactory.create(countDownLatch);
+        SimulateMainHandlerFactory handlerFactory = new DefaultSimulateMainHandlerFactory(executorService);
+        MainHandler handler = handlerFactory.create(updateExecutor);
+        handler.process(update);
+        countDownLatch.await();
     }
 
     private MethodInvokeHistory createHistory() {

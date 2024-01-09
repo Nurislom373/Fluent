@@ -1,4 +1,4 @@
-package org.khasanof;
+package org.khasanof.verifier.assertions;
 
 import org.khasanof.memento.DefaultMethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeHistory;

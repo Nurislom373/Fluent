@@ -1,6 +1,6 @@
 package org.khasanof.verifier;
 
-import org.khasanof.VerifierAssertions;
+import org.khasanof.verifier.assertions.VerifierAssertions;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
@@ -10,6 +10,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public interface FluentVerifier {
 
-    VerifierAssertions create(Update update);
+    VerifierAssertions execute(Update update);
 
 }

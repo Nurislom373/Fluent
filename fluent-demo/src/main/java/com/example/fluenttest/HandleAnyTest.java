@@ -11,6 +11,7 @@ import org.khasanof.enums.Proceed;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -26,17 +27,6 @@ import java.io.File;
 public class HandleAnyTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
-
-    @HandleAny(type = HandleType.MESSAGE, proceed = Proceed.PROCEED)
-    private void handleAnyMessages(Update update, AbsSender sender) throws TelegramApiException {
-        String text = "I'm handle any this message : " + update.getMessage().getText();
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
-        sender.execute(message);
-    }
-
-    @HandleMessage(value = "/username", scope = MatchScope.EXPRESSION)
-    private void handleUsername(Update update, AbsSender sender) {
-    }
 
     @HandleAny(type = HandleType.STICKER, proceed = Proceed.NOT_PROCEED)
     private void handleAnyStickers(Update update, AbsSender sender) throws TelegramApiException, JsonProcessingException {

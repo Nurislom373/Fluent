@@ -1,8 +1,9 @@
-package org.khasanof.factories;
+package org.khasanof.factories.proxy;
 
 import org.khasanof.FluentBot;
-import org.khasanof.ProxyFluentMethodInterceptor;
-import org.khasanof.ProxyMethodHandler;
+import org.khasanof.factories.response.DefaultExecuteResponseFactory;
+import org.khasanof.interceptor.ProxyFluentMethodInterceptor;
+import org.khasanof.handler.ProxyMethodHandler;
 import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.memento.MethodInvokeHistory;
 import org.springframework.cglib.proxy.Enhancer;
@@ -32,6 +33,7 @@ public class DefaultProxyFluentBotFactory implements ProxyFluentBotFactory {
     }
 
     private ProxyFluentMethodInterceptor methodInterceptor(MethodInvokeHistory methodInvokeHistory) {
-        return new ProxyFluentMethodInterceptor(fluentBot.getInstance(), proxyMethodHandler, methodInvokeHistory);
+        return new ProxyFluentMethodInterceptor(fluentBot.getInstance(), proxyMethodHandler, methodInvokeHistory,
+                new DefaultProxyMethodInvokeResponseFactory(new DefaultExecuteResponseFactory()));
     }
 }
