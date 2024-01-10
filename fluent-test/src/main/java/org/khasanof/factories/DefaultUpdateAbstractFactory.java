@@ -1,7 +1,9 @@
 package org.khasanof.factories;
 
-import org.khasanof.factories.update.DefaultUpdateMessageFactory;
-import org.khasanof.factories.update.UpdateMessageFactory;
+import org.khasanof.factories.update.DefaultUpdateMessageDocumentFactory;
+import org.khasanof.factories.update.DefaultUpdateMessageTextFactory;
+import org.khasanof.factories.update.UpdateMessageDocumentFactory;
+import org.khasanof.factories.update.UpdateMessageTextFactory;
 
 /**
  * @author Nurislom
@@ -11,8 +13,12 @@ import org.khasanof.factories.update.UpdateMessageFactory;
 public class DefaultUpdateAbstractFactory implements UpdateAbstractFactory {
 
     @Override
-    public UpdateMessageFactory updateMessageFactory() {
-        return new DefaultUpdateMessageFactory();
+    public UpdateMessageTextFactory updateMessageTextFactory() {
+        return new DefaultUpdateMessageTextFactory();
     }
 
+    @Override
+    public UpdateMessageDocumentFactory updateMessageDocumentFactory() {
+        return new DefaultUpdateMessageDocumentFactory();
+    }
 }

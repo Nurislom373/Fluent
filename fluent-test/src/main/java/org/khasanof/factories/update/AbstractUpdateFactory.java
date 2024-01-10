@@ -6,39 +6,41 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 
-import static org.khasanof.utils.BaseUtils.defaultFrom;
+import java.util.function.Supplier;
 
 /**
  * @author Nurislom
  * @see org.khasanof.factories.update
- * @since 1/9/2024 9:22 PM
+ * @since 1/10/2024 9:55 PM
  */
-public class DefaultUpdateMessageFactory implements UpdateMessageFactory {
+public abstract class AbstractUpdateFactory {
 
-    @Override
-    public Update create(String text) {
-        Update update = new Update();
-        update.setUpdateId(RandomUtils.nextInt());
-        update.setMessage(createMessage(text));
+    protected Update create(Supplier<Message> supplier) {
+        Update update = createDefaultUpdate();
+        update.setMessage(supplier.get());
         return update;
     }
 
-    private Message createMessage(String text) {
+    protected Update createDefaultUpdate() {
+        Update update = new Update();
+        update.setUpdateId(RandomUtils.nextInt());
+        return update;
+    }
+
+    protected Message createDefaultMessage() {
         Message message = new Message();
-        message.setChat(chat());
         message.setMessageId(RandomUtils.nextInt());
-        message.setText(text);
-        message.setFrom(this.defaultFrom());
+        message.setFrom(defaultFrom());
         return message;
     }
 
-    private Chat chat() {
+    protected Chat chat() {
         Chat chat = new Chat();
         chat.setId(RandomUtils.nextLong());
         return chat;
     }
 
-    private User defaultFrom() {
+    protected User defaultFrom() {
         User user = new User();
         user.setId(RandomUtils.nextLong());
         user.setUserName("fluent");

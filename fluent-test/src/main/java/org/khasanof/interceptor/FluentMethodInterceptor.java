@@ -1,7 +1,7 @@
 package org.khasanof.interceptor;
 
 import org.khasanof.FluentBot;
-import org.khasanof.handler.ProxyMethodHandler;
+import org.khasanof.handler.ExecuteMethodChecker;
 import org.khasanof.factories.proxy.ProxyMethodInvokeResponseFactory;
 import org.khasanof.memento.MethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeMemento;
@@ -15,26 +15,26 @@ import java.lang.reflect.Method;
  * @see org.khasanof
  * @since 1/7/2024 3:03 PM
  */
-public class ProxyFluentMethodInterceptor implements MethodInterceptor {
+public class FluentMethodInterceptor implements MethodInterceptor {
 
     private final FluentBot fluentBot;
-    private final ProxyMethodHandler proxyMethodHandler;
+    private final ExecuteMethodChecker executeMethodChecker;
     private final MethodInvokeHistory methodInvokeHistory;
     private final ProxyMethodInvokeResponseFactory invokeResponseFactory;
 
-    public ProxyFluentMethodInterceptor(FluentBot fluentBot,
-                                        ProxyMethodHandler proxyMethodHandler,
-                                        MethodInvokeHistory methodInvokeHistory,
-                                        ProxyMethodInvokeResponseFactory proxyMethodInvokeResponseAdapter) {
+    public FluentMethodInterceptor(FluentBot fluentBot,
+                                   ExecuteMethodChecker executeMethodChecker,
+                                   MethodInvokeHistory methodInvokeHistory,
+                                   ProxyMethodInvokeResponseFactory proxyMethodInvokeResponseAdapter) {
         this.fluentBot = fluentBot;
-        this.proxyMethodHandler = proxyMethodHandler;
+        this.executeMethodChecker = executeMethodChecker;
         this.methodInvokeHistory = methodInvokeHistory;
         this.invokeResponseFactory = proxyMethodInvokeResponseAdapter;
     }
 
     @Override
     public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-        if (proxyMethodHandler.isExecuteMethod(method)) {
+        if (executeMethodChecker.isExecuteMethod(method)) {
             addMemento(method, args, proxy);
         }
         return invokeResponseFactory.create(args);

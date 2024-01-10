@@ -9,11 +9,11 @@ import java.lang.reflect.Method;
  * @see org.khasanof
  * @since 1/8/2024 10:15 PM
  */
-public class DefaultProxyMethodHandler implements ProxyMethodHandler {
+public class DefaultExecuteMethodChecker implements ExecuteMethodChecker {
 
     private final ExecuteMethodCollector executeMethodCollector;
 
-    public DefaultProxyMethodHandler(ExecuteMethodCollector executeMethodCollector) {
+    public DefaultExecuteMethodChecker(ExecuteMethodCollector executeMethodCollector) {
         this.executeMethodCollector = executeMethodCollector;
     }
 

@@ -4,7 +4,7 @@ import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.execute.ExecuteMethodCollector;
 import org.khasanof.factories.proxy.DefaultProxyFluentBotFactory;
 import org.khasanof.factories.proxy.ProxyFluentBotFactory;
-import org.khasanof.handler.DefaultProxyMethodHandler;
+import org.khasanof.handler.DefaultExecuteMethodChecker;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class ProxyFluentBotFactoryConfiguration {
     @Bean
     public ProxyFluentBotFactory proxyFluentBotFactory(GenericSingleton<FluentBot> genericSingleton,
                                                        ExecuteMethodCollector methodCollector) {
-        return new DefaultProxyFluentBotFactory(genericSingleton, new DefaultProxyMethodHandler(methodCollector));
+        return new DefaultProxyFluentBotFactory(genericSingleton, new DefaultExecuteMethodChecker(methodCollector));
     }
 
 }

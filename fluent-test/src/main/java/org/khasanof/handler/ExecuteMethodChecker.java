@@ -7,7 +7,7 @@ import java.lang.reflect.Method;
  * @see org.khasanof
  * @since 1/8/2024 10:14 PM
  */
-public interface ProxyMethodHandler {
+public interface ExecuteMethodChecker {
 
     boolean isExecuteMethod(Method method);
 

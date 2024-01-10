@@ -14,11 +14,11 @@ class FluentTestApplicationTests {
     private FluentVerifier fluentVerifier;
 
     @Autowired
-    private UpdateFactoryFacade updateCreatorFacade;
+    private UpdateFactoryFacade updateFactoryFacade;
 
     @Test
     void firstTestShouldSuccess() {
-        Update update = updateCreatorFacade.createWithText("/fluent");
+        Update update = updateFactoryFacade.createWithText("/fluent");
 
         fluentVerifier.execute(update)
                 .expectSendMessage("I'm handle any messages")

@@ -1,6 +1,7 @@
 package org.khasanof.factories;
 
-import org.khasanof.factories.update.UpdateMessageFactory;
+import org.khasanof.factories.update.UpdateMessageDocumentFactory;
+import org.khasanof.factories.update.UpdateMessageTextFactory;
 
 /**
  * @author Nurislom
@@ -9,6 +10,8 @@ import org.khasanof.factories.update.UpdateMessageFactory;
  */
 public interface UpdateAbstractFactory {
 
-    UpdateMessageFactory updateMessageFactory();
+    UpdateMessageTextFactory updateMessageTextFactory();
+
+    UpdateMessageDocumentFactory updateMessageDocumentFactory();
 
 }
