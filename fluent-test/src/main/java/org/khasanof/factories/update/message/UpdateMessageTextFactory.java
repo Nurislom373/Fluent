@@ -1,4 +1,4 @@
-package org.khasanof.factories.update;
+package org.khasanof.factories.update.message;
 
 import org.telegram.telegrambots.meta.api.objects.Update;
 

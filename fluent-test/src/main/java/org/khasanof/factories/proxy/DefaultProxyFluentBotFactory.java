@@ -1,10 +1,11 @@
 package org.khasanof.factories.proxy;
 
+import org.jetbrains.annotations.NotNull;
 import org.khasanof.FluentBot;
-import org.khasanof.factories.response.DefaultExecuteResponseFactory;
-import org.khasanof.interceptor.FluentMethodInterceptor;
-import org.khasanof.handler.ExecuteMethodChecker;
+import org.khasanof.adapter.ExecMethodResponseAdapter;
 import org.khasanof.context.singleton.GenericSingleton;
+import org.khasanof.handler.ExecuteMethodChecker;
+import org.khasanof.interceptor.FluentMethodInterceptor;
 import org.khasanof.memento.MethodInvokeHistory;
 import org.springframework.cglib.proxy.Enhancer;
 
@@ -17,11 +18,14 @@ public class DefaultProxyFluentBotFactory implements ProxyFluentBotFactory {
 
     private final GenericSingleton<FluentBot> fluentBot;
     private final ExecuteMethodChecker proxyMethodHandler;
+    private final ExecMethodResponseAdapter methodResponseAdapter;
 
     public DefaultProxyFluentBotFactory(GenericSingleton<FluentBot> fluentBot,
-                                        ExecuteMethodChecker proxyMethodHandler) {
+                                        ExecuteMethodChecker proxyMethodHandler,
+                                        ExecMethodResponseAdapter methodResponseAdapter) {
         this.fluentBot = fluentBot;
         this.proxyMethodHandler = proxyMethodHandler;
+        this.methodResponseAdapter = methodResponseAdapter;
     }
 
     @Override
@@ -33,7 +37,11 @@ public class DefaultProxyFluentBotFactory implements ProxyFluentBotFactory {
     }
 
     private FluentMethodInterceptor methodInterceptor(MethodInvokeHistory methodInvokeHistory) {
-        return new FluentMethodInterceptor(fluentBot.getInstance(), proxyMethodHandler, methodInvokeHistory,
-                new DefaultProxyMethodInvokeResponseFactory(new DefaultExecuteResponseFactory()));
+        return new FluentMethodInterceptor(fluentBot.getInstance(), proxyMethodHandler, methodInvokeHistory, getInvokeResponseFactory());
+    }
+
+    @NotNull
+    private DefaultProxyMethodInvokeResponseFactory getInvokeResponseFactory() {
+        return new DefaultProxyMethodInvokeResponseFactory(methodResponseAdapter);
     }
 }

@@ -1,5 +1,6 @@
 package org.khasanof;
 
+import org.khasanof.adapter.ExecMethodResponseAdapter;
 import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.execute.ExecuteMethodCollector;
 import org.khasanof.factories.proxy.DefaultProxyFluentBotFactory;
@@ -20,8 +21,9 @@ public class ProxyFluentBotFactoryConfiguration {
 
     @Bean
     public ProxyFluentBotFactory proxyFluentBotFactory(GenericSingleton<FluentBot> genericSingleton,
-                                                       ExecuteMethodCollector methodCollector) {
-        return new DefaultProxyFluentBotFactory(genericSingleton, new DefaultExecuteMethodChecker(methodCollector));
+                                                       ExecuteMethodCollector methodCollector,
+                                                       ExecMethodResponseAdapter methodResponseAdapter) {
+        return new DefaultProxyFluentBotFactory(genericSingleton, new DefaultExecuteMethodChecker(methodCollector), methodResponseAdapter);
     }
 
 }

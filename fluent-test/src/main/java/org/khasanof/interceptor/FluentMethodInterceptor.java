@@ -33,11 +33,11 @@ public class FluentMethodInterceptor implements MethodInterceptor {
     }
 
     @Override
-    public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+    public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) {
         if (executeMethodChecker.isExecuteMethod(method)) {
             addMemento(method, args, proxy);
         }
-        return invokeResponseFactory.create(args);
+        return invokeResponseFactory.createProxyResponse(method, args);
     }
 
     private void addMemento(Method method, Object[] args, MethodProxy methodProxy) {

@@ -1,5 +1,6 @@
-package org.khasanof.factories.update;
+package org.khasanof.factories.update.message;
 
+import org.khasanof.factories.update.AbstractUpdateFactory;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -12,12 +13,12 @@ public class DefaultUpdateMessageTextFactory extends AbstractUpdateFactory imple
 
     @Override
     public Update create(String text) {
-        return create(() -> createMessage(text));
+        return createMessage(() -> createMessage(text));
     }
 
     private Message createMessage(String text) {
         Message message = createDefaultMessage();
-        message.setChat(chat());
+        message.setChat(defaultChat());
         message.setText(text);
         return message;
     }

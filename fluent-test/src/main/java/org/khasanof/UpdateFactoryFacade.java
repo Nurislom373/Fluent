@@ -18,32 +18,37 @@ public class UpdateFactoryFacade {
         this.updateAbstractFactory = updateAbstractFactory;
     }
 
-    public Update createWithText(String text) {
+    public Update createMessage(String text) {
         return updateAbstractFactory.updateMessageTextFactory()
                 .create(text);
     }
 
-    public Update createWithDocument(File file) {
+    public Update createCallback(String data) {
+        return updateAbstractFactory.updateCallbackQueryFactory()
+                .create(data);
+    }
+
+    public Update createDocument(File file) {
         return updateAbstractFactory.updateMessageDocumentFactory()
                 .create(file);
     }
 
-    public Update createWithDocument(File file, String caption) {
+    public Update createDocument(File file, String caption) {
         return updateAbstractFactory.updateMessageDocumentFactory()
                 .create(file, caption);
     }
 
-    public Update createWithDocument(String filename) {
+    public Update createDocument(String filename) {
         return updateAbstractFactory.updateMessageDocumentFactory()
                 .create(filename);
     }
 
-    public Update createWithDocument(String filename, String caption) {
+    public Update createDocument(String filename, String caption) {
         return updateAbstractFactory.updateMessageDocumentFactory()
                 .create(filename, caption);
     }
 
-    public Update createWithDocument(String filename, String caption, Long size) {
+    public Update createDocument(String filename, String caption, Long size) {
         return updateAbstractFactory.updateMessageDocumentFactory()
                 .create(filename, caption, size);
     }

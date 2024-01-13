@@ -1,10 +1,7 @@
 package org.khasanof.factories.update;
 
 import org.apache.commons.lang3.RandomUtils;
-import org.telegram.telegrambots.meta.api.objects.Chat;
-import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.User;
+import org.telegram.telegrambots.meta.api.objects.*;
 
 import java.util.function.Supplier;
 
@@ -15,9 +12,15 @@ import java.util.function.Supplier;
  */
 public abstract class AbstractUpdateFactory {
 
-    protected Update create(Supplier<Message> supplier) {
+    protected Update createMessage(Supplier<Message> supplier) {
         Update update = createDefaultUpdate();
         update.setMessage(supplier.get());
+        return update;
+    }
+
+    protected Update createCallbackQuery(Supplier<CallbackQuery> supplier) {
+        Update update = createDefaultUpdate();
+        update.setCallbackQuery(supplier.get());
         return update;
     }
 
@@ -31,10 +34,19 @@ public abstract class AbstractUpdateFactory {
         Message message = new Message();
         message.setMessageId(RandomUtils.nextInt());
         message.setFrom(defaultFrom());
+        message.setChat(defaultChat());
         return message;
     }
 
-    protected Chat chat() {
+    protected CallbackQuery createDefaultCallback() {
+        CallbackQuery callbackQuery = new CallbackQuery();
+        callbackQuery.setMessage(createDefaultMessage());
+        callbackQuery.setId(String.valueOf(RandomUtils.nextLong()));
+        callbackQuery.setFrom(defaultFrom());
+        return callbackQuery;
+    }
+
+    protected Chat defaultChat() {
         Chat chat = new Chat();
         chat.setId(RandomUtils.nextLong());
         return chat;

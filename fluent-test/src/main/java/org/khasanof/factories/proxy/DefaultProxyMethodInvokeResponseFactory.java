@@ -1,35 +1,24 @@
 package org.khasanof.factories.proxy;
 
-import org.khasanof.factories.response.ExecuteResponseFactory;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.khasanof.adapter.ExecMethodResponseAdapter;
+
+import java.lang.reflect.Method;
 
 /**
  * @author Nurislom
- * @see org.khasanof.adapter
+ * @see org.khasanof.factories.proxy
  * @since 1/9/2024 10:52 PM
  */
 public class DefaultProxyMethodInvokeResponseFactory implements ProxyMethodInvokeResponseFactory {
 
-    private final ExecuteResponseFactory executeResponseFactory;
+    private final ExecMethodResponseAdapter methodResponseAdapter;
 
-    public DefaultProxyMethodInvokeResponseFactory(ExecuteResponseFactory executeResponseFactory) {
-        this.executeResponseFactory = executeResponseFactory;
+    public DefaultProxyMethodInvokeResponseFactory(ExecMethodResponseAdapter methodResponseAdapter) {
+        this.methodResponseAdapter = methodResponseAdapter;
     }
 
     @Override
-    public Object create(Object[] objects) {
-        return null;
+    public Object createProxyResponse(Method method, Object[] args) {
+        return methodResponseAdapter.createResponse(method, args);
     }
-
-    private Object createInternal(Object[] args) {
-        if (args.length == 1) {
-            Object arg = args[0];
-            if (arg instanceof SendMessage message) {
-                return executeResponseFactory.create(message);
-            }
-        }
-        return null;
-    }
-
-
 }

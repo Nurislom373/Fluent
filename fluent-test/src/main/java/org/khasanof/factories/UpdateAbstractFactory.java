@@ -1,7 +1,8 @@
 package org.khasanof.factories;
 
-import org.khasanof.factories.update.UpdateMessageDocumentFactory;
-import org.khasanof.factories.update.UpdateMessageTextFactory;
+import org.khasanof.factories.update.callback.UpdateCallbackDataFactory;
+import org.khasanof.factories.update.message.UpdateMessageDocumentFactory;
+import org.khasanof.factories.update.message.UpdateMessageTextFactory;
 
 /**
  * @author Nurislom
@@ -13,5 +14,7 @@ public interface UpdateAbstractFactory {
     UpdateMessageTextFactory updateMessageTextFactory();
 
     UpdateMessageDocumentFactory updateMessageDocumentFactory();
+
+    UpdateCallbackDataFactory updateCallbackQueryFactory();
 
 }

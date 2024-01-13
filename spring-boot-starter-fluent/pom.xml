@@ -26,6 +26,7 @@
         <reflections.version>0.10.2</reflections.version>
         <evalex.version>3.0.5</evalex.version>
         <gpg.keyname>0x9D13AEE9</gpg.keyname>
+        <spring-boot-starter-fluent-test.version>1.0.0</spring-boot-starter-fluent-test.version>
     </properties>
 
     <issueManagement>
@@ -150,6 +151,12 @@
             <groupId>io.github.nurislom373</groupId>
             <artifactId>fluent-core</artifactId>
             <version>${fluent-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.khasanof</groupId>
+            <artifactId>spring-boot-starter-fluent-test</artifactId>
+            <version>${spring-boot-starter-fluent-test.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

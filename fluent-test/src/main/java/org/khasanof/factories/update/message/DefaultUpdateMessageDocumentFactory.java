@@ -1,8 +1,9 @@
-package org.khasanof.factories.update;
+package org.khasanof.factories.update.message;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.jetbrains.annotations.NotNull;
+import org.khasanof.factories.update.AbstractUpdateFactory;
 import org.springframework.util.StringUtils;
 import org.telegram.telegrambots.meta.api.objects.Document;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -19,27 +20,27 @@ public class DefaultUpdateMessageDocumentFactory extends AbstractUpdateFactory i
 
     @Override
     public Update create(File file) {
-        return create(() -> this.createDocument(file));
+        return createMessage(() -> this.createDocument(file));
     }
 
     @Override
     public Update create(File file, String caption) {
-        return create(() -> this.createDocument(file, caption));
+        return createMessage(() -> this.createDocument(file, caption));
     }
 
     @Override
     public Update create(String filename) {
-        return create(() -> this.createDocument(filename));
+        return createMessage(() -> this.createDocument(filename));
     }
 
     @Override
     public Update create(String filename, String caption) {
-        return create(() -> this.createDocument(filename, caption));
+        return createMessage(() -> this.createDocument(filename, caption));
     }
 
     @Override
     public Update create(String filename, String caption, Long size) {
-        return create(() -> this.createDocument(filename, caption, size));
+        return createMessage(() -> this.createDocument(filename, caption, size));
     }
 
     private Message createDocument(File file) {
