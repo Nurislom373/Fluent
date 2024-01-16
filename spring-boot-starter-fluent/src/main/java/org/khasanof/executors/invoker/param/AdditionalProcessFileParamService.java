@@ -1,7 +1,6 @@
-package org.khasanof.executor.invoker.additional.param;
+package org.khasanof.executors.invoker.param;
 
 import org.khasanof.enums.additional.AdditionalParamType;
-import org.khasanof.executors.invoker.param.TWT;
 import org.khasanof.models.Invoker;
 import org.khasanof.utils.MethodUtils;
 import org.springframework.stereotype.Component;
@@ -11,11 +10,11 @@ import java.lang.reflect.Method;
 
 /**
  * @author Nurislom
- * @see org.khasanof.executor.invoker.additional.param
- * @since 8/20/2023 5:15 PM
+ * @see org.khasanof.executors.invoker.param
+ * @since 8/13/2023 7:09 PM
  */
 @Component
-public class TWTStateParam implements TWT {
+public class AdditionalProcessFileParamService implements AdditionalParamService {
 
     @Override
     @SuppressWarnings("unchecked")
@@ -25,6 +24,7 @@ public class TWTStateParam implements TWT {
 
     @Override
     public AdditionalParamType getType() {
-        return AdditionalParamType.STATE_PARAM;
+        return AdditionalParamType.PROCESS_FILE_PARAM;
     }
+
 }

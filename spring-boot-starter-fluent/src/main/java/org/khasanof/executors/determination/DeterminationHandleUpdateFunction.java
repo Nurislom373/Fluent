@@ -23,13 +23,13 @@ import java.util.function.BiConsumer;
  * @since 16.07.2023 18:58
  */
 @Slf4j
-@Component(HandleUpdateFunction.NAME)
-public class HandleUpdateFunction implements DeterminationFunction {
+@Component(DeterminationHandleUpdateFunction.NAME)
+public class DeterminationHandleUpdateFunction implements DeterminationFunction {
 
     public static final String NAME = "handleUpdateFunction";
     private final ContextOperationExecutor operationExecutor;
 
-    public HandleUpdateFunction(ContextOperationExecutor contextOperationExecutor) {
+    public DeterminationHandleUpdateFunction(ContextOperationExecutor contextOperationExecutor) {
         this.operationExecutor = contextOperationExecutor;
     }
 

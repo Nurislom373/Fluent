@@ -1,8 +1,7 @@
-package org.khasanof.executors.invoker.additional.param;
+package org.khasanof.executors.invoker.param;
 
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.additional.AdditionalParamType;
-import org.khasanof.executors.invoker.param.TWT;
 import org.khasanof.models.AdditionalParam;
 import org.khasanof.models.Invoker;
 import org.khasanof.utils.MethodUtils;
@@ -17,11 +16,11 @@ import java.util.Objects;
 
 /**
  * @author Nurislom
- * @see org.khasanof.executors.invoker.additional.param
+ * @see org.khasanof.executors.invoker.param
  * @since 8/13/2023 7:05 PM
  */
 @Component
-public class TWTVarExpressionParam implements TWT {
+public class AdditionalVarExpressionParamService implements AdditionalParamService {
 
     @Override
     @SuppressWarnings({"unchecked", "rawtypes"})

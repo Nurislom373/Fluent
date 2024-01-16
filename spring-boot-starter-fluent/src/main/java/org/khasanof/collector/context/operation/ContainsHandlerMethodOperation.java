@@ -2,7 +2,7 @@ package org.khasanof.collector.context.operation;
 
 import org.khasanof.collector.context.ContextOperation;
 import org.khasanof.collector.context.SimpleMethodContext;
-import org.khasanof.enums.HandleClasses;
+import org.khasanof.enums.HandleAnnotations;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @since 1/15/2024 10:51 PM
  */
 @Component
-public class ContainsHandlerMethodOperation implements ContextOperation<HandleClasses, Boolean> {
+public class ContainsHandlerMethodOperation implements ContextOperation<HandleAnnotations, Boolean> {
 
     private final SimpleMethodContext methodContext;
 
@@ -20,7 +20,7 @@ public class ContainsHandlerMethodOperation implements ContextOperation<HandleCl
     }
 
     @Override
-    public Boolean execute(HandleClasses handleClasses) {
+    public Boolean execute(HandleAnnotations handleClasses) {
         return methodContext.contains(handleClasses);
     }
 }

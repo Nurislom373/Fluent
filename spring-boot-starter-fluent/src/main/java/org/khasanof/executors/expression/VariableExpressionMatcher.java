@@ -82,7 +82,7 @@ public class VariableExpressionMatcher implements ExpressionMatcher<String>, Exp
                 allMatch = false;
                 break;
             }
-            if (strStartAndMatch(varExp, "{", "}")) {
+            if (strStartAndMatch(varExp)) {
                 boolean matches = Pattern.compile(getRegex(varExp)).matcher(varVal).find();
                 if (!matches) {
                     hasTwoListNext = false;
@@ -100,8 +100,8 @@ public class VariableExpressionMatcher implements ExpressionMatcher<String>, Exp
         return Map.entry(allMatch, variables);
     }
 
-    private boolean strStartAndMatch(String var, String start, String end) {
-        return Objects.nonNull(var) && var.startsWith(start) && var.endsWith(end);
+    private boolean strStartAndMatch(String var) {
+        return Objects.nonNull(var) && var.startsWith("{") && var.endsWith("}");
     }
 
     private boolean isValidRegex(String regex) {

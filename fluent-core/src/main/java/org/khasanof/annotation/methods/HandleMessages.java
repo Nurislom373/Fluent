@@ -1,5 +1,6 @@
 package org.khasanof.annotation.methods;
 
+import org.khasanof.annotation.process.ProcessContainer;
 import org.khasanof.annotation.process.ProcessUpdate;
 
 import java.lang.annotation.ElementType;
@@ -17,6 +18,7 @@ import java.lang.annotation.Target;
  * Package: org.khasanof.main.annotation
  */
 @ProcessUpdate
+@ProcessContainer
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleMessages {

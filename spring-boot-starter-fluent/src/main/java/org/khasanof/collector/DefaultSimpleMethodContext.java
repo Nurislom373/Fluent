@@ -5,15 +5,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.khasanof.collector.context.SimpleMethodContext;
 import org.khasanof.collector.loader.HandlerLoader;
 import org.khasanof.collector.method.checker.HandleMethodCheckerAdapter;
-import org.khasanof.enums.HandleClasses;
+import org.khasanof.constants.FluentConstants;
+import org.khasanof.enums.HandleAnnotations;
 import org.khasanof.event.methodContext.MethodCollectedEvent;
+import org.khasanof.factories.invoker.method.InvokerMethodFactory;
+import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
+
+import static org.khasanof.utils.BaseUtils.getMethodAnnotation;
 
 /**
  * The {@link DefaultSimpleMethodContext} class collects the methods from the classes corresponding
@@ -34,62 +39,72 @@ import java.util.stream.Collectors;
 public class DefaultSimpleMethodContext implements SimpleMethodContext {
 
     public static final String NAME = "defaultSimpleMethodContext";
+    private static final Set<String> IGNORE_METHOD_NAMES = FluentConstants.IGNORE_METHOD_NAMES;
 
     private final HandlerLoader resourceLoader;
-    private final HandleMethodCheckerAdapter checkerAdapter;
     private final ApplicationEventPublisher eventPublisher;
-    private final Map<HandleClasses, Map<Method, Object>> beanMap = new HashMap<>();
+    private final InvokerMethodFactory invokerMethodFactory;
+    private final HandleMethodCheckerAdapter checkerAdapter;
+    private final Map<HandleAnnotations, List<SimpleInvoker>> beanMap = new HashMap<>();
 
     public DefaultSimpleMethodContext(HandlerLoader resourceLoader,
                                       HandleMethodCheckerAdapter checkerAdapter,
-                                      ApplicationEventPublisher eventPublisher) {
+                                      ApplicationEventPublisher eventPublisher,
+                                      InvokerMethodFactory invokerMethodFactory) {
 
         this.resourceLoader = resourceLoader;
         this.checkerAdapter = checkerAdapter;
         this.eventPublisher = eventPublisher;
+        this.invokerMethodFactory = invokerMethodFactory;
     }
 
     @Override
-    public Optional<Map<Method, Object>> find(HandleClasses classes) {
-        return Optional.of(beanMap.getOrDefault(classes, Collections.emptyMap()));
+    public Optional<List<SimpleInvoker>> find(HandleAnnotations classes) {
+        return Optional.of(beanMap.getOrDefault(classes, Collections.emptyList()));
     }
 
     @Override
-    public boolean contains(HandleClasses key) {
+    public boolean contains(HandleAnnotations key) {
         return beanMap.containsKey(key);
     }
 
     @Override
     public void assembleMethods() {
-        log.info("simple method assemble start!");
-        setMethodClassMap();
+        log.debug("Default Method Context Start");
+        assembleMethodsInternal();
     }
 
-    // TODO rewrite it!
-    void setMethodClassMap() {
-        resourceLoader.getHandlers().values().forEach(bean -> {
-            final Class<?> clazz = bean.getClass();
-            List<Method> methods = new ArrayList<>();
-            if (hasInterface(clazz)) {
-                methods.addAll(getInterfaceMethods(clazz));
-            }
-            if (clazz.getDeclaredMethods().length >= 1) {
-                methods.addAll(Arrays.asList(clazz.getDeclaredMethods()));
-            }
-            methods.forEach(method -> {
-                if (checkerAdapter.check(method)) {
-                    HandleClasses key = getMethodAnnotation(method);
-                    if (beanMap.containsKey(key)) {
-                        beanMap.get(key).put(method, bean);
-                    } else {
-                        beanMap.put(key, new HashMap<>() {{
-                            put(method, bean);
-                        }});
-                    }
-                }
-            });
-        });
+    private void assembleMethodsInternal() {
+        getValues().forEach(this::processHandlerBean);
         pushEvent();
+    }
+
+    private Collection<Object> getValues() {
+        return resourceLoader.getHandlers()
+                .values();
+    }
+
+    private void processHandlerBean(Object bean) {
+        final Class<?> clazz = bean.getClass();
+        List<Method> methods = new CopyOnWriteArrayList<>();
+
+        checkDeclaredMethods(clazz, methods);
+        ignoreSomeMethods(methods);
+
+        iterateMethods(bean, methods);
+    }
+
+    private void checkDeclaredMethods(Class<?> clazz, List<Method> methods) {
+        if (hasInterface(clazz)) {
+            methods.addAll(getInterfaceMethods(clazz));
+        }
+        if (clazz.getDeclaredMethods().length >= 1) {
+            methods.addAll(Arrays.asList(clazz.getDeclaredMethods()));
+        }
+    }
+
+    private void ignoreSomeMethods(List<Method> methods) {
+        methods.removeIf(method -> IGNORE_METHOD_NAMES.contains(method.getName()) || method.getAnnotations().length == 0);
     }
 
     private boolean hasInterface(Class<?> clazz) {
@@ -105,24 +120,36 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
         return methods;
     }
 
-    private void pushEvent() {
-        Map<HandleClasses, Integer> map = beanMap.entrySet().stream()
-                .map(entry -> new AbstractMap.SimpleEntry<>(entry.getKey(),
-                        entry.getValue().size())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-        eventPublisher.publishEvent(new MethodCollectedEvent(this, map));
+    private void iterateMethods(Object bean, List<Method> methods) {
+        methods.forEach(method -> acceptEachMethod(bean, method));
     }
 
-    private HandleClasses getMethodAnnotation(Method method) {
-        Annotation[] annotations = method.getAnnotations();
-        if (annotations.length == 0) {
-            return null;
-        } else {
-            return HandleClasses.getHandleWithType(
-                    HandleClasses.getAllAnnotations()
-                            .stream().map(method::getAnnotation)
-                            .filter(Objects::nonNull).map(Annotation::annotationType)
-                            .findFirst().orElse(null));
+    private void acceptEachMethod(Object bean, Method method) {
+        if (checkerAdapter.check(method)) {
+            HandleAnnotations key = getMethodAnnotation(method);
+
+            if (beanMap.containsKey(key)) {
+                beanMap.get(key)
+                        .add(invokerMethodFactory.create(Map.entry(method, bean)));
+                return;
+            }
+            putNewHandleClasses(bean, method, key);
         }
+    }
+
+    private void putNewHandleClasses(Object bean, Method method, HandleAnnotations key) {
+        beanMap.put(key, new ArrayList<>() {{
+            add(invokerMethodFactory.create(Map.entry(method, bean)));
+        }});
+    }
+
+    private void pushEvent() {
+        Map<HandleAnnotations, Integer> map = beanMap.entrySet()
+                .stream()
+                .map(entry -> new AbstractMap.SimpleEntry<>(entry.getKey(),
+                        entry.getValue().size()))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        eventPublisher.publishEvent(new MethodCollectedEvent(this, map));
     }
 
 }

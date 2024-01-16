@@ -6,7 +6,7 @@ import org.khasanof.collector.context.ContextOperationExecutor;
 import org.khasanof.collector.context.operation.ContainsHandlerMethodOperation;
 import org.khasanof.collector.context.operation.FindMoreHandleAnyOperation;
 import org.khasanof.context.FluentThreadLocalContext;
-import org.khasanof.enums.HandleClasses;
+import org.khasanof.enums.HandleAnnotations;
 import org.khasanof.enums.Proceed;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
@@ -27,20 +27,20 @@ import java.util.function.BiConsumer;
  * @since 16.07.2023 19:13
  */
 @Slf4j
-@Component(HandleAnyFunction.NAME)
-public class HandleAnyFunction implements DeterminationFunction {
+@Component(DeterminationHandleAnyFunction.NAME)
+public class DeterminationHandleAnyFunction implements DeterminationFunction {
 
     public static final String NAME = "handleAnyFunction";
     private final ContextOperationExecutor operationExecutor;
 
-    public HandleAnyFunction(ContextOperationExecutor operationExecutor) {
+    public DeterminationHandleAnyFunction(ContextOperationExecutor operationExecutor) {
         this.operationExecutor = operationExecutor;
     }
 
     @Override
     public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
-            if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleClasses.HANDLE_ANY)) {
+            if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleAnnotations.HANDLE_ANY)) {
                 internalAccept(applicationContext, update, invokerResults);
             }
         });

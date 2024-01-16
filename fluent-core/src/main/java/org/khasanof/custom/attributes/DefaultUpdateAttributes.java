@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @see org.khasanof.custom.attributes
  * @since 12/10/2023 8:13 PM
  */
-public class UpdateAttributesImpl implements UpdateAttributes {
+public class DefaultUpdateAttributes implements UpdateAttributes {
 
     private final Map<String, Object> attributes = new ConcurrentHashMap<>();
 

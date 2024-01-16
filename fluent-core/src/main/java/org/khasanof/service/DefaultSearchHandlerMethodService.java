@@ -4,12 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
 import org.khasanof.collector.context.SimpleMethodContext;
 import org.khasanof.context.FluentContextHolder;
-import org.khasanof.enums.HandleClasses;
-import org.khasanof.executors.matcher.CommonMatcher;
-import org.khasanof.factories.invoker.method.InvokerMethodFactory;
+import org.khasanof.enums.HandleAnnotations;
+import org.khasanof.executors.matcher.CommonMatcherAdapter;
 import org.khasanof.models.collector.FindHandlerMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
-import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.util.Objects;
@@ -23,24 +21,20 @@ import java.util.Optional;
 @Slf4j
 public class DefaultSearchHandlerMethodService implements SearchHandlerMethodService {
 
-    private final CommonMatcher matcher;
+    private final CommonMatcherAdapter matcher;
     private final SimpleMethodContext methodContext;
-    private final InvokerMethodFactory invokerMethodFactory;
 
-    public DefaultSearchHandlerMethodService(CommonMatcher matcher,
-                                             SimpleMethodContext methodContext,
-                                             InvokerMethodFactory invokerMethodFactory) {
+    public DefaultSearchHandlerMethodService(CommonMatcherAdapter matcher,
+                                             SimpleMethodContext methodContext) {
 
         this.matcher = matcher;
         this.methodContext = methodContext;
-        this.invokerMethodFactory = invokerMethodFactory;
     }
 
     @Override
     public Optional<SimpleInvoker> find(FindHandlerMethod findHandlerMethod) {
         log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         System.out.printf("Enter type - %s, value - %s \n", findHandlerMethod.getKey(), findHandlerMethod.getValue());
-
         return Optional.ofNullable(findInvoker(findHandlerMethod));
     }
 
@@ -70,32 +64,28 @@ public class DefaultSearchHandlerMethodService implements SearchHandlerMethodSer
     @Nullable
     private SimpleInvoker getInvokerWithHandleType(FindHandlerMethod handlerMethod) {
         return methodContext.find(handlerMethod.getKey())
-                .flatMap(functionRefMap -> functionRefMap.entrySet()
-                        .stream()
-                        .filter(aClass -> matcher.chooseMatcher(aClass.getKey(),
+                .flatMap(functionRefMap -> functionRefMap.stream()
+                        .filter(simpleInvoker -> matcher.match(simpleInvoker.getMethod(),
                                 handlerMethod.getValue(), getType(handlerMethod.getKey())))
-                        .findFirst()
-                        .map(invokerMethodFactory::create))
+                        .findFirst())
                 .orElse(null);
     }
 
     @Nullable
     private SimpleInvoker getSubInvoker(FindHandlerMethod handlerMethod) {
         return methodContext.find(getSubHandleClasses(handlerMethod))
-                .flatMap(functionRefMap -> functionRefMap.entrySet()
-                        .stream()
-                        .filter(aClass -> matcher.chooseMatcher(aClass.getKey(),
+                .flatMap(functionRefMap -> functionRefMap.stream()
+                        .filter(simpleInvoker -> matcher.match(simpleInvoker.getMethod(),
                                 handlerMethod.getValue(), getType(getSubHandleClasses(handlerMethod))))
-                        .findFirst()
-                        .map(invokerMethodFactory::create))
+                        .findFirst())
                 .orElse(null);
     }
 
-    private HandleClasses getSubHandleClasses(FindHandlerMethod handlerMethod) {
+    private HandleAnnotations getSubHandleClasses(FindHandlerMethod handlerMethod) {
         return handlerMethod.getKey().getSubHandleClasses();
     }
 
-    private Class<? extends Annotation> getType(HandleClasses handlerMethod) {
+    private Class<? extends Annotation> getType(HandleAnnotations handlerMethod) {
         return handlerMethod.getType();
     }
 

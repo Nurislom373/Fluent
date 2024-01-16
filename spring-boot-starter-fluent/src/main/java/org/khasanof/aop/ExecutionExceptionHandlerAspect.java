@@ -50,6 +50,7 @@ public class ExecutionExceptionHandlerAspect {
     private void publishExceptionEvent(JoinPoint joinPoint, Throwable ex) {
         ExecutionMethod event = MethodUtils.getArg(joinPoint.getArgs(), ExecutionMethod.class);
         Object[] args = event.getInvokerModel().getArgs();
+
         AbsSender sender = MethodUtils.getArg(args, AbsSender.class);
         Update update = MethodUtils.getArg(args, Update.class);
         publisher.publishEvent(new ResolveExceptionEvent(this, update, sender, ex.getCause()));

@@ -11,7 +11,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 /**
  * @author Nurislom
@@ -20,23 +19,23 @@ import java.util.function.Supplier;
  */
 @Component
 @SuppressWarnings({"rawtypes"})
-public class CommonMatcher implements InitializingBean {
+public class CommonMatcherAdapter implements InitializingBean {
 
     private final Map<Class<? extends Annotation>, GenericMatcher> matchers = new HashMap<>();
     private final ApplicationContext applicationContext;
 
-    public CommonMatcher(ApplicationContext applicationContext) {
+    public CommonMatcherAdapter(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
     @SuppressWarnings("unchecked")
-    public boolean chooseMatcher(Method method, Object value, Class<? extends Annotation> annotation) {
+    public boolean match(Method method, Object value, Class<? extends Annotation> annotation) {
         return matchers.get(annotation)
                 .matcher(method.getAnnotation(annotation), value);
     }
 
     @SuppressWarnings("unchecked")
-    public boolean chooseMatcher(Method method, HandleType handleType) {
+    public boolean match(Method method, HandleType handleType) {
         return matchers.get(HandleAny.class)
                 .matcher(method.getAnnotation(HandleAny.class), handleType);
     }

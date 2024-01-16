@@ -1,11 +1,10 @@
-package org.khasanof.executor.determination;
+package org.khasanof.executors.determination;
 
 import org.khasanof.collector.context.ContextOperationExecutor;
 import org.khasanof.collector.context.operation.FindHandlerObjectOperation;
 import org.khasanof.condition.Condition;
 import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.enums.ProcessType;
-import org.khasanof.executors.determination.DeterminationFunction;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.repository.StateRepositoryStrategy;

@@ -3,12 +3,12 @@ package org.khasanof.chain;
 /**
  * @author Nurislom
  * @see org.khasanof.chain
- * @since 12/27/2023 9:51 PM
+ * @since 1/17/2024 12:44 AM
  */
-public interface GenericChainProcessor<T> {
+public interface GenericChainProcessor<T, R> {
 
-    void setNext(GenericChainProcessor<T> nextProcessor);
+    void setNextProcessor(GenericChainProcessor<T, R> nextProcessor);
 
-    void process(T t);
+    R process(T t);
 
 }

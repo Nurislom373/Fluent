@@ -7,7 +7,6 @@ import org.khasanof.annotation.exception.HandleException;
 import org.khasanof.annotation.methods.*;
 import org.khasanof.annotation.methods.chat.HandleMyChatMember;
 import org.khasanof.annotation.methods.inline.HandleInlineQuery;
-import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
@@ -26,7 +25,7 @@ import java.util.stream.Collectors;
 @Getter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public enum HandleClasses {
+public enum HandleAnnotations {
 
     UNKNOWN(Annotation.class, false),
 
@@ -53,16 +52,16 @@ public enum HandleClasses {
 
     private final Class<? extends Annotation> type;
     private final boolean isMultiVersion;
-    private HandleClasses subHandleClasses;
+    private HandleAnnotations subHandleClasses;
     private boolean isSuperAnnotation;
 
-    HandleClasses(Class<? extends Annotation> type, boolean hasSubType, HandleClasses subHandleClasses) {
+    HandleAnnotations(Class<? extends Annotation> type, boolean hasSubType, HandleAnnotations subHandleClasses) {
         this.type = type;
         this.isMultiVersion = hasSubType;
         this.subHandleClasses = subHandleClasses;
     }
 
-    HandleClasses(Class<? extends Annotation> type, boolean hasSubType, boolean isSuperAnnotation) {
+    HandleAnnotations(Class<? extends Annotation> type, boolean hasSubType, boolean isSuperAnnotation) {
         this.type = type;
         this.isMultiVersion = hasSubType;
         this.isSuperAnnotation = isSuperAnnotation;
@@ -74,7 +73,7 @@ public enum HandleClasses {
                 .collect(Collectors.toSet());
     }
 
-    public static HandleClasses getHandleWithType(Class<? extends Annotation> annotation) {
+    public static HandleAnnotations getHandleWithType(Class<? extends Annotation> annotation) {
         return Arrays.stream(values())
                 .filter(handle -> handle.type.equals(annotation))
                 .findFirst()

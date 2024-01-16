@@ -1,5 +1,6 @@
 package org.khasanof.collector.method.checker;
 
+import org.jetbrains.annotations.NotNull;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
@@ -22,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @see org.khasanof.collector.method.checker
  * @since 12/26/2023 9:44 PM
  */
-@Component
+@Component // TODO rewrite today!
 public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
 
     private final Set<Class<?>> classes = ReflectionUtils.getSubTypesSuperAnnotation(ProcessUpdate.class);
@@ -34,20 +35,13 @@ public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
 
     @Override
     public boolean check(Method method) {
-        boolean annotationValid;
-        int length = method.getAnnotations().length;
-
-        if (length == 0) {
+        if (method.getAnnotations().length == 0) {
             return false;
-        } else {
-            AtomicInteger matchCount = new AtomicInteger();
-            Arrays.stream(method.getAnnotations())
-                    .forEach(annotation -> {
-                        if (classes.contains(annotation.annotationType())) {
-                            matchCount.getAndIncrement();
-                        }
-                    });
-            annotationValid = matchCount.get() == 1;
+        }
+
+        boolean annotationValid = getMatchCount(method).get() == 1;
+        if (!annotationValid) {
+            return false;
         }
 
         int parameterCount = method.getParameterCount();
@@ -56,6 +50,18 @@ public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
         }
 
         return match(method, annotationValid, parameterCount);
+    }
+
+    @NotNull
+    private AtomicInteger getMatchCount(Method method) {
+        AtomicInteger matchCount = new AtomicInteger();
+        Arrays.stream(method.getAnnotations())
+                .forEach(annotation -> {
+                    if (classes.contains(annotation.annotationType())) {
+                        matchCount.getAndIncrement();
+                    }
+                });
+        return matchCount;
     }
 
     private boolean match(Method method, boolean annotationValid, int parameterCount) {

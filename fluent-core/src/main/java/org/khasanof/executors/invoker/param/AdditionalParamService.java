@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
  * @see org.khasanof.executors.invoker
  * @since 8/13/2023 7:04 PM
  */
-public interface TWT extends AdditionalType {
+public interface AdditionalParamService extends AdditionalType {
 
     Object getValue(Invoker invokerModel, Object[] args, Method method);
 

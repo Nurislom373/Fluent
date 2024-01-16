@@ -17,24 +17,24 @@ import java.util.Map;
  * @see org.khasanof.executors.invoker
  * @since 8/13/2023 7:02 PM
  */
-@Component(TWTCommonAdapter.NAME)
-public class TWTCommonAdapter implements InitializingBean {
+@Component(AdditionalParamServiceAdapter.NAME)
+public class AdditionalParamServiceAdapter implements InitializingBean {
 
     public static final String NAME = "twtCommonAdapter";
-    private final Map<AdditionalParamType, TWT> twtMap = new HashMap<>();
+    private final Map<AdditionalParamType, AdditionalParamService> twtMap = new HashMap<>();
     private final ApplicationContext applicationContext;
 
-    public TWTCommonAdapter(ApplicationContext applicationContext) {
+    public AdditionalParamServiceAdapter(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
-    public Object takeParam(AdditionalParamType type, Invoker invokerModel, Object[] args, Method method) {
+    public Object getParam(AdditionalParamType type, Invoker invokerModel, Object[] args, Method method) {
         return twtMap.get(type).getValue(invokerModel, args, method);
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        applicationContext.getBeansOfType(TWT.class).values()
+        applicationContext.getBeansOfType(AdditionalParamService.class).values()
                 .forEach(twt -> twtMap.put(twt.getType(), twt));
     }
 

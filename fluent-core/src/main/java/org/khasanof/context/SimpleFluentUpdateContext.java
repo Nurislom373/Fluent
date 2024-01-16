@@ -2,7 +2,7 @@ package org.khasanof.context;
 
 import lombok.Data;
 import org.khasanof.custom.attributes.UpdateAttributes;
-import org.khasanof.custom.attributes.UpdateAttributesImpl;
+import org.khasanof.custom.attributes.DefaultUpdateAttributes;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Map;
@@ -34,7 +34,7 @@ public class SimpleFluentUpdateContext implements FluentUpdateContext {
     }
 
     private FluentUpdate fluentUpdateBuilder(Update update) {
-        return new PrivateFluentUpdate(update, new UpdateAttributesImpl());
+        return new PrivateFluentUpdate(update, new DefaultUpdateAttributes());
     }
 
     @Data

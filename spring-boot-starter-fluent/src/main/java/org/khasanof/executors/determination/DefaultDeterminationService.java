@@ -34,14 +34,17 @@ public class DefaultDeterminationService implements DeterminationService, Config
 
     @Override
     public List<BiConsumer<Update, Set<SimpleInvoker>>> getDeterminations() {
-        return orderListMap.values().stream().filter(Objects::nonNull)
-                .flatMap(Collection::stream).collect(Collectors.toList());
+        return orderListMap.values().stream()
+                .filter(Objects::nonNull)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
     }
 
     @Override
     public void runnable() {
         applicationContext.getBeansOfType(DeterminationFunction.class)
-                .values().stream().filter(determinationPredicate())
+                .values().stream()
+                .filter(determinationPredicate())
                 .forEach(this::addDeterminationFunction);
     }
 

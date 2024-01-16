@@ -36,12 +36,16 @@ public class SimpleExpressionMatcher implements ExpressionMatcher<Object> {
     @Override
     public boolean doMatch(String expression, Object value) {
         try {
-            String replaced = expression.replaceAll("'", "\"");
-            return new Expression(replaced, configuration)
-                    .and("value", value).evaluate()
-                    .getBooleanValue();
+            return tryDoMatch(expression, value);
         } catch (EvaluationException | ParseException e) {
             return false;
         }
+    }
+
+    private Boolean tryDoMatch(String expression, Object value) throws EvaluationException, ParseException {
+        return new Expression(expression.replaceAll("'", "\""), configuration)
+                .and("value", value)
+                .evaluate()
+                .getBooleanValue();
     }
 }

@@ -18,19 +18,14 @@ import java.util.Optional;
 public class FindHandlerObjectOperation implements ContextOperation<Enum, Optional<SimpleInvoker>> {
 
     private final StateMethodContext methodContext;
-    private final InvokerMethodFactory invokerMethodFactory;
 
-    public FindHandlerObjectOperation(StateMethodContext methodContext,
-                                      InvokerMethodFactory invokerMethodFactory) {
-
+    public FindHandlerObjectOperation(StateMethodContext methodContext) {
         this.methodContext = methodContext;
-        this.invokerMethodFactory = invokerMethodFactory;
     }
 
     @Override
     public Optional<SimpleInvoker> execute(Enum state) {
-        return methodContext.find(state)
-                .map(invokerMethodFactory::create);
+        return methodContext.find(state);
     }
 
 }

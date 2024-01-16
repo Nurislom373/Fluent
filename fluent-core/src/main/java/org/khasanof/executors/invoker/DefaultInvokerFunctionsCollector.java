@@ -25,7 +25,8 @@ public class DefaultInvokerFunctionsCollector implements InvokerFunctionsCollect
     @Override
     public void afterPropertiesSet() {
         applicationContext.getBeansOfType(InvokerFactory.class)
-                .values().stream().sorted(Comparator.comparing(InvokerFactory::getOrder))
+                .values().stream()
+                .sorted(Comparator.comparing(InvokerFactory::getOrder))
                 .forEach(this::createInvokerFunction);
     }
 

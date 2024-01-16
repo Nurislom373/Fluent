@@ -1,9 +1,7 @@
-package org.khasanof.executor.execution;
+package org.khasanof.executors.execution;
 
 import org.khasanof.enums.additional.AdditionalParamType;
 import org.khasanof.event.ExecutionMethod;
-import org.khasanof.executors.execution.AbstractExecution;
-import org.khasanof.executors.execution.Execution;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;

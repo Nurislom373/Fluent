@@ -1,7 +1,7 @@
 package org.khasanof.executors.invoker;
 
 import org.jetbrains.annotations.NotNull;
-import org.khasanof.executors.invoker.param.TWTCommonAdapter;
+import org.khasanof.executors.invoker.param.AdditionalParamServiceAdapter;
 import org.khasanof.models.AdditionalParam;
 import org.khasanof.models.Invoker;
 import org.khasanof.models.invoker.SimpleInvoker;
@@ -21,10 +21,10 @@ import static org.khasanof.factories.invoker.HandleProcessFileFactory.HANDLE_UPD
 public class DefaultInvokerFunctions extends AbstractInvokerFunctions {
 
     public static final String NAME = "defaultInvokerFunctions";
-    private final TWTCommonAdapter twtCommonAdapter;
+    private final AdditionalParamServiceAdapter additionalParamService;
 
-    public DefaultInvokerFunctions(TWTCommonAdapter twtCommonAdapter) {
-        this.twtCommonAdapter = twtCommonAdapter;
+    public DefaultInvokerFunctions(AdditionalParamServiceAdapter additionalParamService) {
+        this.additionalParamService = additionalParamService;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class DefaultInvokerFunctions extends AbstractInvokerFunctions {
     @SuppressWarnings({"rawtypes"})
     private Object getAdditionalParamV2(Invoker invoker, Object[] args, Method method) {
         AdditionalParam additionalParam = invoker.getAdditionalParam();
-        return twtCommonAdapter.takeParam(additionalParam.getType(), invoker, args, method);
+        return additionalParamService.getParam(additionalParam.getType(), invoker, args, method);
     }
 
 }

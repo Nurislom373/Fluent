@@ -4,7 +4,7 @@ import org.khasanof.collector.context.ContextOperationExecutor;
 import org.khasanof.collector.context.operation.ContainsHandlerMethodOperation;
 import org.khasanof.collector.context.operation.FindHandlerMethodOperation;
 import org.khasanof.context.FluentThreadLocalContext;
-import org.khasanof.enums.HandleClasses;
+import org.khasanof.enums.HandleAnnotations;
 import org.khasanof.event.ExecutionMethod;
 import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.executors.execution.CommonExecutionAdapter;
@@ -110,9 +110,9 @@ public class DefaultInvokerExecutor implements InvokerExecutor {
     }
 
     private SimpleInvoker getExceptionHandleMethod(Throwable throwable) throws Throwable {
-        if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleClasses.HANDLE_EXCEPTION)) {
+        if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleAnnotations.HANDLE_EXCEPTION)) {
 
-            var handlerMethod = new FindHandlerMethod(throwable, HandleClasses.HANDLE_EXCEPTION);
+            var handlerMethod = new FindHandlerMethod(throwable, HandleAnnotations.HANDLE_EXCEPTION);
             var invokerResult = operationExecutor.execute(FindHandlerMethodOperation.class, handlerMethod);
 
             if (invokerResult.isPresent()) {

@@ -2,10 +2,9 @@ package org.khasanof.collector.context.operation;
 
 import org.khasanof.collector.context.ContextOperation;
 import org.khasanof.collector.context.SimpleMethodContext;
-import org.khasanof.enums.HandleClasses;
+import org.khasanof.enums.HandleAnnotations;
 import org.khasanof.enums.HandleType;
-import org.khasanof.executors.matcher.CommonMatcher;
-import org.khasanof.factories.invoker.method.InvokerMethodFactory;
+import org.khasanof.executors.matcher.CommonMatcherAdapter;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
@@ -21,25 +20,21 @@ import java.util.stream.Collectors;
 @Component
 public class FindMoreHandleAnyOperation implements ContextOperation<HandleType, Set<SimpleInvoker>> {
 
-    private final CommonMatcher matcher;
+    private final CommonMatcherAdapter matcher;
     private final SimpleMethodContext methodContext;
-    private final InvokerMethodFactory invokerMethodFactory;
 
-    public FindMoreHandleAnyOperation(CommonMatcher matcher,
-                                      SimpleMethodContext methodContext,
-                                      InvokerMethodFactory invokerMethodFactory) {
+    public FindMoreHandleAnyOperation(CommonMatcherAdapter matcher,
+                                      SimpleMethodContext methodContext) {
 
         this.matcher = matcher;
         this.methodContext = methodContext;
-        this.invokerMethodFactory = invokerMethodFactory;
     }
 
     @Override
     public Set<SimpleInvoker> execute(HandleType handleType) {
-        return methodContext.find(HandleClasses.HANDLE_ANY)
-                .map(functionRefMap -> functionRefMap.entrySet().stream().filter(
-                                clazz -> matcher.chooseMatcher(clazz.getKey(), handleType))
-                        .map(invokerMethodFactory::create)
+        return methodContext.find(HandleAnnotations.HANDLE_ANY)
+                .map(functionRefMap -> functionRefMap.stream()
+                        .filter(simpleInvoker -> matcher.match(simpleInvoker.getMethod(), handleType))
                         .collect(Collectors.toSet())
                 ).orElse(Collections.emptySet());
     }

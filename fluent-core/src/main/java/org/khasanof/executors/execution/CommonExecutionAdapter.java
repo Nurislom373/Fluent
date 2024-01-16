@@ -45,7 +45,9 @@ public class CommonExecutionAdapter implements ApplicationContextAware {
     }
 
     private AdditionalParamType getAdditionalParamType(ExecutionMethod event) {
-        return event.getInvokerModel().getAdditionalParam().getType();
+        return event.getInvokerModel()
+                .getAdditionalParam()
+                .getType();
     }
 
     @Override

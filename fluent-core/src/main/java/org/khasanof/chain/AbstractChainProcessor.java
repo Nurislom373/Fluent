@@ -3,15 +3,21 @@ package org.khasanof.chain;
 /**
  * @author Nurislom
  * @see org.khasanof.chain
- * @since 12/27/2023 9:56 PM
+ * @since 1/17/2024 12:45 AM
  */
-public abstract class AbstractChainProcessor<T> implements GenericChainProcessor<T> {
+public abstract class AbstractChainProcessor<T, R> implements GenericChainProcessor<T, R> {
 
-    protected GenericChainProcessor<T> nextProcessor;
+    protected GenericChainProcessor<T, R> nextProcessor;
 
-    @Override
-    public void setNext(GenericChainProcessor<T> nextProcessor) {
+    public AbstractChainProcessor() {
+    }
+
+    public AbstractChainProcessor(GenericChainProcessor<T, R> nextProcessor) {
         this.nextProcessor = nextProcessor;
     }
 
+    @Override
+    public void setNextProcessor(GenericChainProcessor<T, R> nextProcessor) {
+        this.nextProcessor = nextProcessor;
+    }
 }

@@ -1,8 +1,11 @@
 package org.khasanof.utils;
 
+import org.khasanof.enums.HandleAnnotations;
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.support.AopUtils;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -24,6 +27,22 @@ public abstract class BaseUtils {
             e.printStackTrace();
         }
         return proxyBean;
+    }
+
+    public static HandleAnnotations getMethodAnnotation(Method method) {
+        Annotation[] annotations = method.getAnnotations();
+        if (annotations.length == 0) {
+            return null;
+        } else {
+            return HandleAnnotations.getHandleWithType(
+                    HandleAnnotations.getAllAnnotations()
+                            .stream()
+                            .map(method::getAnnotation)
+                            .filter(Objects::nonNull)
+                            .map(Annotation::annotationType)
+                            .findFirst()
+                            .orElse(null));
+        }
     }
 
     /**
