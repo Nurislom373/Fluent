@@ -16,10 +16,10 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class HandlerMethod {
+public class HandlerMethod implements Handler {
 
     private Method method;
-    private List<Condition> conditions;
     private Object reference;
+    private List<Condition> conditions;
 
 }

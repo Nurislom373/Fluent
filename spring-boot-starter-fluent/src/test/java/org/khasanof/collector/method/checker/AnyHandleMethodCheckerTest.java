@@ -89,7 +89,7 @@ public class AnyHandleMethodCheckerTest {
     }
 
     ProcessTypeHandleMethodChecker createHandleMethodChecker() {
-        return new AnyHandleMethodChecker(createConditionFactory());
+        return new HandleAnyMethodChecker(createConditionFactory());
     }
 
     HandleAnyMethodCheckConditionFactory createConditionFactory() {

@@ -2,6 +2,7 @@ package org.khasanof.collector;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.khasanof.collector.context.SimpleMethodContext;
 import org.khasanof.collector.loader.HandlerLoader;
 import org.khasanof.collector.method.checker.HandleMethodCheckerAdapter;
 import org.khasanof.enums.HandleClasses;
@@ -32,7 +33,8 @@ import java.util.stream.Collectors;
 @Component(DefaultSimpleMethodContext.NAME)
 public class DefaultSimpleMethodContext implements SimpleMethodContext {
 
-    public static final String NAME = "simpleMethodContextClass";
+    public static final String NAME = "defaultSimpleMethodContext";
+
     private final HandlerLoader resourceLoader;
     private final HandleMethodCheckerAdapter checkerAdapter;
     private final ApplicationEventPublisher eventPublisher;

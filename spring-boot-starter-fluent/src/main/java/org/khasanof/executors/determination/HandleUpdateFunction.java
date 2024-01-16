@@ -1,12 +1,12 @@
 package org.khasanof.executors.determination;
 
 import lombok.extern.slf4j.Slf4j;
-import org.khasanof.collector.Collector;
-import org.khasanof.collector.SimpleCollector;
+import org.khasanof.collector.context.ContextOperationExecutor;
+import org.khasanof.collector.context.operation.FindHandlerMethodOperation;
 import org.khasanof.converter.HandleTypeConverter;
-import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
+import org.khasanof.models.collector.FindHandlerMethod;
 import org.khasanof.models.executors.AppropriateMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.utils.HandleTypeUtils;
@@ -14,7 +14,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.lang.annotation.Annotation;
 import java.util.Set;
 import java.util.function.BiConsumer;
 
@@ -24,11 +23,15 @@ import java.util.function.BiConsumer;
  * @since 16.07.2023 18:58
  */
 @Slf4j
-@SuppressWarnings("unchecked")
 @Component(HandleUpdateFunction.NAME)
 public class HandleUpdateFunction implements DeterminationFunction {
 
     public static final String NAME = "handleUpdateFunction";
+    private final ContextOperationExecutor operationExecutor;
+
+    public HandleUpdateFunction(ContextOperationExecutor contextOperationExecutor) {
+        this.operationExecutor = contextOperationExecutor;
+    }
 
     @Override
     public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
@@ -48,11 +51,11 @@ public class HandleUpdateFunction implements DeterminationFunction {
     }
 
     private void addInvokersToResultSet(ApplicationContext applicationContext, Set<SimpleInvoker> invokerResults, AppropriateMethod appropriateMethod) {
-        Collector<Class<? extends Annotation>> collector = applicationContext.getBean(SimpleCollector.NAME, Collector.class);
-        HandleTypeConverter converter = applicationContext.getBean(HandleTypeConverter.class);
+        var converter = applicationContext.getBean(HandleTypeConverter.class);
+        var handleClasses = converter.fromConvert(appropriateMethod.getHandleType());
 
-        HandleClasses handleClasses = converter.fromConvert(appropriateMethod.getHandleType());
-        collector.getInvokerResult(appropriateMethod.getValue(), handleClasses.getType())
+        var handlerMethod = new FindHandlerMethod(appropriateMethod.getValue(), handleClasses);
+        operationExecutor.execute(FindHandlerMethodOperation.class, handlerMethod)
                 .ifPresentOrElse(invokerResults::add, () -> log.warn("Method not found!"));
     }
 

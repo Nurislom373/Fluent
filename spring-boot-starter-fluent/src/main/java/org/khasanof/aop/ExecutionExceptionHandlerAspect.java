@@ -6,7 +6,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.event.ExecutionMethod;
-import org.khasanof.event.exception.ThrowExceptionEvent;
+import org.khasanof.event.exception.ResolveExceptionEvent;
 import org.khasanof.utils.MethodUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -52,7 +52,7 @@ public class ExecutionExceptionHandlerAspect {
         Object[] args = event.getInvokerModel().getArgs();
         AbsSender sender = MethodUtils.getArg(args, AbsSender.class);
         Update update = MethodUtils.getArg(args, Update.class);
-        publisher.publishEvent(new ThrowExceptionEvent(this, update, sender, ex.getCause()));
+        publisher.publishEvent(new ResolveExceptionEvent(this, update, sender, ex.getCause()));
     }
 
 }

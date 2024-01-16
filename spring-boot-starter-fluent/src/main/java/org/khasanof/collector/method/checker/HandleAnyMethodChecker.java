@@ -17,11 +17,11 @@ import java.util.Set;
  * @since 12/27/2023 10:04 PM
  */
 @Component
-public class AnyHandleMethodChecker extends AbstractHandleMethodChecker {
+public class HandleAnyMethodChecker extends AbstractHandleMethodChecker {
 
     private final HandleAnyMethodCheckConditionFactory conditionFactory;
 
-    public AnyHandleMethodChecker(HandleAnyMethodCheckConditionFactory conditionFactory) {
+    public HandleAnyMethodChecker(HandleAnyMethodCheckConditionFactory conditionFactory) {
         this.conditionFactory = conditionFactory;
     }
 

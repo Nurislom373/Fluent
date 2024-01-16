@@ -20,24 +20,25 @@ import java.util.function.Supplier;
  */
 @Component
 @SuppressWarnings({"rawtypes"})
-public class CompositeMatcher implements InitializingBean {
+public class CommonMatcher implements InitializingBean {
 
-    public final Map<Class<? extends Annotation>, Supplier<GenericMatcher>> supplierMap = new HashMap<>();
     private final Map<Class<? extends Annotation>, GenericMatcher> matchers = new HashMap<>();
     private final ApplicationContext applicationContext;
 
-    public CompositeMatcher(ApplicationContext applicationContext) {
+    public CommonMatcher(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
     @SuppressWarnings("unchecked")
     public boolean chooseMatcher(Method method, Object value, Class<? extends Annotation> annotation) {
-        return matchers.get(annotation).matcher(method.getAnnotation(annotation), value);
+        return matchers.get(annotation)
+                .matcher(method.getAnnotation(annotation), value);
     }
 
     @SuppressWarnings("unchecked")
     public boolean chooseMatcher(Method method, HandleType handleType) {
-        return matchers.get(HandleAny.class).matcher(method.getAnnotation(HandleAny.class), handleType);
+        return matchers.get(HandleAny.class)
+                .matcher(method.getAnnotation(HandleAny.class), handleType);
     }
 
     @Override
@@ -46,7 +47,8 @@ public class CompositeMatcher implements InitializingBean {
     }
 
     private void tryAfterPropertiesSet() {
-        applicationContext.getBeansOfType(GenericMatcher.class).forEach((beanName, bean) -> addMatcher(bean));
+        applicationContext.getBeansOfType(GenericMatcher.class)
+                .forEach((beanName, bean) -> addMatcher(bean));
     }
 
     @SuppressWarnings({"unchecked"})

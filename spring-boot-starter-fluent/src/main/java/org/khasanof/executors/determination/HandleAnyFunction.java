@@ -2,9 +2,11 @@ package org.khasanof.executors.determination;
 
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.annotation.methods.HandleAny;
-import org.khasanof.collector.Collector;
-import org.khasanof.collector.SimpleCollector;
+import org.khasanof.collector.context.ContextOperationExecutor;
+import org.khasanof.collector.context.operation.ContainsHandlerMethodOperation;
+import org.khasanof.collector.context.operation.FindMoreHandleAnyOperation;
 import org.khasanof.context.FluentThreadLocalContext;
+import org.khasanof.enums.HandleClasses;
 import org.khasanof.enums.Proceed;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
@@ -14,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.lang.reflect.Method;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiConsumer;
@@ -24,38 +27,39 @@ import java.util.function.BiConsumer;
  * @since 16.07.2023 19:13
  */
 @Slf4j
-@SuppressWarnings({"unchecked", "rawtypes"})
 @Component(HandleAnyFunction.NAME)
 public class HandleAnyFunction implements DeterminationFunction {
 
     public static final String NAME = "handleAnyFunction";
+    private final ContextOperationExecutor operationExecutor;
+
+    public HandleAnyFunction(ContextOperationExecutor operationExecutor) {
+        this.operationExecutor = operationExecutor;
+    }
 
     @Override
     public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
-            var collector = applicationContext.getBean(SimpleCollector.NAME, Collector.class);
-
-            if (collector.hasHandle(HandleAny.class)) {
-                internalAccept(applicationContext, update, invokerResults, collector);
+            if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleClasses.HANDLE_ANY)) {
+                internalAccept(applicationContext, update, invokerResults);
             }
         });
     }
 
-    private void internalAccept(ApplicationContext applicationContext, Update update, Set<SimpleInvoker> invokerResults, Collector collector) {
+    private void internalAccept(ApplicationContext applicationContext, Update update, Set<SimpleInvoker> invokerResults) {
         var appropriateDetermining = applicationContext.getBean(AppropriateDetermining.class);
 
         appropriateDetermining.determining(update)
-                .ifPresentOrElse(appropriateMethod -> foundMethodsAddInvokers(invokerResults, collector, appropriateMethod),
+                .ifPresentOrElse(appropriateMethod -> foundMethodsAddInvokers(invokerResults, appropriateMethod),
                         () -> log.warn("HandleType not found!"));
     }
 
-    private void foundMethodsAddInvokers(Set<SimpleInvoker> invokerResults, Collector collector, AppropriateMethod appropriateMethod) {
-        var allHandleAnyMethods = collector.getAllHandleAnyMethod(appropriateMethod.getHandleType());
+    private void foundMethodsAddInvokers(Set<SimpleInvoker> invokerResults, AppropriateMethod appropriateMethod) {
+        var allHandleAnyMethods = operationExecutor.execute(FindMoreHandleAnyOperation.class, appropriateMethod.getHandleType());
 
-        if (Objects.isNull(allHandleAnyMethods)) {
+        if (Objects.isNull(allHandleAnyMethods) || allHandleAnyMethods.isEmpty()) {
             return;
         }
-
         invokerResults.addAll(allHandleAnyMethods);
         isCanProcess(allHandleAnyMethods);
     }
@@ -69,7 +73,11 @@ public class HandleAnyFunction implements DeterminationFunction {
     private boolean hasValueNotProceedInMethods(Set<SimpleInvoker> methods) {
         return methods.stream()
                 .map(SimpleInvoker::getMethod)
-                .anyMatch(method -> method.getAnnotation(HandleAny.class).proceed().equals(Proceed.NOT_PROCEED));
+                .anyMatch(method -> Objects.equals(getProceed(method), Proceed.NOT_PROCEED));
+    }
+
+    private Proceed getProceed(Method method) {
+        return method.getAnnotation(HandleAny.class).proceed();
     }
 
     @Override

@@ -1,7 +1,6 @@
 package org.khasanof.collector.method.checker;
 
 import org.khasanof.annotation.exception.HandleException;
-import org.khasanof.collector.method.AbstractMethodChecker;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.factories.method.ExceptionMethodCheckConditionFactory;

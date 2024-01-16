@@ -15,13 +15,13 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 @Getter
 @Setter
 @ToString
-public class ThrowExceptionEvent extends ApplicationEvent {
+public class ResolveExceptionEvent extends ApplicationEvent {
 
     private Update update;
     private AbsSender absSender;
     private Throwable throwable;
 
-    public ThrowExceptionEvent(Object source, Update update, AbsSender absSender, Throwable throwable) {
+    public ResolveExceptionEvent(Object source, Update update, AbsSender absSender, Throwable throwable) {
         super(source);
         this.update = update;
         this.absSender = absSender;

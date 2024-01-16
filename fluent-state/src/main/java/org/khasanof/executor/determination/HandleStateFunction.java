@@ -1,7 +1,7 @@
 package org.khasanof.executor.determination;
 
-import org.khasanof.collector.Collector;
-import org.khasanof.collector.StateCollector;
+import org.khasanof.collector.context.ContextOperationExecutor;
+import org.khasanof.collector.context.operation.FindHandlerObjectOperation;
 import org.khasanof.condition.Condition;
 import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.enums.ProcessType;
@@ -24,11 +24,16 @@ import java.util.function.BiConsumer;
  * @see org.khasanof.executors.determination
  * @since 16.07.2023 19:05
  */
+@SuppressWarnings({"rawtypes"})
 @Component(HandleStateFunction.NAME)
-@SuppressWarnings({"unchecked", "rawtypes"})
 public class HandleStateFunction implements DeterminationFunction {
 
     public static final String NAME = "handleStateFunction";
+    private final ContextOperationExecutor operationExecutor;
+
+    public HandleStateFunction(ContextOperationExecutor operationExecutor) {
+        this.operationExecutor = operationExecutor;
+    }
 
     @Override
     public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
@@ -36,24 +41,29 @@ public class HandleStateFunction implements DeterminationFunction {
             StateRepositoryStrategy repository = applicationContext.getBean(StateRepositoryStrategy.class);
             Long id = UpdateUtils.getUserId(update);
 
-            Condition.isFalseThen(repository.existById(id))
-                    .thenCall(() -> {
-                        User from = UpdateUtils.getFrom(update);
-                        if (Objects.nonNull(from)) {
-                            repository.addState(from.getId());
-                        }
-                    });
-
-            repository.findById(id).ifPresent(state -> {
-                Collector<Enum> collector = applicationContext.getBean(StateCollector.NAME, Collector.class);
-                collector.getInvokerResult(state.getState(), state.getState())
-                        .ifPresent(simpleInvoker -> {
-                            invokerResults.add(simpleInvoker);
-                            Condition.isTrueThen(isNotProcessedUpdates(simpleInvoker))
-                                    .thenCall(() -> FluentThreadLocalContext.determinationServiceBoolean.set(true));
-                        });
-            });
+            checkUserState(update, repository, id);
+            findHandlerObject(invokerResults, repository, id);
         });
+    }
+
+    private void checkUserState(Update update, StateRepositoryStrategy repository, Long id) {
+        Condition.isFalseThen(repository.existById(id))
+                .thenCall(() -> {
+                    User from = UpdateUtils.getFrom(update);
+                    if (Objects.nonNull(from)) {
+                        repository.addState(from.getId());
+                    }
+                });
+    }
+
+    private void findHandlerObject(Set<SimpleInvoker> invokerResults, StateRepositoryStrategy repository, Long id) {
+        repository.findById(id)
+                .flatMap(state -> operationExecutor.execute(FindHandlerObjectOperation.class, state.getState()))
+                .ifPresent(simpleInvoker -> {
+                    invokerResults.add(simpleInvoker);
+                    Condition.isTrueThen(isNotProcessedUpdates(simpleInvoker))
+                            .thenCall(() -> FluentThreadLocalContext.determinationServiceBoolean.set(true));
+                });
     }
 
     private boolean isNotProcessedUpdates(SimpleInvoker result) {

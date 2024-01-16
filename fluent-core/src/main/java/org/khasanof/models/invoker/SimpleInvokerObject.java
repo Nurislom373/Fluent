@@ -18,9 +18,8 @@ import java.lang.reflect.Method;
 @NoArgsConstructor
 public class SimpleInvokerObject implements SimpleInvoker {
 
-    private Object reference;
-    // TODO change method! idiot!
     private Method method;
+    private Object reference;
 
     @Override
     public InvokerType getType() {
