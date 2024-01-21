@@ -6,7 +6,7 @@ import org.khasanof.collector.context.ContextOperationExecutor;
 import org.khasanof.collector.context.operation.ContainsHandlerMethodOperation;
 import org.khasanof.collector.context.operation.FindMoreHandleAnyOperation;
 import org.khasanof.context.FluentThreadLocalContext;
-import org.khasanof.enums.HandleAnnotations;
+import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.enums.Proceed;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
@@ -40,7 +40,7 @@ public class DeterminationHandleAnyFunction implements DeterminationFunction {
     @Override
     public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
-            if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleAnnotations.HANDLE_ANY)) {
+            if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleAnnotation.HANDLE_ANY)) {
                 internalAccept(applicationContext, update, invokerResults);
             }
         });

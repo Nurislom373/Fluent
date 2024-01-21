@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
 import org.khasanof.collector.context.SimpleMethodContext;
 import org.khasanof.context.FluentContextHolder;
-import org.khasanof.enums.HandleAnnotations;
+import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.executors.matcher.CommonMatcherAdapter;
 import org.khasanof.models.collector.FindHandlerMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
@@ -81,11 +81,11 @@ public class DefaultSearchHandlerMethodService implements SearchHandlerMethodSer
                 .orElse(null);
     }
 
-    private HandleAnnotations getSubHandleClasses(FindHandlerMethod handlerMethod) {
+    private HandleAnnotation getSubHandleClasses(FindHandlerMethod handlerMethod) {
         return handlerMethod.getKey().getSubHandleClasses();
     }
 
-    private Class<? extends Annotation> getType(HandleAnnotations handlerMethod) {
+    private Class<? extends Annotation> getType(HandleAnnotation handlerMethod) {
         return handlerMethod.getType();
     }
 

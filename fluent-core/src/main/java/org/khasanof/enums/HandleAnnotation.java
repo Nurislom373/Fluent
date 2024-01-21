@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @Getter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public enum HandleAnnotations {
+public enum HandleAnnotation {
 
     UNKNOWN(Annotation.class, false),
 
@@ -52,16 +52,16 @@ public enum HandleAnnotations {
 
     private final Class<? extends Annotation> type;
     private final boolean isMultiVersion;
-    private HandleAnnotations subHandleClasses;
+    private HandleAnnotation subHandleClasses;
     private boolean isSuperAnnotation;
 
-    HandleAnnotations(Class<? extends Annotation> type, boolean hasSubType, HandleAnnotations subHandleClasses) {
+    HandleAnnotation(Class<? extends Annotation> type, boolean hasSubType, HandleAnnotation subHandleClasses) {
         this.type = type;
         this.isMultiVersion = hasSubType;
         this.subHandleClasses = subHandleClasses;
     }
 
-    HandleAnnotations(Class<? extends Annotation> type, boolean hasSubType, boolean isSuperAnnotation) {
+    HandleAnnotation(Class<? extends Annotation> type, boolean hasSubType, boolean isSuperAnnotation) {
         this.type = type;
         this.isMultiVersion = hasSubType;
         this.isSuperAnnotation = isSuperAnnotation;
@@ -73,7 +73,7 @@ public enum HandleAnnotations {
                 .collect(Collectors.toSet());
     }
 
-    public static HandleAnnotations getHandleWithType(Class<? extends Annotation> annotation) {
+    public static HandleAnnotation getHandleWithType(Class<? extends Annotation> annotation) {
         return Arrays.stream(values())
                 .filter(handle -> handle.type.equals(annotation))
                 .findFirst()

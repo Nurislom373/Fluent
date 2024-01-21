@@ -2,7 +2,7 @@ package org.khasanof.collector.context.operation;
 
 import org.khasanof.collector.context.ContextOperation;
 import org.khasanof.collector.context.SimpleMethodContext;
-import org.khasanof.enums.HandleAnnotations;
+import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.enums.HandleType;
 import org.khasanof.executors.matcher.CommonMatcherAdapter;
 import org.khasanof.models.invoker.SimpleInvoker;
@@ -32,7 +32,7 @@ public class FindMoreHandleAnyOperation implements ContextOperation<HandleType, 
 
     @Override
     public Set<SimpleInvoker> execute(HandleType handleType) {
-        return methodContext.find(HandleAnnotations.HANDLE_ANY)
+        return methodContext.find(HandleAnnotation.HANDLE_ANY)
                 .map(functionRefMap -> functionRefMap.stream()
                         .filter(simpleInvoker -> matcher.match(simpleInvoker.getMethod(), handleType))
                         .collect(Collectors.toSet())

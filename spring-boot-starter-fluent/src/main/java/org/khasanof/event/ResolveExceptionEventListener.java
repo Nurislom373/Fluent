@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.khasanof.collector.context.ContextOperationExecutor;
 import org.khasanof.collector.context.operation.ContainsHandlerMethodOperation;
 import org.khasanof.collector.context.operation.FindHandlerMethodOperation;
-import org.khasanof.enums.HandleAnnotations;
+import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.event.exception.ResolveExceptionEvent;
 import org.khasanof.executors.invoker.InvokerExecutor;
 import org.khasanof.executors.invoker.InvokerFunctions;
@@ -49,14 +49,14 @@ public class ResolveExceptionEventListener implements ApplicationListener<Resolv
     }
 
     private void tryResolveException(ResolveExceptionEvent event) throws Throwable {
-        if (!operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleAnnotations.HANDLE_EXCEPTION)) {
+        if (!operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleAnnotation.HANDLE_EXCEPTION)) {
             eventThrowException(event);
         }
         invokeExceptionHandler(event);
     }
 
     private void invokeExceptionHandler(@NotNull ResolveExceptionEvent event) throws Throwable {
-        FindHandlerMethod handlerMethod = new FindHandlerMethod(event.getThrowable(), HandleAnnotations.HANDLE_EXCEPTION);
+        FindHandlerMethod handlerMethod = new FindHandlerMethod(event.getThrowable(), HandleAnnotation.HANDLE_EXCEPTION);
         Optional<SimpleInvoker> optional = operationExecutor.execute(FindHandlerMethodOperation.class, handlerMethod);
 
         if (optional.isEmpty()) {

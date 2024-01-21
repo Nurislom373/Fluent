@@ -1,6 +1,6 @@
 package org.khasanof.utils;
 
-import org.khasanof.enums.HandleAnnotations;
+import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.enums.HandleType;
 
 import java.util.ArrayList;
@@ -31,22 +31,22 @@ public abstract class HandleTypeUtils {
         return HANDLE_TYPES.contains(handleType);
     }
 
-    public static HandleAnnotations handleTypeToClass(HandleType type) {
+    public static HandleAnnotation handleTypeToClass(HandleType type) {
         return switch (type) {
-            case MY_CHAT_MEMBER -> HandleAnnotations.HANDLE_MY_CHAT_MEMBER;
-            case MESSAGE -> HandleAnnotations.HANDLE_MESSAGE;
-            case CALLBACK -> HandleAnnotations.HANDLE_CALLBACK;
-            case PHOTO -> HandleAnnotations.HANDLE_PHOTO;
-            case DOCUMENT -> HandleAnnotations.HANDLE_DOCUMENT;
-            case VIDEO -> HandleAnnotations.HANDLE_VIDEO;
-            case INLINE_QUERY -> HandleAnnotations.HANDLE_INLINE_QUERY;
-            case VIDEO_NOTE -> HandleAnnotations.HANDLE_VIDEO_NOTE;
-            case AUDIO -> HandleAnnotations.HANDLE_AUDIO;
-            default -> HandleAnnotations.UNKNOWN;
+            case MY_CHAT_MEMBER -> HandleAnnotation.HANDLE_MY_CHAT_MEMBER;
+            case MESSAGE -> HandleAnnotation.HANDLE_MESSAGE;
+            case CALLBACK -> HandleAnnotation.HANDLE_CALLBACK;
+            case PHOTO -> HandleAnnotation.HANDLE_PHOTO;
+            case DOCUMENT -> HandleAnnotation.HANDLE_DOCUMENT;
+            case VIDEO -> HandleAnnotation.HANDLE_VIDEO;
+            case INLINE_QUERY -> HandleAnnotation.HANDLE_INLINE_QUERY;
+            case VIDEO_NOTE -> HandleAnnotation.HANDLE_VIDEO_NOTE;
+            case AUDIO -> HandleAnnotation.HANDLE_AUDIO;
+            default -> HandleAnnotation.UNKNOWN;
         };
     }
 
-    public static HandleType handleClassToType(HandleAnnotations clazz) {
+    public static HandleType handleClassToType(HandleAnnotation clazz) {
         return switch (clazz) {
             case HANDLE_MY_CHAT_MEMBER -> HandleType.MY_CHAT_MEMBER;
             case HANDLE_INLINE_QUERY -> HandleType.INLINE_QUERY;

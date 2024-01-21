@@ -4,7 +4,6 @@ import org.khasanof.models.condition.MethodCondition;
 
 import java.lang.reflect.Method;
 import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -14,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @see org.khasanof.collector.method.checker
  * @since 12/26/2023 9:30 PM
  */
-public class DefaultHandleMethodCheckerAdapter implements HandleMethodCheckerAdapter {
+public class DefaultHandleMethodCheckerMediator implements HandleMethodCheckerMediator {
 
     private final Collection<HandleMethodChecker> methodCheckers = new CopyOnWriteArrayList<>();
 

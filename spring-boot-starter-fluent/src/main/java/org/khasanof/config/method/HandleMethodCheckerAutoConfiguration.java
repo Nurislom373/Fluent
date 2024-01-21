@@ -1,8 +1,8 @@
 package org.khasanof.config.method;
 
-import org.khasanof.collector.method.checker.DefaultHandleMethodCheckerAdapter;
+import org.khasanof.collector.method.checker.DefaultHandleMethodCheckerMediator;
 import org.khasanof.collector.method.checker.HandleMethodChecker;
-import org.khasanof.collector.method.checker.HandleMethodCheckerAdapter;
+import org.khasanof.collector.method.checker.HandleMethodCheckerMediator;
 import org.khasanof.collector.method.checker.ProcessTypeHandleMethodChecker;
 import org.khasanof.config.FluentProperties;
 import org.khasanof.custom.ProcessTypeResolver;
@@ -25,8 +25,8 @@ public class HandleMethodCheckerAutoConfiguration {
 
     @Bean
     @DependsOn(HandleMethodCheckerConfig.NAME)
-    public HandleMethodCheckerAdapter handleMethodCheckerAdapter(HandleMethodCheckerConfig config) {
-        var methodCheckerAdapter = new DefaultHandleMethodCheckerAdapter();
+    public HandleMethodCheckerMediator handleMethodCheckerAdapter(HandleMethodCheckerConfig config) {
+        var methodCheckerAdapter = new DefaultHandleMethodCheckerMediator();
         methodCheckerAdapter.setMethodCheckers(config.getHandleMethodChecker());
         return methodCheckerAdapter;
     }

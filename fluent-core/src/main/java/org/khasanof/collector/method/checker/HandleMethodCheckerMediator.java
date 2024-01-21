@@ -10,7 +10,7 @@ import java.util.Collection;
  * @see org.khasanof.collector.method.checker
  * @since 12/26/2023 9:29 PM
  */
-public interface HandleMethodCheckerAdapter extends GenericCheck<Method> {
+public interface HandleMethodCheckerMediator extends GenericCheck<Method> {
 
     void setMethodCheckers(Collection<HandleMethodChecker> methodCheckers);
 

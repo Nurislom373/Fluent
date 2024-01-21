@@ -17,7 +17,8 @@ public abstract class AbstractHandleMethodChecker implements ProcessTypeHandleMe
 
     protected boolean paramsTypeCheckV2(Class<?>[] methodParams, Class<?>[] matchParams) {
         return Arrays.stream(matchParams)
-                .allMatch(param -> Arrays.asList(methodParams).contains(param));
+                .allMatch(param -> Arrays.asList(methodParams)
+                        .contains(param));
     }
 
     protected boolean paramsTypeCheckV3(Class<?>[] methodParams, Class<?>[] matchParams) {

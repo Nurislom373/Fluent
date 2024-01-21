@@ -3,8 +3,10 @@ package org.khasanof.collector.method.checker;
 import org.junit.jupiter.api.Test;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.MatchScope;
+import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactoryImpl;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
+import org.khasanof.mediator.DefaultMethodCheckOperationStrategyMediator;
 import org.springframework.util.ReflectionUtils;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
@@ -28,11 +30,10 @@ public class DefaultHandleMethodCheckerTest {
         assertTrue(handleMethodChecker.check(handleMethod));
     }
 
-    // TODO fixed method logic
     @Test
     void testCheckMethodShouldFailed() {
         Method invalidHandleMethod = getInvalidHandleMethod();
-        assertFalse(handleMethodChecker.check(invalidHandleMethod));
+        assertThrows(InvalidParamsException.class, () -> handleMethodChecker.check(invalidHandleMethod));
     }
 
     private Method getInvalidHandleMethod() {
@@ -46,7 +47,7 @@ public class DefaultHandleMethodCheckerTest {
     }
 
     ProcessTypeHandleMethodChecker createHandleMethodChecker() {
-        return new DefaultHandleMethodChecker(createConditionFactory());
+        return new DefaultHandleMethodChecker(createConditionFactory(), new DefaultMethodCheckOperationStrategyMediator());
     }
 
     DefaultMethodCheckConditionFactory createConditionFactory() {

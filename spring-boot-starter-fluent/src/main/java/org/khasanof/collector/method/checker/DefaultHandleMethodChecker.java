@@ -1,18 +1,22 @@
 package org.khasanof.collector.method.checker;
 
 import org.jetbrains.annotations.NotNull;
+import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
+import org.khasanof.collector.method.checker.strategy.MethodCheckOperationStrategy;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
+import org.khasanof.mediator.MethodCheckOperationStrategyMediator;
 import org.khasanof.models.condition.MethodCondition;
 import org.khasanof.utils.AnnotationUtils;
 import org.khasanof.utils.ReflectionUtils;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Set;
@@ -28,84 +32,38 @@ public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
 
     private final Set<Class<?>> classes = ReflectionUtils.getSubTypesSuperAnnotation(ProcessUpdate.class);
     private final DefaultMethodCheckConditionFactory conditionFactory;
+    private final MethodCheckOperationStrategyMediator checkOperationStrategyMediator;
 
-    public DefaultHandleMethodChecker(DefaultMethodCheckConditionFactory conditionFactory) {
+    public DefaultHandleMethodChecker(DefaultMethodCheckConditionFactory conditionFactory,
+                                      MethodCheckOperationStrategyMediator checkOperationStrategyMediator) {
+
         this.conditionFactory = conditionFactory;
+        this.checkOperationStrategyMediator = checkOperationStrategyMediator;
     }
 
     @Override
     public boolean check(Method method) {
-        if (method.getAnnotations().length == 0) {
+        if (method.getAnnotations().length == 0 || method.getParameterCount() < 2) {
             return false;
         }
 
-        boolean annotationValid = getMatchCount(method).get() == 1;
-        if (!annotationValid) {
+        if (getMatchCount(method) != 1) {
             return false;
         }
-
-        int parameterCount = method.getParameterCount();
-        if (AnnotationUtils.hasAnnotation(method, ProcessFile.class, true)) {
-            return hasProcessFile(method, annotationValid);
-        }
-
-        return match(method, annotationValid, parameterCount);
+        return checkOperationStrategyMediator.check(method);
     }
 
-    @NotNull
-    private AtomicInteger getMatchCount(Method method) {
+    private Integer getMatchCount(Method method) {
         AtomicInteger matchCount = new AtomicInteger();
+
         Arrays.stream(method.getAnnotations())
-                .forEach(annotation -> {
-                    if (classes.contains(annotation.annotationType())) {
-                        matchCount.getAndIncrement();
-                    }
-                });
-        return matchCount;
+                .forEach(annotation -> checkAnnotationType(annotation, matchCount));
+        return matchCount.get();
     }
 
-    private boolean match(Method method, boolean annotationValid, int parameterCount) {
-        boolean parameterValid;
-        if (parameterCount != 2) {
-            if (!annotationValid) {
-                return false;
-            }
-        } else {
-            parameterValid = paramsTypeCheckV2(method.getParameterTypes(), MAIN_PARAMS);
-            if (!parameterValid) {
-                throw new RuntimeException("There is an error in the method parameters with handle annotations!");
-            }
-        }
-        return annotationValid;
-    }
-
-    private boolean checkAnnotationIsHandleMessage(Method method) {
-        return AnnotationUtils.hasAnnotation(method, HandleMessage.class, false);
-    }
-
-    private boolean hasProcessFile(Method method, boolean annotationValid) {
-        boolean parameterValid;
-        int parameterCount = method.getParameterCount();
-
-        if (parameterCount < 2 || parameterCount > 3) {
-            throw new InvalidParamsException("There is an error in the method parameters with handle annotations!");
-        }
-
-        if (parameterCount == 3) {
-            Class<?>[] mainParams = new Class[MAIN_PARAMS.length + 1];
-            System.arraycopy(MAIN_PARAMS, 0, mainParams, 0, MAIN_PARAMS.length);
-            mainParams[mainParams.length - 1] = InputStream.class;
-
-            parameterValid = paramsTypeCheckV3(method.getParameterTypes(), mainParams);
-        } else {
-            parameterValid = paramsTypeCheckV2(method.getParameterTypes(), MAIN_PARAMS);
-        }
-
-        if (!parameterValid) {
-            throw new RuntimeException("There is an error in the method parameters with handle annotations!");
-        }
-
-        return annotationValid;
+    private void checkAnnotationType(Annotation annotation, AtomicInteger matchCount) {
+        if (classes.contains(annotation.annotationType()))
+            matchCount.getAndIncrement();
     }
 
     @Override
