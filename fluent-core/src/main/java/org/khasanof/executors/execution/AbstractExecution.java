@@ -1,5 +1,6 @@
 package org.khasanof.executors.execution;
 
+import org.khasanof.enums.additional.AdditionalParamType;
 import org.khasanof.event.ExecutionMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.utils.MethodUtils;
@@ -35,4 +36,8 @@ public abstract class AbstractExecution implements Execution {
         return simpleInvoker.getMethod();
     }
 
+    @Override
+    public AdditionalParamType getType() {
+        return null;
+    }
 }

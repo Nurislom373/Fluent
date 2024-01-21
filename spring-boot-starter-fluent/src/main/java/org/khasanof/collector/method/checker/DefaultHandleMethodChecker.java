@@ -1,21 +1,13 @@
 package org.khasanof.collector.method.checker;
 
-import org.jetbrains.annotations.NotNull;
-import org.khasanof.annotation.methods.HandleAny;
-import org.khasanof.annotation.methods.HandleMessage;
-import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.collector.method.checker.strategy.MethodCheckOperationStrategy;
 import org.khasanof.enums.ProcessType;
-import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
 import org.khasanof.mediator.MethodCheckOperationStrategyMediator;
 import org.khasanof.models.condition.MethodCondition;
-import org.khasanof.utils.AnnotationUtils;
 import org.khasanof.utils.ReflectionUtils;
 import org.springframework.stereotype.Component;
 
-import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -27,7 +19,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @see org.khasanof.collector.method.checker
  * @since 12/26/2023 9:44 PM
  */
-@Component // TODO rewrite today!
+@Component
 public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
 
     private final Set<Class<?>> classes = ReflectionUtils.getSubTypesSuperAnnotation(ProcessUpdate.class);

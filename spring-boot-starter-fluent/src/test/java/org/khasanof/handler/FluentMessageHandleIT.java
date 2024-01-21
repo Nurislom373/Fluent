@@ -1,6 +1,8 @@
 package org.khasanof.handler;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.khasanof.IntegrationTest;
 import org.khasanof.UpdateFactoryFacade;
 import org.khasanof.verifier.FluentVerifier;
@@ -37,6 +39,25 @@ public class FluentMessageHandleIT {
         fluentVerifier.execute(update)
                 .expectSendMessage("I'm handle any messages")
                 .expectSendMessage("/start");
+    }
+
+    @Test
+    void thirdTestShouldSuccess() {
+        Update update = updateFactoryFacade.createMessage("/username : abdulloh");
+
+        fluentVerifier.execute(update)
+                .expectSendMessage("I'm handle any messages")
+                .expectSendMessage("name : abdulloh");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"/jeck1", "/jeck2"})
+    void fourthTestShouldSuccess(String command) {
+        Update update = updateFactoryFacade.createMessage(command);
+
+        fluentVerifier.execute(update)
+                .expectSendMessage("I'm handle any messages")
+                .expectSendMessage("Hi Jecki😎");
     }
 
 }

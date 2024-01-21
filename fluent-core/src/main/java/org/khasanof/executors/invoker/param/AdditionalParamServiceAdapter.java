@@ -33,7 +33,7 @@ public class AdditionalParamServiceAdapter implements InitializingBean {
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         applicationContext.getBeansOfType(AdditionalParamService.class).values()
                 .forEach(twt -> twtMap.put(twt.getType(), twt));
     }

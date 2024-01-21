@@ -1,6 +1,5 @@
 package org.khasanof.executors.execution;
 
-import org.khasanof.enums.additional.AdditionalParamType;
 import org.khasanof.event.ExecutionMethod;
 import org.springframework.stereotype.Component;
 
@@ -17,10 +16,5 @@ public class SimpleExecution extends AbstractExecution {
     @Override
     public void run(ExecutionMethod methodV1Event) throws InvocationTargetException, IllegalAccessException {
         defaultExecution(methodV1Event);
-    }
-
-    @Override
-    public AdditionalParamType getType() {
-        return null;
     }
 }

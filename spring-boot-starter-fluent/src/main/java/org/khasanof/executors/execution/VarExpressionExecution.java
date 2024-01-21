@@ -41,11 +41,6 @@ public class VarExpressionExecution extends AbstractExecution {
         getInvokerMethod(simpleInvoker).invoke(simpleInvoker.getReference(), MethodUtils.cleanerV2(copy));
     }
 
-    @Override
-    public AdditionalParamType getType() {
-        return AdditionalParamType.VAR_EXPRESSION_PARAM;
-    }
-
     private Object[] mapGetValues(Map<String, String> stringMap, Method method) {
         List<String> variables = new ArrayList<>();
         Arrays.stream(method.getParameterAnnotations()).forEach(annotations -> {
@@ -63,4 +58,8 @@ public class VarExpressionExecution extends AbstractExecution {
         return variables.toArray();
     }
 
+    @Override
+    public AdditionalParamType getType() {
+        return AdditionalParamType.VAR_EXPRESSION_PARAM;
+    }
 }

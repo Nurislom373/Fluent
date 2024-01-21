@@ -1,4 +1,4 @@
-package org.khasanof.executors.invoker;
+package org.khasanof.executors.invoker.collector;
 
 import org.springframework.beans.factory.InitializingBean;
 

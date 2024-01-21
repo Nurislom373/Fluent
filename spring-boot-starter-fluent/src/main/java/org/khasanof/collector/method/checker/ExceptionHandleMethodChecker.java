@@ -32,25 +32,28 @@ public class ExceptionHandleMethodChecker extends AbstractHandleMethodChecker {
     @Override
     public boolean check(Method method) {
         boolean validParams, validAnnotation;
-        Class<?>[] parameterTypes = method.getParameterTypes();
-
         if (method.getAnnotations().length == 0) {
             return false;
         }
 
+        checkParametersCount(method.getParameterTypes());
         validAnnotation = hasAnnotation(method, HandleException.class);
+        validParams = allMatchParameter(method.getParameterTypes());
 
-        if (parameterTypes.length < 1 || parameterTypes.length > 3) {
-            throw new InvalidParamsException("Exception handler method invalid parameters!");
-        }
+        checkValidAnnotationAndParams(validParams, validAnnotation);
+        return validParams && validAnnotation;
+    }
 
-        validParams = allMatchParameter(parameterTypes);
-
+    private void checkValidAnnotationAndParams(boolean validParams, boolean validAnnotation) {
         if (!validParams && validAnnotation) {
             throw new InvalidParamsException("Exception handler method invalid parameters!");
         }
+    }
 
-        return validParams && validAnnotation;
+    private void checkParametersCount(Class<?>[] parameterTypes) {
+        if (parameterTypes.length < 1 || parameterTypes.length > 3) {
+            throw new InvalidParamsException("Exception handler method invalid parameters!");
+        }
     }
 
     private boolean allMatchParameter(Class<?>[] classes) {

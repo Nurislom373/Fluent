@@ -18,6 +18,7 @@ import static org.khasanof.factories.invoker.HandleProcessFileFactory.HANDLE_UPD
  * @since 15.07.2023 23:59
  */
 @Component(DefaultInvokerFunctions.NAME)
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class DefaultInvokerFunctions extends AbstractInvokerFunctions {
 
     public static final String NAME = "defaultInvokerFunctions";
@@ -35,8 +36,10 @@ public class DefaultInvokerFunctions extends AbstractInvokerFunctions {
     }
 
     private Invoker findInvoker(SimpleInvoker simpleInvoker) {
-        return getAll().stream().filter(invoker -> invokerMatcher(invoker, simpleInvoker))
-                .findFirst().orElseThrow(() -> new RuntimeException("InvokerModel not found!"));
+        return getAll().stream()
+                .filter(invoker -> invokerMatcher(invoker, simpleInvoker))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("InvokerModel not found!"));
     }
 
     private void fillInvokerArguments(SimpleInvoker simpleInvoker, Object[] args, Invoker modelV2) {
@@ -47,31 +50,38 @@ public class DefaultInvokerFunctions extends AbstractInvokerFunctions {
     @NotNull
     private Object[] getInvokerArguments(SimpleInvoker simpleInvoker, Object[] args, Invoker modelV2) {
         List<Object> objects = new ArrayList<>();
+
         if (modelV2.hasAdditionalParam() && !modelV2.isInputSystem()) {
-            Method invokerMethod = simpleInvoker.getMethod();
-            if (modelV2.getName().equals(HANDLE_UPDATE_PROCESS_FILE)) {
-                int parameterCount = invokerMethod.getParameterCount();
-                if (parameterCount > 2) {
-                    objects.add(getAdditionalParamV2(modelV2, args, invokerMethod));
-                }
-            } else {
-                objects.add(getAdditionalParamV2(modelV2, args, invokerMethod));
-            }
+            fillInvokerArguments(simpleInvoker, args, modelV2, objects);
         }
+
         objects.addAll(Arrays.asList(args));
         return objects.toArray();
     }
 
-    @SuppressWarnings("unchecked")
+    private void fillInvokerArguments(SimpleInvoker simpleInvoker, Object[] args, Invoker modelV2, List<Object> objects) {
+        Method invokerMethod = simpleInvoker.getMethod();
+
+        if (Objects.equals(HANDLE_UPDATE_PROCESS_FILE, modelV2.getName())) {
+            processFileInvokerCheckParamsCount(args, modelV2, objects, invokerMethod);
+            return;
+        }
+        objects.add(getAdditionalParamV2(modelV2, args, invokerMethod));
+    }
+
+    private void processFileInvokerCheckParamsCount(Object[] args, Invoker modelV2, List<Object> objects, Method invokerMethod) {
+        if (invokerMethod.getParameterCount() > 2) {
+            objects.add(getAdditionalParamV2(modelV2, args, invokerMethod));
+        }
+    }
+
     private boolean invokerMatcher(Invoker invoker, SimpleInvoker simpleInvoker) {
         return invoker.getCondition().match(simpleInvoker) && (!invoker.hasAdditionalChecks() ||
                 invoker.getAdditionalChecks().check(simpleInvoker));
     }
 
-    @SuppressWarnings({"rawtypes"})
     private Object getAdditionalParamV2(Invoker invoker, Object[] args, Method method) {
         AdditionalParam additionalParam = invoker.getAdditionalParam();
         return additionalParamService.getParam(additionalParam.getType(), invoker, args, method);
     }
-
 }

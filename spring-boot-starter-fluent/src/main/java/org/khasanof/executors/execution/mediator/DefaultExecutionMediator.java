@@ -1,17 +1,17 @@
-package org.khasanof.executors.execution;
+package org.khasanof.executors.execution.mediator;
 
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.enums.additional.AdditionalParamType;
 import org.khasanof.event.ExecutionMethod;
-import org.springframework.beans.BeansException;
+import org.khasanof.executors.execution.Execution;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Nurislom
@@ -19,14 +19,17 @@ import java.util.concurrent.ConcurrentHashMap;
  * @since 8/13/2023 9:19 PM
  */
 @Slf4j
-@Component(CommonExecutionAdapter.NAME)
-public class CommonExecutionAdapter implements ApplicationContextAware {
+@Component
+public class DefaultExecutionMediator implements ExecutionMediator, InitializingBean {
 
-    public static final String NAME = "commonExecutionAdapter";
+    private final ApplicationContext applicationContext;
+    private final Map<AdditionalParamType, Execution> executions = new HashMap<>();
 
-    private final Map<AdditionalParamType, Execution> executions = new ConcurrentHashMap<>();
-    private Execution simpleExecution;
+    public DefaultExecutionMediator(ApplicationContext applicationContext) {
+        this.applicationContext = applicationContext;
+    }
 
+    @Override
     public void execution(ExecutionMethod event) {
         try {
             tryExecution(event);
@@ -36,12 +39,21 @@ public class CommonExecutionAdapter implements ApplicationContextAware {
         }
     }
 
+    @Override
+    public void setExecutions(Map<AdditionalParamType, Execution> executions) {
+        this.executions.putAll(executions);
+    }
+
     private void tryExecution(ExecutionMethod event) throws InvocationTargetException, IllegalAccessException {
+        Execution execution = getExecution(event);
+        execution.run(event);
+    }
+
+    private Execution getExecution(ExecutionMethod event) {
         if (Objects.isNull(event.getInvokerModel().getAdditionalParam())) {
-            simpleExecution.run(event);
-        } else {
-            executions.get(getAdditionalParamType(event)).run(event);
+            return executions.get(null);
         }
+        return executions.get(getAdditionalParamType(event));
     }
 
     private AdditionalParamType getAdditionalParamType(ExecutionMethod event) {
@@ -51,16 +63,8 @@ public class CommonExecutionAdapter implements ApplicationContextAware {
     }
 
     @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+    public void afterPropertiesSet() {
         applicationContext.getBeansOfType(Execution.class)
-                .forEach((beanName, bean) -> addExecutions(bean));
-    }
-
-    private void addExecutions(Execution bean) {
-        if (Objects.nonNull(bean.getType())) {
-            executions.put(bean.getType(), bean);
-        } else {
-            simpleExecution = bean;
-        }
+                .forEach((beanName, bean) -> this.executions.put(bean.getType(), bean));
     }
 }

@@ -7,7 +7,7 @@ import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.event.ExecutionMethod;
 import org.khasanof.exceptions.InvalidParamsException;
-import org.khasanof.executors.execution.CommonExecutionAdapter;
+import org.khasanof.executors.execution.mediator.ExecutionMediator;
 import org.khasanof.models.Invoker;
 import org.khasanof.models.collector.FindHandlerMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
@@ -31,16 +31,16 @@ import java.util.Objects;
 public class DefaultInvokerExecutor implements InvokerExecutor {
 
     private final InvokerFunctions invokerFunctions;
+    private final ExecutionMediator executionMediator;
     private final ContextOperationExecutor operationExecutor;
-    private final CommonExecutionAdapter commonExecutionAdapter;
 
     public DefaultInvokerExecutor(InvokerFunctions invokerFunctions,
-                                  ContextOperationExecutor operationExecutor,
-                                  CommonExecutionAdapter commonExecutionAdapter) {
+                                  ExecutionMediator executionMediator,
+                                  ContextOperationExecutor operationExecutor) {
 
         this.invokerFunctions = invokerFunctions;
+        this.executionMediator = executionMediator;
         this.operationExecutor = operationExecutor;
-        this.commonExecutionAdapter = commonExecutionAdapter;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class DefaultInvokerExecutor implements InvokerExecutor {
             method.invoke(simpleInvoker.getReference());
             return;
         }
-        commonExecutionAdapter.execution(new ExecutionMethod(this, invokerModel));
+        executionMediator.execution(new ExecutionMethod(this, invokerModel));
     }
 
     private void tryAccessMethod(Method method) throws IllegalAccessException {

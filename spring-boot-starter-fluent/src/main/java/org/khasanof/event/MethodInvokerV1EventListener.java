@@ -1,7 +1,7 @@
 package org.khasanof.event;
 
 import lombok.extern.slf4j.Slf4j;
-import org.khasanof.executors.execution.CommonExecutionAdapter;
+import org.khasanof.executors.execution.mediator.ExecutionMediator;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -15,17 +15,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class MethodInvokerV1EventListener {
 
-    private final CommonExecutionAdapter commonExecutionAdapter;
+    private final ExecutionMediator executionMediator;
 
-    public MethodInvokerV1EventListener(CommonExecutionAdapter commonExecutionAdapter) {
-        this.commonExecutionAdapter = commonExecutionAdapter;
+    public MethodInvokerV1EventListener(ExecutionMediator executionMediator) {
+        this.executionMediator = executionMediator;
     }
 
     @Async
     @EventListener(value = ExecutionMethod.class)
     public void onApplicationEvent(ExecutionMethod methodV1Event) {
         log.debug("event listen invoker name : {}", methodV1Event.getInvokerModel().getName());
-        commonExecutionAdapter.execution(methodV1Event);
+        executionMediator.execution(methodV1Event);
     }
-
 }

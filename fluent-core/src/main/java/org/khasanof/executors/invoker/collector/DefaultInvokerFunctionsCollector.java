@@ -1,5 +1,6 @@
-package org.khasanof.executors.invoker;
+package org.khasanof.executors.invoker.collector;
 
+import org.khasanof.executors.invoker.InvokerFunctions;
 import org.khasanof.factories.invoker.InvokerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
