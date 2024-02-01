@@ -1,11 +1,11 @@
 package org.khasanof.models.invoker;
 
 import lombok.*;
-import org.khasanof.ICondition;
 import org.khasanof.enums.InvokerType;
-import org.khasanof.models.condition.MethodCondition;
 
 import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.locks.Condition;
 
@@ -25,6 +25,8 @@ public class SimpleInvokerMethod implements SimpleInvoker {
     private Method method;
     private Object reference;
     private Set<Condition> conditions;
+    private Boolean hasMethodParams;
+    private Map<InvokerParam, Object> params;
 
     public SimpleInvokerMethod(Method method, Object reference) {
         this.method = method;
@@ -34,5 +36,10 @@ public class SimpleInvokerMethod implements SimpleInvoker {
     @Override
     public InvokerType getType() {
         return InvokerType.METHOD;
+    }
+
+    @Override
+    public Boolean hasMethodParams() {
+        return Objects.equals(hasMethodParams, Boolean.TRUE);
     }
 }

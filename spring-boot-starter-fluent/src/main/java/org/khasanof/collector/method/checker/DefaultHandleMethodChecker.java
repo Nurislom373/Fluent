@@ -35,7 +35,7 @@ public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
 
     @Override
     public boolean check(Method method) {
-        if (method.getAnnotations().length == 0 || method.getParameterCount() < 2) {
+        if (method.getAnnotations().length == 0) {
             return false;
         }
 

@@ -9,6 +9,6 @@ public interface GenericChainProcessor<T, R> {
 
     void setNextProcessor(GenericChainProcessor<T, R> nextProcessor);
 
-    R process(T t);
+    R process(T t) throws Exception;
 
 }

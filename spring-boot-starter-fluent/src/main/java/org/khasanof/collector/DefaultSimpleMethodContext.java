@@ -8,6 +8,7 @@ import org.khasanof.constants.FluentConstants;
 import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.event.methodContext.MethodCollectedEvent;
 import org.khasanof.factories.invoker.method.InvokerMethodFactory;
+import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -56,21 +57,38 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
         this.invokerMethodFactory = invokerMethodFactory;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Map<HandleAnnotation, List<SimpleInvoker>> findAll() {
         return beanMap;
     }
 
+    /**
+     *
+     * @param classes
+     * @return
+     */
     @Override
     public Optional<List<SimpleInvoker>> find(HandleAnnotation classes) {
         return Optional.of(beanMap.getOrDefault(classes, Collections.emptyList()));
     }
 
+    /**
+     *
+     * @param key
+     * @return
+     */
     @Override
     public boolean contains(HandleAnnotation key) {
         return beanMap.containsKey(key);
     }
 
+    /**
+     *
+     */
     @Override
     public void assembleMethods() {
         log.debug("Default Method Context Start");
@@ -132,7 +150,7 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
 
             if (beanMap.containsKey(key)) {
                 beanMap.get(key)
-                        .add(invokerMethodFactory.create(Map.entry(method, bean)));
+                        .add(invokerMethodFactory.create(Map.entry(method, bean), createParams(method, key)));
                 return;
             }
             putNewHandleAnnotation(bean, method, key);
@@ -141,8 +159,14 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
 
     private void putNewHandleAnnotation(Object bean, Method method, HandleAnnotation key) {
         beanMap.put(key, new ArrayList<>() {{
-            add(invokerMethodFactory.create(Map.entry(method, bean)));
+            add(invokerMethodFactory.create(Map.entry(method, bean), createParams(method, key)));
         }});
+    }
+
+    private Map<InvokerParam, Object> createParams(Method method, HandleAnnotation handleAnnotation) {
+        return new HashMap<>() {{
+            put(InvokerParam.ANNOTATION, method.getAnnotation(handleAnnotation.getType()));
+        }};
     }
 
     private void pushEvent() {

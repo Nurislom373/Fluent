@@ -19,7 +19,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
  * @since 9/30/2023 11:26 PM
  */
 @Slf4j
-@UpdateController
+//@UpdateController
 public class SimpleController {
 
     @HandleMessages(values = {

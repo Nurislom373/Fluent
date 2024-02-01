@@ -80,8 +80,7 @@ public class AnyHandleMethodCheckerTest {
     }
 
     private Method getValidFirstMethod() {
-        return ReflectionUtils.findMethod(AnyHandleMethodCheckerTest.TestController.class, "validFirst",
-                Update.class, AbsSender.class);
+        return ReflectionUtils.findMethod(AnyHandleMethodCheckerTest.TestController.class, "validFirst", Update.class);
     }
 
     private Method getValidSecondMethod() {
@@ -100,7 +99,7 @@ public class AnyHandleMethodCheckerTest {
 
         // valid
         @HandleAny(type = HandleType.MESSAGE, proceed = Proceed.PROCEED)
-        private void validFirst(Update update, AbsSender sender) {}
+        private void validFirst(Update update) {}
 
         // valid
         @HandleAny(type = HandleType.AUDIO)

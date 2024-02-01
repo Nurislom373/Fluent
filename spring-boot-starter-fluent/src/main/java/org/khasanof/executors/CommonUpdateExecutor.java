@@ -1,5 +1,6 @@
 package org.khasanof.executors;
 
+import lombok.SneakyThrows;
 import org.khasanof.FluentBot;
 import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.custom.BreakerForEach;
@@ -7,6 +8,8 @@ import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.executors.invoker.InvokerExecutor;
 import org.khasanof.executors.invoker.DefaultInvokerFunctions;
 import org.khasanof.executors.invoker.InvokerFunctionsAdaptee;
+import org.khasanof.executors.processor.AbstractUpdateChainProcessor;
+import org.khasanof.factories.processor.UpdateChainProcessorFactory;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -26,13 +29,19 @@ public class CommonUpdateExecutor extends AbstractUpdateExecutor {
     private final DeterminationUpdate determination; // gathers the methods corresponding to the incoming update.
     private final InvokerExecutor invoker; // method invoker
     private final GenericSingleton<FluentBot> fluentBot; // bot instance
+    private final UpdateChainProcessorFactory updateChainProcessorFactory;
 
-    public CommonUpdateExecutor(DefaultInvokerFunctions invokerFunctions, DeterminationUpdate determinationUpdateType,
-                                InvokerExecutor invoker, GenericSingleton<FluentBot> fluentBot) {
+
+    public CommonUpdateExecutor(DefaultInvokerFunctions invokerFunctions,
+                                DeterminationUpdate determinationUpdateType,
+                                InvokerExecutor invoker, GenericSingleton<FluentBot> fluentBot,
+                                UpdateChainProcessorFactory updateChainProcessorFactory) {
+
         this.invokerFunctionsAdaptee = invokerFunctions;
         this.determination = determinationUpdateType;
         this.fluentBot = fluentBot;
         this.invoker = invoker;
+        this.updateChainProcessorFactory = updateChainProcessorFactory;
     }
 
     /**
@@ -42,16 +51,19 @@ public class CommonUpdateExecutor extends AbstractUpdateExecutor {
      * @param update from telegram is coming.
      */
     @Override
+    @SneakyThrows
     public void execute(Update update) {
-        FluentBot instance = checkBotInstance();
-        BreakerForEach.forEach(determination.determinationInvokers(update).stream(),
-                ((entry, breaker) -> {
-                    if (!FluentThreadLocalContext.updateExecutorBoolean.get()) {
-                        invoker.invoke(invokerFunctionsAdaptee.adaptee(entry, update, instance));
-                    } else {
-                        breaker.stop();
-                    }
-                }), () -> FluentThreadLocalContext.updateExecutorBoolean.set(false));
+        AbstractUpdateChainProcessor processor = updateChainProcessorFactory.create();
+        processor.process(update);
+//        FluentBot instance = checkBotInstance();
+//        BreakerForEach.forEach(determination.determinationInvokers(update).stream(),
+//                ((entry, breaker) -> {
+//                    if (!FluentThreadLocalContext.updateExecutorBoolean.get()) {
+//                        invoker.invoke(invokerFunctionsAdaptee.adaptee(entry, update, instance));
+//                    } else {
+//                        breaker.stop();
+//                    }
+//                }), () -> FluentThreadLocalContext.updateExecutorBoolean.set(false));
     }
 
     private FluentBot checkBotInstance() {

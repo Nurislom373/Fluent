@@ -23,7 +23,7 @@ import java.io.File;
  * @see com.example
  * @since 8/9/2023 9:44 PM
  */
-@UpdateController
+//@UpdateController
 public class HandleAnyTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();

@@ -1,6 +1,7 @@
 package org.khasanof.utils;
 
 import lombok.SneakyThrows;
+import org.khasanof.exceptions.UnknownUpdateTypeException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.objects.File;
@@ -29,6 +30,40 @@ public abstract class UpdateUtils {
             return update.getCallbackQuery().getFrom().getId();
         }
         return Long.MIN_VALUE;
+    }
+
+    /**
+     * Get chat id from update.
+     *
+     * @param update {@code Update}
+     * @return chat id
+     */
+    public static Long getChatIdFromUpdate(Update update) {
+        if (update.hasMessage()) {
+            return update.getMessage().getChatId();
+        }
+        if (update.hasCallbackQuery()) {
+            return update.getCallbackQuery().getMessage().getChatId();
+        }
+        if (update.hasChatJoinRequest()) {
+            return update.getChatJoinRequest().getChat().getId();
+        }
+        if (update.hasEditedMessage()) {
+            return update.getEditedMessage().getChatId();
+        }
+        if (update.hasEditedChannelPost()) {
+            return update.getEditedChannelPost().getChatId();
+        }
+        if (update.hasMyChatMember()) {
+            return update.getMyChatMember().getChat().getId();
+        }
+        if (update.hasChatMember()) {
+            return update.getChatMember().getChat().getId();
+        }
+        if (update.hasChannelPost()) {
+            return update.getChannelPost().getChatId();
+        }
+        return null;
     }
 
     public static User getFrom(Update update) {

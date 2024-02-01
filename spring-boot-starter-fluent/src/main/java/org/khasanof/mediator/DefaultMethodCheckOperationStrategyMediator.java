@@ -1,6 +1,5 @@
 package org.khasanof.mediator;
 
-import lombok.extern.slf4j.Slf4j;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.collector.method.checker.strategy.DefaultMethodCheckOperationStrategy;
@@ -19,7 +18,6 @@ import java.util.Objects;
  * @see org.khasanof.mediator
  * @since 1/21/2024 2:26 PM
  */
-@Slf4j
 @Component
 public class DefaultMethodCheckOperationStrategyMediator implements MethodCheckOperationStrategyMediator {
 

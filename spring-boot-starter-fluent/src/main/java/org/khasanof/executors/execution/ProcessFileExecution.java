@@ -20,9 +20,11 @@ public class ProcessFileExecution implements Execution {
     public void run(ExecutionMethod executionMethod) throws InvocationTargetException, IllegalAccessException {
         SimpleInvoker simpleInvoker = executionMethod.getInvokerModel().getInvokerReference();
         AdditionalParamType paramType = executionMethod.getInvokerModel().getAdditionalParam().getType();
+
         Object extraParam = Arrays.stream(executionMethod.getInvokerModel().getArgs())
                 .filter(o -> o.getClass().equals(paramType.getParmaType()))
                 .findFirst().orElseThrow(() -> new RuntimeException("Match object not found!"));
+
         int length = executionMethod.getInvokerModel().getArgs().length;
         Object[] copy = Arrays.copyOf(executionMethod.getInvokerModel().getArgs(), length + 1);
         copy[copy.length - 1] = extraParam;

@@ -32,7 +32,7 @@ import java.util.List;
  * @see com.example.fluenttest
  * @since 12/24/2023 5:53 PM
  */
-@UpdateController
+//@UpdateController
 public class CallbackController {
 
     private static final InlineKeyboardMarkup INLINE_KEYBOARD_MARKUP = new InlineKeyboardMarkup();

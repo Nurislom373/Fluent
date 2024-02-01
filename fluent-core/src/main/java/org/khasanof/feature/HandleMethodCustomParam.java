@@ -1,0 +1,17 @@
+package org.khasanof.feature;
+
+import org.khasanof.enums.MethodType;
+import org.khasanof.models.invoker.SimpleInvoker;
+
+/**
+ * @author Nurislom
+ * @see org.khasanof.feature
+ * @since 2/1/2024 10:22 PM
+ */
+public interface HandleMethodCustomParam {
+
+    void execute(SimpleInvoker simpleInvoker);
+
+    MethodType methodType();
+
+}

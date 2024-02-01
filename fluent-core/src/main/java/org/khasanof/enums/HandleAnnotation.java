@@ -29,6 +29,7 @@ public enum HandleAnnotation {
 
     UNKNOWN(Annotation.class, false),
 
+    HANDLE_WEB_APP_DATA(HandleWebAppData.class, false),
     HANDLE_MY_CHAT_MEMBER(HandleMyChatMember.class, false),
     HANDLE_ANY(HandleAny.class, false),
     HANDLE_INLINE_QUERY(HandleInlineQuery.class, false),

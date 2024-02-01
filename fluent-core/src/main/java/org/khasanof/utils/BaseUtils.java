@@ -1,6 +1,7 @@
 package org.khasanof.utils;
 
 import org.khasanof.enums.HandleAnnotation;
+import org.khasanof.exceptions.InvalidParamsException;
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.support.AopUtils;
 
@@ -41,7 +42,7 @@ public abstract class BaseUtils {
                             .filter(Objects::nonNull)
                             .map(Annotation::annotationType)
                             .findFirst()
-                            .orElse(null));
+                            .orElseThrow(() -> new InvalidParamsException("Annotation not found!")));
         }
     }
 

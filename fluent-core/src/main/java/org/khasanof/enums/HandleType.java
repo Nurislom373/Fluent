@@ -17,6 +17,7 @@ public enum HandleType {
 
     UNKNOWN, ALL, // special types!
     MY_CHAT_MEMBER,
+    WEB_APP_DATA,
     MESSAGE,
     CALLBACK,
     STICKER,

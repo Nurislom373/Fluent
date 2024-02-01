@@ -51,7 +51,7 @@ public class ExceptionHandleMethodChecker extends AbstractHandleMethodChecker {
     }
 
     private void checkParametersCount(Class<?>[] parameterTypes) {
-        if (parameterTypes.length < 1 || parameterTypes.length > 3) {
+        if (parameterTypes.length < 1 || parameterTypes.length > 2) {
             throw new InvalidParamsException("Exception handler method invalid parameters!");
         }
     }

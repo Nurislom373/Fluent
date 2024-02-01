@@ -16,4 +16,7 @@ public abstract class FluentConstants {
 
     public static final Set<String> IGNORE_METHOD_NAMES = Set.of("toString", "equals", "hashCode");
 
+    public static final String INVOKER_TYPE = "invoker_type";
+    public static final String ADDITIONAL_METHOD_PARAM = "additional_method_param";
+
 }

@@ -45,7 +45,7 @@ public class HandleAnyMethodChecker extends AbstractHandleMethodChecker {
     private void checkMethodParameters(Method method) {
         int parameterCount = method.getParameterCount();
 
-        if (!(parameterCount == 2 || parameterCount == 0)) {
+        if (!(parameterCount == 1 || parameterCount == 0)) {
             throw new InvalidParamsException("Invalid parameter handleAny!");
         }
         checkParameterTypes(method, parameterCount);

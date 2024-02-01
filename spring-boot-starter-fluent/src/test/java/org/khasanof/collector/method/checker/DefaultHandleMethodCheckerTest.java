@@ -1,11 +1,12 @@
 package org.khasanof.collector.method.checker;
 
 import org.junit.jupiter.api.Test;
+import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.MatchScope;
 import org.khasanof.exceptions.InvalidParamsException;
-import org.khasanof.factories.method.DefaultMethodCheckConditionFactoryImpl;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
+import org.khasanof.factories.method.DefaultMethodCheckConditionFactoryImpl;
 import org.khasanof.mediator.DefaultMethodCheckOperationStrategyMediator;
 import org.springframework.util.ReflectionUtils;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -13,7 +14,8 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
 
 import java.lang.reflect.Method;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author Nurislom
@@ -25,7 +27,7 @@ public class DefaultHandleMethodCheckerTest {
     private final ProcessTypeHandleMethodChecker handleMethodChecker = createHandleMethodChecker();
 
     @Test
-    void testCheckMethodShouldSuccess() {
+    void firstTestCheckMethodShouldSuccess() {
         Method handleMethod = getValidHandleMethod();
         assertTrue(handleMethodChecker.check(handleMethod));
     }
@@ -36,14 +38,53 @@ public class DefaultHandleMethodCheckerTest {
         assertThrows(InvalidParamsException.class, () -> handleMethodChecker.check(invalidHandleMethod));
     }
 
+    @Test
+    void secondTestCheckMethodShouldSuccess() {
+        Method handleMethod = getValidHandleMethodSecond();
+        assertTrue(handleMethodChecker.check(handleMethod));
+    }
+
+    @Test
+    void thirdTestCheckMethodShouldSuccess() {
+        Method handleMethod = getValidHandlerMethodThird();
+        assertTrue(handleMethodChecker.check(handleMethod));
+    }
+
+    @Test
+    void fourthTestCheckMethodShouldSuccess() {
+        Method handleMethod = getValidHandlerMethodFourth();
+        assertTrue(handleMethodChecker.check(handleMethod));
+    }
+
+    @Test
+    void secondTestCheckMethodShouldFailed() {
+        Method invalidHandleMethod = getInvalidValidHandlerMethodSecond();
+        assertThrows(InvalidParamsException.class, () -> handleMethodChecker.check(invalidHandleMethod));
+    }
+
     private Method getInvalidHandleMethod() {
         return ReflectionUtils.findMethod(TestController.class, "invalidHandleMethod",
                 AbsSender.class, Update.class, String.class);
     }
 
     private Method getValidHandleMethod() {
-        return ReflectionUtils.findMethod(TestController.class, "validHandleMethod",
-                AbsSender.class, Update.class);
+        return ReflectionUtils.findMethod(TestController.class, "validHandleMethod", Update.class);
+    }
+
+    private Method getValidHandleMethodSecond() {
+        return ReflectionUtils.findMethod(TestController.class, "validHandleMethod");
+    }
+
+    private Method getInvalidValidHandlerMethodSecond() {
+        return ReflectionUtils.findMethod(TestController.class, "handleCallback", Update.class, AbsSender.class);
+    }
+
+    private Method getValidHandlerMethodThird() {
+        return ReflectionUtils.findMethod(TestController.class, "handleCallback", Update.class);
+    }
+
+    private Method getValidHandlerMethodFourth() {
+        return ReflectionUtils.findMethod(TestController.class, "handleCallback");
     }
 
     ProcessTypeHandleMethodChecker createHandleMethodChecker() {
@@ -57,10 +98,22 @@ public class DefaultHandleMethodCheckerTest {
     public static class TestController {
 
         @HandleMessage(value = "/start", scope = MatchScope.EQUALS)
-        public void validHandleMethod(AbsSender sender, Update update) {}
+        public void validHandleMethod(Update update) {}
+
+        @HandleMessage(value = "/start-time", scope = MatchScope.EQUALS)
+        public void validHandleMethod() {}
 
         @HandleMessage(value = "/invalid", scope = MatchScope.EQUALS)
         public void invalidHandleMethod(AbsSender sender, Update update, String test) {}
+
+        @HandleCallback(values = {"EN", "RU", "UZ"})
+        private void handleCallback(Update update, AbsSender sender) {}
+
+        @HandleCallback(values = {"EN", "RU", "UZ"})
+        private void handleCallback(Update update) {}
+
+        @HandleCallback(values = {"EN", "RU", "UZ"})
+        private void handleCallback() {}
 
     }
 

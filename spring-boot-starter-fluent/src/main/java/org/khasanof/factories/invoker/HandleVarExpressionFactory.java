@@ -64,14 +64,12 @@ public class HandleVarExpressionFactory implements InvokerFactory {
 
     @NotNull
     private APAnnotationMap getAdditionalParam() {
-        return entry -> matcher.getMatchVariables(((HandleMessage)
-                entry.getValue()).value(), entry.getKey().getMessage().getText());
+        return entry -> matcher.getMatchVariables(((HandleMessage) entry.getValue()).value(), entry.getKey().getMessage().getText());
     }
 
     @NotNull
     private static SimpleInvokerCondition getMethodCondition() {
-        return invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
-                HandleMessage.class, false);
+        return invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(), HandleMessage.class, false);
     }
 
 }

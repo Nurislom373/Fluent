@@ -9,6 +9,6 @@ public interface GenericNopChainProcessor<T> {
 
     void setNext(GenericNopChainProcessor<T> nextProcessor);
 
-    void process(T t);
+    void process(T t) throws Exception;
 
 }

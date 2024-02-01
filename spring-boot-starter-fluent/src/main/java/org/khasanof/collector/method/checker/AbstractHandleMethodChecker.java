@@ -13,7 +13,7 @@ import java.util.Arrays;
  */
 public abstract class AbstractHandleMethodChecker implements ProcessTypeHandleMethodChecker {
 
-    protected final Class<?>[] MAIN_PARAMS = ParamConstants.MAIN_PARAMS_ARRAY;
+    protected final Class<?>[] MAIN_PARAMS = ParamConstants.DEFAULT_HANDLER_PARAM;
 
     protected boolean paramsTypeCheckV2(Class<?>[] methodParams, Class<?>[] matchParams) {
         return Arrays.stream(matchParams)

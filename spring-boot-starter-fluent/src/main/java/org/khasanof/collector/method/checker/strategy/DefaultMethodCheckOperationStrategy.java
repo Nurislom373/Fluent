@@ -16,7 +16,7 @@ import static org.khasanof.collector.method.checker.strategy.MethodCheckOperatio
 @Slf4j
 public class DefaultMethodCheckOperationStrategy implements MethodCheckOperationStrategy {
 
-    private final Class<?>[] MAIN_PARAMS = ParamConstants.MAIN_PARAMS_ARRAY;
+    private final Class<?>[] MAIN_PARAMS = ParamConstants.DEFAULT_HANDLER_PARAM;
 
     @Override
     public boolean check(Method method) {
@@ -25,7 +25,7 @@ public class DefaultMethodCheckOperationStrategy implements MethodCheckOperation
     }
 
     private void checkMethodParameters(Method method) {
-        if (method.getParameterCount() != 2) {
+        if (method.getParameterCount() < 0 || method.getParameterCount() > 1) {
             log.warn("method parameters are not declared correctly");
             throw new InvalidParamsException("There is an error in the method parameters with handle annotations!");
         }
@@ -33,7 +33,9 @@ public class DefaultMethodCheckOperationStrategy implements MethodCheckOperation
     }
 
     private void checkMethodParametersInternal(Method method) {
-        checkFalseThen(() -> MethodCheckOperationUtils.paramsTypeCheck(method.getParameterTypes(), MAIN_PARAMS),
-                new InvalidParamsException("There is an error in the method parameters with handle annotations!"));
+        if (method.getParameterCount() != 0) {
+            checkFalseThen(() -> MethodCheckOperationUtils.paramsTypeCheck(method.getParameterTypes(), MAIN_PARAMS),
+                    new InvalidParamsException("There is an error in the method parameters with handle annotations!"));
+        }
     }
 }

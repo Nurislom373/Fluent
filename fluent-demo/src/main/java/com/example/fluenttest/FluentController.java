@@ -11,6 +11,7 @@ import org.khasanof.context.FluentUpdateContext;
 import org.khasanof.custom.attributes.UpdateAttributes;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.MatchScope;
+import org.khasanof.service.template.FluentTemplate;
 import org.telegram.telegrambots.meta.api.methods.send.SendAudio;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.ChatMemberUpdated;
@@ -29,64 +30,77 @@ import java.io.InputStream;
 @UpdateController
 public class FluentController {
 
-    @HandleMessage(value = "/start", scope = MatchScope.START_WITH)
-    public void fluent(Update update, AbsSender sender) throws TelegramApiException {
-        UpdateAttributes attributes = FluentContextHolder.getAttributes();
-        String text = update.getMessage().getText();
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
-        sender.execute(message);
+    private final FluentTemplate fluentTemplate;
+
+    public FluentController(FluentTemplate fluentTemplate) {
+        this.fluentTemplate = fluentTemplate;
     }
 
-    @HandleMyChatMember
-    public void checkMyChatMember(Update update, AbsSender sender) {
-        ChatMemberUpdated myChatMember = update.getMyChatMember();
-        System.out.println("myChatMember = " + myChatMember);
+    @HandleMessage("/template")
+    public void templateExample(Update update) {
+        fluentTemplate.sendText("Hello World");
     }
 
-    @HandleAny(type = HandleType.MESSAGE)
-    private void handleAnyMessages(Update update, AbsSender sender) throws TelegramApiException {
-        UpdateAttributes attributes = FluentContextHolder.getAttributes();
-        attributes.setAttribute("foo", "bar");
-        String text = "I'm handle any messages";
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
-        sender.execute(message);
-    }
 
-    @HandleCallback(values = {"EN", "RU", "UZ"})
-    private void handleCallback(Update update, AbsSender sender) throws TelegramApiException {
-        String text = "Callback handler!";
-        SendMessage message = new SendMessage(update.getCallbackQuery().getMessage().getChatId().toString(), text);
-        sender.execute(message);
-    }
-
-    @HandleMessage(value = "START_WITH('/fluent', value)", scope = MatchScope.EXPRESSION)
-    public void handleStartWithFluent(Update update, AbsSender sender) throws TelegramApiException {
-        String text = "Handle Update With Expression";
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
-        sender.execute(message);
-    }
-
-    @HandleMessage(value = "START_WITH('a', value) && END_WITH('z', value)", scope = MatchScope.EXPRESSION)
-    public void handleStartWithA(Update update, AbsSender sender) throws TelegramApiException {
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), "...");
-        message.setReplyToMessageId(update.getMessage().getMessageId());
-        sender.execute(message);
-
-        InputStream inputStream = getClass().getResourceAsStream("/darelian-instasamka-khlopai-phonk-house-remix-tekst.m4a");
-
-        SendAudio sendAudio = new SendAudio();
-        sendAudio.setCaption("Hello Sardorbro");
-        sendAudio.setChatId(update.getMessage().getChatId());
-        sendAudio.setTitle("jeck.m4a");
-        sendAudio.setAudio(new InputFile(inputStream, "jeck.m4a"));
-        sender.execute(sendAudio);
-    }
 
     @HandleMessage(value = "/send_username {name:[a-z]}", scope = MatchScope.VAR_EXPRESSION)
-    public void handleVarExpression(Update update, AbsSender sender, @BotVariable("name") String name) throws TelegramApiException {
+    public void handleVarExpression(@BotVariable("name") String name) {
         String text = "Hello ".concat(name).concat("!");
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
-        sender.executeAsync(message);
+        fluentTemplate.sendText(text);
     }
 
+
+//    @HandleMessage(value = "/start", scope = MatchScope.START_WITH)
+//    public void fluent(Update update, AbsSender sender) throws TelegramApiException {
+//        UpdateAttributes attributes = FluentContextHolder.getAttributes();
+//        String text = update.getMessage().getText();
+//        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
+//        sender.execute(message);
+//    }
+//
+//    @HandleMyChatMember
+//    public void checkMyChatMember(Update update, AbsSender sender) {
+//        ChatMemberUpdated myChatMember = update.getMyChatMember();
+//        System.out.println("myChatMember = " + myChatMember);
+//    }
+//
+//    @HandleAny(type = HandleType.MESSAGE)
+//    private void handleAnyMessages(Update update, AbsSender sender) throws TelegramApiException {
+//        UpdateAttributes attributes = FluentContextHolder.getAttributes();
+//        attributes.setAttribute("foo", "bar");
+//        String text = "I'm handle any messages";
+//        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
+//        sender.execute(message);
+//    }
+//
+//    @HandleCallback(values = {"EN", "RU", "UZ"})
+//    private void handleCallback(Update update, AbsSender sender) throws TelegramApiException {
+//        String text = "Callback handler!";
+//        SendMessage message = new SendMessage(update.getCallbackQuery().getMessage().getChatId().toString(), text);
+//        sender.execute(message);
+//    }
+//
+//    @HandleMessage(value = "START_WITH('/fluent', value)", scope = MatchScope.EXPRESSION)
+//    public void handleStartWithFluent(Update update, AbsSender sender) throws TelegramApiException {
+//        String text = "Handle Update With Expression";
+//        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
+//        sender.execute(message);
+//    }
+//
+//    @HandleMessage(value = "START_WITH('a', value) && END_WITH('z', value)", scope = MatchScope.EXPRESSION)
+//    public void handleStartWithA(Update update, AbsSender sender) throws TelegramApiException {
+//        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), "...");
+//        message.setReplyToMessageId(update.getMessage().getMessageId());
+//        sender.execute(message);
+//
+//        InputStream inputStream = getClass().getResourceAsStream("/darelian-instasamka-khlopai-phonk-house-remix-tekst.m4a");
+//
+//        SendAudio sendAudio = new SendAudio();
+//        sendAudio.setCaption("Hello Sardorbro");
+//        sendAudio.setChatId(update.getMessage().getChatId());
+//        sendAudio.setTitle("jeck.m4a");
+//        sendAudio.setAudio(new InputFile(inputStream, "jeck.m4a"));
+//        sender.execute(sendAudio);
+//    }
+//
 }

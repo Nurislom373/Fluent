@@ -36,7 +36,7 @@ public class HandleAnyInvokerFactory implements InvokerFactory {
     }
 
     @NotNull
-    private static SimpleInvokerCondition getMethodCondition() {
+    private SimpleInvokerCondition getMethodCondition() {
         return invokerMethod -> AnnotationUtils.hasAnnotation(invokerMethod.getMethod(),
                 HandleAny.class, false);
     }

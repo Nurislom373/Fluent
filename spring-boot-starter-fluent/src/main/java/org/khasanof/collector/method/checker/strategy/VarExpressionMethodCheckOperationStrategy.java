@@ -4,8 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.constants.ParamConstants;
 import org.khasanof.exceptions.InvalidParamsException;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.lang.reflect.Method;
+import java.util.Objects;
 
 import static org.khasanof.collector.method.checker.strategy.MethodCheckOperationUtils.*;
 
@@ -17,7 +19,7 @@ import static org.khasanof.collector.method.checker.strategy.MethodCheckOperatio
 @Slf4j
 public class VarExpressionMethodCheckOperationStrategy implements MethodCheckOperationStrategy {
 
-    private final Class<?>[] MAIN_PARAMS = ParamConstants.MAIN_PARAMS_ARRAY;
+    private final Class<?>[] MAIN_PARAMS = ParamConstants.DEFAULT_HANDLER_PARAM;
 
     @Override
     public boolean check(Method method) {
@@ -29,16 +31,19 @@ public class VarExpressionMethodCheckOperationStrategy implements MethodCheckOpe
         String expression = getAnnotationValue(method);
         int count = countWordsInBraces(expression);
 
-        if ((count + 2) > method.getParameterCount()) {
+        if (methodParameterFirstUpdate(method)) {
+            count += 1;
+        }
+
+        if (method.getParameterCount() > count) {
             log.warn("method parameters are not declared correctly!");
             throw new InvalidParamsException("There is an error in the method parameters with handle annotations!");
         }
-        checkParametersInternal(method);
     }
 
-    private void checkParametersInternal(Method method) {
-        checkFalseThen(() -> paramsTypeCheck(method.getParameterTypes(), MAIN_PARAMS),
-                new InvalidParamsException("There is an error in the method parameters with handle annotations!"));
+    private boolean methodParameterFirstUpdate(Method method) {
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        return Objects.equals(parameterTypes[0], Update.class);
     }
 
     private String getAnnotationValue(Method method) {
