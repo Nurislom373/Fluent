@@ -15,10 +15,7 @@ import java.util.Objects;
  * @since 1/25/2024 10:32 PM
  */
 @Slf4j
-@Component
 public class ExceptionChainProcessor extends AbstractUpdateChainProcessor {
-
-    public static final String NAME = "exceptionChainProcessor";
 
     private final ExceptionResolverService exceptionResolver;
 

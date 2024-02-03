@@ -13,6 +13,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
+import static org.khasanof.executors.execution.PerformHelper.invokeNoParamMethod;
+import static org.khasanof.utils.MethodUtils.tryAccessWhenMethodNotPublic;
+
 /**
  * @author Nurislom
  * @see org.khasanof.executors.execution
@@ -20,24 +23,12 @@ import java.util.*;
  */
 @Component
 @SuppressWarnings({"unchecked"})
-public class PerformVarExpression implements Perform {
+public class PerformVarExpression extends AbstractPerform {
 
     @Override
-    public void execute(SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException {
-        if (!simpleInvoker.hasMethodParams()) {
-            simpleInvoker.getMethod().invoke(simpleInvoker.getReference());
-        }
-        internalExecute(simpleInvoker);
-    }
-
-    private void internalExecute(SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException {
-        List<Object> params = new ArrayList<>();
-
+    void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
         checkSimpleInvoker(simpleInvoker, params);
         params.addAll(mapGetValues(getAdditionalParam(simpleInvoker), simpleInvoker.getMethod()));
-
-        Object[] paramsArray = params.toArray();
-        simpleInvoker.getMethod().invoke(simpleInvoker.getReference(), paramsArray);
     }
 
     private void checkSimpleInvoker(SimpleInvoker simpleInvoker, List<Object> params) {

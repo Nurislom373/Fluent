@@ -8,7 +8,7 @@ import org.khasanof.models.invoker.SimpleInvoker;
  * @see org.khasanof.feature
  * @since 2/1/2024 10:22 PM
  */
-public interface HandleMethodCustomParam {
+public interface HandleMethodExtraParam {
 
     void execute(SimpleInvoker simpleInvoker);
 

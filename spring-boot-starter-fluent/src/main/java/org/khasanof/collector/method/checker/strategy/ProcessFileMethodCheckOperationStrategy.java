@@ -26,7 +26,7 @@ public class ProcessFileMethodCheckOperationStrategy implements MethodCheckOpera
     }
 
     private void checkMethodParameters(Method method) {
-        if (method.getParameterCount() < 0 || method.getParameterCount() > 2) {
+        if (method.getParameterCount() > 2) {
             log.warn("method parameters are not declared correctly");
             throw new InvalidParamsException("There is an error in the method parameters with handle annotations!");
         }

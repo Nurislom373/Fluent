@@ -1,7 +1,7 @@
 package org.khasanof.config.service;
 
 import org.khasanof.collector.context.SimpleMethodContext;
-import org.khasanof.executors.matcher.CommonMatcherAdapter;
+import org.khasanof.executors.matcher.MatcherMediator;
 import org.khasanof.service.DefaultSearchHandlerMethodService;
 import org.khasanof.service.SearchHandlerMethodService;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 public class SearchHandlerMethodServiceAutoConfiguration {
 
     @Bean
-    SearchHandlerMethodService searchHandlerMethodService(CommonMatcherAdapter commonMatcher, SimpleMethodContext simpleMethodContext) {
+    SearchHandlerMethodService searchHandlerMethodService(MatcherMediator commonMatcher, SimpleMethodContext simpleMethodContext) {
         return new DefaultSearchHandlerMethodService(commonMatcher, simpleMethodContext);
     }
 

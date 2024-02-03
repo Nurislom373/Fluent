@@ -18,23 +18,21 @@ import java.util.Map;
  * @since 24.06.2023 1:14
  */
 @Component
-@SuppressWarnings({"rawtypes"})
-public class CommonMatcherAdapter implements InitializingBean {
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class MatcherMediator implements InitializingBean {
 
     private final Map<Class<? extends Annotation>, GenericMatcher> matchers = new HashMap<>();
     private final ApplicationContext applicationContext;
 
-    public CommonMatcherAdapter(ApplicationContext applicationContext) {
+    public MatcherMediator(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
-    @SuppressWarnings("unchecked")
     public boolean match(Method method, Object value, Class<? extends Annotation> annotation) {
         return matchers.get(annotation)
                 .matcher(method.getAnnotation(annotation), value);
     }
 
-    @SuppressWarnings("unchecked")
     public boolean match(Method method, HandleType handleType) {
         return matchers.get(HandleAny.class)
                 .matcher(method.getAnnotation(HandleAny.class), handleType);
@@ -50,11 +48,9 @@ public class CommonMatcherAdapter implements InitializingBean {
                 .forEach((beanName, bean) -> addMatcher(bean));
     }
 
-    @SuppressWarnings({"unchecked"})
     private void addMatcher(GenericMatcher instance) {
         if (!Modifier.isAbstract(instance.getClass().getModifiers())) {
             matchers.put(instance.getType(), instance);
         }
     }
-
 }

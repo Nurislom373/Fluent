@@ -9,7 +9,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public interface FluentInterceptor {
 
-    default boolean preHandle(Update update) throws Exception {
+    default boolean preHandle(Update update) {
         return true;
     }
 

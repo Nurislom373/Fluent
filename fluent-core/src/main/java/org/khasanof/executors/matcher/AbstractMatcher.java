@@ -16,7 +16,7 @@ import static org.khasanof.executors.matcher.MatcherConstants.*;
  * @see org.khasanof.executors.matcher
  * @since 03.07.2023 17:47
  */
-@SuppressWarnings({"rawtypes"})
+@SuppressWarnings({"rawtypes","unchecked"})
 public abstract class AbstractMatcher {
 
     protected final Map<String, ExpressionMatcher> expressionMatcherMap;
@@ -32,7 +32,6 @@ public abstract class AbstractMatcher {
         this.expressionMatcherMap = expressionMatcherMap;
     }
 
-    @SuppressWarnings("unchecked")
     private void setUp() {
         matchFunctions.put(Map.entry(MatchScope.EQUALS, Integer.class), (var1, var2) -> (int) var1 == (int) var2);
         matchFunctions.put(Map.entry(MatchScope.EQUALS, String.class), (var1, var2) -> String.valueOf(var1)

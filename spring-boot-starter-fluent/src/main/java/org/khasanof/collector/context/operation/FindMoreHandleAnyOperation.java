@@ -4,7 +4,7 @@ import org.khasanof.collector.context.ContextOperation;
 import org.khasanof.collector.context.SimpleMethodContext;
 import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.enums.HandleType;
-import org.khasanof.executors.matcher.CommonMatcherAdapter;
+import org.khasanof.executors.matcher.MatcherMediator;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 @Component
 public class FindMoreHandleAnyOperation implements ContextOperation<HandleType, Set<SimpleInvoker>> {
 
-    private final CommonMatcherAdapter matcher;
+    private final MatcherMediator matcher;
     private final SimpleMethodContext methodContext;
 
-    public FindMoreHandleAnyOperation(CommonMatcherAdapter matcher,
+    public FindMoreHandleAnyOperation(MatcherMediator matcher,
                                       SimpleMethodContext methodContext) {
 
         this.matcher = matcher;

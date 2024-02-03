@@ -23,7 +23,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleCallback {
 
-    String[] values() default {};
+    String[] value() default {};
 
     MatchScope scope() default MatchScope.EQUALS;
 

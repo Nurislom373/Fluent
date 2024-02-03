@@ -1,12 +1,11 @@
 package org.khasanof.executors.execution;
 
-import org.khasanof.context.FluentContextHolder;
-import org.khasanof.enums.MethodType;
 import org.khasanof.models.invoker.SimpleInvoker;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.khasanof.executors.execution.PerformHelper.invokeNoParamMethod;
 import static org.khasanof.utils.MethodUtils.tryAccessWhenMethodNotPublic;
@@ -14,10 +13,9 @@ import static org.khasanof.utils.MethodUtils.tryAccessWhenMethodNotPublic;
 /**
  * @author Nurislom
  * @see org.khasanof.executors.execution
- * @since 1/27/2024 6:45 PM
+ * @since 2/3/2024 7:44 PM
  */
-@Component
-public class DefaultPerform implements Perform {
+public abstract class AbstractPerform implements Perform {
 
     @Override
     public void execute(SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException {
@@ -30,13 +28,15 @@ public class DefaultPerform implements Perform {
 
     private void invokeMethod(SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException {
         Method invokerMethod = simpleInvoker.getMethod();
+        List<Object> params = new ArrayList<>();
 
+        fillParams(simpleInvoker, params);
+
+        Object[] paramsArray = params.toArray();
         tryAccessWhenMethodNotPublic(invokerMethod);
-        invokerMethod.invoke(simpleInvoker.getReference(), FluentContextHolder.getCurrentUpdate().getUpdate());
+        invokerMethod.invoke(simpleInvoker.getReference(), paramsArray);
     }
 
-    @Override
-    public MethodType getType() {
-        return MethodType.DEFAULT;
-    }
+    abstract void fillParams(SimpleInvoker simpleInvoker, List<Object> params);
+
 }

@@ -79,7 +79,7 @@ public abstract class UpdateUtils {
         Map<Function<Message, Boolean>, Function<Message, Object>> functionMap = new HashMap<>() {{
             put((message -> message.getClass().equals(Message.class)), (Message::getDocument));
             put((Message::hasAudio), (Message::getAudio));
-            put((Message::hasPhoto), (Message::getPhoto));
+            put((Message::hasPhoto), (message -> message.getPhoto().get(0)));
             put((Message::hasVideo), (Message::getVideo));
             put((Message::hasVideoNote), (Message::getVideoNote));
         }};
@@ -98,10 +98,12 @@ public abstract class UpdateUtils {
     @SuppressWarnings("unchecked")
     public static <T> T getListMatchFunctionValue(Message message, Map<Function<Message, Boolean>, Function<Message, Object>> functionMap,
                                                    String fieldName) {
-        return (T) functionMap.entrySet().stream().filter(functionFunctionEntry ->
-                functionFunctionEntry.getKey().apply(message)).findFirst()
-                .map(functionFunctionEntry -> getObjField(functionFunctionEntry.getValue().apply(message),
-                        fieldName)).orElse(null);
+        return (T) functionMap.entrySet()
+                .stream()
+                .filter(functionFunctionEntry -> functionFunctionEntry.getKey().apply(message))
+                .findFirst()
+                .map(functionFunctionEntry -> getObjField(functionFunctionEntry.getValue().apply(message), fieldName))
+                .orElse(null);
     }
 
     public static <T, R> R getListMatchFunctionValue(T message, Map<Function<T, Boolean>, Function<T, R>> functionMap) {

@@ -21,6 +21,12 @@ import java.util.Objects;
  */
 public abstract class MethodUtils {
 
+    public static void tryAccessWhenMethodNotPublic(Method invokerMethod) {
+        if (!Modifier.isPublic(invokerMethod.getModifiers())) {
+            invokerMethod.trySetAccessible();
+        }
+    }
+
     public static Method getClassMethodByName(Object o, String name) {
         return Arrays.stream(o.getClass().getDeclaredMethods())
                 .peek(method -> method.setAccessible(true))

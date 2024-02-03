@@ -1,7 +1,7 @@
 package org.khasanof.feature.interceptor;
 
 import org.khasanof.enums.MethodType;
-import org.khasanof.feature.HandleMethodCustomParam;
+import org.khasanof.feature.HandleMethodExtraParam;
 import org.khasanof.feature.PreExecutionInterceptor;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
@@ -18,12 +18,12 @@ import java.util.Map;
  * @since 2/1/2024 10:47 PM
  */
 @Component
-public class CustomParamPreExecutionInterceptor implements PreExecutionInterceptor, InitializingBean {
+public class ExtraParamPreExecutionInterceptor implements PreExecutionInterceptor, InitializingBean {
 
     private final FindBeansOfTypeService findBeansOfTypeService;
-    private final Map<MethodType, HandleMethodCustomParam> handleMethodCustomParamMap = new HashMap<>();
+    private final Map<MethodType, HandleMethodExtraParam> handleMethodCustomParamMap = new HashMap<>();
 
-    public CustomParamPreExecutionInterceptor(FindBeansOfTypeService findBeansOfTypeService) {
+    public ExtraParamPreExecutionInterceptor(FindBeansOfTypeService findBeansOfTypeService) {
         this.findBeansOfTypeService = findBeansOfTypeService;
     }
 
@@ -43,9 +43,9 @@ public class CustomParamPreExecutionInterceptor implements PreExecutionIntercept
 
     @Override
     public void afterPropertiesSet() {
-        findBeansOfTypeService.findAllByList(HandleMethodCustomParam.class)
-                .forEach(handleMethodCustomParam -> {
-                    handleMethodCustomParamMap.put(handleMethodCustomParam.methodType(), handleMethodCustomParam);
+        findBeansOfTypeService.findAllByList(HandleMethodExtraParam.class)
+                .forEach(handleMethodExtraParam -> {
+                    handleMethodCustomParamMap.put(handleMethodExtraParam.methodType(), handleMethodExtraParam);
                 });
     }
 }

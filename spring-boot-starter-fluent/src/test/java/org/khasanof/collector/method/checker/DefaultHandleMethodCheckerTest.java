@@ -106,13 +106,13 @@ public class DefaultHandleMethodCheckerTest {
         @HandleMessage(value = "/invalid", scope = MatchScope.EQUALS)
         public void invalidHandleMethod(AbsSender sender, Update update, String test) {}
 
-        @HandleCallback(values = {"EN", "RU", "UZ"})
+        @HandleCallback(value = {"EN", "RU", "UZ"})
         private void handleCallback(Update update, AbsSender sender) {}
 
-        @HandleCallback(values = {"EN", "RU", "UZ"})
+        @HandleCallback(value = {"EN", "RU", "UZ"})
         private void handleCallback(Update update) {}
 
-        @HandleCallback(values = {"EN", "RU", "UZ"})
+        @HandleCallback(value = {"EN", "RU", "UZ"})
         private void handleCallback() {}
 
     }

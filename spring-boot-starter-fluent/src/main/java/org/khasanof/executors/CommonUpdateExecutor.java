@@ -10,6 +10,7 @@ import org.khasanof.executors.invoker.DefaultInvokerFunctions;
 import org.khasanof.executors.invoker.InvokerFunctionsAdaptee;
 import org.khasanof.executors.processor.AbstractUpdateChainProcessor;
 import org.khasanof.factories.processor.UpdateChainProcessorFactory;
+import org.khasanof.service.processor.UpdateChainProcessorService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -30,18 +31,21 @@ public class CommonUpdateExecutor extends AbstractUpdateExecutor {
     private final InvokerExecutor invoker; // method invoker
     private final GenericSingleton<FluentBot> fluentBot; // bot instance
     private final UpdateChainProcessorFactory updateChainProcessorFactory;
+    private final UpdateChainProcessorService updateChainProcessorService;
 
 
     public CommonUpdateExecutor(DefaultInvokerFunctions invokerFunctions,
                                 DeterminationUpdate determinationUpdateType,
                                 InvokerExecutor invoker, GenericSingleton<FluentBot> fluentBot,
-                                UpdateChainProcessorFactory updateChainProcessorFactory) {
+                                UpdateChainProcessorFactory updateChainProcessorFactory,
+                                UpdateChainProcessorService updateChainProcessorService) {
 
         this.invokerFunctionsAdaptee = invokerFunctions;
         this.determination = determinationUpdateType;
         this.fluentBot = fluentBot;
         this.invoker = invoker;
         this.updateChainProcessorFactory = updateChainProcessorFactory;
+        this.updateChainProcessorService = updateChainProcessorService;
     }
 
     /**
@@ -53,8 +57,7 @@ public class CommonUpdateExecutor extends AbstractUpdateExecutor {
     @Override
     @SneakyThrows
     public void execute(Update update) {
-        AbstractUpdateChainProcessor processor = updateChainProcessorFactory.create();
-        processor.process(update);
+        updateChainProcessorService.process(update);
 //        FluentBot instance = checkBotInstance();
 //        BreakerForEach.forEach(determination.determinationInvokers(update).stream(),
 //                ((entry, breaker) -> {

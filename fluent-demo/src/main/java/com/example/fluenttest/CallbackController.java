@@ -7,6 +7,7 @@ import org.khasanof.annotation.methods.HandleDocument;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.MatchScope;
 import org.khasanof.enums.scopes.DocumentScope;
+import org.khasanof.service.template.FluentTemplate;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.AnswerInlineQuery;
 import org.telegram.telegrambots.meta.api.methods.send.SendDice;
@@ -32,14 +33,20 @@ import java.util.List;
  * @see com.example.fluenttest
  * @since 12/24/2023 5:53 PM
  */
-//@UpdateController
+@UpdateController
 public class CallbackController {
+
+    private final FluentTemplate fluentTemplate;
 
     private static final InlineKeyboardMarkup INLINE_KEYBOARD_MARKUP = new InlineKeyboardMarkup();
     private static final ReplyKeyboardMarkup REPLY_KEYBOARD_MARKUP = new ReplyKeyboardMarkup();
 
+    public CallbackController(FluentTemplate fluentTemplate) {
+        this.fluentTemplate = fluentTemplate;
+    }
+
     @HandleMessage(value = "[1-5]", scope = MatchScope.REGEX)
-    public void world(AbsSender sender, Update update) throws TelegramApiException {
+    public void world(Update update) throws TelegramApiException {
         String text = """
                 <b> What is Lorem Ipsum? </b> \s
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the\s
@@ -49,56 +56,32 @@ public class CallbackController {
                 the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop\s
                 publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                 """;
-
-        SendMessage sendMessage = new SendMessage(update.getMessage().getChatId().toString(), text);
+        fluentTemplate.sendText(text);
 
         String text2 = "I Got it!";
-        SendMessage sendMessage2 = new SendMessage(update.getMessage().getChatId().toString(), text2);
-        sendMessage2.setReplyMarkup(language());
+        fluentTemplate.sendText(text2, language());
+        fluentTemplate.sendDice("⚽");
 
-        SendDice dice = new SendDice(update.getMessage().getChatId().toString());
-        dice.setEmoji("⚽"); // 4
-
-        sender.execute(sendMessage);
-        sender.execute(sendMessage2);
-        sender.execute(dice);
+        throw new RuntimeException("HEllo World");
     }
 
-    @HandleCallback(values = {"RU", "UZ"})
-    private void callBack(Update update, AbsSender sender) throws TelegramApiException {
+    @HandleCallback(value = {"RU", "UZ"})
+    private void callBack() {
         System.out.println("Enter Sender !");
-
         String text = "<b> Choose bot language: </b>";
-        SendMessage message = new SendMessage(update.getCallbackQuery().getMessage().getChatId().toString(), text);
-        sender.execute(message);
-
-        AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery();
-        answerCallbackQuery.setCallbackQueryId(update.getCallbackQuery().getId());
-        answerCallbackQuery.setText("Nurislom1");
-        answerCallbackQuery.setShowAlert(true);
-        sender.execute(answerCallbackQuery);
+        fluentTemplate.sendText(text);
+        fluentTemplate.sendAnswerCallbackQuery("Nurislom11", true);
     }
 
     @HandleCallbacks(values = {
-            @HandleCallback(values = {"NEXT", "PREV"}),
-            @HandleCallback(values = {"TOP", "BOTTOM"}),
-            @HandleCallback(values = {"LST"}, scope = MatchScope.START_WITH)
+            @HandleCallback(value = {"NEXT", "PREV"}),
+            @HandleCallback(value = {"TOP", "BOTTOM"}),
+            @HandleCallback(value = {"LST"}, scope = MatchScope.START_WITH)
     })
-    private void multiCallback(Update update, AbsSender sender) throws TelegramApiException {
+    private void multiCallback(Update update) {
         String text = "NPTB one handle \uD83D\uDE0E";
-
-        AnswerCallbackQuery answerCallbackQuery = new AnswerCallbackQuery();
-        answerCallbackQuery.setCallbackQueryId(update.getCallbackQuery().getId());
-        answerCallbackQuery.setText("Nurislom2");
-        answerCallbackQuery.setShowAlert(true);
-        sender.execute(answerCallbackQuery);
-
-        SendMessage sendMessage = new SendMessage(update.getCallbackQuery().getMessage().getChatId().toString(), text);
-        InlineQueryResult result = new InlineQueryResultContact("1", "993733273", "Nurislom");
-        AnswerInlineQuery answerInlineQuery = new AnswerInlineQuery(answerCallbackQuery.getCallbackQueryId(),
-                List.of(result));
-        sender.execute(sendMessage);
-        sender.execute(answerInlineQuery);
+        fluentTemplate.sendText(text);
+        fluentTemplate.sendAnswerCallbackQuery("Nurislom2",true);
     }
 
     @HandleDocument(
@@ -106,10 +89,9 @@ public class CallbackController {
             match = MatchScope.REGEX,
             scope = DocumentScope.FILE_NAME
     )
-    private void handleDocumentOne(AbsSender sender, Update update) throws TelegramApiException {
+    private void handleDocumentOne(Update update) throws TelegramApiException {
         String text = "I Handle 1 File \uD83D\uDE02";
-        SendMessage sendMessage = new SendMessage(update.getMessage().getChatId().toString(), text);
-        sender.execute(sendMessage);
+        fluentTemplate.sendText(text);
     }
 
     public static InlineKeyboardMarkup language() {

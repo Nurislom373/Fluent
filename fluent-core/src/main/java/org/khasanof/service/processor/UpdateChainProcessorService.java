@@ -1,6 +1,6 @@
 package org.khasanof.service.processor;
 
-import org.khasanof.executors.processor.AbstractUpdateChainProcessor;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
  * @author Nurislom
@@ -9,6 +9,6 @@ import org.khasanof.executors.processor.AbstractUpdateChainProcessor;
  */
 public interface UpdateChainProcessorService {
 
-    AbstractUpdateChainProcessor process();
+    void process(Update update) throws Exception;
 
 }

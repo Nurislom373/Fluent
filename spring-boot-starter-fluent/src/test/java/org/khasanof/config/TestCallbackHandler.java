@@ -15,7 +15,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @UpdateController
 public class TestCallbackHandler {
 
-    @HandleCallback(values = {"RU", "UZ", "EN"})
+    @HandleCallback(value = {"RU", "UZ", "EN"})
     private void callBack(Update update, AbsSender sender) throws TelegramApiException {
         System.out.println("Enter Sender !");
 

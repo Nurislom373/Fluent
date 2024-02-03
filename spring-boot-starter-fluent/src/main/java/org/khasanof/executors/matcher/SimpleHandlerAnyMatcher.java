@@ -5,6 +5,9 @@ import org.khasanof.config.ApplicationConstants;
 import org.khasanof.enums.HandleType;
 import org.springframework.stereotype.Component;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * @author Nurislom
  * @see org.khasanof.executors.matcher
@@ -19,7 +22,7 @@ public class SimpleHandlerAnyMatcher extends GenericMatcher<HandleAny, HandleTyp
 
     @Override
     public boolean matcher(HandleAny annotation, HandleType value) {
-        return annotation.type().equals(value);
+        return Arrays.asList(annotation.type()).contains(value);
     }
 
     @Override

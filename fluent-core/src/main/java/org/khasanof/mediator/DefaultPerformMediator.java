@@ -1,5 +1,6 @@
 package org.khasanof.mediator;
 
+import org.jetbrains.annotations.Nullable;
 import org.khasanof.enums.MethodType;
 import org.khasanof.executors.execution.Perform;
 import org.khasanof.models.invoker.InvokerParam;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * @author Nurislom
@@ -29,8 +31,17 @@ public class DefaultPerformMediator implements PerformMediator, InitializingBean
 
     @Override
     public void execute(SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException {
-        methodTypePerformMap.get(getMethodType(simpleInvoker))
+        methodTypePerformMap.get(getType(simpleInvoker))
                 .execute(simpleInvoker);
+    }
+
+    private MethodType getType(SimpleInvoker simpleInvoker) {
+        MethodType methodType = getMethodType(simpleInvoker);
+
+        if (Objects.equals(methodType, MethodType.HANDLE_ANY)) {
+            methodType = MethodType.DEFAULT;
+        }
+        return methodType;
     }
 
     private MethodType getMethodType(SimpleInvoker simpleInvoker) {

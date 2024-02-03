@@ -5,7 +5,7 @@ import org.khasanof.context.FluentContextHolder;
 import org.khasanof.context.FluentUpdate;
 import org.khasanof.enums.MethodType;
 import org.khasanof.executors.expression.ExpressionVariables;
-import org.khasanof.feature.HandleMethodCustomParam;
+import org.khasanof.feature.HandleMethodExtraParam;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
@@ -18,11 +18,11 @@ import java.util.Map;
  * @since 2/1/2024 10:32 PM
  */
 @Component
-public class VarExpressionCustomParam implements HandleMethodCustomParam {
+public class VarExpressionExtraParam implements HandleMethodExtraParam {
 
     private final ExpressionVariables matcher;
 
-    public VarExpressionCustomParam(ExpressionVariables matcher) {
+    public VarExpressionExtraParam(ExpressionVariables matcher) {
         this.matcher = matcher;
     }
 

@@ -7,6 +7,7 @@ import org.khasanof.collector.context.operation.ContainsHandlerMethodOperation;
 import org.khasanof.collector.context.operation.FindMoreHandleAnyOperation;
 import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.enums.HandleAnnotation;
+import org.khasanof.enums.HandleType;
 import org.khasanof.enums.Proceed;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
@@ -49,9 +50,20 @@ public class DeterminationHandleAnyFunction implements DeterminationFunction {
     private void internalAccept(ApplicationContext applicationContext, Update update, Set<SimpleInvoker> invokerResults) {
         var appropriateDetermining = applicationContext.getBean(AppropriateDetermining.class);
 
+        addAllTypeHandleAnyInvokers(invokerResults);
         appropriateDetermining.determining(update)
                 .ifPresentOrElse(appropriateMethod -> foundMethodsAddInvokers(invokerResults, appropriateMethod),
                         () -> log.warn("HandleType not found!"));
+    }
+
+    private void addAllTypeHandleAnyInvokers(Set<SimpleInvoker> simpleInvokers) {
+        var invokers = operationExecutor.execute(FindMoreHandleAnyOperation.class, HandleType.ALL);
+
+        if (Objects.isNull(invokers) || invokers.isEmpty()) {
+            return;
+        }
+        simpleInvokers.addAll(invokers);
+        isCanProcess(invokers);
     }
 
     private void foundMethodsAddInvokers(Set<SimpleInvoker> invokerResults, AppropriateMethod appropriateMethod) {

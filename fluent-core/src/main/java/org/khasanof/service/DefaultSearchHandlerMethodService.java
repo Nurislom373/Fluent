@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable;
 import org.khasanof.collector.context.SimpleMethodContext;
 import org.khasanof.context.FluentContextHolder;
 import org.khasanof.enums.HandleAnnotation;
-import org.khasanof.executors.matcher.CommonMatcherAdapter;
+import org.khasanof.executors.matcher.MatcherMediator;
 import org.khasanof.models.collector.FindHandlerMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
 
@@ -21,10 +21,10 @@ import java.util.Optional;
 @Slf4j
 public class DefaultSearchHandlerMethodService implements SearchHandlerMethodService {
 
-    private final CommonMatcherAdapter matcher;
+    private final MatcherMediator matcher;
     private final SimpleMethodContext methodContext;
 
-    public DefaultSearchHandlerMethodService(CommonMatcherAdapter matcher,
+    public DefaultSearchHandlerMethodService(MatcherMediator matcher,
                                              SimpleMethodContext methodContext) {
 
         this.matcher = matcher;
