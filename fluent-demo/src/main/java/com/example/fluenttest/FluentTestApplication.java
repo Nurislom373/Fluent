@@ -1,24 +1,19 @@
 package com.example.fluenttest;
 
-import org.khasanof.state.StateConfigurerAdapter;
-import org.khasanof.state.configurer.StateConfigurer;
-import org.khasanof.verifier.FluentVerifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.EnumSet;
-
 @SpringBootApplication
-public class FluentTestApplication implements StateConfigurerAdapter<SimpleState> {
+public class FluentTestApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FluentTestApplication.class, args);
     }
 
-    @Override
-    public void configure(StateConfigurer<SimpleState> state) {
-        state.initial(SimpleState.START)
-                .states(EnumSet.allOf(SimpleState.class));
-    }
+//    @Override
+//    public void configure(StateConfigurer<SimpleState> state) {
+//        state.initial(SimpleState.START)
+//                .states(EnumSet.allOf(SimpleState.class));
+//    }
 
 }

@@ -1,6 +1,7 @@
 package org.khasanof.service.interceptor;
 
 import org.khasanof.feature.FluentInterceptor;
+import org.khasanof.registry.interceptor.FluentInterceptorRegistryContainer;
 import org.khasanof.service.FindBeansOfTypeService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
@@ -15,26 +16,24 @@ import java.util.List;
  * @since 2/3/2024 6:29 PM
  */
 @Service
-public class DefaultFluentInterceptorService implements FluentInterceptorService, InitializingBean {
+public class DefaultFluentInterceptorService implements FluentInterceptorService {
 
-    private final FindBeansOfTypeService findBeansOfTypeService;
-    private final List<FluentInterceptor> fluentInterceptors = new ArrayList<>();
+    private final FluentInterceptorRegistryContainer registryContainer;
 
-    public DefaultFluentInterceptorService(FindBeansOfTypeService findBeansOfTypeService) {
-        this.findBeansOfTypeService = findBeansOfTypeService;
+    public DefaultFluentInterceptorService(FluentInterceptorRegistryContainer registryContainer) {
+        this.registryContainer = registryContainer;
     }
 
     @Override
     public boolean intercept(Update update) {
-        if (fluentInterceptors.isEmpty()) {
+        if (getInterceptors().isEmpty()) {
             return true;
         }
-        return fluentInterceptors.stream()
+        return getInterceptors().stream()
                 .allMatch(fluentInterceptor -> fluentInterceptor.preHandle(update));
     }
 
-    @Override
-    public void afterPropertiesSet() {
-        fluentInterceptors.addAll(findBeansOfTypeService.findAllByList(FluentInterceptor.class));
+    private List<FluentInterceptor> getInterceptors() {
+        return registryContainer.getFluentInterceptors();
     }
 }

@@ -1,13 +1,9 @@
 package org.khasanof.factories.processor;
 
 import org.khasanof.executors.processor.AbstractUpdateChainProcessor;
+import org.khasanof.registry.processor.UpdateChainProcessorRegistryContainer;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
-
-import static org.khasanof.utils.SortUtils.sortList;
 
 /**
  * @author Nurislom
@@ -16,14 +12,22 @@ import static org.khasanof.utils.SortUtils.sortList;
  */
 public class DefaultUpdateChainProcessorFactory implements UpdateChainProcessorFactory {
 
-    private final List<AbstractUpdateChainProcessor> processors = new ArrayList<>();
+    private final UpdateChainProcessorRegistryContainer registryContainer;
+
+    public DefaultUpdateChainProcessorFactory(UpdateChainProcessorRegistryContainer registryContainer) {
+        this.registryContainer = registryContainer;
+    }
 
     @Override
     public AbstractUpdateChainProcessor create() {
-        Iterator<AbstractUpdateChainProcessor> iterator = processors.iterator();
+        Iterator<AbstractUpdateChainProcessor> iterator = getProcessorIterator();
         AbstractUpdateChainProcessor chainProcessor = iterator.next();
         setNexProcessors(iterator, chainProcessor);
         return chainProcessor;
+    }
+
+    private Iterator<AbstractUpdateChainProcessor> getProcessorIterator() {
+        return registryContainer.getUpdateChainProcessors().iterator();
     }
 
     private void setNexProcessors(Iterator<AbstractUpdateChainProcessor> iterator, AbstractUpdateChainProcessor chainProcessor) {
@@ -32,17 +36,5 @@ public class DefaultUpdateChainProcessorFactory implements UpdateChainProcessorF
             chainProcessor.setNext(nextChainProcessor);
             chainProcessor = nextChainProcessor;
         }
-    }
-
-    @Override
-    public void set(AbstractUpdateChainProcessor abstractUpdateChainProcessor) {
-        processors.add(abstractUpdateChainProcessor);
-        sortList(processors);
-    }
-
-    @Override
-    public void setAll(Collection<AbstractUpdateChainProcessor> collection) {
-        processors.addAll(collection);
-        sortList(processors);
     }
 }

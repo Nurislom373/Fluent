@@ -1,5 +1,6 @@
 package org.khasanof.executors.appropriate.message;
 
+import org.khasanof.enums.HandleType;
 import org.khasanof.models.executors.AppropriateMethod;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -19,7 +20,7 @@ public class VideoNoteMessageAppropriateMethod extends AbstractMessageAppropriat
 
     @Override
     public AppropriateMethod getAppropriate(Message message) {
-        return tryGetAppropriate(message::getVideoNote);
+        return createAppropriateMethod(HandleType.VIDEO_NOTE, message.getVideoNote());
     }
 
 }

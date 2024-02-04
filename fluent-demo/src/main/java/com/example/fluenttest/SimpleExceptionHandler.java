@@ -15,7 +15,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class SimpleExceptionHandler {
 
     @HandleException({RuntimeException.class})
-    public void handleRuntimeException(Update update, RuntimeException exception) {
+    public void handleRuntimeException(RuntimeException exception) {
         log.info("Exception handle : {}", exception.getMessage());
     }
 

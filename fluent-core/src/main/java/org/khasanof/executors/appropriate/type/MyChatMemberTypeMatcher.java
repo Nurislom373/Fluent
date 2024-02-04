@@ -3,7 +3,6 @@ package org.khasanof.executors.appropriate.type;
 import org.khasanof.executors.appropriate.AppropriateUpdateType;
 import org.khasanof.models.executors.AppropriateType;
 import org.khasanof.models.executors.UpdateType;
-import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.Objects;
@@ -13,7 +12,6 @@ import java.util.Objects;
  * @see org.khasanof.executors.appropriate.type
  * @since 1/2/2024 7:10 PM
  */
-@Service
 public class MyChatMemberTypeMatcher implements AppropriateUpdateType {
 
     @Override

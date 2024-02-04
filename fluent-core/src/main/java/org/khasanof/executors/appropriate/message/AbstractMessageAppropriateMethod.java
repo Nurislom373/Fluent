@@ -24,6 +24,10 @@ public abstract class AbstractMessageAppropriateMethod extends AppropriateUpdate
         return new AppropriateMethod(handleType(), supplier.get());
     }
 
+    protected AppropriateMethod createAppropriateMethod(HandleType handleType, Object value) {
+        return new AppropriateMethod(handleType, value);
+    }
+
     @Override
     public HandleType handleType() {
         return HandleType.MESSAGE;

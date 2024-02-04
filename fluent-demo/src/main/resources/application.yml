@@ -2,4 +2,4 @@ fluent:
   bot:
     token: 5101184142:AAF2StFB5HciO6N4--eh3mDP6RJ4Helmooo
     username: '@lunch_pdp_bot'
-    process-type: both
+    process-type: update

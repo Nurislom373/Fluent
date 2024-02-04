@@ -6,8 +6,11 @@ import org.khasanof.executors.processor.*;
 import org.khasanof.factories.processor.DefaultUpdateChainProcessorFactory;
 import org.khasanof.factories.processor.UpdateChainProcessorFactory;
 import org.khasanof.mediator.PerformMediator;
+import org.khasanof.registry.processor.DefaultUpdateChainProcessorRegistryContainer;
+import org.khasanof.registry.processor.UpdateChainProcessorRegistryContainer;
 import org.khasanof.service.exception.DefaultExceptionResolverService;
 import org.khasanof.service.interceptor.DefaultPreExecutionService;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,14 +23,17 @@ import java.util.List;
  * @since 2/1/2024 11:30 PM
  */
 @Configuration
-public class UpdateChainProcessorFactoryConfiguration {
+public class UpdateChainProcessorAutoConfiguration {
 
     @Bean
-    public UpdateChainProcessorFactory updateChainProcessorFactory(ApplicationContext applicationContext) {
-        ChainProcessorBuilder chainProcessorBuilder = new ChainProcessorBuilder(applicationContext);
-        DefaultUpdateChainProcessorFactory defaultUpdateChainProcessorFactory = new DefaultUpdateChainProcessorFactory();
-        defaultUpdateChainProcessorFactory.setAll(chainProcessorBuilder.processors());
-        return defaultUpdateChainProcessorFactory;
+    public UpdateChainProcessorRegistryContainer updateChainProcessorRegistryContainer() {
+        return new DefaultUpdateChainProcessorRegistryContainer();
+    }
+
+    @Bean
+    @ConditionalOnBean(UpdateChainProcessorRegistryContainer.class)
+    public UpdateChainProcessorFactory updateChainProcessorFactory(UpdateChainProcessorRegistryContainer registryContainer) {
+        return new DefaultUpdateChainProcessorFactory(registryContainer);
     }
 
     public static class ChainProcessorBuilder {
@@ -38,7 +44,7 @@ public class UpdateChainProcessorFactoryConfiguration {
             this.applicationContext = applicationContext;
         }
 
-        List<AbstractUpdateChainProcessor> processors() {
+        public List<AbstractUpdateChainProcessor> processors() {
             return List.of(
                     new ExceptionChainProcessor(applicationContext.getBean(DefaultExceptionResolverService.class)),
 
