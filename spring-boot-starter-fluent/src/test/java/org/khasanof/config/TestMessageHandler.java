@@ -10,10 +10,8 @@ import org.khasanof.context.FluentContextHolder;
 import org.khasanof.custom.attributes.UpdateAttributes;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.MatchScope;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.khasanof.service.template.FluentTemplate;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.bots.AbsSender;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 /**
  * @author Nurislom
@@ -24,48 +22,47 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @UpdateController
 public class TestMessageHandler {
 
+    private final FluentTemplate fluentTemplate;
+
+    public TestMessageHandler(FluentTemplate fluentTemplate) {
+        this.fluentTemplate = fluentTemplate;
+    }
+
     @HandleAny(type = HandleType.MESSAGE)
-    private void handleAnyMessages(Update update, AbsSender sender) throws TelegramApiException {
+    private void handleAnyMessages() {
         UpdateAttributes attributes = FluentContextHolder.getAttributes();
         attributes.setAttribute("foo", "bar");
         String text = "I'm handle any messages";
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
-        sender.execute(message);
+        fluentTemplate.sendText(text);
     }
 
     @HandleMessage(value = "/start", scope = MatchScope.START_WITH)
-    public void fluent(Update update, AbsSender sender) throws TelegramApiException {
+    public void fluent(Update update) {
         UpdateAttributes attributes = FluentContextHolder.getAttributes();
         String text = update.getMessage().getText();
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
-        sender.execute(message);
+        fluentTemplate.sendText(text);
     }
 
     @HandleMessage(value = "START_WITH('/fluent', value)", scope = MatchScope.EXPRESSION)
-    public void handleStartWithFluent(Update update, AbsSender sender) throws TelegramApiException {
+    public void handleStartWithFluent() {
         String text = "Handle Update With Expression";
-        SendMessage message = new SendMessage(update.getMessage().getChatId().toString(), text);
-        sender.execute(message);
+        fluentTemplate.sendText(text);
     }
 
     @HandleMessages(values = {
             @HandleMessage(value = "/jeck1", scope = MatchScope.START_WITH),
             @HandleMessage(value = "/jeck2", scope = MatchScope.START_WITH),
     })
-    private void handleMessage(Update update, AbsSender sender) throws TelegramApiException {
-        String chatId = update.getMessage().getChatId().toString();
+    private void handleMessage() {
         log.info("Jecki is here!");
-        SendMessage message = new SendMessage(chatId, "Hi Jecki😎");
-        sender.execute(message);
+        fluentTemplate.sendText("Hi Jecki😎");
     }
 
     @HandleMessage(value = "/username : {name:[a-z]}", scope = MatchScope.VAR_EXPRESSION)
-    void startWithAbsHandler(Update update, AbsSender sender, @BotVariable("name") String username) throws TelegramApiException {
-        String chatId = update.getMessage().getChatId().toString();
+    void startWithAbsHandler(Update update, @BotVariable("name") String username) {
         String text = update.getMessage().getText();
         log.info("Handle Start With 'abs' : {}", text);
-        SendMessage message = new SendMessage(chatId, "name : " + username);
-        sender.execute(message);
+        fluentTemplate.sendText("name : " + username);
     }
 
 }

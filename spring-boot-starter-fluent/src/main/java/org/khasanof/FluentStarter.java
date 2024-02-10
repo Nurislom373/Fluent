@@ -26,7 +26,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 public class FluentStarter {
 
     @Bean
-    CommandLineRunner getRunner(MainHandler handler, FluentProperties properties, FluentBotSingletonBean singletonBean) {
+    CommandLineRunner getRunner(UpdateHandlerManager handler, FluentProperties properties, FluentBotSingletonBean singletonBean) {
         return (args -> {
             var registry = new TelegramBotsApi(DefaultBotSession.class);
             FluentBot fluentBot = new FluentBot(handler, properties);

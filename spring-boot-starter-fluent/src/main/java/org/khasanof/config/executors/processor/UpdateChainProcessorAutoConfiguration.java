@@ -2,9 +2,12 @@ package org.khasanof.config.executors.processor;
 
 import org.khasanof.executors.determination.DeterminationHandleAnyFunction;
 import org.khasanof.executors.determination.DeterminationHandleUpdateFunction;
-import org.khasanof.executors.processor.*;
+import org.khasanof.executors.processor.AbstractUpdateChainProcessor;
+import org.khasanof.executors.processor.DefaultChainProcessor;
+import org.khasanof.executors.processor.ExceptionChainProcessor;
+import org.khasanof.executors.processor.HandleAnyChainProcessor;
+import org.khasanof.factories.processor.CachedUpdateChainProcessorFactory;
 import org.khasanof.factories.processor.DefaultUpdateChainProcessorFactory;
-import org.khasanof.factories.processor.UpdateChainProcessorFactory;
 import org.khasanof.mediator.PerformMediator;
 import org.khasanof.registry.processor.DefaultUpdateChainProcessorRegistryContainer;
 import org.khasanof.registry.processor.UpdateChainProcessorRegistryContainer;
@@ -32,7 +35,7 @@ public class UpdateChainProcessorAutoConfiguration {
 
     @Bean
     @ConditionalOnBean(UpdateChainProcessorRegistryContainer.class)
-    public UpdateChainProcessorFactory updateChainProcessorFactory(UpdateChainProcessorRegistryContainer registryContainer) {
+    public CachedUpdateChainProcessorFactory updateChainProcessorFactory(UpdateChainProcessorRegistryContainer registryContainer) {
         return new DefaultUpdateChainProcessorFactory(registryContainer);
     }
 

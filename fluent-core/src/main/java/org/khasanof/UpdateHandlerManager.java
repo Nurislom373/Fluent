@@ -11,8 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  * <br/>
  * Package: org.khasanof.main.inferaces
  */
-public interface MainHandler {
+public interface UpdateHandlerManager {
 
     void process(Update update);
-
 }

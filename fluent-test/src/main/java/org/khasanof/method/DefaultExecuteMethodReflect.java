@@ -1,12 +1,14 @@
 package org.khasanof.method;
 
-import org.springframework.util.ReflectionUtils;
-import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.bots.AbsSender;
+import org.khasanof.service.template.operations.SendTextOperations;
 
 import java.lang.reflect.Method;
-import java.util.HashSet;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Nurislom
@@ -15,12 +17,21 @@ import java.util.Set;
  */
 public class DefaultExecuteMethodReflect implements ExecuteMethodReflect {
 
+    private final Set<String> ignoreMethodNames = Set.of("toString", "equals", "hashCode");
+
     @Override
     public Set<Method> getMethodWithString() {
-        return new HashSet<>() {{
-            add(ReflectionUtils.findMethod(AbsSender.class, "executeAsync", BotApiMethod.class));
-            add(ReflectionUtils.findMethod(AbsSender.class, "execute", BotApiMethod.class));
-        }};
+        return getClasses()
+                .stream()
+                .flatMap(clazz -> Arrays.stream(clazz.getMethods())
+                        .filter(method -> Modifier.isPublic(method.getModifiers()))
+                        .filter(method -> !ignoreMethodNames.contains(method.getName()))
+                ).collect(Collectors.toSet());
     }
 
+    private Set<Class<?>> getClasses() {
+        return Set.of(
+                SendTextOperations.class
+        );
+    }
 }

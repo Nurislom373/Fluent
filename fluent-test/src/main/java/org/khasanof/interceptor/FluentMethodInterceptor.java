@@ -1,8 +1,7 @@
 package org.khasanof.interceptor;
 
-import org.khasanof.FluentBot;
-import org.khasanof.handler.ExecuteMethodChecker;
 import org.khasanof.factories.proxy.ProxyMethodInvokeResponseFactory;
+import org.khasanof.handler.ExecuteMethodChecker;
 import org.khasanof.memento.MethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeMemento;
 import org.springframework.cglib.proxy.MethodInterceptor;
@@ -17,16 +16,14 @@ import java.lang.reflect.Method;
  */
 public class FluentMethodInterceptor implements MethodInterceptor {
 
-    private final FluentBot fluentBot;
     private final ExecuteMethodChecker executeMethodChecker;
     private final MethodInvokeHistory methodInvokeHistory;
     private final ProxyMethodInvokeResponseFactory invokeResponseFactory;
 
-    public FluentMethodInterceptor(FluentBot fluentBot,
-                                   ExecuteMethodChecker executeMethodChecker,
+    public FluentMethodInterceptor(ExecuteMethodChecker executeMethodChecker,
                                    MethodInvokeHistory methodInvokeHistory,
                                    ProxyMethodInvokeResponseFactory proxyMethodInvokeResponseAdapter) {
-        this.fluentBot = fluentBot;
+
         this.executeMethodChecker = executeMethodChecker;
         this.methodInvokeHistory = methodInvokeHistory;
         this.invokeResponseFactory = proxyMethodInvokeResponseAdapter;
@@ -44,5 +41,4 @@ public class FluentMethodInterceptor implements MethodInterceptor {
         MethodInvokeMemento methodInvokeMemento = new MethodInvokeMemento(method, args, methodProxy);
         methodInvokeHistory.addHistory(methodInvokeMemento);
     }
-
 }

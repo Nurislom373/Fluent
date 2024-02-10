@@ -2,6 +2,7 @@ package org.khasanof.executors.processor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.constants.FluentConstants;
+import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.service.exception.ExceptionResolver;
 import org.khasanof.service.exception.ExceptionResolverService;
 import org.springframework.stereotype.Component;
@@ -33,9 +34,7 @@ public class ExceptionChainProcessor extends AbstractUpdateChainProcessor {
     }
 
     private void tryProcess(Update update) throws Exception {
-        if (Objects.nonNull(nextProcessor)) {
-            nextProcessor.process(update);
-        }
+        callNextProcess(update);
     }
 
     private void catchException(Update update, Exception ex) throws Exception {

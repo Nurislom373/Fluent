@@ -14,9 +14,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SimulateExecutorServiceFactoryConfiguration {
 
+    /**
+     *
+     * @return
+     */
     @Bean
     public SimulateExecutorServiceFactory simulateExecutorServiceFactory() {
         return new DefaultSimulateExecutorServiceFactory(FluentContextHolder.getContext());
     }
-
 }

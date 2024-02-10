@@ -10,7 +10,7 @@ import java.util.Iterator;
  * @see org.khasanof.factories.processor
  * @since 2/1/2024 9:54 PM
  */
-public class DefaultUpdateChainProcessorFactory implements UpdateChainProcessorFactory {
+public class DefaultUpdateChainProcessorFactory extends CachedUpdateChainProcessorFactory {
 
     private final UpdateChainProcessorRegistryContainer registryContainer;
 

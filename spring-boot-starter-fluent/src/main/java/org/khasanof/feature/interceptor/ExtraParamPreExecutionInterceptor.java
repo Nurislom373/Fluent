@@ -44,8 +44,6 @@ public class ExtraParamPreExecutionInterceptor implements PreExecutionIntercepto
     @Override
     public void afterPropertiesSet() {
         findBeansOfTypeService.findAllByList(HandleMethodExtraParam.class)
-                .forEach(handleMethodExtraParam -> {
-                    handleMethodCustomParamMap.put(handleMethodExtraParam.methodType(), handleMethodExtraParam);
-                });
+                .forEach(handleMethodExtraParam -> handleMethodCustomParamMap.put(handleMethodExtraParam.methodType(), handleMethodExtraParam));
     }
 }

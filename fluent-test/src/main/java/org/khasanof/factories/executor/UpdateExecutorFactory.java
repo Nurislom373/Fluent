@@ -1,7 +1,7 @@
 package org.khasanof.factories.executor;
 
-import org.khasanof.FluentBot;
-import org.khasanof.executors.UpdateExecutor;
+import org.khasanof.executors.UpdateHandler;
+import org.khasanof.service.processor.UpdateChainProcessorService;
 
 /**
  * @author Nurislom
@@ -10,6 +10,6 @@ import org.khasanof.executors.UpdateExecutor;
  */
 public interface UpdateExecutorFactory {
 
-    UpdateExecutor create(FluentBot fluentBot);
+    UpdateHandler create(UpdateChainProcessorService service);
 
 }

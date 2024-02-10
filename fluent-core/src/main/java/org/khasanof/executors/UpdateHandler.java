@@ -7,8 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  * @see org.khasanof.executors
  * @since 10/28/2023 9:41 PM
  */
-public interface UpdateExecutor {
+public interface UpdateHandler {
 
     void execute(Update update);
-
 }

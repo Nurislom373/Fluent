@@ -25,7 +25,7 @@ public class AssembleMethodsListener implements ApplicationListener<AssembleMeth
 
     @Override
     public void onApplicationEvent(AssembleMethodsEvent event) {
-        log.info("assemble methods start!");
+        log.info("Assemble Methods Started!");
         applicationContext.getBeansOfType(AssembleMethods.class)
                 .forEach(((s, assembleMethods) -> CompletableFuture.runAsync(assembleMethods::assembleMethods)));
     }

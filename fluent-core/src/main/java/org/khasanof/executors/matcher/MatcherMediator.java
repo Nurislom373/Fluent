@@ -40,10 +40,10 @@ public class MatcherMediator implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        tryAfterPropertiesSet();
+        internalAfterPropertiesSet();
     }
 
-    private void tryAfterPropertiesSet() {
+    private void internalAfterPropertiesSet() {
         applicationContext.getBeansOfType(GenericMatcher.class)
                 .forEach((beanName, bean) -> addMatcher(bean));
     }

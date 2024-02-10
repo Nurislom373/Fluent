@@ -34,7 +34,6 @@ import static org.khasanof.utils.BaseUtils.getMethodAnnotation;
  * Package: org.khasanof.core.collector
  */
 @Slf4j
-@Component(DefaultSimpleMethodContext.NAME)
 public class DefaultSimpleMethodContext implements SimpleMethodContext {
 
     public static final String NAME = "defaultSimpleMethodContext";

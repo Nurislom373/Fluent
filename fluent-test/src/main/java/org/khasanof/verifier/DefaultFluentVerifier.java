@@ -1,17 +1,18 @@
 package org.khasanof.verifier;
 
-import org.khasanof.verifier.assertions.DefaultVerifierAssertionsBuilder;
-import org.khasanof.FluentBot;
-import org.khasanof.MainHandler;
-import org.khasanof.verifier.assertions.VerifierAssertions;
-import org.khasanof.executors.UpdateExecutor;
-import org.khasanof.factories.proxy.ProxyFluentBotFactory;
-import org.khasanof.factories.executor.UpdateExecutorFactory;
+import org.khasanof.UpdateHandlerManager;
+import org.khasanof.executors.UpdateHandler;
 import org.khasanof.factories.executor.SimulateExecutorServiceFactory;
-import org.khasanof.factories.handler.DefaultSimulateMainHandlerFactory;
-import org.khasanof.factories.handler.SimulateMainHandlerFactory;
+import org.khasanof.factories.executor.UpdateExecutorFactory;
+import org.khasanof.factories.handler.DefaultSimulateUpdateHandlerManagerFactory;
+import org.khasanof.factories.handler.SimulateUpdateHandlerManagerFactory;
+import org.khasanof.factories.proxy.ProxyFluentTemplateFactory;
 import org.khasanof.memento.DefaultMethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeHistory;
+import org.khasanof.service.ReinitializeFluentTemplateService;
+import org.khasanof.service.processor.UpdateChainProcessorService;
+import org.khasanof.verifier.assertions.DefaultVerifierAssertionsBuilder;
+import org.khasanof.verifier.assertions.VerifierAssertions;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.concurrent.CountDownLatch;
@@ -24,47 +25,46 @@ import java.util.concurrent.ExecutorService;
  */
 public class DefaultFluentVerifier implements FluentVerifier {
 
-    private final ProxyFluentBotFactory proxyFluentBotFactory;
     private final UpdateExecutorFactory updateExecutorFactory;
     private final SimulateExecutorServiceFactory serviceFactory;
+    private final UpdateChainProcessorService updateChainProcessorService;
+    private final ReinitializeFluentTemplateService reinitializeFluentTemplateService;
 
-    public DefaultFluentVerifier(ProxyFluentBotFactory proxyFluentBotFactory,
-                                 UpdateExecutorFactory updateExecutorFactory,
-                                 SimulateExecutorServiceFactory serviceFactory) {
+    public DefaultFluentVerifier(UpdateExecutorFactory updateExecutorFactory,
+                                 SimulateExecutorServiceFactory serviceFactory,
+                                 UpdateChainProcessorService updateChainProcessorService,
+                                 ReinitializeFluentTemplateService reinitializeFluentTemplateService) {
 
-        this.proxyFluentBotFactory = proxyFluentBotFactory;
-        this.updateExecutorFactory = updateExecutorFactory;
         this.serviceFactory = serviceFactory;
+        this.updateExecutorFactory = updateExecutorFactory;
+        this.updateChainProcessorService = updateChainProcessorService;
+        this.reinitializeFluentTemplateService = reinitializeFluentTemplateService;
     }
 
     @Override
     public VerifierAssertions execute(Update update) {
-        var history = createHistory();
-        executeUpdate(update, history);
-        return createDefaultVerifier(history);
+        executeUpdate(update);
+        var invokeHistory = reinitializeFluentTemplateService.getInvokeHistory();
+        return createDefaultVerifier(invokeHistory);
     }
 
-    private void executeUpdate(Update update, MethodInvokeHistory history) {
+    private void executeUpdate(Update update) {
         try {
-           tryExecuteUpdate(update, history);
+           tryExecuteUpdate(update);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
     }
 
-    private void tryExecuteUpdate(Update update, MethodInvokeHistory history) throws InterruptedException {
+    private void tryExecuteUpdate(Update update) throws InterruptedException {
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        FluentBot fluentBot = proxyFluentBotFactory.create(history);
-        UpdateExecutor updateExecutor = updateExecutorFactory.create(fluentBot);
+        UpdateHandler updateHandler = updateExecutorFactory.create(updateChainProcessorService);
         ExecutorService executorService = serviceFactory.create(countDownLatch);
-        SimulateMainHandlerFactory handlerFactory = new DefaultSimulateMainHandlerFactory(executorService);
-        MainHandler handler = handlerFactory.create(updateExecutor);
+
+        SimulateUpdateHandlerManagerFactory handlerFactory = new DefaultSimulateUpdateHandlerManagerFactory(executorService);
+        UpdateHandlerManager handler = handlerFactory.create(updateHandler);
         handler.process(update);
         countDownLatch.await();
-    }
-
-    private MethodInvokeHistory createHistory() {
-        return new DefaultMethodInvokeHistory();
     }
 
     private VerifierAssertions createDefaultVerifier(MethodInvokeHistory methodInvokeHistory) {

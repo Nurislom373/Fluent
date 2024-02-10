@@ -54,8 +54,6 @@ public class CallbackController {
         String text2 = "I Got it!";
         fluentTemplate.sendText(text2, language());
         fluentTemplate.sendDice("⚽");
-
-        throw new RuntimeException("HEllo World");
     }
 
     @HandleCallback(value = {"RU", "UZ"})

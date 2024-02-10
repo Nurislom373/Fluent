@@ -55,9 +55,9 @@ public class DefaultVerifierAssertions implements VerifierAssertions {
     }
 
     private void hasMessageInternal(MethodInvokeMemento memento, String expectMessage) {
-        getMatchArgument(memento.getArgs(), SendMessage.class)
-                .ifPresent(sendMessage -> {
-                    if (!Objects.equals(sendMessage.getText(), expectMessage)) {
+        getMatchArgument(memento.getArgs(), String.class)
+                .ifPresent(text -> {
+                    if (!Objects.equals(text, expectMessage)) {
                         throw new AssertionError("expect message not match!");
                     }
                 });

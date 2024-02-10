@@ -1,9 +1,8 @@
 package org.khasanof.executors;
 
-import org.khasanof.MainHandler;
+import org.khasanof.UpdateHandlerManager;
 import org.khasanof.custom.executor.ExecutorServiceFactory;
 import org.khasanof.custom.task.UpdateTask;
-import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.concurrent.ExecutorService;
@@ -17,22 +16,22 @@ import java.util.concurrent.ExecutorService;
  * <br/>
  * Package: org.khasanof.core.handler
  */
-@Service
-public class CommonMainHandler implements MainHandler {
+public class DefaultUpdateHandlerManager implements UpdateHandlerManager {
 
+    private final UpdateHandler executor;
     private final ExecutorService executorService;
-    private final UpdateExecutor executor;
 
-    public CommonMainHandler(CommonUpdateExecutor executor,
-                             ExecutorServiceFactory serviceFactory) {
-
+    public DefaultUpdateHandlerManager(UpdateHandler executor, ExecutorServiceFactory serviceFactory) {
         this.executor = executor;
         this.executorService = serviceFactory.createExecutorService();
     }
 
+    /**
+     *
+     * @param update
+     */
     @Override
     public void process(Update update) {
         executorService.execute(new UpdateTask(update, () -> executor.execute(update)));
     }
-
 }

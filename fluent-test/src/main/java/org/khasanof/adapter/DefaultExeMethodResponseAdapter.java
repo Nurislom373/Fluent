@@ -1,15 +1,15 @@
 package org.khasanof.adapter;
 
+import org.apache.commons.lang3.RandomUtils;
 import org.khasanof.factories.response.ExecMethodResponse;
 import org.khasanof.factories.response.decorators.ExecMethodResponseSentCallbackDecorator;
 import org.khasanof.factories.response.decorators.ExecMethodResponseWrapFutureDecorator;
 import org.khasanof.factories.response.methods.AbstractExecMethodResponse;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.objects.Message;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author Nurislom
@@ -20,19 +20,47 @@ import java.util.Objects;
 public class DefaultExeMethodResponseAdapter implements ExecMethodResponseAdapter {
 
     private final Map<Class<? extends BotApiMethod>, ExecMethodResponse> methodResponseMap = new HashMap<>();
+    private final List<ExecMethodResponse> responses = new ArrayList<>();
 
     @Override
     public Object createResponse(Method method, Object[] args) {
-        if (args.length <= 2) {
-            return createResponseInternal(method, args);
+//        if (args.length == 1) {
+//            Message message = new Message();
+//            message.setMessageId(RandomUtils.nextInt());
+//            message.setText(String.valueOf(args[0]));
+//            message.setMessageThreadId(RandomUtils.nextInt());
+//            return message;
+//        }
+        return responses.stream()
+                .filter(execMethodResponse -> matchMethods(execMethodResponse.getMethod(), method))
+                .map(execMethodResponse -> {
+                    try {
+                        return execMethodResponse.createResponse(method, args);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Match method not found!"));
+//        throw new RuntimeException("Arguments greater than two!");
+    }
+
+    private boolean matchMethods(Method execMethod, Method method) {
+        if (!Objects.equals(execMethod.getName(), method.getName())) {
+            return false;
         }
-        throw new RuntimeException("Arguments greater than two!");
+
+        if (!Arrays.equals(execMethod.getParameterTypes(), method.getParameterTypes())) {
+            return false;
+        }
+        return Objects.equals(execMethod.getModifiers(), method.getModifiers());
     }
 
     @Override
     public void setExecMethodResponseMap(Map<Class<? extends BotApiMethod>, ExecMethodResponse> methodResponseMap) {
         if (Objects.nonNull(methodResponseMap) && !methodResponseMap.isEmpty()) {
             this.methodResponseMap.putAll(methodResponseMap);
+            this.responses.addAll(methodResponseMap.values());
         }
     }
 

@@ -1,12 +1,11 @@
 package org.khasanof.factories.proxy;
 
 import org.jetbrains.annotations.NotNull;
-import org.khasanof.FluentBot;
 import org.khasanof.adapter.ExecMethodResponseAdapter;
-import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.handler.ExecuteMethodChecker;
 import org.khasanof.interceptor.FluentMethodInterceptor;
 import org.khasanof.memento.MethodInvokeHistory;
+import org.khasanof.service.template.FluentTemplate;
 import org.springframework.cglib.proxy.Enhancer;
 
 /**
@@ -14,30 +13,26 @@ import org.springframework.cglib.proxy.Enhancer;
  * @see org.khasanof.factories
  * @since 1/9/2024 12:47 AM
  */
-public class DefaultProxyFluentBotFactory implements ProxyFluentBotFactory {
+public class DefaultProxyFluentTemplateFactory implements ProxyFluentTemplateFactory {
 
-    private final GenericSingleton<FluentBot> fluentBot;
     private final ExecuteMethodChecker proxyMethodHandler;
     private final ExecMethodResponseAdapter methodResponseAdapter;
 
-    public DefaultProxyFluentBotFactory(GenericSingleton<FluentBot> fluentBot,
-                                        ExecuteMethodChecker proxyMethodHandler,
-                                        ExecMethodResponseAdapter methodResponseAdapter) {
-        this.fluentBot = fluentBot;
+    public DefaultProxyFluentTemplateFactory(ExecuteMethodChecker proxyMethodHandler, ExecMethodResponseAdapter methodResponseAdapter) {
         this.proxyMethodHandler = proxyMethodHandler;
         this.methodResponseAdapter = methodResponseAdapter;
     }
 
     @Override
-    public FluentBot create(MethodInvokeHistory methodInvokeHistory) {
+    public FluentTemplate create(MethodInvokeHistory methodInvokeHistory) {
         final var enhancer = new Enhancer();
-        enhancer.setSuperclass(FluentBot.class);
+        enhancer.setSuperclass(FluentTemplate.class);
         enhancer.setCallback(methodInterceptor(methodInvokeHistory));
-        return (FluentBot) enhancer.create();
+        return (FluentTemplate) enhancer.create();
     }
 
     private FluentMethodInterceptor methodInterceptor(MethodInvokeHistory methodInvokeHistory) {
-        return new FluentMethodInterceptor(fluentBot.getInstance(), proxyMethodHandler, methodInvokeHistory, getInvokeResponseFactory());
+        return new FluentMethodInterceptor(proxyMethodHandler, methodInvokeHistory, getInvokeResponseFactory());
     }
 
     @NotNull

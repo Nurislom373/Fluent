@@ -17,7 +17,6 @@ import java.util.Objects;
  * @see org.khasanof.factories.invoker
  * @since 12/16/2023 9:14 PM
  */
-@Component
 public class DefaultInvokerMethodFactory implements InvokerMethodFactory {
 
     private final MethodTypeDefinitionMediator methodTypeDefinitionMediator;

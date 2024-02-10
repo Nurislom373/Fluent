@@ -27,6 +27,7 @@ import java.util.Objects;
  */
 public class DefaultFluentTemplate implements FluentTemplate {
 
+    private FluentBot instance;
     private final GenericSingleton<FluentBot> singletonBot;
 
     public DefaultFluentTemplate(GenericSingleton<FluentBot> singletonBot) {
@@ -499,6 +500,9 @@ public class DefaultFluentTemplate implements FluentTemplate {
     }
 
     private FluentBot getInstance() {
-        return singletonBot.getInstance();
+        if (Objects.isNull(this.instance)) {
+            this.instance = singletonBot.getInstance();
+        }
+        return this.instance;
     }
 }

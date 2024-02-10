@@ -5,7 +5,6 @@ import org.khasanof.config.FluentProperties;
 import org.telegram.telegrambots.meta.api.methods.AnswerInlineQuery;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.inlinequery.InlineQuery;
-import org.telegram.telegrambots.meta.api.objects.inlinequery.inputmessagecontent.InputContactMessageContent;
 import org.telegram.telegrambots.meta.api.objects.inlinequery.inputmessagecontent.InputTextMessageContent;
 import org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQueryResult;
 import org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQueryResultArticle;
@@ -26,7 +25,7 @@ import java.util.List;
 @NoArgsConstructor
 public class FluentBot extends AbstractFluentBot {
 
-    public FluentBot(MainHandler handler, FluentProperties properties) {
+    public FluentBot(UpdateHandlerManager handler, FluentProperties properties) {
         super(handler, properties.getBot());
     }
 

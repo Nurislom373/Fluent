@@ -1,6 +1,5 @@
 package org.khasanof.factories.executor;
 
-import org.khasanof.context.FluentContextHolder;
 import org.khasanof.context.FluentUpdateContext;
 import org.khasanof.custom.CountedFluentThreadPoolExecutor;
 

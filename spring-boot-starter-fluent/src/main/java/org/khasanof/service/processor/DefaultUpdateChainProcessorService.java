@@ -1,6 +1,7 @@
 package org.khasanof.service.processor;
 
 import org.khasanof.executors.processor.AbstractUpdateChainProcessor;
+import org.khasanof.factories.processor.CachedUpdateChainProcessorFactory;
 import org.khasanof.factories.processor.UpdateChainProcessorFactory;
 import org.khasanof.service.interceptor.FluentInterceptorService;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,10 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 public class DefaultUpdateChainProcessorService implements UpdateChainProcessorService {
 
     private final FluentInterceptorService fluentInterceptorService;
-    private final UpdateChainProcessorFactory updateChainProcessorFactory;
+    private final CachedUpdateChainProcessorFactory updateChainProcessorFactory;
 
     public DefaultUpdateChainProcessorService(FluentInterceptorService fluentInterceptorService,
-                                              UpdateChainProcessorFactory updateChainProcessorFactory) {
+                                              CachedUpdateChainProcessorFactory updateChainProcessorFactory) {
 
         this.fluentInterceptorService = fluentInterceptorService;
         this.updateChainProcessorFactory = updateChainProcessorFactory;

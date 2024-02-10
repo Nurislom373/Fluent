@@ -1,8 +1,8 @@
 package org.khasanof.simulate;
 
-import org.khasanof.MainHandler;
+import org.khasanof.UpdateHandlerManager;
 import org.khasanof.custom.task.UpdateTask;
-import org.khasanof.executors.UpdateExecutor;
+import org.khasanof.executors.UpdateHandler;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.concurrent.ExecutorService;
@@ -12,14 +12,12 @@ import java.util.concurrent.ExecutorService;
  * @see org.khasanof.simulate
  * @since 1/9/2024 9:57 PM
  */
-public class SimulateMainHandler implements MainHandler {
+public class SimulateUpdateHandlerManager implements UpdateHandlerManager {
 
-    private final UpdateExecutor executor;
+    private final UpdateHandler executor;
     private final ExecutorService executorService;
 
-    public SimulateMainHandler(UpdateExecutor executor,
-                               ExecutorService executorService) {
-
+    public SimulateUpdateHandlerManager(UpdateHandler executor, ExecutorService executorService) {
         this.executor = executor;
         this.executorService = executorService;
     }

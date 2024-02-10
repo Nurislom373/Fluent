@@ -20,7 +20,6 @@ import java.util.Optional;
  */
 @Slf4j
 @SuppressWarnings({"rawtypes"})
-@Component(DefaultStateMethodContext.NAME)
 public class DefaultStateMethodContext implements StateMethodContext {
 
     public static final String NAME = "defaultStateMethodContext";

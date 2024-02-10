@@ -30,6 +30,12 @@ public abstract class AbstractUpdateChainProcessor extends AbstractNopChainProce
         }
     }
 
+    protected void callNextProcess(Update update, Boolean condition) throws Exception {
+        if (Objects.nonNull(nextProcessor) && condition) {
+            nextProcessor.process(update);
+        }
+    }
+
     protected void callPreExecution(SimpleInvoker simpleInvoker) {
         if (Objects.nonNull(preExecutionService)) {
             preExecutionService.preHandle(simpleInvoker);

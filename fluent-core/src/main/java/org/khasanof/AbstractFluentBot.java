@@ -16,10 +16,10 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 @NoArgsConstructor
 public abstract class AbstractFluentBot extends TelegramLongPollingBot {
 
-    protected MainHandler handler;
+    protected UpdateHandlerManager handler;
     protected FluentProperties.Bot bot;
 
-    public AbstractFluentBot(MainHandler handler, FluentProperties.Bot bot) {
+    public AbstractFluentBot(UpdateHandlerManager handler, FluentProperties.Bot bot) {
         super(bot.getToken());
         this.handler = handler;
         this.bot = bot;

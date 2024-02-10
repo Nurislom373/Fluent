@@ -1,10 +1,9 @@
 package org.khasanof;
 
 import org.khasanof.adapter.ExecMethodResponseAdapter;
-import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.execute.ExecuteMethodCollector;
-import org.khasanof.factories.proxy.DefaultProxyFluentBotFactory;
-import org.khasanof.factories.proxy.ProxyFluentBotFactory;
+import org.khasanof.factories.proxy.DefaultProxyFluentTemplateFactory;
+import org.khasanof.factories.proxy.ProxyFluentTemplateFactory;
 import org.khasanof.handler.DefaultExecuteMethodChecker;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
@@ -19,11 +18,15 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnClass(ExecuteMethodCollectorConfiguration.class)
 public class ProxyFluentBotFactoryConfiguration {
 
+    /**
+     *
+     * @param methodCollector
+     * @param methodResponseAdapter
+     * @return
+     */
     @Bean
-    public ProxyFluentBotFactory proxyFluentBotFactory(GenericSingleton<FluentBot> genericSingleton,
-                                                       ExecuteMethodCollector methodCollector,
-                                                       ExecMethodResponseAdapter methodResponseAdapter) {
-        return new DefaultProxyFluentBotFactory(genericSingleton, new DefaultExecuteMethodChecker(methodCollector), methodResponseAdapter);
+    public ProxyFluentTemplateFactory proxyFluentBotFactory(ExecuteMethodCollector methodCollector,
+                                                            ExecMethodResponseAdapter methodResponseAdapter) {
+        return new DefaultProxyFluentTemplateFactory(new DefaultExecuteMethodChecker(methodCollector), methodResponseAdapter);
     }
-
 }

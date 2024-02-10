@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.bots.AbsSender;
  */
 public interface Action {
 
-    void onReceive(Update update, AbsSender sender, State state) throws Exception;
+    void onReceive(Update update, State state) throws Exception;
 
     boolean updateHandlersProceed();
 

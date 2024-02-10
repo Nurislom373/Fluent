@@ -36,8 +36,7 @@ public class PerformProcessFile extends AbstractPerform {
 
     private void matchThenAdd(SimpleInvoker simpleInvoker, List<Object> params, Class<?> parameterType) {
         if (Objects.equals(parameterType, InputStream.class)) {
-            InputStream inputStream = (InputStream) simpleInvoker.getParams().get(InvokerParam.ADDITIONAL_PARAM);
-            params.add(inputStream);
+            params.add(simpleInvoker.getParams().get(InvokerParam.ADDITIONAL_PARAM));
             return;
         }
 
