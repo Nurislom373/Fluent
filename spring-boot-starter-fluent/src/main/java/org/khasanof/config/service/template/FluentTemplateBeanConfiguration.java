@@ -20,7 +20,7 @@ public class FluentTemplateBeanConfiguration {
      * @param fluentBotSingletonBean
      * @return {@link FluentTemplate} instance
      */
-    @Bean(FluentTemplate.NAME)
+    @Bean
     @ConditionalOnBean({FluentBotSingletonBean.class})
     public FluentTemplate fluentTemplate(FluentBotSingletonBean fluentBotSingletonBean) {
         return new DefaultFluentTemplate(fluentBotSingletonBean);

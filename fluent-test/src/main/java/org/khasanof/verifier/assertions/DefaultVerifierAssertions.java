@@ -3,11 +3,15 @@ package org.khasanof.verifier.assertions;
 import org.khasanof.memento.MethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeMemento;
 import org.khasanof.method.ExecuteMethodReflect;
-import org.khasanof.verifier.assertions.VerifierAssertions;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.khasanof.service.template.operations.SendTextOperations;
+import org.khasanof.service.template.operations.callback.SendAnswerCallbackQueryOperations;
+import org.khasanof.verifier.checker.MethodInvokeMementoVerifier;
 
 import java.lang.reflect.Method;
-import java.util.*;
+import java.util.Objects;
+import java.util.Set;
+
+import static org.khasanof.utils.FluentTestUtils.isMatchMethod;
 
 /**
  * @author Nurislom
@@ -18,56 +22,80 @@ public class DefaultVerifierAssertions implements VerifierAssertions {
 
     private final MethodInvokeHistory methodInvokeHistory;
     private final ExecuteMethodReflect executeMethodReflect;
+    private final MethodInvokeMementoVerifier methodInvokeMementoVerifier;
 
     public DefaultVerifierAssertions(MethodInvokeHistory methodInvokeHistory,
-                                     ExecuteMethodReflect executeMethodReflect) {
+                                     ExecuteMethodReflect executeMethodReflect,
+                                     MethodInvokeMementoVerifier methodInvokeMementoVerifier) {
+
         this.methodInvokeHistory = methodInvokeHistory;
         this.executeMethodReflect = executeMethodReflect;
+        this.methodInvokeMementoVerifier = methodInvokeMementoVerifier;
     }
 
     @Override
-    public VerifierAssertions expectSendMessage() {
-        MethodInvokeMemento invokeMemento = methodInvokeHistory.getFirstHistory();
-        Optional<SendMessage> matchArgument = getMatchArgument(invokeMemento.getArgs(), SendMessage.class);
-        if (matchArgument.isEmpty()) {
-            throw new AssertionError("expect message not found!");
-        }
-        return this;
+    public VerifierAssertions expectSendText() {
+        return expectLatestMethod(SendTextOperations.class, "expect message not found!");
     }
 
     @Override
-    public VerifierAssertions expectSendMessage(String expectMessage) {
+    public VerifierAssertions expectSendText(String expectMessage) {
         MethodInvokeMemento invokeMemento = methodInvokeHistory.getFirstHistory();
-        Set<Method> methods = executeMethodReflect.getMethodWithString();
+        Set<Method> methods = executeMethodReflect.getPublicMethods(SendTextOperations.class);
+
         if (methods.contains(invokeMemento.getMethod())) {
-            hasMessageInternal(invokeMemento, expectMessage);
+            methodInvokeMementoVerifier.expectMessage(invokeMemento, expectMessage);
         }
         return this;
     }
 
     @Override
-    public VerifierAssertions expectSendMessageCount(long count) {
-        Stack<MethodInvokeMemento> history = methodInvokeHistory.getHistory();
-        if (!Objects.equals(history.size(), count)) {
-            throw new AssertionError("expect message count not match!");
+    public VerifierAssertions expectSendTextCount(long count) {
+        return expectSendCount(count, SendTextOperations.class, "expect message count not match!");
+    }
+
+    @Override
+    public VerifierAssertions expectSendAnswerCallbackQuery() {
+        return expectLatestMethod(SendAnswerCallbackQueryOperations.class, "expect answer callback query not found!");
+    }
+
+    @Override
+    public VerifierAssertions expectSendAnswerCallbackQuery(String callbackData) {
+        MethodInvokeMemento invokeMemento = methodInvokeHistory.getFirstHistory();
+        Set<Method> methods = executeMethodReflect.getPublicMethods(SendAnswerCallbackQueryOperations.class);
+
+        if (methods.contains(invokeMemento.getMethod())) {
+            methodInvokeMementoVerifier.expectAnswerCallbackQuery(invokeMemento, callbackData);
         }
         return this;
     }
 
-    private void hasMessageInternal(MethodInvokeMemento memento, String expectMessage) {
-        getMatchArgument(memento.getArgs(), String.class)
-                .ifPresent(text -> {
-                    if (!Objects.equals(text, expectMessage)) {
-                        throw new AssertionError("expect message not match!");
-                    }
-                });
+    @Override
+    public VerifierAssertions expectSendAnswerCallbackQueryCount(long count) {
+        return expectSendCount(count, SendAnswerCallbackQueryOperations.class, "expect message count not match!");
     }
 
-    private <T> Optional<T> getMatchArgument(Object[] args, Class<T> clazz) {
-        return Arrays.stream(args)
-                .filter(arg -> Objects.equals(arg.getClass(), clazz) || clazz.isAssignableFrom(arg.getClass()))
-                .map(arg -> (T) arg)
-                .findFirst();
+    private VerifierAssertions expectLatestMethod(Class<?> expectMethodClass, String message) {
+        MethodInvokeMemento invokeMemento = methodInvokeHistory.getFirstHistory();
+        Set<Method> publicMethods = executeMethodReflect.getPublicMethods(expectMethodClass);
+
+        if (!isMatchMethod(invokeMemento.getMethod(), publicMethods)) {
+            throw new AssertionError(message);
+        }
+        return this;
     }
 
+    private VerifierAssertions expectSendCount(long count, Class<?> expectMethodClass, String message) {
+        Set<Method> publicMethods = executeMethodReflect.getPublicMethods(expectMethodClass);
+        Set<MethodInvokeMemento> mementos = getHistory(publicMethods);
+
+        if (!Objects.equals(mementos.size(), count)) {
+            throw new AssertionError(message);
+        }
+        return this;
+    }
+
+    private Set<MethodInvokeMemento> getHistory(Set<Method> publicMethods) {
+        return methodInvokeHistory.getHistoryWithPredicate(memento -> isMatchMethod(memento.getMethod(), publicMethods));
+    }
 }

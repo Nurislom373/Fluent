@@ -1,6 +1,7 @@
 package org.khasanof.method;
 
 import org.khasanof.service.template.operations.SendTextOperations;
+import org.khasanof.service.template.operations.callback.SendAnswerCallbackQueryOperations;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -29,9 +30,18 @@ public class DefaultExecuteMethodReflect implements ExecuteMethodReflect {
                 ).collect(Collectors.toSet());
     }
 
+    @Override
+    public Set<Method> getPublicMethods(Class<?> clazz) {
+        return Arrays.stream(clazz.getMethods())
+                .filter(method -> Modifier.isPublic(method.getModifiers()))
+                .filter(method -> !ignoreMethodNames.contains(method.getName()))
+                .collect(Collectors.toSet());
+    }
+
     private Set<Class<?>> getClasses() {
         return Set.of(
-                SendTextOperations.class
+                SendTextOperations.class,
+                SendAnswerCallbackQueryOperations.class
         );
     }
 }

@@ -72,7 +72,7 @@ public class CallbackController {
     private void multiCallback(Update update) {
         String text = "NPTB one handle \uD83D\uDE0E";
         fluentTemplate.sendText(text);
-        fluentTemplate.sendAnswerCallbackQuery("Nurislom2",true);
+        fluentTemplate.sendAnswerCallbackQuery("Nurislom2", true);
     }
 
     @HandleDocument(

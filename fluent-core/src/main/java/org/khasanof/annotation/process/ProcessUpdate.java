@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * @author Nurislom
- * @see org.khasanof.annotation.extra
+ * @see org.khasanof.annotation.process
  * @since 16.07.2023 0:03
  */
 @Target({ElementType.ANNOTATION_TYPE})

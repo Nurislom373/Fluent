@@ -1,6 +1,6 @@
 package org.khasanof.factories.proxy;
 
-import org.khasanof.adapter.ExecMethodResponseAdapter;
+import org.khasanof.mediator.ExecMethodResponseMediator;
 
 import java.lang.reflect.Method;
 
@@ -11,9 +11,9 @@ import java.lang.reflect.Method;
  */
 public class DefaultProxyMethodInvokeResponseFactory implements ProxyMethodInvokeResponseFactory {
 
-    private final ExecMethodResponseAdapter methodResponseAdapter;
+    private final ExecMethodResponseMediator methodResponseAdapter;
 
-    public DefaultProxyMethodInvokeResponseFactory(ExecMethodResponseAdapter methodResponseAdapter) {
+    public DefaultProxyMethodInvokeResponseFactory(ExecMethodResponseMediator methodResponseAdapter) {
         this.methodResponseAdapter = methodResponseAdapter;
     }
 

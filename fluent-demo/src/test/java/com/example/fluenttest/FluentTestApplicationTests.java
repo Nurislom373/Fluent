@@ -21,9 +21,9 @@ class FluentTestApplicationTests {
         Update update = updateFactoryFacade.createMessage("/fluent");
 
         fluentVerifier.execute(update)
-                .expectSendMessage("I'm handle any messages")
-                .expectSendMessage()
-                .expectSendMessage("Handle Update With Expression");
+                .expectSendText("I'm handle any messages")
+                .expectSendText()
+                .expectSendText("Handle Update With Expression");
     }
 
 }

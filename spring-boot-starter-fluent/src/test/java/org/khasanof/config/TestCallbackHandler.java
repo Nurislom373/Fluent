@@ -2,6 +2,8 @@ package org.khasanof.config;
 
 import org.khasanof.annotation.UpdateController;
 import org.khasanof.annotation.methods.HandleCallback;
+import org.khasanof.annotation.methods.HandleCallbacks;
+import org.khasanof.enums.MatchScope;
 import org.khasanof.service.template.FluentTemplate;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -29,4 +31,14 @@ public class TestCallbackHandler {
         fluentTemplate.sendText(text);
     }
 
+    @HandleCallbacks(values = {
+            @HandleCallback(value = {"NEXT", "PREV"}),
+            @HandleCallback(value = {"TOP", "BOTTOM"}),
+            @HandleCallback(value = {"LST"}, scope = MatchScope.START_WITH)
+    })
+    private void multiCallback(Update update) {
+        String text = "NPTB one handle \uD83D\uDE0E";
+        fluentTemplate.sendText(text);
+        fluentTemplate.sendAnswerCallbackQuery("Nurislom2", true);
+    }
 }

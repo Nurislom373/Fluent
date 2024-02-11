@@ -1,11 +1,7 @@
 package org.khasanof.utils;
 
 import lombok.SneakyThrows;
-import org.khasanof.annotation.process.ProcessState;
-import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.enums.ProcessType;
 
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -161,15 +157,6 @@ public abstract class MethodUtils {
             isAbstract = true;
         }
         return !isInterface && !isAbstract;
-    }
-
-    public static Class<? extends Annotation> processToType(ProcessType type) {
-        if (type.equals(ProcessType.STATE)) {
-            return ProcessState.class;
-        } else if (type.equals(ProcessType.UPDATE)) {
-            return ProcessUpdate.class;
-        }
-        return null;
     }
 
 }

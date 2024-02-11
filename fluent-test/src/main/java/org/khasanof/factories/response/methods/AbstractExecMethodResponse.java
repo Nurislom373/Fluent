@@ -1,6 +1,5 @@
 package org.khasanof.factories.response.methods;
 
-import org.khasanof.factories.response.ExecBotApiMethod;
 import org.khasanof.factories.response.ExecMethodResponse;
 
 /**
@@ -8,7 +7,7 @@ import org.khasanof.factories.response.ExecMethodResponse;
  * @see org.khasanof.factories.response.methods
  * @since 1/13/2024 11:55 PM
  */
-public abstract class AbstractExecMethodResponse implements ExecBotApiMethod, ExecMethodResponse {
+public abstract class AbstractExecMethodResponse implements ExecMethodResponse {
 
     protected final Object EMPTY_OBJECT = new Object();
 

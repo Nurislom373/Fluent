@@ -28,7 +28,18 @@ public class FluentCallbackHandlerIT {
         Update update = updateFactoryFacade.createCallback(data);
 
         fluentVerifier.execute(update)
-                .expectSendMessage("<b> Choose bot language: </b>");
+                .expectSendText("<b> Choose bot language: </b>");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"NEXT", "PREV", "TOP", "BOTTOM"})
+    void secondTestSentCallbackShouldSuccess(String callbackData) {
+        Update update = updateFactoryFacade.createCallback(callbackData);
+
+        String text = "NPTB one handle \uD83D\uDE0E";
+        fluentVerifier.execute(update)
+                .expectSendText(text)
+                .expectSendAnswerCallbackQuery();
     }
 
 }

@@ -1,6 +1,9 @@
 package org.khasanof.memento;
 
+import java.util.Set;
 import java.util.Stack;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author Nurislom
@@ -26,6 +29,13 @@ public class DefaultMethodInvokeHistory implements MethodInvokeHistory {
     @Override
     public Stack<MethodInvokeMemento> getHistory() {
         return this.invokeMementos;
+    }
+
+    @Override
+    public Set<MethodInvokeMemento> getHistoryWithPredicate(Predicate<MethodInvokeMemento> predicate) {
+        return invokeMementos.stream()
+                .filter(predicate)
+                .collect(Collectors.toSet());
     }
 
     @Override

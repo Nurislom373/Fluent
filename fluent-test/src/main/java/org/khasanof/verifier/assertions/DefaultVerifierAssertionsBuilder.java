@@ -4,6 +4,8 @@ import org.khasanof.memento.DefaultMethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeHistory;
 import org.khasanof.method.DefaultExecuteMethodReflect;
 import org.khasanof.method.ExecuteMethodReflect;
+import org.khasanof.verifier.checker.DefaultMethodInvokeMementoVerifier;
+import org.khasanof.verifier.checker.MethodInvokeMementoVerifier;
 
 /**
  * @author Nurislom
@@ -14,10 +16,12 @@ public class DefaultVerifierAssertionsBuilder {
 
     private MethodInvokeHistory methodInvokeHistory;
     private ExecuteMethodReflect executeMethodReflect;
+    private MethodInvokeMementoVerifier methodInvokeMementoVerifier;
 
     public DefaultVerifierAssertionsBuilder() {
         this.methodInvokeHistory = new DefaultMethodInvokeHistory();
         this.executeMethodReflect = new DefaultExecuteMethodReflect();
+        this.methodInvokeMementoVerifier = new DefaultMethodInvokeMementoVerifier();
     }
 
     public DefaultVerifierAssertionsBuilder methodInvokerHistory(MethodInvokeHistory methodInvokeHistory) {
@@ -30,8 +34,12 @@ public class DefaultVerifierAssertionsBuilder {
         return this;
     }
 
-    public VerifierAssertions build() {
-        return new DefaultVerifierAssertions(methodInvokeHistory, executeMethodReflect);
+    public DefaultVerifierAssertionsBuilder methodInvokeMementoVerifier(MethodInvokeMementoVerifier methodInvokeMementoVerifier) {
+        this.methodInvokeMementoVerifier = methodInvokeMementoVerifier;
+        return this;
     }
 
+    public VerifierAssertions build() {
+        return new DefaultVerifierAssertions(methodInvokeHistory, executeMethodReflect, methodInvokeMementoVerifier);
+    }
 }

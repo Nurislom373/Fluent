@@ -28,8 +28,8 @@ public class FluentMessageHandleIT {
         Update update = updateFactoryFacade.createMessage("/fluent");
 
         fluentVerifier.execute(update)
-                .expectSendMessage("I'm handle any messages")
-                .expectSendMessage("Handle Update With Expression");
+                .expectSendText("I'm handle any messages")
+                .expectSendText("Handle Update With Expression");
     }
 
     @Test
@@ -37,8 +37,8 @@ public class FluentMessageHandleIT {
         Update update = updateFactoryFacade.createMessage("/start");
 
         fluentVerifier.execute(update)
-                .expectSendMessage("I'm handle any messages")
-                .expectSendMessage("/start");
+                .expectSendText("I'm handle any messages")
+                .expectSendText("/start");
     }
 
     @Test
@@ -46,8 +46,8 @@ public class FluentMessageHandleIT {
         Update update = updateFactoryFacade.createMessage("/username : abdulloh");
 
         fluentVerifier.execute(update)
-                .expectSendMessage("I'm handle any messages")
-                .expectSendMessage("name : abdulloh");
+                .expectSendText("I'm handle any messages")
+                .expectSendText("name : abdulloh");
     }
 
     @ParameterizedTest
@@ -56,8 +56,8 @@ public class FluentMessageHandleIT {
         Update update = updateFactoryFacade.createMessage(command);
 
         fluentVerifier.execute(update)
-                .expectSendMessage("I'm handle any messages")
-                .expectSendMessage("Hi Jecki😎");
+                .expectSendText("I'm handle any messages")
+                .expectSendText("Hi Jecki😎");
     }
 
 }

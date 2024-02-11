@@ -1,6 +1,6 @@
 package org.khasanof;
 
-import org.khasanof.adapter.ExecMethodResponseAdapter;
+import org.khasanof.mediator.ExecMethodResponseMediator;
 import org.khasanof.execute.ExecuteMethodCollector;
 import org.khasanof.factories.proxy.DefaultProxyFluentTemplateFactory;
 import org.khasanof.factories.proxy.ProxyFluentTemplateFactory;
@@ -26,7 +26,7 @@ public class ProxyFluentBotFactoryConfiguration {
      */
     @Bean
     public ProxyFluentTemplateFactory proxyFluentBotFactory(ExecuteMethodCollector methodCollector,
-                                                            ExecMethodResponseAdapter methodResponseAdapter) {
+                                                            ExecMethodResponseMediator methodResponseAdapter) {
         return new DefaultProxyFluentTemplateFactory(new DefaultExecuteMethodChecker(methodCollector), methodResponseAdapter);
     }
 }

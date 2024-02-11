@@ -1,9 +1,10 @@
-package org.khasanof.adapter;
+package org.khasanof.mediator;
 
 import org.khasanof.factories.response.ExecMethodResponse;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -11,10 +12,10 @@ import java.util.Map;
  * @see org.khasanof.factories.response
  * @since 1/14/2024 12:01 AM
  */
-public interface ExecMethodResponseAdapter {
+public interface ExecMethodResponseMediator {
 
     Object createResponse(Method method, Object[] args);
 
-    void setExecMethodResponseMap(Map<Class<? extends BotApiMethod>, ExecMethodResponse> methodResponseMap);
+    void setExecMethodResponseMap(Collection<ExecMethodResponse> responses);
 
 }

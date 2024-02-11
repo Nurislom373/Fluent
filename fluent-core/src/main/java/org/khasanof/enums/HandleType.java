@@ -1,9 +1,5 @@
 package org.khasanof.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 /**
  * Author: Nurislom
  * <br/>

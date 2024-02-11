@@ -1,17 +1,17 @@
 package org.khasanof;
 
-import org.khasanof.adapter.DefaultExeMethodResponseAdapter;
-import org.khasanof.adapter.ExecMethodResponseAdapter;
+import org.khasanof.factories.response.methods.SendAnswerCallbackQueryFirstMethodResponse;
+import org.khasanof.factories.response.methods.SendTextSecondMethodResponse;
+import org.khasanof.mediator.DefaultExeMethodResponseMediator;
+import org.khasanof.mediator.ExecMethodResponseMediator;
 import org.khasanof.factories.response.ExecMethodResponse;
-import org.khasanof.factories.response.methods.ExecSendMessageMethodResponse;
+import org.khasanof.factories.response.methods.SendTextFirstMethodResponse;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Nurislom
@@ -28,18 +28,20 @@ public class ExecMethodResponseAdapterConfiguration {
 
     @Bean
     @ConditionalOnClass(ExecMethodResponseClasses.class)
-    public ExecMethodResponseAdapter execMethodResponseAdapter(ExecMethodResponseClasses responseClasses) {
-        var methodResponseAdapter = new DefaultExeMethodResponseAdapter();
+    public ExecMethodResponseMediator execMethodResponseAdapter(ExecMethodResponseClasses responseClasses) {
+        var methodResponseAdapter = new DefaultExeMethodResponseMediator();
         methodResponseAdapter.setExecMethodResponseMap(responseClasses.getExecMethodResponses());
         return methodResponseAdapter;
     }
 
     public static class ExecMethodResponseClasses {
 
-        public Map<Class<? extends BotApiMethod>, ExecMethodResponse> getExecMethodResponses() {
-            return new HashMap<>() {{
-                put(SendMessage.class, new ExecSendMessageMethodResponse());
-            }};
+        public Collection<ExecMethodResponse> getExecMethodResponses() {
+            return List.of(
+                    new SendTextFirstMethodResponse(),
+                    new SendTextSecondMethodResponse(),
+                    new SendAnswerCallbackQueryFirstMethodResponse()
+            );
         }
     }
 }

@@ -4,8 +4,6 @@ import org.apache.commons.lang3.RandomUtils;
 import org.jetbrains.annotations.NotNull;
 import org.khasanof.service.template.operations.SendTextOperations;
 import org.springframework.util.ReflectionUtils;
-import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 import java.lang.reflect.Method;
@@ -15,7 +13,7 @@ import java.lang.reflect.Method;
  * @see org.khasanof.factories.response.methods
  * @since 1/13/2024 11:55 PM
  */
-public class ExecSendMessageMethodResponse extends AbstractExecMethodResponse {
+public class SendTextFirstMethodResponse extends AbstractExecMethodResponse {
 
     @Override
     public Object createResponse(Method method, Object[] args) {
@@ -31,12 +29,9 @@ public class ExecSendMessageMethodResponse extends AbstractExecMethodResponse {
         message.setText(text);
         message.setMessageId(RandomUtils.nextInt());
         message.setMessageThreadId(RandomUtils.nextInt());
+        message.setMessageId(RandomUtils.nextInt());
+        message.setMessageThreadId(RandomUtils.nextInt());
         return message;
-    }
-
-    @Override
-    public Class<? extends BotApiMethod> botApiMethod() {
-        return SendMessage.class;
     }
 
     @Override

@@ -11,7 +11,5 @@ public interface ExecMethodResponse {
 
     Object createResponse(Method method, Object[] args) throws Exception;
 
-    default Method getMethod() {
-        return null;
-    }
+    Method getMethod();
 }

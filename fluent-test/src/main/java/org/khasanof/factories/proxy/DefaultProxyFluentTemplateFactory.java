@@ -1,7 +1,7 @@
 package org.khasanof.factories.proxy;
 
 import org.jetbrains.annotations.NotNull;
-import org.khasanof.adapter.ExecMethodResponseAdapter;
+import org.khasanof.mediator.ExecMethodResponseMediator;
 import org.khasanof.handler.ExecuteMethodChecker;
 import org.khasanof.interceptor.FluentMethodInterceptor;
 import org.khasanof.memento.MethodInvokeHistory;
@@ -16,9 +16,9 @@ import org.springframework.cglib.proxy.Enhancer;
 public class DefaultProxyFluentTemplateFactory implements ProxyFluentTemplateFactory {
 
     private final ExecuteMethodChecker proxyMethodHandler;
-    private final ExecMethodResponseAdapter methodResponseAdapter;
+    private final ExecMethodResponseMediator methodResponseAdapter;
 
-    public DefaultProxyFluentTemplateFactory(ExecuteMethodChecker proxyMethodHandler, ExecMethodResponseAdapter methodResponseAdapter) {
+    public DefaultProxyFluentTemplateFactory(ExecuteMethodChecker proxyMethodHandler, ExecMethodResponseMediator methodResponseAdapter) {
         this.proxyMethodHandler = proxyMethodHandler;
         this.methodResponseAdapter = methodResponseAdapter;
     }

@@ -9,7 +9,4 @@ import org.khasanof.service.template.operations.callback.SendAnswerCallbackQuery
  * @since 1/23/2024 9:23 PM
  */
 public interface FluentTemplate extends SendMessageOperations, SendAnswerCallbackQueryOperations {
-
-    String NAME = "fluentTemplate";
-
 }

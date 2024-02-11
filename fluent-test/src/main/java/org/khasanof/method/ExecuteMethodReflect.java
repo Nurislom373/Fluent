@@ -12,4 +12,5 @@ public interface ExecuteMethodReflect {
 
     Set<Method> getMethodWithString();
 
+    Set<Method> getPublicMethods(Class<?> clazz);
 }

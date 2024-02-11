@@ -7,10 +7,15 @@ package org.khasanof.verifier.assertions;
  */
 public interface VerifierAssertions {
 
-    VerifierAssertions expectSendMessage();
+    VerifierAssertions expectSendText();
 
-    VerifierAssertions expectSendMessage(String message);
+    VerifierAssertions expectSendText(String message);
 
-    VerifierAssertions expectSendMessageCount(long count);
+    VerifierAssertions expectSendTextCount(long count);
 
+    VerifierAssertions expectSendAnswerCallbackQuery();
+
+    VerifierAssertions expectSendAnswerCallbackQuery(String callbackData);
+
+    VerifierAssertions expectSendAnswerCallbackQueryCount(long count);
 }

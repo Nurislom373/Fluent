@@ -20,5 +20,4 @@ public abstract class ProcessTypeResolver {
                                     .thenGet(() -> true)
                 .elseValue(false);
     }
-
 }
