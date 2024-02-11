@@ -9,12 +9,13 @@ import org.khasanof.enums.HandleType;
  */
 public enum UpdateType {
 
-    MESSAGE, CALLBACK, MY_CHAT_MEMBER;
+    MESSAGE, CALLBACK, INLINE_QUERY, MY_CHAT_MEMBER;
 
     public HandleType asHandleType() {
         return switch (this) {
             case MESSAGE -> HandleType.MESSAGE;
             case CALLBACK -> HandleType.CALLBACK;
+            case INLINE_QUERY -> HandleType.INLINE_QUERY;
             case MY_CHAT_MEMBER -> HandleType.MY_CHAT_MEMBER;
         };
     }

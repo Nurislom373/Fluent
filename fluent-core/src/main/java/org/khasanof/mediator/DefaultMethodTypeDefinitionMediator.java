@@ -1,7 +1,6 @@
 package org.khasanof.mediator;
 
 import org.khasanof.enums.MethodType;
-import org.khasanof.factories.invoker.InvokerFactory;
 import org.khasanof.service.invoker.MethodTypeDefinition;
 
 import java.lang.reflect.Method;

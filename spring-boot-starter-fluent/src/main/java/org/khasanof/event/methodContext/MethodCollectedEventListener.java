@@ -1,4 +1,4 @@
-package org.khasanof.event;
+package org.khasanof.event.methodContext;
 
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.event.methodContext.MethodCollectedEvent;
