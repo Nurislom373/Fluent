@@ -13,8 +13,12 @@ import org.khasanof.enums.HandleType;
 import org.khasanof.enums.MatchScope;
 import org.khasanof.enums.scopes.PhotoScope;
 import org.khasanof.service.template.FluentTemplate;
+import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.ChatMemberUpdated;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.bots.AbsSender;
 
 import java.io.InputStream;
 import java.util.Objects;

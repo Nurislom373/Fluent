@@ -1,5 +1,6 @@
 package org.khasanof.service.template.operations;
 
+import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
@@ -21,15 +22,45 @@ public interface SendDocumentOperations {
 
     Message sendDocument(File file, Integer replyMessageId);
 
-    Message sendDocument(File file, ReplyKeyboard replyKeyboard);
+    Message sendDocument(File file, ReplyKeyboard replyMarkup);
+
+    Message sendDocument(File file, Boolean disableNotification);
 
     Message sendDocument(File file, Long chatId, String caption);
 
     Message sendDocument(File file, Long chatId, Integer replyMessageId);
 
-    Message sendDocument(File file, Long chatId, ReplyKeyboard replyKeyboard);
+    Message sendDocument(File file, Long chatId, ReplyKeyboard replyMarkup);
 
-    Message sendDocument(File file, Long chatId, ReplyKeyboard replyKeyboard, String caption);
+    Message sendDocument(File file, Long chatId, Boolean disableNotification);
+
+    Message sendDocument(File file, String caption, Integer replyMessageId);
+
+    Message sendDocument(File file, String caption, ReplyKeyboard replyMarkup);
+
+    Message sendDocument(File file, String caption, Boolean disableNotification);
+
+    Message sendDocument(File file, Integer replyMessageId, ReplyKeyboard replyKeyboard);
+
+    Message sendDocument(File file, Integer replyMessageId, Boolean disableNotification);
+
+    Message sendDocument(File file, ReplyKeyboard replyMarkup, Boolean disableNotification);
+
+    Message sendDocument(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId);
+
+    Message sendDocument(File file, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification);
+
+    Message sendDocument(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification);
+
+    Message sendDocument(File file, Long chatId, String caption, ReplyKeyboard replyMarkup);
+
+    Message sendDocument(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId);
+
+    Message sendDocument(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification);
+
+    Message sendDocument(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification);
+
+    // Input Stream
 
     Message sendDocument(InputStream inputStream, String filename);
 
@@ -51,4 +82,5 @@ public interface SendDocumentOperations {
 
     Message sendDocument(InputStream inputStream, String filename, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard, String caption);
 
+    Message sendDocument(SendDocument document);
 }

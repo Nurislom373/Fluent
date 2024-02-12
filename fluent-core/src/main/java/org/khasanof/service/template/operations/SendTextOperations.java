@@ -1,5 +1,6 @@
 package org.khasanof.service.template.operations;
 
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 
@@ -21,4 +22,6 @@ public interface SendTextOperations {
     Message sendText(String text, Long chatId, Integer replyMessageId);
 
     Message sendText(String text, Long chatId, ReplyKeyboard replyKeyboard);
+
+    Message sendMessage(SendMessage message);
 }
