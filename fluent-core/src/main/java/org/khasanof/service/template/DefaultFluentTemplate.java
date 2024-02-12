@@ -6,10 +6,7 @@ import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.utils.UpdateUtils;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage;
-import org.telegram.telegrambots.meta.api.methods.send.SendAudio;
-import org.telegram.telegrambots.meta.api.methods.send.SendDice;
-import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.*;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -21,6 +18,11 @@ import java.io.InputStream;
 import java.util.Objects;
 
 /**
+ * A "template" that plays a central role in Fluent Framework is introduced. It is named FluentTemplate and serves as an
+ * interface defining basic operations for working with a Telegram Bot. These operations encapsulate the essential actions for sending messages.
+ * <br/>
+ * <br/>
+ *
  * @author Nurislom
  * @see org.khasanof.service.template
  * @since 1/23/2024 9:28 PM
@@ -65,98 +67,180 @@ public class DefaultFluentTemplate implements FluentTemplate {
     }
 
     @Override
+    public Message sendMessage(SendMessage message) {
+        message.setChatId(getChatId(Long.valueOf(message.getChatId())));
+        return tryExecuteBotMethod(message);
+    }
+
+    @Override
     public Message sendDocument(File file) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, null, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, null, null, null));
     }
 
     @Override
     public Message sendDocument(File file, Long chatId) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, null, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, null, null, null));
     }
 
     @Override
     public Message sendDocument(File file, ReplyKeyboard replyKeyboard) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, replyKeyboard, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, replyKeyboard, null, null));
+    }
+
+    @Override
+    public Message sendDocument(File file, Boolean disableNotification) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, null, null, disableNotification));
     }
 
     @Override
     public Message sendDocument(File file, String caption) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, null, caption));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, null, caption, null));
     }
 
     @Override
     public Message sendDocument(File file, Integer replyMessageId) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, replyMessageId, null, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, replyMessageId, null, null, null));
     }
 
     @Override
     public Message sendDocument(File file, Long chatId, String caption) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, null, caption));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, null, caption, null));
     }
 
     @Override
     public Message sendDocument(File file, Long chatId, Integer replyMessageId) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, replyMessageId, null, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, replyMessageId, null, null, null));
     }
 
     @Override
     public Message sendDocument(File file, Long chatId, ReplyKeyboard replyKeyboard) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, replyKeyboard, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, replyKeyboard, null, null));
     }
 
     @Override
-    public Message sendDocument(File file, Long chatId, ReplyKeyboard replyKeyboard, String caption) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, replyKeyboard, caption));
+    public Message sendDocument(File file, Long chatId, Boolean disableNotification) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendDocument(File file, String caption, Integer replyMessageId) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, replyMessageId, null, caption, null));
+    }
+
+    @Override
+    public Message sendDocument(File file, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, replyMarkup, caption, null));
+    }
+
+    @Override
+    public Message sendDocument(File file, String caption, Boolean disableNotification) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, null, caption, disableNotification));
+    }
+
+    @Override
+    public Message sendDocument(File file, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, replyMessageId, replyKeyboard, null, null));
+    }
+
+    @Override
+    public Message sendDocument(File file, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, replyMessageId, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendDocument(File file, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendDocument(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, replyMessageId, replyMarkup, caption, null));
+    }
+
+    @Override
+    public Message sendDocument(File file, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, null, replyMarkup, caption, disableNotification));
+    }
+
+    @Override
+    public Message sendDocument(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), null, replyMessageId, replyMarkup, caption, disableNotification));
+    }
+
+    @Override
+    public Message sendDocument(File file, Long chatId, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, replyMarkup, caption, null));
+    }
+
+    @Override
+    public Message sendDocument(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, replyMessageId, replyMarkup, caption, null));
+    }
+
+    @Override
+    public Message sendDocument(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, null, replyMarkup, caption, disableNotification));
+    }
+
+    @Override
+    public Message sendDocument(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(file), chatId, replyMessageId, replyMarkup, caption, disableNotification));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), null, null, null, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), null, null, null, null, null));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename, Long chatId) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, null, null, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, null, null, null, null));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename, String caption) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), null, null, null, caption));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), null, null, null, caption, null));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename, Integer replyMessageId) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), null, replyMessageId, null, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), null, replyMessageId, null, null, null));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename, ReplyKeyboard replyKeyboard) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), null, null, replyKeyboard, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), null, null, replyKeyboard, null, null));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename, Long chatId, String caption) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, null, null, caption));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, null, null, caption, null));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename, Long chatId, Integer replyMessageId) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, replyMessageId, null, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, replyMessageId, null, null, null));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename, Long chatId, ReplyKeyboard replyKeyboard) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, null, replyKeyboard, null));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, null, replyKeyboard, null, null));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename, Long chatId, ReplyKeyboard replyKeyboard, String caption) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, null, replyKeyboard, caption));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, null, replyKeyboard, caption, null));
     }
 
     @Override
     public Message sendDocument(InputStream inputStream, String filename, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard, String caption) {
-        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, replyMessageId, replyKeyboard, caption));
+        return tryExecuteSendDocument(sendDocumentBuilder(new InputFile(inputStream, filename), chatId, replyMessageId, replyKeyboard, caption, null));
+    }
+
+    @Override
+    public Message sendDocument(SendDocument document) {
+        document.setChatId(getChatId(Long.valueOf(document.getChatId())));
+        return tryExecuteSendDocument(document);
     }
 
     @Override
@@ -326,6 +410,242 @@ public class DefaultFluentTemplate implements FluentTemplate {
     }
 
     @Override
+    public Message sendPhoto(File file) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, null, null, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Long chatId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), chatId, null, null, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, String caption) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, caption, null, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Long chatId, String caption) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), chatId, caption, null, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), chatId, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), chatId, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Long chatId, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), chatId, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(File file, String caption, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, caption, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, caption, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, String caption, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, caption, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, null, replyKeyboard, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, null, null, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(File file, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, null, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, caption, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, caption, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), null, caption, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Long chatId, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), chatId, caption, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), chatId, caption, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), chatId, caption, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(file), chatId, caption, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, null, null, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Long chatId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), chatId, null, null, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, String caption) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, caption, null, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Long chatId, String caption) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), chatId, caption, null, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), chatId, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), chatId, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Long chatId, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), chatId, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, String caption, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, caption, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, caption, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, String caption, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, caption, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, null, replyKeyboard, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, null, null, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, null, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, caption, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, caption, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), null, caption, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendPhoto(sendPhotoBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendPhoto(SendPhoto photo) {
+        photo.setChatId(getChatId(Long.valueOf(photo.getChatId())));
+        return tryExecuteSendPhoto(photo);
+    }
+
+    @Override
     public Message sendDice(String emoji) {
         return tryExecuteBotMethod(sendDiceBuilder(emoji, null, null, null));
     }
@@ -415,13 +735,23 @@ public class DefaultFluentTemplate implements FluentTemplate {
                 .callbackQueryId(getCallbackQueryId(callbackQueryId))
                 .build();
     }
-
     private SendDice sendDiceBuilder(String emoji, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
         return SendDice.builder()
                 .emoji(emoji)
                 .chatId(getChatId(chatId))
                 .replyToMessageId(replyMessageId)
                 .replyMarkup(replyKeyboard)
+                .build();
+    }
+
+    private SendPhoto sendPhotoBuilder(InputFile inputFile, Long chatId, String caption, ReplyKeyboard replyKeyboard, Integer replyMessageId, Boolean disableNotification) {
+        return SendPhoto.builder()
+                .photo(inputFile)
+                .chatId(getChatId(chatId))
+                .caption(caption)
+                .replyMarkup(replyKeyboard)
+                .replyToMessageId(replyMessageId)
+                .disableNotification(disableNotification)
                 .build();
     }
 
@@ -436,13 +766,14 @@ public class DefaultFluentTemplate implements FluentTemplate {
                 .build();
     }
 
-    private SendDocument sendDocumentBuilder(InputFile inputFile, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard, String caption) {
+    private SendDocument sendDocumentBuilder(InputFile inputFile, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard, String caption, Boolean disableNotification) {
         return SendDocument.builder()
                 .caption(caption)
                 .document(inputFile)
                 .replyMarkup(replyKeyboard)
                 .replyToMessageId(replyMessageId)
                 .chatId(String.valueOf(getChatId(chatId)))
+                .disableNotification(disableNotification)
                 .build();
     }
 
@@ -474,6 +805,14 @@ public class DefaultFluentTemplate implements FluentTemplate {
     private Boolean tryExecuteAnswerCallbackQuery(AnswerCallbackQuery answerCallbackQuery) {
         try {
             return getInstance().execute(answerCallbackQuery);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private Message tryExecuteSendPhoto(SendPhoto photo) {
+        try {
+            return getInstance().execute(photo);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
