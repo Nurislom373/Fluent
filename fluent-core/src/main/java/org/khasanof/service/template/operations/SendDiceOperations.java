@@ -28,5 +28,4 @@ public interface SendDiceOperations {
     Message sendDice(String emoji, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard);
 
     Message sendDice(SendDice sendDice);
-
 }

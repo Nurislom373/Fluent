@@ -4,7 +4,7 @@ import org.khasanof.memento.MethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeMemento;
 import org.khasanof.method.ExecuteMethodReflect;
 import org.khasanof.service.template.operations.SendTextOperations;
-import org.khasanof.service.template.operations.callback.SendAnswerCallbackQueryOperations;
+import org.khasanof.service.template.operations.callback.AnswerCallbackQueryOperations;
 import org.khasanof.verifier.checker.MethodInvokeMementoVerifier;
 
 import java.lang.reflect.Method;
@@ -56,13 +56,13 @@ public class DefaultVerifierAssertions implements VerifierAssertions {
 
     @Override
     public VerifierAssertions expectSendAnswerCallbackQuery() {
-        return expectLatestMethod(SendAnswerCallbackQueryOperations.class, "expect answer callback query not found!");
+        return expectLatestMethod(AnswerCallbackQueryOperations.class, "expect answer callback query not found!");
     }
 
     @Override
     public VerifierAssertions expectSendAnswerCallbackQuery(String callbackData) {
         MethodInvokeMemento invokeMemento = methodInvokeHistory.getFirstHistory();
-        Set<Method> methods = executeMethodReflect.getPublicMethods(SendAnswerCallbackQueryOperations.class);
+        Set<Method> methods = executeMethodReflect.getPublicMethods(AnswerCallbackQueryOperations.class);
 
         if (methods.contains(invokeMemento.getMethod())) {
             methodInvokeMementoVerifier.expectAnswerCallbackQuery(invokeMemento, callbackData);
@@ -72,7 +72,7 @@ public class DefaultVerifierAssertions implements VerifierAssertions {
 
     @Override
     public VerifierAssertions expectSendAnswerCallbackQueryCount(long count) {
-        return expectSendCount(count, SendAnswerCallbackQueryOperations.class, "expect message count not match!");
+        return expectSendCount(count, AnswerCallbackQueryOperations.class, "expect message count not match!");
     }
 
     private VerifierAssertions expectLatestMethod(Class<?> expectMethodClass, String message) {

@@ -1,13 +1,11 @@
 package org.khasanof.method;
 
 import org.khasanof.service.template.operations.SendTextOperations;
-import org.khasanof.service.template.operations.callback.SendAnswerCallbackQueryOperations;
+import org.khasanof.service.template.operations.callback.AnswerCallbackQueryOperations;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -41,7 +39,7 @@ public class DefaultExecuteMethodReflect implements ExecuteMethodReflect {
     private Set<Class<?>> getClasses() {
         return Set.of(
                 SendTextOperations.class,
-                SendAnswerCallbackQueryOperations.class
+                AnswerCallbackQueryOperations.class
         );
     }
 }

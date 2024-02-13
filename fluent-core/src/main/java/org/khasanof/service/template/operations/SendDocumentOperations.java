@@ -62,25 +62,51 @@ public interface SendDocumentOperations {
 
     // Input Stream
 
-    Message sendDocument(InputStream inputStream, String filename);
+    Message sendDocument(InputStream stream, String filename);
 
-    Message sendDocument(InputStream inputStream, String filename, Long chatId);
+    Message sendDocument(InputStream stream, String filename, Long chatId);
 
-    Message sendDocument(InputStream inputStream, String filename, String caption);
+    Message sendDocument(InputStream stream, String filename, String caption);
 
-    Message sendDocument(InputStream inputStream, String filename, Integer replyMessageId);
+    Message sendDocument(InputStream stream, String filename, Integer replyMessageId);
 
-    Message sendDocument(InputStream inputStream, String filename, ReplyKeyboard replyKeyboard);
+    Message sendDocument(InputStream stream, String filename, ReplyKeyboard replyMarkup);
 
-    Message sendDocument(InputStream inputStream, String filename, Long chatId, String caption);
+    Message sendDocument(InputStream stream, String filename, Boolean disableNotification);
 
-    Message sendDocument(InputStream inputStream, String filename, Long chatId, Integer replyMessageId);
+    Message sendDocument(InputStream stream, String filename, Long chatId, String caption);
 
-    Message sendDocument(InputStream inputStream, String filename, Long chatId, ReplyKeyboard replyKeyboard);
+    Message sendDocument(InputStream stream, String filename, Long chatId, Integer replyMessageId);
 
-    Message sendDocument(InputStream inputStream, String filename, Long chatId, ReplyKeyboard replyKeyboard, String caption);
+    Message sendDocument(InputStream stream, String filename, Long chatId, ReplyKeyboard replyMarkup);
 
-    Message sendDocument(InputStream inputStream, String filename, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard, String caption);
+    Message sendDocument(InputStream stream, String filename, Long chatId, Boolean disableNotification);
+
+    Message sendDocument(InputStream stream, String filename, String caption, Integer replyMessageId);
+
+    Message sendDocument(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup);
+
+    Message sendDocument(InputStream stream, String filename, String caption, Boolean disableNotification);
+
+    Message sendDocument(InputStream stream, String filename, Integer replyMessageId, ReplyKeyboard replyKeyboard);
+
+    Message sendDocument(InputStream stream, String filename, Integer replyMessageId, Boolean disableNotification);
+
+    Message sendDocument(InputStream stream, String filename, ReplyKeyboard replyMarkup, Boolean disableNotification);
+
+    Message sendDocument(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId);
+
+    Message sendDocument(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification);
+
+    Message sendDocument(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification);
+
+    Message sendDocument(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup);
+
+    Message sendDocument(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId);
+
+    Message sendDocument(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification);
+
+    Message sendDocument(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification);
 
     Message sendDocument(SendDocument document);
 }

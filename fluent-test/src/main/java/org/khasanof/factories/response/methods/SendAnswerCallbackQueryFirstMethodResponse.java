@@ -1,6 +1,6 @@
 package org.khasanof.factories.response.methods;
 
-import org.khasanof.service.template.operations.callback.SendAnswerCallbackQueryOperations;
+import org.khasanof.service.template.operations.callback.AnswerCallbackQueryOperations;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
@@ -22,6 +22,6 @@ public class SendAnswerCallbackQueryFirstMethodResponse extends AbstractExecMeth
 
     @Override
     public Method getMethod() {
-        return ReflectionUtils.findMethod(SendAnswerCallbackQueryOperations.class, "sendAnswerCallbackQuery", String.class, Boolean.class);
+        return ReflectionUtils.findMethod(AnswerCallbackQueryOperations.class, "sendAnswerCallbackQuery", String.class, Boolean.class);
     }
 }

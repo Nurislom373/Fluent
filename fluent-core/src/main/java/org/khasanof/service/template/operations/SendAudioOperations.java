@@ -22,29 +22,51 @@ public interface SendAudioOperations {
 
     Message sendAudio(File file, Integer replyMessageId);
 
-    Message sendAudio(File file, ReplyKeyboard replyKeyboard);
+    Message sendAudio(File file, ReplyKeyboard replyMarkup);
+
+    Message sendAudio(File file, Boolean disableNotification);
 
     Message sendAudio(File file, Long chatId, String caption);
 
     Message sendAudio(File file, Long chatId, Integer replyMessageId);
 
-    Message sendAudio(File file, Long chatId, ReplyKeyboard replyKeyboard);
+    Message sendAudio(File file, Long chatId, ReplyKeyboard replyMarkup);
+
+    Message sendAudio(File file, Long chatId, Boolean disableNotification);
 
     Message sendAudio(File file, String caption, Integer replyMessageId);
 
-    Message sendAudio(File file, String caption, ReplyKeyboard replyKeyboard);
+    Message sendAudio(File file, String caption, ReplyKeyboard replyMarkup);
+
+    Message sendAudio(File file, String caption, Boolean disableNotification);
 
     Message sendAudio(File file, String caption, String title);
 
-    Message sendAudio(File file, String caption, String title, Integer replyMessageId);
+    Message sendAudio(File file, Integer replyMessageId, ReplyKeyboard replyKeyboard);
 
-    Message sendAudio(File file, String caption, String title, ReplyKeyboard replyKeyboard);
+    Message sendAudio(File file, Integer replyMessageId, Boolean disableNotification);
 
-    Message sendAudio(File file, Long chatId, String caption, String title);
+    Message sendAudio(File file, ReplyKeyboard replyMarkup, Boolean disableNotification);
 
-    Message sendAudio(File file, Long chatId, String caption, String title, Integer replyMessageId);
+    Message sendAudio(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId);
 
-    Message sendAudio(File file, Long chatId, String caption, String title, ReplyKeyboard replyKeyboard);
+    Message sendAudio(File file, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification);
+
+    Message sendAudio(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification);
+
+    Message sendAudio(File file, Long chatId, String caption, ReplyKeyboard replyMarkup);
+
+    Message sendAudio(File file, Long chatId, String caption, String title, ReplyKeyboard replyMarkup);
+
+    Message sendAudio(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId);
+
+    Message sendAudio(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification);
+
+    Message sendAudio(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification);
+
+    Message sendAudio(File file, Long chatId, String caption, String title, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification);
+
+    // Input Stream
 
     Message sendAudio(InputStream inputStream, String filename);
 

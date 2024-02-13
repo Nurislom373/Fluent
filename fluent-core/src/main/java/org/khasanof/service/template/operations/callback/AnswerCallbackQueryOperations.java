@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
  * @see org.khasanof.service.template.operations.callback
  * @since 2/3/2024 11:20 PM
  */
-public interface SendAnswerCallbackQueryOperations {
+public interface AnswerCallbackQueryOperations {
 
     Boolean sendAnswerCallbackQuery(String text);
 
