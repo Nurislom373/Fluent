@@ -1,21 +1,28 @@
 package org.khasanof.service.template;
 
+import org.jetbrains.annotations.NotNull;
 import org.khasanof.FluentBot;
 import org.khasanof.context.FluentContextHolder;
 import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.utils.UpdateUtils;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
+import org.telegram.telegrambots.meta.api.methods.AnswerInlineQuery;
+import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodBoolean;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage;
 import org.telegram.telegrambots.meta.api.methods.send.*;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQueryResult;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Objects;
+
+import static org.khasanof.utils.BaseUtils.notNull;
 
 /**
  * A "template" that plays a central role in Fluent Framework is introduced. It is named FluentTemplate and serves as an
@@ -143,6 +150,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendMessage(SendMessage message) {
+        notNull(message, "message param must not be null!");
         message.setChatId(getChatId(Long.valueOf(message.getChatId())));
         return tryExecuteBotMethod(message);
     }
@@ -379,6 +387,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendDocument(SendDocument document) {
+        notNull(document, "document param must not be null!");
         document.setChatId(getChatId(Long.valueOf(document.getChatId())));
         return tryExecuteSendDocument(document);
     }
@@ -595,6 +604,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendAudio(SendAudio sendAudio) {
+        notNull(sendAudio, "sendAudio param must not be null!");
         sendAudio.setChatId(getChatId(Long.valueOf(sendAudio.getChatId())));
         return tryExecuteSendAudio(sendAudio);
     }
@@ -831,6 +841,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendPhoto(SendPhoto photo) {
+        notNull(photo, "photo param must not be null!");
         photo.setChatId(getChatId(Long.valueOf(photo.getChatId())));
         return tryExecuteSendPhoto(photo);
     }
@@ -877,44 +888,97 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendDice(SendDice sendDice) {
+        notNull(sendDice, "sendDice param must not be null!");
         sendDice.setChatId(getChatId(Long.valueOf(sendDice.getChatId())));
         return tryExecuteBotMethod(sendDice);
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, null, null, null));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, null, null, null));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, String callbackQueryId) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, callbackQueryId, null, null));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, callbackQueryId, null, null));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, Boolean showAlert) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, null, null, showAlert));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, null, null, showAlert));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, String callbackQueryId, String url) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, text, url, null));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, text, url, null));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, String callbackQueryId, Boolean showAlert) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, callbackQueryId, null, showAlert));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, callbackQueryId, null, showAlert));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, String callbackQueryId, String url, Boolean showAlert) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, callbackQueryId, url, showAlert));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, callbackQueryId, url, showAlert));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(AnswerCallbackQuery answerCallbackQuery) {
+        notNull(answerCallbackQuery, "answerCallbackQuery param must not be null!");
         answerCallbackQuery.setCallbackQueryId(getCallbackQueryId(answerCallbackQuery.getCallbackQueryId()));
-        return tryExecuteAnswerCallbackQuery(answerCallbackQuery);
+        return tryExecuteAnswerQueryMethod(answerCallbackQuery);
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, null, null, null));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, String inlineQueryId) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, inlineQueryId, null, null));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, Integer cacheTime) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, null, cacheTime, null));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, Boolean isPersonal) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, null, null, isPersonal));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, String inlineQueryId, Integer cacheTime) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, inlineQueryId, cacheTime, null));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, String inlineQueryId, Boolean isPersonal) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, inlineQueryId, null, isPersonal));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, String inlineQueryId, Integer cacheTime, Boolean isPersonal) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, inlineQueryId, cacheTime, isPersonal));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(AnswerInlineQuery answerInlineQuery) {
+        notNull(answerInlineQuery, "answerInlineQuery param must not be null!");
+        answerInlineQuery.setInlineQueryId(getInlineQueryId(answerInlineQuery.getInlineQueryId()));
+        return tryExecuteAnswerQueryMethod(answerInlineQuery);
+    }
+
+    protected AnswerInlineQuery answerInlineQueryBuilder(List<InlineQueryResult> results, String inlineQueryId, Integer cacheTime, Boolean isPersonal) {
+        return AnswerInlineQuery.builder()
+                .inlineQueryId(getInlineQueryId(inlineQueryId))
+                .isPersonal(isPersonal)
+                .cacheTime(cacheTime)
+                .results(results)
+                .build();
     }
 
     protected AnswerCallbackQuery answerCallbackQueryBuilder(String text, String callbackQueryId, String url, Boolean showAlert) {
@@ -981,11 +1045,41 @@ public class DefaultFluentTemplate implements FluentTemplate {
     }
 
     protected Long getChatId(Long chatId) {
-        return Objects.isNull(chatId) ? UpdateUtils.getChatIdFromUpdate(getUpdate()) : chatId;
+        return Objects.isNull(chatId) ? getCurrentUpdateChatId() : chatId;
+    }
+
+    @NotNull
+    private Long getCurrentUpdateChatId() {
+        Long currentUpdateChatId = UpdateUtils.getChatId(getUpdate());
+        return checkParamIsNullThenThrowException(currentUpdateChatId, "Current chat id is null!");
     }
 
     protected String getCallbackQueryId(String callbackId) {
-        return Objects.isNull(callbackId) ? getUpdate().getCallbackQuery().getId() : callbackId;
+        return Objects.isNull(callbackId) ? getCurrentUpdateCallbackId() : callbackId;
+    }
+
+    @NotNull
+    private String getCurrentUpdateCallbackId() {
+        String currentUpdateCallbackId = UpdateUtils.getCallbackId(getUpdate());
+        return checkParamIsNullThenThrowException(currentUpdateCallbackId, "Current callback id is null!");
+    }
+
+    protected String getInlineQueryId(String inlineQueryId) {
+        return Objects.isNull(inlineQueryId) ? getCurrentUpdateInlineQueryId() : inlineQueryId;
+    }
+
+    @NotNull
+    private String getCurrentUpdateInlineQueryId() {
+        String currentUpdateInlineQueryId = UpdateUtils.getInlineQueryId(getUpdate());
+        return checkParamIsNullThenThrowException(currentUpdateInlineQueryId, "Current inline query id is null!");
+    }
+
+    @NotNull
+    private static <T> T checkParamIsNullThenThrowException(T param, String message) {
+        if (Objects.isNull(param)) {
+            throw new RuntimeException(message);
+        }
+        return param;
     }
 
     protected Message tryExecuteBotMethod(BotApiMethodMessage message) {
@@ -996,9 +1090,9 @@ public class DefaultFluentTemplate implements FluentTemplate {
         }
     }
 
-    protected Boolean tryExecuteAnswerCallbackQuery(AnswerCallbackQuery answerCallbackQuery) {
+    protected Boolean tryExecuteAnswerQueryMethod(BotApiMethodBoolean apiMethodBoolean) {
         try {
-            return getInstance().execute(answerCallbackQuery);
+            return getInstance().execute(apiMethodBoolean);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
