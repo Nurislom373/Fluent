@@ -1502,8 +1502,8 @@ public class DefaultFluentTemplate implements FluentTemplate {
     protected ForwardMessage forwardMessageBuilder(String fromChatId, Long chatId, Integer messageId) {
         return ForwardMessage.builder()
                 .messageId(messageId)
-                .chatId(chatId)
                 .fromChatId(fromChatId)
+                .chatId(getChatId(chatId))
                 .build();
     }
 

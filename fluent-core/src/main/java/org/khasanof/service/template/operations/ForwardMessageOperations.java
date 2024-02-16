@@ -13,7 +13,9 @@ import java.io.InputStream;
  * @since 2/15/2024 9:57 PM
  */
 public interface ForwardMessageOperations {
+
     Message forwardMessage(String fromChatId, Integer messageId);
+
     Message forwardMessage(String fromChatId, Integer messageId, Long chatId);
 
     Message forwardMessage(ForwardMessage forwardMessage);

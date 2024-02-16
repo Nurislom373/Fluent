@@ -8,7 +8,4 @@ import org.khasanof.factories.response.ExecMethodResponse;
  * @since 1/13/2024 11:55 PM
  */
 public abstract class AbstractExecMethodResponse implements ExecMethodResponse {
-
-    protected final Object EMPTY_OBJECT = new Object();
-
 }

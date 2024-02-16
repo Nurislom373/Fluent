@@ -1,11 +1,10 @@
 package org.khasanof;
 
-import org.khasanof.factories.response.methods.SendAnswerCallbackQueryFirstMethodResponse;
-import org.khasanof.factories.response.methods.SendTextSecondMethodResponse;
+import org.khasanof.factories.response.ExecMethodResponse;
+import org.khasanof.factories.response.methods.ReturnBooleanMethodsResponse;
+import org.khasanof.factories.response.methods.ReturnMessageMethodsResponse;
 import org.khasanof.mediator.DefaultExeMethodResponseMediator;
 import org.khasanof.mediator.ExecMethodResponseMediator;
-import org.khasanof.factories.response.ExecMethodResponse;
-import org.khasanof.factories.response.methods.SendTextFirstMethodResponse;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,9 +37,8 @@ public class ExecMethodResponseAdapterConfiguration {
 
         public Collection<ExecMethodResponse> getExecMethodResponses() {
             return List.of(
-                    new SendTextFirstMethodResponse(),
-                    new SendTextSecondMethodResponse(),
-                    new SendAnswerCallbackQueryFirstMethodResponse()
+                    new ReturnMessageMethodsResponse(),
+                    new ReturnBooleanMethodsResponse()
             );
         }
     }
