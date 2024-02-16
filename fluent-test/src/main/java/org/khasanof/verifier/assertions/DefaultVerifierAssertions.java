@@ -4,7 +4,7 @@ import org.khasanof.memento.MethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeMemento;
 import org.khasanof.method.ExecuteMethodReflect;
 import org.khasanof.service.template.operations.SendTextOperations;
-import org.khasanof.service.template.operations.callback.AnswerCallbackQueryOperations;
+import org.khasanof.service.template.operations.query.AnswerCallbackQueryOperations;
 import org.khasanof.verifier.checker.MethodInvokeMementoVerifier;
 
 import java.lang.reflect.Method;

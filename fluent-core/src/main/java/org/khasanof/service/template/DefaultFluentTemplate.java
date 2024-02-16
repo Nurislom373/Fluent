@@ -1,21 +1,29 @@
 package org.khasanof.service.template;
 
+import org.jetbrains.annotations.NotNull;
 import org.khasanof.FluentBot;
 import org.khasanof.context.FluentContextHolder;
 import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.utils.UpdateUtils;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
+import org.telegram.telegrambots.meta.api.methods.AnswerInlineQuery;
+import org.telegram.telegrambots.meta.api.methods.ForwardMessage;
+import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodBoolean;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage;
 import org.telegram.telegrambots.meta.api.methods.send.*;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQueryResult;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Objects;
+
+import static org.khasanof.utils.BaseUtils.notNull;
 
 /**
  * A "template" that plays a central role in Fluent Framework is introduced. It is named FluentTemplate and serves as an
@@ -143,6 +151,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendMessage(SendMessage message) {
+        notNull(message, "message param must not be null!");
         message.setChatId(getChatId(Long.valueOf(message.getChatId())));
         return tryExecuteBotMethod(message);
     }
@@ -379,6 +388,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendDocument(SendDocument document) {
+        notNull(document, "document param must not be null!");
         document.setChatId(getChatId(Long.valueOf(document.getChatId())));
         return tryExecuteSendDocument(document);
     }
@@ -595,6 +605,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendAudio(SendAudio sendAudio) {
+        notNull(sendAudio, "sendAudio param must not be null!");
         sendAudio.setChatId(getChatId(Long.valueOf(sendAudio.getChatId())));
         return tryExecuteSendAudio(sendAudio);
     }
@@ -831,6 +842,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendPhoto(SendPhoto photo) {
+        notNull(photo, "photo param must not be null!");
         photo.setChatId(getChatId(Long.valueOf(photo.getChatId())));
         return tryExecuteSendPhoto(photo);
     }
@@ -877,44 +889,551 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendDice(SendDice sendDice) {
+        notNull(sendDice, "sendDice param must not be null!");
         sendDice.setChatId(getChatId(Long.valueOf(sendDice.getChatId())));
         return tryExecuteBotMethod(sendDice);
     }
 
     @Override
+    public Message sendVideoNote(File file) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(file), null, null, null));
+    }
+
+    @Override
+    public Message sendVideoNote(File file, Long chatId) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(file), chatId, null, null));
+
+    }
+
+    @Override
+    public Message sendVideoNote(File file, Integer replyToMessageId) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(file), null, replyToMessageId, null));
+
+    }
+
+    @Override
+    public Message sendVideoNote(File file, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(file), null, null, replyMarkup));
+
+    }
+
+    @Override
+    public Message sendVideoNote(File file, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(file), chatId, replyMessageId, null));
+
+    }
+
+    @Override
+    public Message sendVideoNote(File file, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(file), chatId, null, replyMarkup));
+
+    }
+
+
+    @Override
+    public Message sendVideoNote(File file, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(file), null, replyToMessageId, replyMarkup));
+
+    }
+
+
+    @Override
+    public Message sendVideoNote(File file, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(file), chatId, replyMessageId, replyKeyboard));
+
+    }
+
+    @Override
+    public Message sendVideoNote(InputStream stream, String filename) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(stream, filename), null, null, null));
+    }
+
+    @Override
+    public Message sendVideoNote(InputStream stream, String filename, Long chatId) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(stream, filename), chatId, null, null));
+    }
+
+    @Override
+    public Message sendVideoNote(InputStream stream, String filename, Integer replyToMessageId) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(stream, filename), null, replyToMessageId, null));
+
+    }
+
+    @Override
+    public Message sendVideoNote(InputStream stream, String filename, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(stream, filename), null, null, replyMarkup));
+
+    }
+
+    @Override
+    public Message sendVideoNote(InputStream stream, String filename, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(stream, filename), chatId, replyMessageId, null));
+
+    }
+
+    @Override
+    public Message sendVideoNote(InputStream stream, String filename, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(stream, filename), chatId, null, replyMarkup));
+
+    }
+
+    @Override
+    public Message sendVideoNote(InputStream stream, String filename, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(stream, filename), null, replyToMessageId, replyMarkup));
+
+    }
+
+    @Override
+    public Message sendVideoNote(InputStream stream, String filename, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendVideoNote(sendVideoNoteBuilder(new InputFile(stream, filename), chatId, replyMessageId, replyKeyboard));
+    }
+
+    @Override
+    public Message sendVideoNote(SendVideoNote sendVideoNote) {
+        notNull(sendVideoNote, "sendVideoNote param must not be null!");
+        sendVideoNote.setChatId(getChatId(Long.valueOf(sendVideoNote.getChatId())));
+        return tryExecuteSendVideoNote(sendVideoNote);
+    }
+
+    @Override
+    public Message sendVideo(File file) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), null, null, null, null));
+
+    }
+
+    @Override
+    public Message sendVideo(File file, Long chatId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), chatId, null, null, null));
+    }
+
+    @Override
+    public Message sendVideo(File file, String caption) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), null, caption, null, null));
+    }
+
+    @Override
+    public Message sendVideo(File file, Integer replyToMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), null, null, null, replyToMessageId));
+    }
+
+    @Override
+    public Message sendVideo(File file, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), null, null, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVideo(File file, Long chatId, String caption) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), chatId, caption, null, null));
+    }
+
+    @Override
+    public Message sendVideo(File file, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), chatId, null, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(File file, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), chatId, null, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVideo(File file, String caption, Integer replyMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), null, caption, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(File file, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), null, caption, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVideo(File file, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), null, null, replyMarkup, replyToMessageId));
+    }
+
+    @Override
+    public Message sendVideo(File file, Long chatId, String caption, Integer replyMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), chatId, caption, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(File file, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), chatId, null, replyKeyboard, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(File file, Long chatId, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), chatId, caption, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVideo(File file, String caption, Integer replyMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), null, caption, replyMarkup, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(file), chatId, caption, replyMarkup, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), null, null, null, null));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Long chatId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), chatId, null, null, null));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, String caption) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), null, caption, null, null));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Integer replyToMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), null, null, null, replyToMessageId));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), null, null, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Long chatId, String caption) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), chatId, caption, null, null));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), chatId, null, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), chatId, null, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, String caption, Integer replyMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), null, caption, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), null, caption, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), null, null, replyMarkup, replyToMessageId));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Long chatId, String caption, Integer replyMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), chatId, caption, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), chatId, null, replyKeyboard, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, String caption, Integer replyMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), null, caption, replyMarkup, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendVideo(sendVideoBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, replyMessageId));
+    }
+
+    @Override
+    public Message sendVideo(SendVideo sendVideo) {
+        notNull(sendVideo, "sendVideo param must not be null!");
+        sendVideo.setChatId(getChatId(Long.valueOf(sendVideo.getChatId())));
+        return tryExecuteSendVideo(sendVideo);
+    }
+
+    @Override
+    public Message sendVoice(File file) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), null, null, null, null));
+    }
+
+    @Override
+    public Message sendVoice(File file, Long chatId) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), chatId, null, null, null));
+    }
+
+    @Override
+    public Message sendVoice(File file, String caption) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), null, caption, null, null));
+    }
+
+    @Override
+    public Message sendVoice(File file, Integer replyToMessageId) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), null, null, null, replyToMessageId));
+    }
+
+    @Override
+    public Message sendVoice(File file, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), null, null, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVoice(File file, Long chatId, String caption) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), chatId, caption, null, null));
+    }
+
+    @Override
+    public Message sendVoice(File file, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), chatId, null, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(File file, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), chatId, null, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVoice(File file, String caption, Integer replyMessageId) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), null, caption, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(File file, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), null, caption, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVoice(File file, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), null, null, replyMarkup, replyToMessageId));
+    }
+
+    @Override
+    public Message sendVoice(File file, Long chatId, String caption, Integer replyMessageId) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), chatId, caption, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(File file, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), chatId, null, replyKeyboard, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(File file, Long chatId, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), chatId, caption, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVoice(File file, String caption, Integer replyMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), null, caption, replyMarkup, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(file), chatId, caption, replyMarkup, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename) {
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, null, null, null));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Long chatId) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, null, null, null));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, String caption) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, caption, null, null));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Integer replyToMessageId) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, null, null, replyToMessageId));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, ReplyKeyboard replyMarkup) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, null, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Long chatId, String caption) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, caption, null, null));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Long chatId, Integer replyMessageId) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, null, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Long chatId, ReplyKeyboard replyMarkup) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, null, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, String caption, Integer replyMessageId) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, caption, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, caption, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, null, replyMarkup, replyToMessageId));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Long chatId, String caption, Integer replyMessageId) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, caption, null, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, null, replyKeyboard, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, caption, replyMarkup, null));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, String caption, Integer replyMessageId, ReplyKeyboard replyMarkup) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, caption, replyMarkup, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, caption, replyMarkup, replyMessageId));
+    }
+
+    @Override
+    public Message sendVoice(SendVoice sendVoice) {
+        notNull(sendVoice, "sendVoice param must not be null!");
+        sendVoice.setChatId(getChatId(Long.valueOf(sendVoice.getChatId())));
+        return tryExecuteSendVoice(sendVoice);
+    }
+
+    @Override
+    public Message forwardMessage(String fromChatId, Integer messageId) {
+        return tryExecuteForwardMessage(forwardMessageBuilder(fromChatId, null, messageId));
+    }
+
+    @Override
+    public Message forwardMessage(String fromChatId, Integer messageId, Long chatId) {
+        return tryExecuteForwardMessage(forwardMessageBuilder(fromChatId, chatId, messageId));
+    }
+
+    @Override
+    public Message forwardMessage(ForwardMessage forwardMessage) {
+        notNull(forwardMessage, "forwardMessage param must not be null!");
+        forwardMessage.setChatId(getChatId(Long.valueOf(forwardMessage.getChatId())));
+        return tryExecuteForwardMessage(forwardMessage);
+    }
+
+    @Override
     public Boolean sendAnswerCallbackQuery(String text) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, null, null, null));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, null, null, null));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, String callbackQueryId) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, callbackQueryId, null, null));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, callbackQueryId, null, null));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, Boolean showAlert) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, null, null, showAlert));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, null, null, showAlert));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, String callbackQueryId, String url) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, text, url, null));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, text, url, null));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, String callbackQueryId, Boolean showAlert) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, callbackQueryId, null, showAlert));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, callbackQueryId, null, showAlert));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(String text, String callbackQueryId, String url, Boolean showAlert) {
-        return tryExecuteAnswerCallbackQuery(answerCallbackQueryBuilder(text, callbackQueryId, url, showAlert));
+        return tryExecuteAnswerQueryMethod(answerCallbackQueryBuilder(text, callbackQueryId, url, showAlert));
     }
 
     @Override
     public Boolean sendAnswerCallbackQuery(AnswerCallbackQuery answerCallbackQuery) {
+        notNull(answerCallbackQuery, "answerCallbackQuery param must not be null!");
         answerCallbackQuery.setCallbackQueryId(getCallbackQueryId(answerCallbackQuery.getCallbackQueryId()));
-        return tryExecuteAnswerCallbackQuery(answerCallbackQuery);
+        return tryExecuteAnswerQueryMethod(answerCallbackQuery);
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, null, null, null));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, String inlineQueryId) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, inlineQueryId, null, null));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, Integer cacheTime) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, null, cacheTime, null));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, Boolean isPersonal) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, null, null, isPersonal));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, String inlineQueryId, Integer cacheTime) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, inlineQueryId, cacheTime, null));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, String inlineQueryId, Boolean isPersonal) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, inlineQueryId, null, isPersonal));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(List<InlineQueryResult> results, String inlineQueryId, Integer cacheTime, Boolean isPersonal) {
+        return tryExecuteAnswerQueryMethod(answerInlineQueryBuilder(results, inlineQueryId, cacheTime, isPersonal));
+    }
+
+    @Override
+    public Boolean sendAnswerInlineQuery(AnswerInlineQuery answerInlineQuery) {
+        notNull(answerInlineQuery, "answerInlineQuery param must not be null!");
+        answerInlineQuery.setInlineQueryId(getInlineQueryId(answerInlineQuery.getInlineQueryId()));
+        return tryExecuteAnswerQueryMethod(answerInlineQuery);
+    }
+
+
+    protected AnswerInlineQuery answerInlineQueryBuilder(List<InlineQueryResult> results, String inlineQueryId, Integer cacheTime, Boolean isPersonal) {
+        return AnswerInlineQuery.builder()
+                .inlineQueryId(getInlineQueryId(inlineQueryId))
+                .isPersonal(isPersonal)
+                .cacheTime(cacheTime)
+                .results(results)
+                .build();
     }
 
 
@@ -1651,12 +2170,79 @@ public class DefaultFluentTemplate implements FluentTemplate {
                 .build();
     }
 
+    protected ForwardMessage forwardMessageBuilder(String fromChatId, Long chatId, Integer messageId) {
+        return ForwardMessage.builder()
+                .messageId(messageId)
+                .fromChatId(fromChatId)
+                .chatId(getChatId(chatId))
+                .build();
+    }
+
+    protected SendVideo sendVideoBuilder(InputFile stream, Long chatId, String caption, ReplyKeyboard replyKeyboard, Integer replyMessageId) {
+        return SendVideo.builder()
+                .caption(caption)
+                .video(stream)
+                .replyMarkup(replyKeyboard)
+                .replyToMessageId(replyMessageId)
+                .chatId(String.valueOf(getChatId(chatId)))
+                .build();
+    }
+
+    protected SendVideoNote sendVideoNoteBuilder(InputFile stream, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return SendVideoNote.builder()
+                .videoNote(stream)
+                .replyMarkup(replyKeyboard)
+                .replyToMessageId(replyMessageId)
+                .chatId(String.valueOf(getChatId(chatId)))
+                .build();
+    }
+
+    protected SendVoice sendVoiceBuilder(InputFile stream, Long chatId, String caption, ReplyKeyboard replyKeyboard, Integer replyMessageId) {
+        return SendVoice.builder()
+                .caption(caption)
+                .voice(stream)
+                .replyMarkup(replyKeyboard)
+                .replyToMessageId(replyMessageId)
+                .chatId(String.valueOf(getChatId(chatId)))
+                .build();
+    }
+
     protected Long getChatId(Long chatId) {
-        return Objects.isNull(chatId) ? UpdateUtils.getChatIdFromUpdate(getUpdate()) : chatId;
+        return Objects.isNull(chatId) ? getCurrentUpdateChatId() : chatId;
+    }
+
+    @NotNull
+    private Long getCurrentUpdateChatId() {
+        Long currentUpdateChatId = UpdateUtils.getChatId(getUpdate());
+        return checkParamIsNullThenThrowException(currentUpdateChatId, "Current chat id is null!");
     }
 
     protected String getCallbackQueryId(String callbackId) {
-        return Objects.isNull(callbackId) ? getUpdate().getCallbackQuery().getId() : callbackId;
+        return Objects.isNull(callbackId) ? getCurrentUpdateCallbackId() : callbackId;
+    }
+
+    @NotNull
+    private String getCurrentUpdateCallbackId() {
+        String currentUpdateCallbackId = UpdateUtils.getCallbackId(getUpdate());
+        return checkParamIsNullThenThrowException(currentUpdateCallbackId, "Current callback id is null!");
+    }
+
+    protected String getInlineQueryId(String inlineQueryId) {
+        return Objects.isNull(inlineQueryId) ? getCurrentUpdateInlineQueryId() : inlineQueryId;
+    }
+
+    @NotNull
+    private String getCurrentUpdateInlineQueryId() {
+        String currentUpdateInlineQueryId = UpdateUtils.getInlineQueryId(getUpdate());
+        return checkParamIsNullThenThrowException(currentUpdateInlineQueryId, "Current inline query id is null!");
+    }
+
+    @NotNull
+    private static <T> T checkParamIsNullThenThrowException(T param, String message) {
+        if (Objects.isNull(param)) {
+            throw new RuntimeException(message);
+        }
+        return param;
     }
 
     protected Message tryExecuteBotMethod(BotApiMethodMessage message) {
@@ -1667,9 +2253,9 @@ public class DefaultFluentTemplate implements FluentTemplate {
         }
     }
 
-    protected Boolean tryExecuteAnswerCallbackQuery(AnswerCallbackQuery answerCallbackQuery) {
+    protected Boolean tryExecuteAnswerQueryMethod(BotApiMethodBoolean apiMethodBoolean) {
         try {
-            return getInstance().execute(answerCallbackQuery);
+            return getInstance().execute(apiMethodBoolean);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
@@ -1726,6 +2312,38 @@ public class DefaultFluentTemplate implements FluentTemplate {
     protected Message tryExecuteSendDocument(SendDocument sendDocument) {
         try {
             return getInstance().execute(sendDocument);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Message tryExecuteSendVideo(SendVideo sendVideo) {
+        try {
+            return getInstance().execute(sendVideo);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Message tryExecuteSendVideoNote(SendVideoNote sendVideoNote) {
+        try {
+            return getInstance().execute(sendVideoNote);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Message tryExecuteSendVoice(SendVoice sendVoice) {
+        try {
+            return getInstance().execute(sendVoice);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Message tryExecuteForwardMessage(ForwardMessage forwardMessage) {
+        try {
+            return getInstance().execute(forwardMessage);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }

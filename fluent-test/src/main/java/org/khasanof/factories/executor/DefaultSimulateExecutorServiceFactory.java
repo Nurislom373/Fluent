@@ -23,5 +23,4 @@ public class DefaultSimulateExecutorServiceFactory implements SimulateExecutorSe
     public ExecutorService create(CountDownLatch countDownLatch) {
         return new CountedFluentThreadPoolExecutor(fluentUpdateContext, countDownLatch);
     }
-
 }

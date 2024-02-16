@@ -1,7 +1,6 @@
 package org.khasanof.utils;
 
 import lombok.SneakyThrows;
-import org.khasanof.exceptions.UnknownUpdateTypeException;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.GetFile;
 import org.telegram.telegrambots.meta.api.objects.File;
@@ -38,7 +37,7 @@ public abstract class UpdateUtils {
      * @param update {@code Update}
      * @return chat id
      */
-    public static Long getChatIdFromUpdate(Update update) {
+    public static Long getChatId(Update update) {
         if (update.hasMessage()) {
             return update.getMessage().getChatId();
         }
@@ -66,6 +65,37 @@ public abstract class UpdateUtils {
         return null;
     }
 
+    /**
+     * Get callback query id from update.
+     *
+     * @param update {@code Update}
+     * @return callback query id
+     */
+    public static String getCallbackId(Update update) {
+        if (update.hasCallbackQuery()) {
+            return update.getCallbackQuery().getId();
+        }
+        return null;
+    }
+
+    /**
+     * Get inline query id from update.
+     *
+     * @param update {@code Update}
+     * @return inline query id
+     */
+    public static String getInlineQueryId(Update update) {
+        if (update.hasInlineQuery()) {
+            return update.getInlineQuery().getId();
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @param update
+     * @return
+     */
     public static User getFrom(Update update) {
         if (update.hasMessage()) {
             return update.getMessage().getFrom();

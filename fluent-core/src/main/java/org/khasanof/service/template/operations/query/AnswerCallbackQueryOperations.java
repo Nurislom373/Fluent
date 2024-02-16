@@ -1,10 +1,10 @@
-package org.khasanof.service.template.operations.callback;
+package org.khasanof.service.template.operations.query;
 
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 
 /**
  * @author Nurislom
- * @see org.khasanof.service.template.operations.callback
+ * @see org.khasanof.service.template.operations.query
  * @since 2/3/2024 11:20 PM
  */
 public interface AnswerCallbackQueryOperations {

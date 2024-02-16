@@ -1,7 +1,7 @@
 package org.khasanof.method;
 
 import org.khasanof.service.template.operations.SendTextOperations;
-import org.khasanof.service.template.operations.callback.AnswerCallbackQueryOperations;
+import org.khasanof.service.template.operations.query.AnswerCallbackQueryOperations;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

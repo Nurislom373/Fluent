@@ -22,16 +22,18 @@ public class DefaultExeMethodResponseMediator implements ExecMethodResponseMedia
     @Override
     public Object createResponse(Method method, Object[] args) {
         return responses.stream()
-                .filter(execMethodResponse -> equalsMethods(execMethodResponse.getMethod(), method))
-                .map(execMethodResponse -> {
-                    try {
-                        return execMethodResponse.createResponse(method, args);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                })
+                .filter(execMethodResponse -> Objects.equals(method.getReturnType(), execMethodResponse.returnType()))
+                .map(execMethodResponse -> tryCreateResponse(method, args, execMethodResponse))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Match method not found!"));
+    }
+
+    private Object tryCreateResponse(Method method, Object[] args, ExecMethodResponse execMethodResponse) {
+        try {
+            return execMethodResponse.createResponse(method, args);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
