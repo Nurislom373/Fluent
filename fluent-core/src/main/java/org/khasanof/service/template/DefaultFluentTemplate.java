@@ -1245,82 +1245,82 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendVoice(InputStream stream, String filename) {
-        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, null, null, null));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), null, null, null, null));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Long chatId) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, null, null, null));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), chatId, null, null, null));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, String caption) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, caption, null, null));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), null, caption, null, null));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Integer replyToMessageId) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, null, null, replyToMessageId));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), null, null, null, replyToMessageId));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, ReplyKeyboard replyMarkup) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, null, replyMarkup, null));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), null, null, replyMarkup, null));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Long chatId, String caption) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, caption, null, null));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), chatId, caption, null, null));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Long chatId, Integer replyMessageId) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, null, null, replyMessageId));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), chatId, null, null, replyMessageId));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Long chatId, ReplyKeyboard replyMarkup) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, null, replyMarkup, null));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), chatId, null, replyMarkup, null));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, String caption, Integer replyMessageId) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, caption, null, replyMessageId));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), null, caption, null, replyMessageId));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, caption, replyMarkup, null));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), null, caption, replyMarkup, null));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, null, replyMarkup, replyToMessageId));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), null, null, replyMarkup, replyToMessageId));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Long chatId, String caption, Integer replyMessageId) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, caption, null, replyMessageId));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), chatId, caption, null, replyMessageId));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Long chatId, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, null, replyKeyboard, replyMessageId));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), chatId, null, replyKeyboard, replyMessageId));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, caption, replyMarkup, null));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, null));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, String caption, Integer replyMessageId, ReplyKeyboard replyMarkup) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), null, caption, replyMarkup, replyMessageId));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), null, caption, replyMarkup, replyMessageId));
     }
 
     @Override
     public Message sendVoice(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
-         return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream,filename), chatId, caption, replyMarkup, replyMessageId));
+        return tryExecuteSendVoice(sendVoiceBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, replyMessageId));
     }
 
     @Override
@@ -1332,19 +1332,19 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message forwardMessage(String fromChatId, Integer messageId) {
-        return tryExecuteForwardMessage(forwardMessageBuilder(fromChatId, null, messageId));
+        return tryExecuteBotMethod(forwardMessageBuilder(fromChatId, null, messageId));
     }
 
     @Override
     public Message forwardMessage(String fromChatId, Integer messageId, Long chatId) {
-        return tryExecuteForwardMessage(forwardMessageBuilder(fromChatId, chatId, messageId));
+        return tryExecuteBotMethod(forwardMessageBuilder(fromChatId, chatId, messageId));
     }
 
     @Override
     public Message forwardMessage(ForwardMessage forwardMessage) {
         notNull(forwardMessage, "forwardMessage param must not be null!");
         forwardMessage.setChatId(getChatId(Long.valueOf(forwardMessage.getChatId())));
-        return tryExecuteForwardMessage(forwardMessage);
+        return tryExecuteBotMethod(forwardMessage);
     }
 
     @Override
@@ -1425,17 +1425,6 @@ public class DefaultFluentTemplate implements FluentTemplate {
         answerInlineQuery.setInlineQueryId(getInlineQueryId(answerInlineQuery.getInlineQueryId()));
         return tryExecuteAnswerQueryMethod(answerInlineQuery);
     }
-
-
-    protected AnswerInlineQuery answerInlineQueryBuilder(List<InlineQueryResult> results, String inlineQueryId, Integer cacheTime, Boolean isPersonal) {
-        return AnswerInlineQuery.builder()
-                .inlineQueryId(getInlineQueryId(inlineQueryId))
-                .isPersonal(isPersonal)
-                .cacheTime(cacheTime)
-                .results(results)
-                .build();
-    }
-
 
     @Override
     public Message sendAnimation(File file) {
@@ -1669,6 +1658,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendAnimation(SendAnimation animation) {
+        notNull(animation, "animation param must not be null!");
         animation.setChatId(getChatId(Long.valueOf(animation.getChatId())));
         return tryExecuteSendAnimation(animation);
     }
@@ -1690,8 +1680,9 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Boolean sendChatAction(SendChatAction sendChatAction) {
+        notNull(sendChatAction, "sendChatAction param must not be null!");
+        sendChatAction.setChatId(getChatId(Long.valueOf(sendChatAction.getChatId())));
         return tryExecuteSendChatAction(sendChatAction);
-
     }
 
     @Override
@@ -1891,7 +1882,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendSticker(InputStream stream, String filename, Long chatId, String emoji, ReplyKeyboard replyMarkup) {
-        return null;
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), chatId, emoji, replyMarkup, null, null));
     }
 
     @Override
@@ -1906,7 +1897,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendSticker(InputStream stream, String filename, String emoji, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
-        return null;
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, emoji, replyMarkup, replyMessageId, disableNotification));
     }
 
     @Override
@@ -1926,9 +1917,10 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendSticker(SendSticker sticker) {
+        notNull(sticker, "sticker param must not be null!");
+        sticker.setChatId(getChatId(Long.valueOf(sticker.getChatId())));
         return tryExecuteSendSticker(sticker);
     }
-
 
     @Override
     public Message sendContact(String firstname, String phoneNumber) {
@@ -1938,67 +1930,56 @@ public class DefaultFluentTemplate implements FluentTemplate {
     @Override
     public Message sendContact(String firstname, String phoneNumber, Long chatId) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, null, null, null, null));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, String lastname) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, null, null, null));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, Integer replyToMessageId) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, null, replyToMessageId, null));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, Boolean disableNotification) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, null, null, disableNotification));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, ReplyKeyboard replyKeyboard) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, replyKeyboard, null, null));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, Long chatId, String lastname) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, lastname, null, null, null));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, Long chatId, Integer replyToMessageId) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, null, null, replyToMessageId, null));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, Long chatId, Boolean disableNotification) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, null, null, null, disableNotification));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, Long chatId, ReplyKeyboard replyKeyboard) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, null, replyKeyboard, null, null));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, String lastname, Integer replyToMessageId) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, null, replyToMessageId, null));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, String lastname, Boolean disableNotification) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, null, null, disableNotification));
-
     }
 
     @Override
@@ -2014,15 +1995,12 @@ public class DefaultFluentTemplate implements FluentTemplate {
     @Override
     public Message sendContact(String firstname, String phoneNumber, Integer replyToMessageId, ReplyKeyboard replyKeyboard) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, replyKeyboard, replyToMessageId, null));
-
     }
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, Boolean disableNotification, ReplyKeyboard replyKeyboard) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, replyKeyboard, null, disableNotification));
-
     }
-
 
     @Override
     public Message sendContact(String firstname, String phoneNumber, String lastname, Integer replyToMessageId, Boolean disableNotification) {
@@ -2032,7 +2010,6 @@ public class DefaultFluentTemplate implements FluentTemplate {
     @Override
     public Message sendContact(String firstname, String phoneNumber, String lastname, Integer replyToMessageId, ReplyKeyboard replyKeyboard) {
         return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, replyKeyboard, replyToMessageId, null));
-
     }
 
     @Override
@@ -2062,7 +2039,18 @@ public class DefaultFluentTemplate implements FluentTemplate {
 
     @Override
     public Message sendContact(SendContact contact) {
+        notNull(contact, "contact param must not be null!");
+        contact.setChatId(getChatId(Long.valueOf(contact.getChatId())));
         return tryExecuteSendContact(contact);
+    }
+
+    protected AnswerInlineQuery answerInlineQueryBuilder(List<InlineQueryResult> results, String inlineQueryId, Integer cacheTime, Boolean isPersonal) {
+        return AnswerInlineQuery.builder()
+                .inlineQueryId(getInlineQueryId(inlineQueryId))
+                .isPersonal(isPersonal)
+                .cacheTime(cacheTime)
+                .results(results)
+                .build();
     }
 
     protected AnswerCallbackQuery answerCallbackQueryBuilder(String text, String callbackQueryId, String url, Boolean showAlert) {
@@ -2154,7 +2142,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
                 .document(inputFile)
                 .replyMarkup(replyKeyboard)
                 .replyToMessageId(replyMessageId)
-                .chatId(String.valueOf(getChatId(chatId)))
+                .chatId(getChatId(chatId))
                 .disableNotification(disableNotification)
                 .build();
     }
@@ -2165,7 +2153,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
                 .parseMode(parseMode)
                 .replyMarkup(replyKeyboard)
                 .replyToMessageId(replyMessageId)
-                .chatId(String.valueOf(getChatId(chatId)))
+                .chatId(getChatId(chatId))
                 .disableNotification(disableNotification)
                 .build();
     }
@@ -2184,7 +2172,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
                 .video(stream)
                 .replyMarkup(replyKeyboard)
                 .replyToMessageId(replyMessageId)
-                .chatId(String.valueOf(getChatId(chatId)))
+                .chatId(getChatId(chatId))
                 .build();
     }
 
@@ -2193,7 +2181,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
                 .videoNote(stream)
                 .replyMarkup(replyKeyboard)
                 .replyToMessageId(replyMessageId)
-                .chatId(String.valueOf(getChatId(chatId)))
+                .chatId(getChatId(chatId))
                 .build();
     }
 
@@ -2203,7 +2191,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
                 .voice(stream)
                 .replyMarkup(replyKeyboard)
                 .replyToMessageId(replyMessageId)
-                .chatId(String.valueOf(getChatId(chatId)))
+                .chatId(getChatId(chatId))
                 .build();
     }
 
@@ -2336,14 +2324,6 @@ public class DefaultFluentTemplate implements FluentTemplate {
     protected Message tryExecuteSendVoice(SendVoice sendVoice) {
         try {
             return getInstance().execute(sendVoice);
-        } catch (TelegramApiException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    protected Message tryExecuteForwardMessage(ForwardMessage forwardMessage) {
-        try {
-            return getInstance().execute(forwardMessage);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
