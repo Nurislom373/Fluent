@@ -917,6 +917,635 @@ public class DefaultFluentTemplate implements FluentTemplate {
         return tryExecuteAnswerCallbackQuery(answerCallbackQuery);
     }
 
+
+    @Override
+    public Message sendAnimation(File file) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, null, null, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Long chatId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), chatId, null, null, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, String caption) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, caption, null, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Long chatId, String caption) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), chatId, caption, null, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), chatId, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), chatId, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Long chatId, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), chatId, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(File file, String caption, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, caption, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, caption, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, String caption, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, caption, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, null, replyKeyboard, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, null, null, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(File file, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, null, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, caption, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, caption, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(File file, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), null, caption, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Long chatId, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), chatId, caption, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), chatId, caption, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), chatId, caption, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(File file, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(file), chatId, caption, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, null, null, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Long chatId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), chatId, null, null, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, String caption) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, caption, null, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Long chatId, String caption) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), chatId, caption, null, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), chatId, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), chatId, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Long chatId, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), chatId, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, String caption, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, caption, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, caption, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, String caption, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, caption, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, null, replyKeyboard, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, null, null, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, null, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, caption, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, caption, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), null, caption, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(InputStream stream, String filename, Long chatId, String caption, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendAnimation(sendAnimationBuilder(new InputFile(stream, filename), chatId, caption, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendAnimation(SendAnimation animation) {
+        animation.setChatId(getChatId(Long.valueOf(animation.getChatId())));
+        return tryExecuteSendAnimation(animation);
+    }
+
+    @Override
+    public Boolean sendChatAction(String action) {
+        return tryExecuteSendChatAction(sendChatActionBuilder(null, action, null));
+    }
+
+    @Override
+    public Boolean sendChatAction(Long chatId, String action) {
+        return tryExecuteSendChatAction(sendChatActionBuilder(chatId, action, null));
+    }
+
+    @Override
+    public Boolean sendChatAction(Long chatId, String action, Integer messageThreadId) {
+        return tryExecuteSendChatAction(sendChatActionBuilder(chatId, action, messageThreadId));
+    }
+
+    @Override
+    public Boolean sendChatAction(SendChatAction sendChatAction) {
+        return tryExecuteSendChatAction(sendChatAction);
+
+    }
+
+    @Override
+    public Message sendSticker(File file) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, null, null, null, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, Long chatId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), chatId, null, null, null, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, String emoji) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, emoji, null, null, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(File file, Long chatId, String emoji) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), chatId, emoji, null, null, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), chatId, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), chatId, null, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, Long chatId, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), chatId, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(File file, String emoji, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, emoji, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, String emoji, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, emoji, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, String emoji, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, emoji, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(File file, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, null, replyKeyboard, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, null, null, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(File file, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, null, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(File file, String emoji, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, emoji, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, String emoji, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, emoji, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(File file, String emoji, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), null, emoji, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(File file, Long chatId, String emoji, ReplyKeyboard replyMarkup) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), chatId, emoji, replyMarkup, null, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, Long chatId, String emoji, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), chatId, emoji, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(File file, Long chatId, String emoji, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), chatId, emoji, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(File file, Long chatId, String emoji, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(file), chatId, emoji, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, null, null, null, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Long chatId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), chatId, null, null, null, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, String emoji) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, emoji, null, null, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, null, replyKeyboard, null, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Long chatId, String emoji) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), chatId, emoji, null, null, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), chatId, null, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Long chatId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), chatId, null, replyKeyboard, null, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Long chatId, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), chatId, null, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, String emoji, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, emoji, null, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, String emoji, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, emoji, replyKeyboard, null, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, String emoji, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, emoji, null, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Integer replyMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, null, replyKeyboard, null, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, null, null, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, null, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Long chatId, String emoji, ReplyKeyboard replyMarkup) {
+        return null;
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, String emoji, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, emoji, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, String emoji, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), null, emoji, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, String emoji, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return null;
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Long chatId, String emoji, ReplyKeyboard replyMarkup, Integer replyMessageId) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), chatId, emoji, replyMarkup, replyMessageId, null));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Long chatId, String emoji, ReplyKeyboard replyMarkup, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), chatId, emoji, replyMarkup, null, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(InputStream stream, String filename, Long chatId, String emoji, ReplyKeyboard replyMarkup, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendSticker(sendStickerBuilder(new InputFile(stream, filename), chatId, emoji, replyMarkup, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendSticker(SendSticker sticker) {
+        return tryExecuteSendSticker(sticker);
+    }
+
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, null, null, null));
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Long chatId) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, null, null, null, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, String lastname) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, null, null, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Integer replyToMessageId) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, null, replyToMessageId, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Boolean disableNotification) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, null, null, disableNotification));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, replyKeyboard, null, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Long chatId, String lastname) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, lastname, null, null, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Long chatId, Integer replyToMessageId) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, null, null, replyToMessageId, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Long chatId, Boolean disableNotification) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, null, null, null, disableNotification));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Long chatId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, null, replyKeyboard, null, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, String lastname, Integer replyToMessageId) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, null, replyToMessageId, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, String lastname, Boolean disableNotification) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, null, null, disableNotification));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, String lastname, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, replyKeyboard, null, null));
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Integer replyToMessageId, Boolean disableNotification) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, null, replyToMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Integer replyToMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, replyKeyboard, replyToMessageId, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Boolean disableNotification, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, null, replyKeyboard, null, disableNotification));
+
+    }
+
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, String lastname, Integer replyToMessageId, Boolean disableNotification) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, null, replyToMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, String lastname, Integer replyToMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, replyKeyboard, replyToMessageId, null));
+
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Long chatId, String lastname, Integer replyToMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, lastname, replyKeyboard, replyToMessageId, null));
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Long chatId, String lastname, Integer replyToMessageId, Boolean disableNotification) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, lastname, null, replyToMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Long chatId, String lastname, ReplyKeyboard replyKeyboard, Boolean disableNotification) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, lastname, replyKeyboard, null, disableNotification));
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, String lastname, Integer replyToMessageId, Boolean disableNotification, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, null, lastname, replyKeyboard, replyToMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendContact(String firstname, String phoneNumber, Long chatId, Integer replyToMessageId, Boolean disableNotification, ReplyKeyboard replyKeyboard) {
+        return tryExecuteSendContact(sendContactBuilder(firstname, phoneNumber, chatId, null, replyKeyboard, replyToMessageId, disableNotification));
+    }
+
+    @Override
+    public Message sendContact(SendContact contact) {
+        return tryExecuteSendContact(contact);
+    }
+
     protected AnswerCallbackQuery answerCallbackQueryBuilder(String text, String callbackQueryId, String url, Boolean showAlert) {
         return AnswerCallbackQuery.builder()
                 .text(text)
@@ -942,6 +1571,48 @@ public class DefaultFluentTemplate implements FluentTemplate {
                 .caption(caption)
                 .replyMarkup(replyKeyboard)
                 .replyToMessageId(replyMessageId)
+                .disableNotification(disableNotification)
+                .build();
+    }
+
+    protected SendContact sendContactBuilder(String firstname, String phoneNumber, Long chatId, String lastname, ReplyKeyboard replyKeyboard, Integer replyMessageId, Boolean disableNotification) {
+        return SendContact.builder()
+                .phoneNumber(phoneNumber)
+                .firstName(firstname)
+                .lastName(lastname)
+                .chatId(getChatId(chatId))
+                .replyToMessageId(replyMessageId)
+                .replyMarkup(replyKeyboard)
+                .disableNotification(disableNotification)
+                .build();
+    }
+
+    protected SendSticker sendStickerBuilder(InputFile inputFile, Long chatId, String emoji, ReplyKeyboard replyKeyboard, Integer replyMessageId, Boolean disableNotification) {
+        return SendSticker.builder()
+                .sticker(inputFile)
+                .chatId(getChatId(chatId))
+                .emoji(emoji)
+                .replyToMessageId(replyMessageId)
+                .replyMarkup(replyKeyboard)
+                .disableNotification(disableNotification)
+                .build();
+    }
+
+    protected SendChatAction sendChatActionBuilder(Long chatId, String action, Integer messageThreadId) {
+        return SendChatAction.builder()
+                .chatId(getChatId(chatId))
+                .action(action)
+                .messageThreadId(messageThreadId)
+                .build();
+    }
+
+    protected SendAnimation sendAnimationBuilder(InputFile inputFile, Long chatId, String caption, ReplyKeyboard replyKeyboard, Integer replyMessageId, Boolean disableNotification) {
+        return SendAnimation.builder()
+                .animation(inputFile)
+                .chatId(getChatId(chatId))
+                .caption(caption)
+                .replyToMessageId(replyMessageId)
+                .replyMarkup(replyKeyboard)
                 .disableNotification(disableNotification)
                 .build();
     }
@@ -1007,6 +1678,38 @@ public class DefaultFluentTemplate implements FluentTemplate {
     protected Message tryExecuteSendPhoto(SendPhoto photo) {
         try {
             return getInstance().execute(photo);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Message tryExecuteSendContact(SendContact sendContact) {
+        try {
+            return getInstance().execute(sendContact);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Message tryExecuteSendSticker(SendSticker sendSticker) {
+        try {
+            return getInstance().execute(sendSticker);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Boolean tryExecuteSendChatAction(SendChatAction sendChatAction) {
+        try {
+            return getInstance().execute(sendChatAction);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Message tryExecuteSendAnimation(SendAnimation sendAnimation) {
+        try {
+            return getInstance().execute(sendAnimation);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
