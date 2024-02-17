@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.khasanof.FluentBot;
 import org.khasanof.context.FluentContextHolder;
 import org.khasanof.context.singleton.GenericSingleton;
+import org.khasanof.models.Round;
 import org.khasanof.utils.UpdateUtils;
 import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.AnswerInlineQuery;
@@ -15,11 +16,13 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQueryResult;
+import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -2044,6 +2047,175 @@ public class DefaultFluentTemplate implements FluentTemplate {
         return tryExecuteSendContact(contact);
     }
 
+    @Override
+    public Message sendGame(String gameShortName) {
+        return tryExecuteBotMethod(sendGameBuilder(gameShortName, null, null, null));
+    }
+
+    @Override
+    public Message sendGame(String gameShortName, Long chatId) {
+        return tryExecuteBotMethod(sendGameBuilder(gameShortName, chatId, null, null));
+    }
+
+    @Override
+    public Message sendGame(String gameShortName, Integer replyToMessageId) {
+        return tryExecuteBotMethod(sendGameBuilder(gameShortName, null, replyToMessageId, null));
+    }
+
+    @Override
+    public Message sendGame(String gameShortName, ReplyKeyboard replyKeyboard) {
+        return tryExecuteBotMethod(sendGameBuilder(gameShortName, null, null, replyKeyboard));
+    }
+
+    @Override
+    public Message sendGame(String gameShortName, Long chatId, Integer replyToMessageId) {
+        return tryExecuteBotMethod(sendGameBuilder(gameShortName, chatId, replyToMessageId, null));
+    }
+
+    @Override
+    public Message sendGame(String gameShortName, Long chatId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteBotMethod(sendGameBuilder(gameShortName, chatId, null, replyKeyboard));
+    }
+
+    @Override
+    public Message sendGame(String gameShortName, Integer replyToMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteBotMethod(sendGameBuilder(gameShortName, null, replyToMessageId, replyKeyboard));
+    }
+
+    @Override
+    public Message sendGame(String gameShortName, Long chatId, Integer replyToMessageId, ReplyKeyboard replyKeyboard) {
+        return tryExecuteBotMethod(sendGameBuilder(gameShortName, chatId, replyToMessageId, replyKeyboard));
+    }
+
+    @Override
+    public Message sendGame(SendGame game) {
+        notNull(game, "game param must not be null!");
+        game.setChatId(getChatId(Long.valueOf(game.getChatId())));
+        return tryExecuteBotMethod(game);
+    }
+
+    @Override
+    public Message sendLocation(Round round) {
+        return tryExecuteBotMethod(sendLocationBuilder(round, null, null, null));
+    }
+
+    @Override
+    public Message sendLocation(Round round, Long chatId) {
+        return tryExecuteBotMethod(sendLocationBuilder(round, chatId, null, null));
+    }
+
+    @Override
+    public Message sendLocation(Round round, Integer replyToMessageId) {
+        return tryExecuteBotMethod(sendLocationBuilder(round, null, replyToMessageId, null));
+    }
+
+    @Override
+    public Message sendLocation(Round round, ReplyKeyboard replyMarkup) {
+        return tryExecuteBotMethod(sendLocationBuilder(round, null, null, replyMarkup));
+    }
+
+    @Override
+    public Message sendLocation(Round round, Long chatId, Integer replyToMessageId) {
+        return tryExecuteBotMethod(sendLocationBuilder(round, chatId, replyToMessageId, null));
+    }
+
+    @Override
+    public Message sendLocation(Round round, Long chatId, ReplyKeyboard replyMarkup) {
+        return tryExecuteBotMethod(sendLocationBuilder(round, chatId, null, replyMarkup));
+    }
+
+    @Override
+    public Message sendLocation(Round round, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteBotMethod(sendLocationBuilder(round, null, replyToMessageId, replyMarkup));
+    }
+
+    @Override
+    public Message sendLocation(Round round, Long chatId, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
+        return tryExecuteBotMethod(sendLocationBuilder(round, chatId, replyToMessageId, replyMarkup));
+    }
+
+    @Override
+    public Message sendLocation(SendLocation location) {
+        notNull(location, "location param must not be null!");
+        location.setChatId(getChatId(Long.valueOf(location.getChatId())));
+        return tryExecuteBotMethod(location);
+    }
+
+    @Override
+    public List<Message> sendMediaGroup(List<InputMedia> medias) {
+        return tryExecuteSendMediaGroup(sendMediaGroupBuilder(medias, null, null, null));
+    }
+
+    @Override
+    public List<Message> sendMediaGroup(List<InputMedia> medias, Long chatId) {
+        return tryExecuteSendMediaGroup(sendMediaGroupBuilder(medias, chatId, null, null));
+    }
+
+    @Override
+    public List<Message> sendMediaGroup(List<InputMedia> medias, Integer replyMessageId) {
+        return tryExecuteSendMediaGroup(sendMediaGroupBuilder(medias, null, replyMessageId, null));
+    }
+
+    @Override
+    public List<Message> sendMediaGroup(List<InputMedia> medias, Boolean disableNotification) {
+        return tryExecuteSendMediaGroup(sendMediaGroupBuilder(medias, null, null, disableNotification));
+    }
+
+    @Override
+    public List<Message> sendMediaGroup(List<InputMedia> medias, Long chatId, Integer replyMessageId) {
+        return tryExecuteSendMediaGroup(sendMediaGroupBuilder(medias, chatId, replyMessageId, null));
+    }
+
+    @Override
+    public List<Message> sendMediaGroup(List<InputMedia> medias, Long chatId, Boolean disableNotification) {
+        return tryExecuteSendMediaGroup(sendMediaGroupBuilder(medias, chatId, null, disableNotification));
+    }
+
+    @Override
+    public List<Message> sendMediaGroup(List<InputMedia> medias, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendMediaGroup(sendMediaGroupBuilder(medias, null, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public List<Message> sendMediaGroup(List<InputMedia> medias, Long chatId, Integer replyMessageId, Boolean disableNotification) {
+        return tryExecuteSendMediaGroup(sendMediaGroupBuilder(medias, chatId, replyMessageId, disableNotification));
+    }
+
+    @Override
+    public List<Message> sendMediaGroup(SendMediaGroup mediaGroup) {
+        notNull(mediaGroup, "mediaGroup param must not be null!");
+        mediaGroup.setChatId(getChatId(Long.valueOf(mediaGroup.getChatId())));
+        return tryExecuteSendMediaGroup(mediaGroup);
+    }
+
+    protected SendMediaGroup sendMediaGroupBuilder(List<InputMedia> medias, Long chatId, Integer replyMessageId, Boolean disableNotification) {
+        return SendMediaGroup.builder()
+                .medias(medias)
+                .chatId(getChatId(chatId))
+                .replyToMessageId(replyMessageId)
+                .disableNotification(disableNotification)
+                .build();
+    }
+
+    protected SendGame sendGameBuilder(String gameShortName, Long chatId, Integer replyToMessageId, ReplyKeyboard replyKeyboard) {
+        return SendGame.builder()
+                .chatId(getChatId(chatId))
+                .replyMarkup(replyKeyboard)
+                .gameShortName(gameShortName)
+                .replyToMessageId(replyToMessageId)
+                .build();
+    }
+
+    protected SendLocation sendLocationBuilder(Round round, Long chatId, Integer replyToMessageId, ReplyKeyboard replyMarkup) {
+        return SendLocation.builder()
+                .chatId(getChatId(chatId))
+                .replyToMessageId(replyToMessageId)
+                .longitude(round.getLongitude())
+                .latitude(round.getLatitude())
+                .replyMarkup(replyMarkup)
+                .build();
+    }
+
     protected AnswerInlineQuery answerInlineQueryBuilder(List<InlineQueryResult> results, String inlineQueryId, Integer cacheTime, Boolean isPersonal) {
         return AnswerInlineQuery.builder()
                 .inlineQueryId(getInlineQueryId(inlineQueryId))
@@ -2231,6 +2403,14 @@ public class DefaultFluentTemplate implements FluentTemplate {
             throw new RuntimeException(message);
         }
         return param;
+    }
+
+    protected List<Message> tryExecuteSendMediaGroup(SendMediaGroup mediaGroup) {
+        try {
+            return getInstance().execute(mediaGroup);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     protected Message tryExecuteBotMethod(BotApiMethodMessage message) {
