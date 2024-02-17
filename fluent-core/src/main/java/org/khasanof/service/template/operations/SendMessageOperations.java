@@ -7,5 +7,6 @@ package org.khasanof.service.template.operations;
  */
 public interface SendMessageOperations extends SendTextOperations, SendDocumentOperations, SendAudioOperations,
         SendDiceOperations, SendPhotoOperations, SendVideoNoteOperations, SendVideoOperations, SendVoiceOperations,
-        SendAnimationOperations, SendChatActionOperations, SendStickerOperations, SendContactOperations {
+        SendAnimationOperations, SendChatActionOperations, SendStickerOperations, SendContactOperations,
+        SendGameOperations, SendLocationOperations, SendMediaGroupOperations {
 }
