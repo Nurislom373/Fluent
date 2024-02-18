@@ -18,11 +18,10 @@ import java.util.Map;
 @ToString
 public class MethodCollectedEvent extends ApplicationEvent {
 
-    private Map<HandleAnnotation, Integer> longMap;
+    private Map dataMap;
 
-    public MethodCollectedEvent(Object source, Map<HandleAnnotation, Integer> longMap) {
+    public MethodCollectedEvent(Object source, Map dataMap) {
         super(source);
-        this.longMap = longMap;
+        this.dataMap = dataMap;
     }
-
 }

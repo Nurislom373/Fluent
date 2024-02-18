@@ -3,7 +3,7 @@ package org.khasanof;
 import org.khasanof.factories.proxy.ProxyFluentTemplateFactory;
 import org.khasanof.memento.DefaultMethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeHistory;
-import org.khasanof.service.ReinitializeFluentTemplateService;
+import org.khasanof.service.ProxyFluentTemplateService;
 import org.khasanof.service.template.FluentTemplate;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -17,13 +17,13 @@ import java.util.Objects;
  * @since 2/10/2024 10:01 PM
  */
 @Service
-public class DefaultReinitializeFluentTemplateService implements ReinitializeFluentTemplateService, BeanPostProcessor {
+public class DefaultProxyFluentTemplateService implements ProxyFluentTemplateService, BeanPostProcessor {
 
     private FluentTemplate fluentTemplate;
     private MethodInvokeHistory methodInvokeHistory;
     private final ProxyFluentTemplateFactory proxyFluentTemplateFactory;
 
-    public DefaultReinitializeFluentTemplateService(ProxyFluentTemplateFactory proxyFluentTemplateFactory) {
+    public DefaultProxyFluentTemplateService(ProxyFluentTemplateFactory proxyFluentTemplateFactory) {
         this.proxyFluentTemplateFactory = proxyFluentTemplateFactory;
     }
 

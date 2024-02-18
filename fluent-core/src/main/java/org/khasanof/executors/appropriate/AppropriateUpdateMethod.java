@@ -1,7 +1,7 @@
 package org.khasanof.executors.appropriate;
 
-import org.khasanof.enums.HandleType;
 import org.khasanof.models.executors.AppropriateMethod;
+import org.khasanof.models.executors.UpdateType;
 
 /**
  * @author Nurislom
@@ -10,10 +10,23 @@ import org.khasanof.models.executors.AppropriateMethod;
  */
 public abstract class AppropriateUpdateMethod<P> {
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     public abstract boolean isMatch(P p);
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     public abstract AppropriateMethod getAppropriate(P p);
 
-    public abstract HandleType handleType();
-
+    /**
+     *
+     * @return
+     */
+    public abstract UpdateType handleType();
 }

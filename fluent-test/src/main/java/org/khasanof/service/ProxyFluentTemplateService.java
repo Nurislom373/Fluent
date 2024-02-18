@@ -8,7 +8,7 @@ import org.khasanof.service.template.FluentTemplate;
  * @see org.khasanof.service
  * @since 2/10/2024 9:58 PM
  */
-public interface ReinitializeFluentTemplateService {
+public interface ProxyFluentTemplateService {
 
     FluentTemplate getFluentTemplate();
 

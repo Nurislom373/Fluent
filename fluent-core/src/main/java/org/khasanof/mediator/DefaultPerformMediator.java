@@ -1,7 +1,6 @@
 package org.khasanof.mediator;
 
-import org.jetbrains.annotations.Nullable;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.executors.execution.Perform;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
@@ -23,7 +22,7 @@ import java.util.Objects;
 public class DefaultPerformMediator implements PerformMediator, InitializingBean {
 
     private final ApplicationContext applicationContext;
-    private final Map<MethodType, Perform> methodTypePerformMap = new HashMap<>();
+    private final Map<DefaultMethodType, Perform> methodTypePerformMap = new HashMap<>();
 
     public DefaultPerformMediator(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
@@ -35,17 +34,17 @@ public class DefaultPerformMediator implements PerformMediator, InitializingBean
                 .execute(simpleInvoker);
     }
 
-    private MethodType getType(SimpleInvoker simpleInvoker) {
-        MethodType methodType = getMethodType(simpleInvoker);
+    private DefaultMethodType getType(SimpleInvoker simpleInvoker) {
+        DefaultMethodType defaultMethodType = getMethodType(simpleInvoker);
 
-        if (Objects.equals(methodType, MethodType.HANDLE_ANY)) {
-            methodType = MethodType.DEFAULT;
+        if (Objects.equals(defaultMethodType, DefaultMethodType.HANDLE_ANY)) {
+            defaultMethodType = DefaultMethodType.DEFAULT;
         }
-        return methodType;
+        return defaultMethodType;
     }
 
-    private MethodType getMethodType(SimpleInvoker simpleInvoker) {
-        return (MethodType) simpleInvoker.getParams().get(InvokerParam.METHOD_TYPE);
+    private DefaultMethodType getMethodType(SimpleInvoker simpleInvoker) {
+        return (DefaultMethodType) simpleInvoker.getParams().get(InvokerParam.METHOD_TYPE);
     }
 
     @Override

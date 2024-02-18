@@ -9,6 +9,16 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public interface FluentInterceptorService {
 
-    boolean intercept(Update update);
+    /**
+     *
+     * @param update
+     * @return
+     */
+    boolean preIntercept(Update update);
 
+    /**
+     *
+     * @param update
+     */
+    void postIntercept(Update update);
 }

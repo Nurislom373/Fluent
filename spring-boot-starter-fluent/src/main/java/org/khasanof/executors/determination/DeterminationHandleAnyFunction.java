@@ -13,6 +13,7 @@ import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
 import org.khasanof.models.executors.AppropriateMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
+import org.khasanof.service.annotation.type.HandleTypeService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -32,9 +33,13 @@ import java.util.function.BiConsumer;
 public class DeterminationHandleAnyFunction implements DeterminationFunction {
 
     public static final String NAME = "handleAnyFunction";
+    private final HandleTypeService handleTypeService;
     private final ContextOperationExecutor operationExecutor;
 
-    public DeterminationHandleAnyFunction(ContextOperationExecutor operationExecutor) {
+    public DeterminationHandleAnyFunction(HandleTypeService handleTypeService,
+                                          ContextOperationExecutor operationExecutor) {
+
+        this.handleTypeService = handleTypeService;
         this.operationExecutor = operationExecutor;
     }
 
@@ -42,18 +47,15 @@ public class DeterminationHandleAnyFunction implements DeterminationFunction {
     public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
             if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleAnnotation.HANDLE_ANY)) {
-                internalAccept(applicationContext, update, invokerResults);
+                internalAccept(update, invokerResults);
             }
         });
     }
 
-    private void internalAccept(ApplicationContext applicationContext, Update update, Set<SimpleInvoker> invokerResults) {
-        var appropriateDetermining = applicationContext.getBean(AppropriateDetermining.class);
-
+    private void internalAccept(Update update, Set<SimpleInvoker> invokerResults) {
         addAllTypeHandleAnyInvokers(invokerResults);
-        appropriateDetermining.determining(update)
-                .ifPresentOrElse(appropriateMethod -> foundMethodsAddInvokers(invokerResults, appropriateMethod),
-                        () -> log.warn("HandleType not found!"));
+        handleTypeService.findAllByUpdate(update)
+                .forEach(handleType -> foundMethodsAddInvokers(invokerResults, handleType));
     }
 
     private void addAllTypeHandleAnyInvokers(Set<SimpleInvoker> simpleInvokers) {
@@ -66,8 +68,8 @@ public class DeterminationHandleAnyFunction implements DeterminationFunction {
         isCanProcess(invokers);
     }
 
-    private void foundMethodsAddInvokers(Set<SimpleInvoker> invokerResults, AppropriateMethod appropriateMethod) {
-        var allHandleAnyMethods = operationExecutor.execute(FindMoreHandleAnyOperation.class, appropriateMethod.getHandleType());
+    private void foundMethodsAddInvokers(Set<SimpleInvoker> invokerResults, HandleType handleType) {
+        var allHandleAnyMethods = operationExecutor.execute(FindMoreHandleAnyOperation.class, handleType);
 
         if (Objects.isNull(allHandleAnyMethods) || allHandleAnyMethods.isEmpty()) {
             return;

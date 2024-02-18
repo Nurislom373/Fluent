@@ -3,7 +3,7 @@ package org.khasanof.feature.method;
 import org.khasanof.FluentBotSingletonBean;
 import org.khasanof.context.FluentContextHolder;
 import org.khasanof.context.FluentUpdate;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.feature.HandleMethodExtraParam;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
@@ -37,7 +37,7 @@ public class ProcessFileExtraParam implements HandleMethodExtraParam {
     }
 
     @Override
-    public MethodType methodType() {
-        return MethodType.PROCESS_FILE;
+    public DefaultMethodType methodType() {
+        return DefaultMethodType.PROCESS_FILE;
     }
 }

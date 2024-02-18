@@ -12,6 +12,10 @@ import java.util.Optional;
  */
 public interface AppropriateDetermining {
 
+    /**
+     *
+     * @param update
+     * @return
+     */
     Optional<AppropriateMethod> determining(Update update);
-
 }

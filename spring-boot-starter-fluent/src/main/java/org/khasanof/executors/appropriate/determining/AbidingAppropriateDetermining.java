@@ -3,9 +3,9 @@ package org.khasanof.executors.appropriate.determining;
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.executors.appropriate.AppropriateMethodService;
 import org.khasanof.executors.appropriate.AppropriateTypeService;
-import org.khasanof.factories.appropriate.AppropriateMethodFactory;
 import org.khasanof.models.executors.AppropriateMethod;
 import org.khasanof.models.executors.AppropriateType;
+import org.khasanof.service.binder.UpdateTypeBinderService;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -20,17 +20,17 @@ import java.util.Optional;
 @Service
 public final class AbidingAppropriateDetermining implements AppropriateDetermining {
 
-    private final AppropriateMethodFactory appropriateMethodFactory;
-    private final AppropriateMethodService appropriateMethodService;
     private final AppropriateTypeService appropriateTypeService;
+    private final UpdateTypeBinderService updateTypeBinderService;
+    private final AppropriateMethodService appropriateMethodService;
 
-    public AbidingAppropriateDetermining(AppropriateMethodFactory appropriateMethodFactory,
-                                         AppropriateMethodService appropriateMethodService,
-                                         AppropriateTypeService appropriateTypeService) {
+    public AbidingAppropriateDetermining(AppropriateMethodService appropriateMethodService,
+                                         AppropriateTypeService appropriateTypeService,
+                                         UpdateTypeBinderService updateTypeBinderService) {
 
-        this.appropriateMethodFactory = appropriateMethodFactory;
         this.appropriateMethodService = appropriateMethodService;
         this.appropriateTypeService = appropriateTypeService;
+        this.updateTypeBinderService = updateTypeBinderService;
     }
 
     @Override
@@ -43,11 +43,12 @@ public final class AbidingAppropriateDetermining implements AppropriateDetermini
         if (appropriateType.isHasSubMethods()) {
             return appropriateMethodService.getAppropriateMethod(appropriateType);
         }
-        return Optional.of(createAppropriateMethod(appropriateType));
+        return Optional.ofNullable(createAppropriateMethod(appropriateType));
     }
 
     private AppropriateMethod createAppropriateMethod(AppropriateType appropriateType) {
-        return appropriateMethodFactory.create(appropriateType.getType().asHandleType(), appropriateType.getValue());
+        return updateTypeBinderService.findByUpdateType(appropriateType.getType())
+                .map(binder -> new AppropriateMethod(binder.getAnnotation(), appropriateType.getValue()))
+                .orElse(null);
     }
-
 }

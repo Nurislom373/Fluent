@@ -16,14 +16,12 @@ public abstract class HandleTypeUtils {
     private static final List<HandleType> HANDLE_TYPES = new ArrayList<>();
 
     static {
-        HANDLE_TYPES.add(HandleType.MY_CHAT_MEMBER);
         HANDLE_TYPES.add(HandleType.MESSAGE);
         HANDLE_TYPES.add(HandleType.CALLBACK);
         HANDLE_TYPES.add(HandleType.PHOTO);
         HANDLE_TYPES.add(HandleType.DOCUMENT);
         HANDLE_TYPES.add(HandleType.VIDEO);
         HANDLE_TYPES.add(HandleType.INLINE_QUERY);
-        HANDLE_TYPES.add(HandleType.VIDEO_NOTE);
         HANDLE_TYPES.add(HandleType.AUDIO);
     }
 
@@ -33,14 +31,11 @@ public abstract class HandleTypeUtils {
 
     public static HandleAnnotation handleTypeToClass(HandleType type) {
         return switch (type) {
-            case MY_CHAT_MEMBER -> HandleAnnotation.HANDLE_MY_CHAT_MEMBER;
             case MESSAGE -> HandleAnnotation.HANDLE_MESSAGE;
             case CALLBACK -> HandleAnnotation.HANDLE_CALLBACK;
             case PHOTO -> HandleAnnotation.HANDLE_PHOTO;
             case DOCUMENT -> HandleAnnotation.HANDLE_DOCUMENT;
             case VIDEO -> HandleAnnotation.HANDLE_VIDEO;
-            case INLINE_QUERY -> HandleAnnotation.HANDLE_INLINE_QUERY;
-            case VIDEO_NOTE -> HandleAnnotation.HANDLE_VIDEO_NOTE;
             case AUDIO -> HandleAnnotation.HANDLE_AUDIO;
             default -> HandleAnnotation.UNKNOWN;
         };
@@ -48,9 +43,6 @@ public abstract class HandleTypeUtils {
 
     public static HandleType handleClassToType(HandleAnnotation clazz) {
         return switch (clazz) {
-            case HANDLE_MY_CHAT_MEMBER -> HandleType.MY_CHAT_MEMBER;
-            case HANDLE_INLINE_QUERY -> HandleType.INLINE_QUERY;
-            case HANDLE_VIDEO_NOTES, HANDLE_VIDEO_NOTE -> HandleType.VIDEO_NOTE;
             case HANDLE_AUDIOS, HANDLE_AUDIO -> HandleType.AUDIO;
             case HANDLE_VIDEOS, HANDLE_VIDEO -> HandleType.VIDEO;
             case HANDLE_PHOTOS, HANDLE_PHOTO -> HandleType.PHOTO;

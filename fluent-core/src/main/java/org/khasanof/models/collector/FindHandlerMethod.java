@@ -1,7 +1,7 @@
 package org.khasanof.models.collector;
 
 import lombok.*;
-import org.khasanof.enums.HandleAnnotation;
+import org.khasanof.feature.AnnotationHandler;
 
 /**
  * @author Nurislom
@@ -16,6 +16,6 @@ import org.khasanof.enums.HandleAnnotation;
 public class FindHandlerMethod {
 
     private Object value;
-    private HandleAnnotation key;
+    private AnnotationHandler key;
 
 }

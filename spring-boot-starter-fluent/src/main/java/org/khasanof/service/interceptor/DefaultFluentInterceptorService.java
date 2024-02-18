@@ -25,12 +25,16 @@ public class DefaultFluentInterceptorService implements FluentInterceptorService
     }
 
     @Override
-    public boolean intercept(Update update) {
-        if (getInterceptors().isEmpty()) {
-            return true;
-        }
-        return getInterceptors().stream()
+    public boolean preIntercept(Update update) {
+        return getInterceptors()
+                .stream()
                 .allMatch(fluentInterceptor -> fluentInterceptor.preHandle(update));
+    }
+
+    @Override
+    public void postIntercept(Update update) {
+        getInterceptors()
+                .forEach(fluentInterceptor -> fluentInterceptor.postHandle(update));
     }
 
     private List<FluentInterceptor> getInterceptors() {

@@ -1,7 +1,7 @@
 package org.khasanof.service.invoker;
 
 import org.khasanof.annotation.exception.HandleException;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ public class ExceptionHandlerTypeDefinition implements MethodTypeDefinition {
     }
 
     @Override
-    public MethodType methodType() {
-        return MethodType.EXCEPTION_HANDLER;
+    public DefaultMethodType methodType() {
+        return DefaultMethodType.EXCEPTION_HANDLER;
     }
 }

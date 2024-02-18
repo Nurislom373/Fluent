@@ -14,7 +14,7 @@ public class DefaultAppropriateMethodFactory implements AppropriateMethodFactory
 
     @Override
     public AppropriateMethod create(HandleType handleType, Object value) {
-        return new AppropriateMethod(handleType, value);
+        return new AppropriateMethod(null, value);
     }
 
 }

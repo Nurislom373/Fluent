@@ -1,12 +1,8 @@
 package org.khasanof.utils;
 
-import org.khasanof.enums.HandleAnnotation;
-import org.khasanof.exceptions.InvalidParamsException;
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.support.AopUtils;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -19,6 +15,12 @@ public abstract class BaseUtils {
 
     private static final String[] EMPTY_STRING_ARRAY = {};
 
+    /**
+     *
+     * @param proxyBean
+     * @return
+     * @param <T>
+     */
     public static <T> T unwrapProxyBean(T proxyBean) {
         try {
             if (AopUtils.isAopProxy(proxyBean) && proxyBean instanceof Advised) {
@@ -28,22 +30,6 @@ public abstract class BaseUtils {
             e.printStackTrace();
         }
         return proxyBean;
-    }
-
-    public static HandleAnnotation getMethodAnnotation(Method method) {
-        Annotation[] annotations = method.getAnnotations();
-        if (annotations.length == 0) {
-            return null;
-        } else {
-            return HandleAnnotation.getHandleWithType(
-                    HandleAnnotation.getAllAnnotations()
-                            .stream()
-                            .map(method::getAnnotation)
-                            .filter(Objects::nonNull)
-                            .map(Annotation::annotationType)
-                            .findFirst()
-                            .orElseThrow(() -> new InvalidParamsException("Annotation not found!")));
-        }
     }
 
     /**

@@ -1,7 +1,7 @@
 package org.khasanof.registry.appropriate;
 
-import org.khasanof.enums.HandleType;
 import org.khasanof.executors.appropriate.AppropriateUpdateMethod;
+import org.khasanof.models.executors.UpdateType;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public interface AppropriateMethodRegistryContainer {
 
-    Map<HandleType, List<AppropriateUpdateMethod>> getAppropriateMethods();
+    Map<UpdateType, List<AppropriateUpdateMethod>> getAppropriateMethods();
 
     void addAppropriateMethods(List<AppropriateUpdateMethod> methods);
 

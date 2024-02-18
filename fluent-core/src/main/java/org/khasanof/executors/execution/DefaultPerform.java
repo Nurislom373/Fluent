@@ -1,7 +1,7 @@
 package org.khasanof.executors.execution;
 
 import org.khasanof.context.FluentContextHolder;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
@@ -36,7 +36,7 @@ public class DefaultPerform implements Perform {
     }
 
     @Override
-    public MethodType getType() {
-        return MethodType.DEFAULT;
+    public DefaultMethodType getType() {
+        return DefaultMethodType.DEFAULT;
     }
 }

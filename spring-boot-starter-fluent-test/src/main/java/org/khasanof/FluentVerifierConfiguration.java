@@ -2,7 +2,7 @@ package org.khasanof;
 
 import org.khasanof.factories.executor.UpdateExecutorFactory;
 import org.khasanof.factories.executor.SimulateExecutorServiceFactory;
-import org.khasanof.service.ReinitializeFluentTemplateService;
+import org.khasanof.service.ProxyFluentTemplateService;
 import org.khasanof.service.processor.UpdateChainProcessorService;
 import org.khasanof.verifier.DefaultFluentVerifier;
 import org.khasanof.verifier.FluentVerifier;
@@ -27,15 +27,15 @@ public class FluentVerifierConfiguration {
      * @param updateExecutorFactory
      * @param serviceFactory
      * @param updateChainProcessorService
-     * @param reinitializeFluentTemplateService
+     * @param proxyFluentTemplateService
      * @return
      */
     @Bean
     public FluentVerifier fluentVerifier(UpdateExecutorFactory updateExecutorFactory,
                                          SimulateExecutorServiceFactory serviceFactory,
                                          UpdateChainProcessorService updateChainProcessorService,
-                                         ReinitializeFluentTemplateService reinitializeFluentTemplateService) {
+                                         ProxyFluentTemplateService proxyFluentTemplateService) {
 
-        return new DefaultFluentVerifier(updateExecutorFactory, serviceFactory, updateChainProcessorService, reinitializeFluentTemplateService);
+        return new DefaultFluentVerifier(updateExecutorFactory, serviceFactory, updateChainProcessorService, proxyFluentTemplateService);
     }
 }

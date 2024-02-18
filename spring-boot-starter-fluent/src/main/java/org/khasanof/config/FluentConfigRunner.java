@@ -5,6 +5,7 @@ import org.khasanof.event.assembleMethods.AssembleMethodsEvent;
 import org.khasanof.exceptions.NotFoundException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 
@@ -17,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
  * @since 05.07.2023 0:29
  */
 @Component(value = FluentConfigRunner.NAME)
-public class FluentConfigRunner implements InitializingBean {
+public class FluentConfigRunner implements InitializingBean, Ordered {
 
     public static final String NAME = "commonFluentConfigRunner";
     private static final boolean statePresent;
@@ -63,4 +64,8 @@ public class FluentConfigRunner implements InitializingBean {
         }
     }
 
+    @Override
+    public int getOrder() {
+        return HIGHEST_PRECEDENCE;
+    }
 }

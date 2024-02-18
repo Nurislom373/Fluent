@@ -6,6 +6,7 @@ import org.khasanof.collector.loader.HandlerLoader;
 import org.khasanof.collector.method.checker.HandleMethodCheckerMediator;
 import org.khasanof.factories.invoker.method.DefaultInvokerMethodFactory;
 import org.khasanof.mediator.MethodTypeDefinitionMediator;
+import org.khasanof.service.annotation.handler.AnnotationHandlerService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
@@ -20,12 +21,11 @@ import org.springframework.context.annotation.Configuration;
 public class SimpleMethodContextConfiguration {
 
     @Bean(DefaultSimpleMethodContext.NAME)
-//    @ConditionalOnBean({HandlerLoader.class, HandleMethodCheckerMediator.class, MethodTypeDefinitionMediator.class})
-    public SimpleMethodContext simpleMethodContext(HandlerLoader resourceLoader,
-                                                   ApplicationEventPublisher eventPublisher,
-                                                   HandleMethodCheckerMediator checkerAdapter,
+    public SimpleMethodContext simpleMethodContext(HandlerLoader resourceLoader, ApplicationEventPublisher eventPublisher,
+                                                   HandleMethodCheckerMediator checkerAdapter, AnnotationHandlerService annotationHandlerService,
                                                    MethodTypeDefinitionMediator methodTypeDefinitionMediator) {
+
         return new DefaultSimpleMethodContext(resourceLoader, checkerAdapter,
-                eventPublisher, new DefaultInvokerMethodFactory(methodTypeDefinitionMediator));
+                eventPublisher, new DefaultInvokerMethodFactory(methodTypeDefinitionMediator), annotationHandlerService);
     }
 }

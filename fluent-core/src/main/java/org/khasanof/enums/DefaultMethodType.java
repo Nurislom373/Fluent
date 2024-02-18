@@ -5,7 +5,7 @@ package org.khasanof.enums;
  * @see org.khasanof.enums
  * @since 1/27/2024 8:38 PM
  */
-public enum MethodType {
+public enum DefaultMethodType {
 
     DEFAULT, STATE, HANDLE_ANY, EXCEPTION_HANDLER, VAR_EXPRESSION, PROCESS_FILE
 

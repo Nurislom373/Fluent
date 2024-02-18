@@ -2,7 +2,7 @@ package org.khasanof.feature.method;
 
 import org.khasanof.context.FluentContextHolder;
 import org.khasanof.context.FluentUpdate;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.feature.HandleMethodExtraParam;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
@@ -38,7 +38,7 @@ public class StateExtraParam implements HandleMethodExtraParam {
     }
 
     @Override
-    public MethodType methodType() {
-        return MethodType.STATE;
+    public DefaultMethodType methodType() {
+        return DefaultMethodType.STATE;
     }
 }

@@ -21,12 +21,9 @@ public class AppropriateMethodRegistryRunnable implements PostProcessor {
     @Override
     public void run() {
         appropriateMethodRegistryContainer.addAppropriateMethod(new AudioMessageAppropriateMethod());
-        appropriateMethodRegistryContainer.addAppropriateMethod(new AnimationMessageAppropriateMethod());
         appropriateMethodRegistryContainer.addAppropriateMethod(new DocumentMessageAppropriateMethod());
         appropriateMethodRegistryContainer.addAppropriateMethod(new PhotoMessageAppropriateMethod());
         appropriateMethodRegistryContainer.addAppropriateMethod(new TextMessageAppropriateMethod());
         appropriateMethodRegistryContainer.addAppropriateMethod(new VideoMessageAppropriateMethod());
-        appropriateMethodRegistryContainer.addAppropriateMethod(new VideoNoteMessageAppropriateMethod());
-        appropriateMethodRegistryContainer.addAppropriateMethod(new WebAppDataAppropriateMethod());
     }
 }

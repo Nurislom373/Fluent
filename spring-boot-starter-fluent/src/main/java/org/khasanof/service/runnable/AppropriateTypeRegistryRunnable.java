@@ -3,7 +3,6 @@ package org.khasanof.service.runnable;
 import org.khasanof.executors.appropriate.type.CallbackUpdateTypeMatcher;
 import org.khasanof.executors.appropriate.type.InlineQueryUpdateTypeMatcher;
 import org.khasanof.executors.appropriate.type.MessageUpdateTypeMatcher;
-import org.khasanof.executors.appropriate.type.MyChatMemberTypeMatcher;
 import org.khasanof.registry.appropriate.AppropriateTypeRegistryContainer;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +25,5 @@ public class AppropriateTypeRegistryRunnable implements PostProcessor {
         appropriateTypeRegistryContainer.addAppropriateType(new MessageUpdateTypeMatcher());
         appropriateTypeRegistryContainer.addAppropriateType(new CallbackUpdateTypeMatcher());
         appropriateTypeRegistryContainer.addAppropriateType(new InlineQueryUpdateTypeMatcher());
-        appropriateTypeRegistryContainer.addAppropriateType(new MyChatMemberTypeMatcher());
     }
 }

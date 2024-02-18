@@ -12,8 +12,6 @@ import java.util.List;
  */
 public class ParamConstants {
 
-    public static final List<Class<?>> MAIN_PARAMS_LIST = List.of(Update.class, AbsSender.class);
-    public static final Class<?>[] MAIN_PARAMS_ARRAY = new Class[]{Update.class, AbsSender.class};
     public static final Class<?>[] DEFAULT_HANDLER_PARAM = new Class[]{Update.class};
 
 }

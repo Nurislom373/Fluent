@@ -28,7 +28,8 @@ public class UpdateChainProcessorRegistryPostProcessor implements PostProcessor 
 
     @Override
     public void run() {
-        log.info("Chain Processor Registry Started!");
+        // registering default chain processors
+        log.debug("registering chain processors...");
         var chainProcessorBuilder = new UpdateChainProcessorAutoConfiguration.ChainProcessorBuilder(applicationContext);
         registryContainer.addUpdateChainProcessors(chainProcessorBuilder.processors());
     }

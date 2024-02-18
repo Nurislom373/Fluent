@@ -2,7 +2,6 @@ package org.khasanof.service.processor;
 
 import org.khasanof.executors.processor.AbstractUpdateChainProcessor;
 import org.khasanof.factories.processor.CachedUpdateChainProcessorFactory;
-import org.khasanof.factories.processor.UpdateChainProcessorFactory;
 import org.khasanof.service.interceptor.FluentInterceptorService;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -27,8 +26,9 @@ public class DefaultUpdateChainProcessorService implements UpdateChainProcessorS
 
     @Override
     public void process(Update update) throws Exception {
-        fluentInterceptorService.intercept(update);
+        fluentInterceptorService.preIntercept(update);
         abstractProcessor(update);
+        fluentInterceptorService.postIntercept(update);
     }
 
     private void abstractProcessor(Update update) throws Exception {

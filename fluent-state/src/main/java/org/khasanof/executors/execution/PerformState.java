@@ -1,7 +1,7 @@
 package org.khasanof.executors.execution;
 
 import org.khasanof.context.FluentContextHolder;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
@@ -23,7 +23,7 @@ public class PerformState extends AbstractPerform {
     }
 
     @Override
-    public MethodType getType() {
-        return MethodType.STATE;
+    public DefaultMethodType getType() {
+        return DefaultMethodType.STATE;
     }
 }

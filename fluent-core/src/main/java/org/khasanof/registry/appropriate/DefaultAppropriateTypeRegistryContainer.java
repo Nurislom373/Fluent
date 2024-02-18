@@ -22,7 +22,7 @@ public class DefaultAppropriateTypeRegistryContainer implements AppropriateTypeR
 
     @Override
     public void addAppropriateTypes(List<AppropriateUpdateType> types) {
-        if (Objects.nonNull(types) && !types.isEmpty()) {
+        if (Objects.nonNull(types)) {
             types.forEach(this::addAppropriateType);
         }
     }

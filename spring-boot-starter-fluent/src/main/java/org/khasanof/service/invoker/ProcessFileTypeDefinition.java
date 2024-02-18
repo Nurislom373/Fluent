@@ -2,7 +2,7 @@ package org.khasanof.service.invoker;
 
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.constants.FluentConstants;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
@@ -30,8 +30,8 @@ public class ProcessFileTypeDefinition implements MethodTypeDefinition {
     }
 
     @Override
-    public MethodType methodType() {
-        return MethodType.PROCESS_FILE;
+    public DefaultMethodType methodType() {
+        return DefaultMethodType.PROCESS_FILE;
     }
 
     @Override

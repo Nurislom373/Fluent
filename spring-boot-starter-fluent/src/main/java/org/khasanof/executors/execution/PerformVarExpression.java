@@ -2,19 +2,15 @@ package org.khasanof.executors.execution;
 
 import org.khasanof.annotation.expression.BotVariable;
 import org.khasanof.context.FluentContextHolder;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
-
-import static org.khasanof.executors.execution.PerformHelper.invokeNoParamMethod;
-import static org.khasanof.utils.MethodUtils.tryAccessWhenMethodNotPublic;
 
 /**
  * @author Nurislom
@@ -65,7 +61,7 @@ public class PerformVarExpression extends AbstractPerform {
     }
 
     @Override
-    public MethodType getType() {
-        return MethodType.VAR_EXPRESSION;
+    public DefaultMethodType getType() {
+        return DefaultMethodType.VAR_EXPRESSION;
     }
 }

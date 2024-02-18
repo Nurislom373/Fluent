@@ -1,7 +1,7 @@
 package org.khasanof.registry.appropriate;
 
-import org.khasanof.enums.HandleType;
 import org.khasanof.executors.appropriate.AppropriateUpdateMethod;
+import org.khasanof.models.executors.UpdateType;
 
 import java.util.*;
 
@@ -13,10 +13,10 @@ import java.util.*;
 @SuppressWarnings({"rawtypes"})
 public class DefaultAppropriateMethodRegistryContainer implements AppropriateMethodRegistryContainer {
 
-    private final Map<HandleType, List<AppropriateUpdateMethod>> methods = new HashMap<>();
+    private final Map<UpdateType, List<AppropriateUpdateMethod>> methods = new HashMap<>();
 
     @Override
-    public Map<HandleType, List<AppropriateUpdateMethod>> getAppropriateMethods() {
+    public Map<UpdateType, List<AppropriateUpdateMethod>> getAppropriateMethods() {
         return this.methods;
     }
 

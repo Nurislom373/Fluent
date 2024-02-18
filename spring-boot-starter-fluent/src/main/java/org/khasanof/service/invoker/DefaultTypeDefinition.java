@@ -1,7 +1,7 @@
 package org.khasanof.service.invoker;
 
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ public class DefaultTypeDefinition implements MethodTypeDefinition {
     }
 
     @Override
-    public MethodType methodType() {
-        return MethodType.DEFAULT;
+    public DefaultMethodType methodType() {
+        return DefaultMethodType.DEFAULT;
     }
 }

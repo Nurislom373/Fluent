@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.khasanof.annotation.exception.HandleException;
 import org.khasanof.annotation.methods.*;
-import org.khasanof.annotation.methods.chat.HandleMyChatMember;
-import org.khasanof.annotation.methods.inline.HandleInlineQuery;
+import org.khasanof.feature.AnnotationHandler;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -25,31 +25,154 @@ import java.util.stream.Collectors;
 @Getter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public enum HandleAnnotation {
+public enum HandleAnnotation implements AnnotationHandler {
 
-    UNKNOWN(Annotation.class, false),
+    UNKNOWN(Annotation.class, false) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return Annotation.class;
+        }
+    },
+    HANDLE_ANY(HandleAny.class, false) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleAny.class;
+        }
+    },
+    HANDLE_EXCEPTION(HandleException.class, false) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleException.class;
+        }
+    },
 
-    HANDLE_WEB_APP_DATA(HandleWebAppData.class, false),
-    HANDLE_MY_CHAT_MEMBER(HandleMyChatMember.class, false),
-    HANDLE_ANY(HandleAny.class, false),
-    HANDLE_INLINE_QUERY(HandleInlineQuery.class, false),
-    HANDLE_EXCEPTION(HandleException.class, false),
+    //
 
-    HANDLE_VIDEO_NOTES(HandleVideoNotes.class, false),
-    HANDLE_AUDIOS(HandleAudios.class, false),
-    HANDLE_VIDEOS(HandleVideos.class, false),
-    HANDLE_PHOTOS(HandlePhotos.class, false),
-    HANDLE_CALLBACKS(HandleCallbacks.class, false),
-    HANDLE_MESSAGES(HandleMessages.class, false),
-    HANDLE_DOCUMENTS(HandleDocuments.class, false),
+    HANDLE_AUDIOS(HandleAudios.class, false) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleAudios.class;
+        }
+    },
+    HANDLE_VIDEOS(HandleVideos.class, false) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleVideos.class;
+        }
+    },
+    HANDLE_PHOTOS(HandlePhotos.class, false) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandlePhotos.class;
+        }
+    },
+    HANDLE_CALLBACKS(HandleCallbacks.class, false) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleCallbacks.class;
+        }
+    },
+    HANDLE_MESSAGES(HandleMessages.class, false) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleMessages.class;
+        }
+    },
+    HANDLE_DOCUMENTS(HandleDocuments.class, false) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleDocuments.class;
+        }
+    },
 
-    HANDLE_VIDEO_NOTE(HandleVideoNote.class, true, HANDLE_VIDEO_NOTES),
-    HANDLE_AUDIO(HandleAudio.class, true, HANDLE_AUDIOS),
-    HANDLE_VIDEO(HandleVideo.class, true, HANDLE_VIDEOS),
-    HANDLE_PHOTO(HandlePhoto.class, true, HANDLE_PHOTOS),
-    HANDLE_CALLBACK(HandleCallback.class, true, HANDLE_CALLBACKS),
-    HANDLE_MESSAGE(HandleMessage.class, true, HANDLE_MESSAGES),
-    HANDLE_DOCUMENT(HandleDocument.class, true, HANDLE_DOCUMENTS);
+    //
+
+    HANDLE_AUDIO(HandleAudio.class, true, HANDLE_AUDIOS) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleAudio.class;
+        }
+        @Override
+        public boolean isRepeatable() {
+            return true;
+        }
+
+        @Override
+        public AnnotationHandler repeatableAnnotationHandler() {
+            return HANDLE_AUDIOS;
+        }
+    },
+
+    HANDLE_VIDEO(HandleVideo.class, true, HANDLE_VIDEOS) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleVideo.class;
+        }
+        @Override
+        public boolean isRepeatable() {
+            return true;
+        }
+        @Override
+        public AnnotationHandler repeatableAnnotationHandler() {
+            return HANDLE_VIDEOS;
+        }
+    },
+    HANDLE_PHOTO(HandlePhoto.class, true, HANDLE_PHOTOS) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandlePhoto.class;
+        }
+        @Override
+        public boolean isRepeatable() {
+            return true;
+        }
+        @Override
+        public AnnotationHandler repeatableAnnotationHandler() {
+            return HANDLE_PHOTOS;
+        }
+    },
+    HANDLE_CALLBACK(HandleCallback.class, true, HANDLE_CALLBACKS) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleCallback.class;
+        }
+        @Override
+        public boolean isRepeatable() {
+            return true;
+        }
+        @Override
+        public AnnotationHandler repeatableAnnotationHandler() {
+            return HANDLE_CALLBACKS;
+        }
+    },
+    HANDLE_MESSAGE(HandleMessage.class, true, HANDLE_MESSAGES) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleMessage.class;
+        }
+        @Override
+        public boolean isRepeatable() {
+            return true;
+        }
+        @Override
+        public AnnotationHandler repeatableAnnotationHandler() {
+            return HANDLE_MESSAGES;
+        }
+    },
+    HANDLE_DOCUMENT(HandleDocument.class, true, HANDLE_DOCUMENTS) {
+        @Override
+        public Class<? extends Annotation> getAnnotation() {
+            return HandleDocument.class;
+        }
+        @Override
+        public boolean isRepeatable() {
+            return true;
+        }
+        @Override
+        public AnnotationHandler repeatableAnnotationHandler() {
+            return HANDLE_DOCUMENTS;
+        }
+    };
 
     private final Class<? extends Annotation> type;
     private final boolean isMultiVersion;
@@ -76,7 +199,7 @@ public enum HandleAnnotation {
 
     public static HandleAnnotation getHandleWithType(Class<? extends Annotation> annotation) {
         return Arrays.stream(values())
-                .filter(handle -> handle.type.equals(annotation))
+                .filter(handle -> Objects.equals(annotation, handle.getType()))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Match type not found!"));
     }
@@ -85,5 +208,4 @@ public enum HandleAnnotation {
         return Arrays.stream(ann.getDeclaredAnnotations())
                 .anyMatch(annotation -> annotation.annotationType().equals(superAnn));
     }
-
 }

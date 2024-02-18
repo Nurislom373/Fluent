@@ -1,11 +1,10 @@
 package org.khasanof.factories.invoker;
 
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.factories.invoker.method.InvokerMethodFactory;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.models.invoker.SimpleInvokerMethod;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -32,7 +31,7 @@ public class StateInvokerMethodFactory implements InvokerMethodFactory {
     }
 
     private void fillParams(SimpleInvokerMethod simpleInvokerMethod) {
-        simpleInvokerMethod.getParams().put(InvokerParam.METHOD_TYPE, MethodType.STATE);
+        simpleInvokerMethod.getParams().put(InvokerParam.METHOD_TYPE, DefaultMethodType.STATE);
     }
 
     private SimpleInvokerMethod buildInvoker(Map.Entry<Method, Object> entry) {

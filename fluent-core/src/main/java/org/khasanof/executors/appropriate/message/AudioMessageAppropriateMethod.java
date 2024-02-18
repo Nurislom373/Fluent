@@ -1,6 +1,6 @@
 package org.khasanof.executors.appropriate.message;
 
-import org.khasanof.enums.HandleType;
+import org.khasanof.annotation.methods.HandleAudio;
 import org.khasanof.models.executors.AppropriateMethod;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -20,7 +20,6 @@ public class AudioMessageAppropriateMethod extends AbstractMessageAppropriateMet
 
     @Override
     public AppropriateMethod getAppropriate(Message message) {
-        return createAppropriateMethod(HandleType.AUDIO, message.getAudio());
+        return createAppropriateMethod(HandleAudio.class, message.getAudio());
     }
-
 }

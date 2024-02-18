@@ -73,5 +73,4 @@ public class DefaultStateMethodContext implements StateMethodContext {
     private SimpleInvoker createSimpleInvoker(StateAction stateActions) {
         return invokerMethodFactory.create(Map.entry(MethodUtils.getClassMethodByName(stateActions, METHOD_NAME), stateActions));
     }
-
 }

@@ -1,7 +1,7 @@
 package org.khasanof.service.invoker;
 
 import org.khasanof.annotation.methods.HandleAny;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +21,7 @@ public class HandleAnyTypeDefinition implements MethodTypeDefinition {
     }
 
     @Override
-    public MethodType methodType() {
-        return MethodType.HANDLE_ANY;
+    public DefaultMethodType methodType() {
+        return DefaultMethodType.HANDLE_ANY;
     }
 }

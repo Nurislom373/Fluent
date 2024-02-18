@@ -24,7 +24,7 @@ public class DefaultAppropriateMethodService implements AppropriateMethodService
     @Override
     public Optional<AppropriateMethod> getAppropriateMethod(AppropriateType appropriateType) {
         return methodRegistryContainer.getAppropriateMethods()
-                .getOrDefault((appropriateType.getType()).asHandleType(), Collections.emptyList())
+                .getOrDefault(appropriateType.getType(), Collections.emptyList())
                 .stream()
                 .filter(appropriateUpdateMethod -> {
                     return appropriateUpdateMethod.isMatch(appropriateType.getValue());

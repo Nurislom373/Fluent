@@ -1,6 +1,6 @@
 package org.khasanof.executors.execution;
 
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.models.invoker.SimpleInvoker;
 
 import java.lang.reflect.InvocationTargetException;
@@ -14,6 +14,6 @@ public interface Perform {
 
     void execute(SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException;
 
-    MethodType getType();
+    DefaultMethodType getType();
 
 }

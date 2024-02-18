@@ -9,6 +9,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public interface UpdateChainProcessorService {
 
+    /**
+     *
+     * @param update
+     * @throws Exception
+     */
     void process(Update update) throws Exception;
 
 }

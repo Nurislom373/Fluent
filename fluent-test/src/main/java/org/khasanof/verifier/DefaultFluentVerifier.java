@@ -6,10 +6,8 @@ import org.khasanof.factories.executor.SimulateExecutorServiceFactory;
 import org.khasanof.factories.executor.UpdateExecutorFactory;
 import org.khasanof.factories.handler.DefaultSimulateUpdateHandlerManagerFactory;
 import org.khasanof.factories.handler.SimulateUpdateHandlerManagerFactory;
-import org.khasanof.factories.proxy.ProxyFluentTemplateFactory;
-import org.khasanof.memento.DefaultMethodInvokeHistory;
 import org.khasanof.memento.MethodInvokeHistory;
-import org.khasanof.service.ReinitializeFluentTemplateService;
+import org.khasanof.service.ProxyFluentTemplateService;
 import org.khasanof.service.processor.UpdateChainProcessorService;
 import org.khasanof.verifier.assertions.DefaultVerifierAssertionsBuilder;
 import org.khasanof.verifier.assertions.VerifierAssertions;
@@ -28,23 +26,23 @@ public class DefaultFluentVerifier implements FluentVerifier {
     private final UpdateExecutorFactory updateExecutorFactory;
     private final SimulateExecutorServiceFactory serviceFactory;
     private final UpdateChainProcessorService updateChainProcessorService;
-    private final ReinitializeFluentTemplateService reinitializeFluentTemplateService;
+    private final ProxyFluentTemplateService proxyFluentTemplateService;
 
     public DefaultFluentVerifier(UpdateExecutorFactory updateExecutorFactory,
                                  SimulateExecutorServiceFactory serviceFactory,
                                  UpdateChainProcessorService updateChainProcessorService,
-                                 ReinitializeFluentTemplateService reinitializeFluentTemplateService) {
+                                 ProxyFluentTemplateService proxyFluentTemplateService) {
 
         this.serviceFactory = serviceFactory;
         this.updateExecutorFactory = updateExecutorFactory;
         this.updateChainProcessorService = updateChainProcessorService;
-        this.reinitializeFluentTemplateService = reinitializeFluentTemplateService;
+        this.proxyFluentTemplateService = proxyFluentTemplateService;
     }
 
     @Override
     public VerifierAssertions execute(Update update) {
         executeUpdate(update);
-        var invokeHistory = reinitializeFluentTemplateService.getInvokeHistory();
+        var invokeHistory = proxyFluentTemplateService.getInvokeHistory();
         return createDefaultVerifier(invokeHistory);
     }
 

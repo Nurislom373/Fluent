@@ -5,19 +5,18 @@ import org.khasanof.collector.context.SimpleMethodContext;
 import org.khasanof.collector.loader.HandlerLoader;
 import org.khasanof.collector.method.checker.HandleMethodCheckerMediator;
 import org.khasanof.constants.FluentConstants;
-import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.event.methodContext.MethodCollectedEvent;
 import org.khasanof.factories.invoker.method.InvokerMethodFactory;
+import org.khasanof.feature.AnnotationHandler;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
+import org.khasanof.service.annotation.handler.AnnotationHandlerService;
 import org.springframework.context.ApplicationEventPublisher;
 
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
-
-import static org.khasanof.utils.BaseUtils.getMethodAnnotation;
 
 /**
  * The {@link DefaultSimpleMethodContext} class collects the methods from the classes corresponding
@@ -42,17 +41,20 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
     private final ApplicationEventPublisher eventPublisher;
     private final InvokerMethodFactory invokerMethodFactory;
     private final HandleMethodCheckerMediator checkerMediator;
-    private final Map<HandleAnnotation, List<SimpleInvoker>> beanMap = new HashMap<>();
+    private final AnnotationHandlerService annotationHandlerService;
+    private final Map<AnnotationHandler, List<SimpleInvoker>> beanMap = new HashMap<>();
 
     public DefaultSimpleMethodContext(HandlerLoader resourceLoader,
                                       HandleMethodCheckerMediator checkerAdapter,
                                       ApplicationEventPublisher eventPublisher,
-                                      InvokerMethodFactory invokerMethodFactory) {
+                                      InvokerMethodFactory invokerMethodFactory,
+                                      AnnotationHandlerService annotationHandlerService) {
 
         this.resourceLoader = resourceLoader;
         this.checkerMediator = checkerAdapter;
         this.eventPublisher = eventPublisher;
         this.invokerMethodFactory = invokerMethodFactory;
+        this.annotationHandlerService = annotationHandlerService;
     }
 
     /**
@@ -60,7 +62,7 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
      * @return
      */
     @Override
-    public Map<HandleAnnotation, List<SimpleInvoker>> findAll() {
+    public Map<AnnotationHandler, List<SimpleInvoker>> findAll() {
         return beanMap;
     }
 
@@ -70,7 +72,7 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
      * @return
      */
     @Override
-    public Optional<List<SimpleInvoker>> find(HandleAnnotation classes) {
+    public Optional<List<SimpleInvoker>> find(AnnotationHandler classes) {
         return Optional.of(beanMap.getOrDefault(classes, Collections.emptyList()));
     }
 
@@ -80,7 +82,7 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
      * @return
      */
     @Override
-    public boolean contains(HandleAnnotation key) {
+    public boolean contains(AnnotationHandler key) {
         return beanMap.containsKey(key);
     }
 
@@ -89,12 +91,13 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
      */
     @Override
     public void assembleMethods() {
-        log.debug("Default Method Context Start");
+        log.info("Default Method Context Start");
         assembleMethodsInternal();
     }
 
     private void assembleMethodsInternal() {
-        getValues().forEach(this::processHandlerBean);
+        Collection<Object> values = getValues();
+        values.forEach(this::processHandlerBean);
         pushEvent();
     }
 
@@ -131,6 +134,7 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
 
     private List<Method> getInterfaceMethods(Class<?> clazz) {
         List<Method> methods = new ArrayList<>();
+
         if (clazz.getInterfaces().length >= 1) {
             Arrays.stream(clazz.getInterfaces())
                     .forEach(in -> methods.addAll(Arrays.asList(in.getDeclaredMethods())));
@@ -144,36 +148,42 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
 
     private void acceptEachMethod(Object bean, Method method) {
         if (checkerMediator.check(method)) {
-            HandleAnnotation key = getMethodAnnotation(method);
-
-            if (beanMap.containsKey(key)) {
-                beanMap.get(key)
-                        .add(invokerMethodFactory.create(Map.entry(method, bean), createParams(method, key)));
-                return;
-            }
-            putNewHandleAnnotation(bean, method, key);
+            acceptEachMethodInternal(bean, method);
         }
     }
 
-    private void putNewHandleAnnotation(Object bean, Method method, HandleAnnotation key) {
+    private void acceptEachMethodInternal(Object bean, Method method) {
+        annotationHandlerService.findByMethod(method)
+                .ifPresent(handler -> existAddOrPutNewEntry(bean, method, handler));
+    }
+
+    private void existAddOrPutNewEntry(Object bean, Method method, AnnotationHandler handler) {
+        if (beanMap.containsKey(handler)) {
+            beanMap.get(handler).add(invokerMethodFactory.create(Map.entry(method, bean), createParams(method, handler)));
+            return;
+        }
+        putNewAnnotationHandler(bean, method, handler);
+    }
+
+    private void putNewAnnotationHandler(Object bean, Method method, AnnotationHandler key) {
         beanMap.put(key, new ArrayList<>() {{
             add(invokerMethodFactory.create(Map.entry(method, bean), createParams(method, key)));
         }});
     }
 
-    private Map<InvokerParam, Object> createParams(Method method, HandleAnnotation handleAnnotation) {
+    private Map<InvokerParam, Object> createParams(Method method, AnnotationHandler annotationHandler) {
         return new HashMap<>() {{
-            put(InvokerParam.ANNOTATION, method.getAnnotation(handleAnnotation.getType()));
+            put(InvokerParam.ANNOTATION, method.getAnnotation(annotationHandler.getAnnotation()));
+            put(InvokerParam.ANNOTATION_TYPE, annotationHandler.getAnnotation().componentType());
         }};
     }
 
     private void pushEvent() {
-        Map<HandleAnnotation, Integer> map = beanMap.entrySet()
+        Map<AnnotationHandler, Integer> map = beanMap.entrySet()
                 .stream()
                 .map(entry -> new AbstractMap.SimpleEntry<>(entry.getKey(),
                         entry.getValue().size()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
         eventPublisher.publishEvent(new MethodCollectedEvent(this, map));
     }
 }

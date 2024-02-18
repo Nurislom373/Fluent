@@ -4,8 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
 import org.khasanof.collector.context.SimpleMethodContext;
 import org.khasanof.context.FluentContextHolder;
-import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.executors.matcher.MatcherMediator;
+import org.khasanof.feature.AnnotationHandler;
 import org.khasanof.models.collector.FindHandlerMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
 
@@ -24,23 +24,20 @@ public class DefaultSearchHandlerMethodService implements SearchHandlerMethodSer
     private final MatcherMediator matcher;
     private final SimpleMethodContext methodContext;
 
-    public DefaultSearchHandlerMethodService(MatcherMediator matcher,
-                                             SimpleMethodContext methodContext) {
-
+    public DefaultSearchHandlerMethodService(MatcherMediator matcher, SimpleMethodContext methodContext) {
         this.matcher = matcher;
         this.methodContext = methodContext;
     }
 
     @Override
     public Optional<SimpleInvoker> find(FindHandlerMethod findHandlerMethod) {
-        log.info("contextHolder.getCurrentUpdate() = " + FluentContextHolder.getCurrentUpdate());
         System.out.printf("Enter type - %s, value - %s \n", findHandlerMethod.getKey(), findHandlerMethod.getValue());
         return Optional.ofNullable(findInvoker(findHandlerMethod));
     }
 
     @Nullable
     private SimpleInvoker findInvoker(FindHandlerMethod handlerMethod) {
-        if (Objects.equals(handlerMethod.getKey().isMultiVersion(), Boolean.TRUE)) {
+        if (Objects.equals(handlerMethod.getKey().isRepeatable(), Boolean.TRUE)) {
             return getHasSubTypeInvoker(handlerMethod);
         }
         return getInvokerWithHandleType(handlerMethod);
@@ -66,7 +63,7 @@ public class DefaultSearchHandlerMethodService implements SearchHandlerMethodSer
         return methodContext.find(handlerMethod.getKey())
                 .flatMap(functionRefMap -> functionRefMap.stream()
                         .filter(simpleInvoker -> matcher.match(simpleInvoker.getMethod(),
-                                handlerMethod.getValue(), getType(handlerMethod.getKey())))
+                                handlerMethod.getValue(), getAnnotationClass(handlerMethod.getKey())))
                         .findFirst())
                 .orElse(null);
     }
@@ -76,17 +73,16 @@ public class DefaultSearchHandlerMethodService implements SearchHandlerMethodSer
         return methodContext.find(getSubHandleClasses(handlerMethod))
                 .flatMap(functionRefMap -> functionRefMap.stream()
                         .filter(simpleInvoker -> matcher.match(simpleInvoker.getMethod(),
-                                handlerMethod.getValue(), getType(getSubHandleClasses(handlerMethod))))
+                                handlerMethod.getValue(), getAnnotationClass(getSubHandleClasses(handlerMethod))))
                         .findFirst())
                 .orElse(null);
     }
 
-    private HandleAnnotation getSubHandleClasses(FindHandlerMethod handlerMethod) {
-        return handlerMethod.getKey().getSubHandleClasses();
+    private AnnotationHandler getSubHandleClasses(FindHandlerMethod handlerMethod) {
+        return handlerMethod.getKey().repeatableAnnotationHandler();
     }
 
-    private Class<? extends Annotation> getType(HandleAnnotation handlerMethod) {
-        return handlerMethod.getType();
+    private Class<? extends Annotation> getAnnotationClass(AnnotationHandler annotationHandler) {
+        return annotationHandler.getAnnotation();
     }
-
 }

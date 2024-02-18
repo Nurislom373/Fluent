@@ -1,13 +1,13 @@
 package org.khasanof.executors.appropriate.message;
 
-import org.khasanof.enums.HandleType;
 import org.khasanof.executors.appropriate.AppropriateUpdateMethod;
 import org.khasanof.models.executors.AppropriateMethod;
+import org.khasanof.models.executors.UpdateType;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
+import java.lang.annotation.Annotation;
 import java.util.Objects;
 import java.util.function.BooleanSupplier;
-import java.util.function.Supplier;
 
 /**
  * @author Nurislom
@@ -20,17 +20,12 @@ public abstract class AbstractMessageAppropriateMethod extends AppropriateUpdate
         return Objects.equals(supplier.getAsBoolean(), Boolean.TRUE);
     }
 
-    protected AppropriateMethod tryGetAppropriate(Supplier<Object> supplier) {
-        return new AppropriateMethod(handleType(), supplier.get());
-    }
-
-    protected AppropriateMethod createAppropriateMethod(HandleType handleType, Object value) {
-        return new AppropriateMethod(handleType, value);
+    protected AppropriateMethod createAppropriateMethod(Class<? extends Annotation> annotation, Object value) {
+        return new AppropriateMethod(annotation, value);
     }
 
     @Override
-    public HandleType handleType() {
-        return HandleType.MESSAGE;
+    public UpdateType handleType() {
+        return UpdateType.MESSAGE;
     }
-
 }

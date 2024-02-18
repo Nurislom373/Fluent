@@ -1,7 +1,6 @@
 package org.khasanof.event.methodContext;
 
 import lombok.extern.slf4j.Slf4j;
-import org.khasanof.event.methodContext.MethodCollectedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +13,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class MethodCollectedEventListener implements ApplicationListener<MethodCollectedEvent> {
 
+    /**
+     *
+     * @param event the event to respond to
+     */
     @Override
+    @SuppressWarnings({"unchecked"})
     public void onApplicationEvent(MethodCollectedEvent event) {
-        event.getLongMap().forEach((key, value) -> log.info("{} : {}", key, value));
+        event.getDataMap().forEach((key, value) -> log.info("{} : {}", key, value));
     }
-
 }

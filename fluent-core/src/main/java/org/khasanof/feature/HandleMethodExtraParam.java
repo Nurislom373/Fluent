@@ -1,6 +1,6 @@
 package org.khasanof.feature;
 
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.models.invoker.SimpleInvoker;
 
 /**
@@ -12,6 +12,6 @@ public interface HandleMethodExtraParam {
 
     void execute(SimpleInvoker simpleInvoker);
 
-    MethodType methodType();
+    DefaultMethodType methodType();
 
 }

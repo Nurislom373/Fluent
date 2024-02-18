@@ -1,7 +1,7 @@
 package org.khasanof.service.invoker;
 
 import org.khasanof.constants.FluentConstants;
-import org.khasanof.enums.MethodType;
+import org.khasanof.enums.DefaultMethodType;
 
 import java.lang.reflect.Method;
 
@@ -14,7 +14,7 @@ public interface MethodTypeDefinition {
 
     boolean isMatch(Method method);
 
-    MethodType methodType();
+    DefaultMethodType methodType();
 
     default int getOrder() {
         return FluentConstants.DEFAULT_ORDER;

@@ -28,5 +28,4 @@ public class MethodTypeDefinitionConfiguration {
         methodTypeDefinitionMediator.addMethodTypeDefinitions(findBeansOfTypeService.findAllByList(MethodTypeDefinition.class));
         return methodTypeDefinitionMediator;
     }
-
 }

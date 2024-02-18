@@ -4,6 +4,8 @@ import jakarta.annotation.PostConstruct;
 import org.khasanof.service.FindBeansOfTypeService;
 import org.khasanof.service.runnable.PostProcessor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 /**
  * @author Nurislom

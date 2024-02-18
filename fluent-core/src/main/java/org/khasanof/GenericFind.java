@@ -9,6 +9,11 @@ import java.util.Optional;
  */
 public interface GenericFind<P, R> {
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     Optional<R> find(P p);
 
 }

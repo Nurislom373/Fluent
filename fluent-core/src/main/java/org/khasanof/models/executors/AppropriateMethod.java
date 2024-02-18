@@ -3,6 +3,8 @@ package org.khasanof.models.executors;
 import lombok.*;
 import org.khasanof.enums.HandleType;
 
+import java.lang.annotation.Annotation;
+
 /**
  * @author Nurislom
  * @see org.khasanof.models.executors
@@ -15,7 +17,7 @@ import org.khasanof.enums.HandleType;
 @AllArgsConstructor
 public class AppropriateMethod {
 
-    private HandleType handleType;
+    private Class<? extends Annotation> annotation;
     private Object value;
 
 }
