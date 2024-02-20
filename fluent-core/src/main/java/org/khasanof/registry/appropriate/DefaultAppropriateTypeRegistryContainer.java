@@ -2,8 +2,10 @@ package org.khasanof.registry.appropriate;
 
 import org.khasanof.executors.appropriate.AppropriateUpdateType;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -13,15 +15,15 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class DefaultAppropriateTypeRegistryContainer implements AppropriateTypeRegistryContainer {
 
-    private final List<AppropriateUpdateType> types = new CopyOnWriteArrayList<>();
+    private final Set<AppropriateUpdateType> types = new HashSet<>();
 
     @Override
-    public List<AppropriateUpdateType> getAppropriateTypes() {
+    public Set<AppropriateUpdateType> getAppropriateTypes() {
         return this.types;
     }
 
     @Override
-    public void addAppropriateTypes(List<AppropriateUpdateType> types) {
+    public void addAppropriateTypes(Set<AppropriateUpdateType> types) {
         if (Objects.nonNull(types)) {
             types.forEach(this::addAppropriateType);
         }

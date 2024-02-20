@@ -1,6 +1,6 @@
 package org.khasanof.service.binder;
 
-import org.khasanof.feature.UpdateTypeBinder;
+import org.khasanof.feature.binder.UpdateTypeBinder;
 import org.khasanof.models.executors.UpdateType;
 
 import java.util.Optional;

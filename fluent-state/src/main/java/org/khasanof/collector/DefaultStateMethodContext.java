@@ -50,7 +50,7 @@ public class DefaultStateMethodContext implements StateMethodContext {
     }
 
     @Override
-    public void assembleMethods() {
+    public void assemble() {
         beansLoader.getHandlersOfType(StateAction.class)
                 .forEach((s, stateActions) -> putState(stateActions));
         log.info("HANDLE_STATE : {}", simpleInvokerMap.size());

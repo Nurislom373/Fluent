@@ -4,6 +4,7 @@ import org.khasanof.models.condition.MethodCondition;
 
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -15,7 +16,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class DefaultHandleMethodCheckerMediator implements HandleMethodCheckerMediator {
 
-    private final Collection<HandleMethodChecker> methodCheckers = new CopyOnWriteArrayList<>();
+    private final Set<HandleMethodChecker> methodCheckers = new HashSet<>();
 
     @Override
     public boolean check(Method method) {
@@ -27,9 +28,16 @@ public class DefaultHandleMethodCheckerMediator implements HandleMethodCheckerMe
     }
 
     @Override
-    public void setMethodCheckers(Collection<HandleMethodChecker> methodCheckers) {
-        if (Objects.nonNull(methodCheckers) && !methodCheckers.isEmpty()) {
+    public void addMethodCheckers(Set<HandleMethodChecker> methodCheckers) {
+        if (Objects.nonNull(methodCheckers)) {
             this.methodCheckers.addAll(methodCheckers);
+        }
+    }
+
+    @Override
+    public void addMethodChecker(HandleMethodChecker handleMethodChecker) {
+        if (Objects.nonNull(handleMethodChecker)) {
+            this.methodCheckers.add(handleMethodChecker);
         }
     }
 
@@ -37,5 +45,4 @@ public class DefaultHandleMethodCheckerMediator implements HandleMethodCheckerMe
         return conditions.stream()
                 .allMatch(methodCondition -> methodCondition.match(method));
     }
-
 }

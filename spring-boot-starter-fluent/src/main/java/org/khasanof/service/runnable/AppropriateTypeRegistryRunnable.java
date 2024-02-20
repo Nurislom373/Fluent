@@ -15,14 +15,18 @@ import org.springframework.stereotype.Service;
 public class AppropriateTypeRegistryRunnable implements PostProcessor {
 
     private final AppropriateTypeRegistryContainer appropriateTypeRegistryContainer;
+    private final MessageUpdateTypeMatcher messageUpdateTypeMatcher;
 
-    public AppropriateTypeRegistryRunnable(AppropriateTypeRegistryContainer appropriateTypeRegistryContainer) {
+    public AppropriateTypeRegistryRunnable(AppropriateTypeRegistryContainer appropriateTypeRegistryContainer,
+                                           MessageUpdateTypeMatcher messageUpdateTypeMatcher) {
+
         this.appropriateTypeRegistryContainer = appropriateTypeRegistryContainer;
+        this.messageUpdateTypeMatcher = messageUpdateTypeMatcher;
     }
 
     @Override
     public void run() {
-        appropriateTypeRegistryContainer.addAppropriateType(new MessageUpdateTypeMatcher());
+        appropriateTypeRegistryContainer.addAppropriateType(messageUpdateTypeMatcher);
         appropriateTypeRegistryContainer.addAppropriateType(new CallbackUpdateTypeMatcher());
         appropriateTypeRegistryContainer.addAppropriateType(new InlineQueryUpdateTypeMatcher());
     }

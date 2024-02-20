@@ -3,11 +3,14 @@ package org.khasanof.collector.method.checker;
 import org.junit.jupiter.api.Test;
 import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleMessage;
+import org.khasanof.annotation.process.ProcessUpdate;
 import org.khasanof.enums.MatchScope;
 import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactoryImpl;
 import org.khasanof.mediator.DefaultMethodCheckOperationStrategyMediator;
+import org.khasanof.registry.annotation.DefaultFluentAnnotationRegistry;
+import org.khasanof.registry.annotation.FluentAnnotationsRegistry;
 import org.springframework.util.ReflectionUtils;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
@@ -88,11 +91,17 @@ public class DefaultHandleMethodCheckerTest {
     }
 
     ProcessTypeHandleMethodChecker createHandleMethodChecker() {
-        return new DefaultHandleMethodChecker(createConditionFactory(), new DefaultMethodCheckOperationStrategyMediator());
+        return new DefaultHandleMethodChecker(fluentAnnotationsRegistry(), createConditionFactory(), new DefaultMethodCheckOperationStrategyMediator());
     }
 
     DefaultMethodCheckConditionFactory createConditionFactory() {
         return new DefaultMethodCheckConditionFactoryImpl();
+    }
+
+    FluentAnnotationsRegistry fluentAnnotationsRegistry() {
+        DefaultFluentAnnotationRegistry annotationRegistry = new DefaultFluentAnnotationRegistry();
+        annotationRegistry.addAnnotations(org.khasanof.utils.ReflectionUtils.getSubTypesSuperAnnotation(ProcessUpdate.class));
+        return annotationRegistry;
     }
 
     public static class TestController {

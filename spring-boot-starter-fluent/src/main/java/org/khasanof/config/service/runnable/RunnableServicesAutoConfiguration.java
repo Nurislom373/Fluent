@@ -1,11 +1,10 @@
 package org.khasanof.config.service.runnable;
 
-import jakarta.annotation.PostConstruct;
+import org.khasanof.collector.AssembleMethods;
+import org.khasanof.constants.FluentConstants;
 import org.khasanof.service.FindBeansOfTypeService;
 import org.khasanof.service.runnable.PostProcessor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 
 /**
  * @author Nurislom
@@ -13,7 +12,7 @@ import org.springframework.core.annotation.Order;
  * @since 2/4/2024 10:24 PM
  */
 @Configuration
-public class RunnableServicesAutoConfiguration {
+public class RunnableServicesAutoConfiguration implements AssembleMethods {
 
     private final FindBeansOfTypeService findBeansOfTypeService;
 
@@ -24,9 +23,14 @@ public class RunnableServicesAutoConfiguration {
     /**
      * PostProcessor Runner
      */
-    @PostConstruct
-    void afterPropertiesSet() {
+    @Override
+    public void assemble() {
         findBeansOfTypeService.findAllByList(PostProcessor.class)
                 .forEach(Runnable::run);
+    }
+
+    @Override
+    public int getOrder() {
+        return FluentConstants.HIGH_ORDER;
     }
 }

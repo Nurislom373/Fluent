@@ -31,7 +31,7 @@ public class SimpleVideoMatcher extends GenericMatcher<HandleVideo, Video> {
     @Override
     public boolean matcher(HandleVideo annotation, Video value) {
         Object apply = biFunctionMap.get(annotation.scope()).apply(value);
-        return matchFunctions.get(Map.entry(annotation.match(), getScopeType(apply, annotation.match())))
+        return matchFunctions.get(Map.entry(annotation.match(), getMatchType(apply, annotation.match())))
                 .apply(annotation.value(), apply);
     }
 

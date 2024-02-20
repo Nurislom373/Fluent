@@ -2,7 +2,6 @@ package org.khasanof.feature.interceptor;
 
 import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.feature.HandleMethodExtraParam;
-import org.khasanof.feature.PreExecutionInterceptor;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.service.FindBeansOfTypeService;

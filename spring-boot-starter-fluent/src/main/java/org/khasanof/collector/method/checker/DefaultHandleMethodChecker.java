@@ -1,11 +1,10 @@
 package org.khasanof.collector.method.checker;
 
-import org.khasanof.annotation.process.ProcessUpdate;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
 import org.khasanof.mediator.MethodCheckOperationStrategyMediator;
 import org.khasanof.models.condition.MethodCondition;
-import org.khasanof.utils.ReflectionUtils;
+import org.khasanof.registry.annotation.FluentAnnotationsRegistry;
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
@@ -22,14 +21,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component
 public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
 
-    private final Set<Class<?>> classes = ReflectionUtils.getSubTypesSuperAnnotation(ProcessUpdate.class);
+    private final FluentAnnotationsRegistry fluentAnnotationsRegistry;
     private final DefaultMethodCheckConditionFactory conditionFactory;
     private final MethodCheckOperationStrategyMediator checkOperationStrategyMediator;
 
-    public DefaultHandleMethodChecker(DefaultMethodCheckConditionFactory conditionFactory,
+    public DefaultHandleMethodChecker(FluentAnnotationsRegistry fluentAnnotationsRegistry,
+                                      DefaultMethodCheckConditionFactory conditionFactory,
                                       MethodCheckOperationStrategyMediator checkOperationStrategyMediator) {
 
         this.conditionFactory = conditionFactory;
+        this.fluentAnnotationsRegistry = fluentAnnotationsRegistry;
         this.checkOperationStrategyMediator = checkOperationStrategyMediator;
     }
 
@@ -54,8 +55,11 @@ public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
     }
 
     private void checkAnnotationType(Annotation annotation, AtomicInteger matchCount) {
-        if (classes.contains(annotation.annotationType()))
+        Set<Class<?>> annotations = fluentAnnotationsRegistry.getAnnotations();
+
+        if (annotations.contains(annotation.annotationType())) {
             matchCount.getAndIncrement();
+        }
     }
 
     @Override

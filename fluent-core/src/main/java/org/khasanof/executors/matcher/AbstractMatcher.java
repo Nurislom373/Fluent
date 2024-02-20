@@ -53,7 +53,7 @@ public abstract class AbstractMatcher {
                 ExpressionMatcherAdapter.doMatch(expressionMatcherMap.get(VAR_EXPRESSION), String.valueOf(var1), String.valueOf(var2)));
     }
 
-    protected Class getScopeType(Object type, MatchScope scope) {
+    protected Class getMatchType(Object type, MatchScope scope) {
         if (scope.equals(MatchScope.EXPRESSION) || scope.equals(MatchScope.REGEX)) {
             return Object.class;
         }

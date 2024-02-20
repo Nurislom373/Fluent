@@ -1,6 +1,6 @@
 package org.khasanof.service.annotation.handler;
 
-import org.khasanof.feature.AnnotationHandler;
+import org.khasanof.feature.annotation.AnnotationHandler;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;

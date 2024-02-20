@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.khasanof.annotation.exception.HandleException;
 import org.khasanof.annotation.methods.*;
-import org.khasanof.feature.AnnotationHandler;
+import org.khasanof.feature.annotation.AnnotationHandler;
 
 import java.lang.annotation.Annotation;
 import java.util.Arrays;

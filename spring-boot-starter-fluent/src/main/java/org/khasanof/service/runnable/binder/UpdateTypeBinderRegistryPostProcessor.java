@@ -1,7 +1,7 @@
 package org.khasanof.service.runnable.binder;
 
 import org.khasanof.annotation.methods.HandleCallback;
-import org.khasanof.feature.DefaultUpdateTypeBinder;
+import org.khasanof.feature.binder.DefaultUpdateTypeBinder;
 import org.khasanof.models.executors.UpdateType;
 import org.khasanof.registry.binder.UpdateTypeBinderRegistry;
 import org.khasanof.service.runnable.PostProcessor;

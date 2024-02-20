@@ -2,7 +2,7 @@ package org.khasanof.registry.appropriate;
 
 import org.khasanof.executors.appropriate.AppropriateUpdateType;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface AppropriateTypeRegistryContainer {
 
-    List<AppropriateUpdateType> getAppropriateTypes();
+    Set<AppropriateUpdateType> getAppropriateTypes();
 
-    void addAppropriateTypes(List<AppropriateUpdateType> types);
+    void addAppropriateTypes(Set<AppropriateUpdateType> types);
 
     void addAppropriateType(AppropriateUpdateType type);
 }

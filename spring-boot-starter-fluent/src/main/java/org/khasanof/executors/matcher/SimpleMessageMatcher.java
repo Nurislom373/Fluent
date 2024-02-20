@@ -20,7 +20,7 @@ public class SimpleMessageMatcher extends GenericMatcher<HandleMessage, String> 
 
     @Override
     public boolean matcher(HandleMessage handleMessage, String value) {
-        return matchFunctions.get(Map.entry(handleMessage.scope(), getScopeType(value, handleMessage.scope())))
+        return matchFunctions.get(Map.entry(handleMessage.scope(), getMatchType(value, handleMessage.scope())))
                 .apply(handleMessage.value(), value);
     }
 

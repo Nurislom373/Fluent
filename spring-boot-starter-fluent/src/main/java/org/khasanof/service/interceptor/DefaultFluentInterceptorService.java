@@ -1,13 +1,10 @@
 package org.khasanof.service.interceptor;
 
-import org.khasanof.feature.FluentInterceptor;
+import org.khasanof.feature.interceptor.FluentInterceptor;
 import org.khasanof.registry.interceptor.FluentInterceptorRegistryContainer;
-import org.khasanof.service.FindBeansOfTypeService;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

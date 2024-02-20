@@ -2,8 +2,9 @@ package org.khasanof.service.invoker;
 
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.constants.FluentConstants;
-import org.khasanof.enums.MatchScope;
 import org.khasanof.enums.DefaultMethodType;
+import org.khasanof.enums.MatchScope;
+import org.khasanof.feature.method.MethodType;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +35,7 @@ public class VarExpressionTypeDefinition implements MethodTypeDefinition {
     }
 
     @Override
-    public DefaultMethodType methodType() {
+    public MethodType methodType() {
         return DefaultMethodType.VAR_EXPRESSION;
     }
 

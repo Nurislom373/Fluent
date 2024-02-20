@@ -1,4 +1,4 @@
-package org.khasanof.feature;
+package org.khasanof.feature.annotation;
 
 import java.lang.annotation.Annotation;
 import java.util.Objects;

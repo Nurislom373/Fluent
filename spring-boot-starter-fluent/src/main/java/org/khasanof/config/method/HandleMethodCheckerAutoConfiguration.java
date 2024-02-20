@@ -13,7 +13,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -27,7 +29,7 @@ public class HandleMethodCheckerAutoConfiguration {
     @DependsOn(HandleMethodCheckerConfig.NAME)
     public HandleMethodCheckerMediator handleMethodCheckerAdapter(HandleMethodCheckerConfig config) {
         var methodCheckerAdapter = new DefaultHandleMethodCheckerMediator();
-        methodCheckerAdapter.setMethodCheckers(config.getHandleMethodChecker());
+        methodCheckerAdapter.addMethodCheckers(config.getHandleMethodChecker());
         return methodCheckerAdapter;
     }
 
@@ -42,7 +44,7 @@ public class HandleMethodCheckerAutoConfiguration {
         public static final String NAME = "handleMethodCheckerConfig";
         private final ProcessType processType;
         private final ApplicationContext applicationContext;
-        private final List<HandleMethodChecker> methodCheckers = new ArrayList<>();
+        private final Set<HandleMethodChecker> methodCheckers = new HashSet<>();
 
         public HandleMethodCheckerConfig(ProcessType processType,
                                          ApplicationContext applicationContext) {
@@ -51,7 +53,7 @@ public class HandleMethodCheckerAutoConfiguration {
             this.applicationContext = applicationContext;
         }
 
-        public List<HandleMethodChecker> getHandleMethodChecker() {
+        public Set<HandleMethodChecker> getHandleMethodChecker() {
             if (methodCheckers.isEmpty()) {
                 runnable();
             }

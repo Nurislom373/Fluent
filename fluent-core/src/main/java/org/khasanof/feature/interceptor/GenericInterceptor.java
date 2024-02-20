@@ -1,4 +1,4 @@
-package org.khasanof.feature;
+package org.khasanof.feature.interceptor;
 
 /**
  * @author Nurislom

@@ -1,6 +1,6 @@
 package org.khasanof.registry.annotation;
 
-import org.khasanof.feature.AnnotationHandler;
+import org.khasanof.feature.annotation.AnnotationHandler;
 
 import java.util.*;
 

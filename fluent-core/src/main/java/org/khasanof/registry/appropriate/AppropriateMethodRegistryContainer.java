@@ -5,6 +5,7 @@ import org.khasanof.models.executors.UpdateType;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -13,9 +14,9 @@ import java.util.Map;
  */
 public interface AppropriateMethodRegistryContainer {
 
-    Map<UpdateType, List<AppropriateUpdateMethod>> getAppropriateMethods();
+    Map<UpdateType, Set<AppropriateUpdateMethod>> getAppropriateMethods();
 
-    void addAppropriateMethods(List<AppropriateUpdateMethod> methods);
+    void addAppropriateMethods(Set<AppropriateUpdateMethod> methods);
 
     void addAppropriateMethod(AppropriateUpdateMethod method);
 }

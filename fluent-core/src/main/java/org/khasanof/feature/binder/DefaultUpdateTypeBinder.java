@@ -1,4 +1,4 @@
-package org.khasanof.feature;
+package org.khasanof.feature.binder;
 
 import lombok.*;
 import org.khasanof.models.executors.UpdateType;

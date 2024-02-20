@@ -7,7 +7,6 @@ import org.khasanof.collector.method.checker.HandleMethodCheckerMediator;
 import org.khasanof.factories.invoker.method.DefaultInvokerMethodFactory;
 import org.khasanof.mediator.MethodTypeDefinitionMediator;
 import org.khasanof.service.annotation.handler.AnnotationHandlerService;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

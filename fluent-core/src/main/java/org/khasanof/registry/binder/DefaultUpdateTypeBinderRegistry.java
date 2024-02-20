@@ -1,6 +1,6 @@
 package org.khasanof.registry.binder;
 
-import org.khasanof.feature.UpdateTypeBinder;
+import org.khasanof.feature.binder.UpdateTypeBinder;
 
 import java.util.ArrayList;
 import java.util.List;

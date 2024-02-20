@@ -4,7 +4,6 @@ import org.khasanof.annotation.methods.HandlePhoto;
 import org.khasanof.condition.Condition;
 import org.khasanof.config.ApplicationConstants;
 import org.khasanof.enums.scopes.PhotoScope;
-import org.khasanof.executors.expression.ExpressionMatcher;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.PhotoSize;
@@ -36,7 +35,7 @@ public class SimplePhotoMatcher extends GenericMatcher<HandlePhoto, Message> {
     @Override
     public boolean matcher(HandlePhoto annotation, Message value) {
         Object apply = getApplyValue(annotation, value);
-        return matchFunctions.get(Map.entry(annotation.match(), getScopeType(apply, annotation.match())))
+        return matchFunctions.get(Map.entry(annotation.match(), getMatchType(apply, annotation.match())))
                 .apply(annotation.value(), apply);
     }
 

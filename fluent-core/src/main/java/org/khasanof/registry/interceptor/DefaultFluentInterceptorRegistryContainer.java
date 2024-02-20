@@ -1,6 +1,6 @@
 package org.khasanof.registry.interceptor;
 
-import org.khasanof.feature.FluentInterceptor;
+import org.khasanof.feature.interceptor.FluentInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package org.khasanof.mediator;
 
-import org.khasanof.enums.DefaultMethodType;
+import org.khasanof.feature.method.MethodType;
 import org.khasanof.service.invoker.MethodTypeDefinition;
 
 import java.lang.reflect.Method;
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface MethodTypeDefinitionMediator {
 
-    DefaultMethodType definition(Method method);
+    MethodType definition(Method method);
 
     void addMethodTypeDefinitions(List<MethodTypeDefinition> methodTypeDefinitions);
 

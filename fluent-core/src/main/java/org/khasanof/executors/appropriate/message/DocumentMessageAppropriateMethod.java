@@ -2,7 +2,6 @@ package org.khasanof.executors.appropriate.message;
 
 import org.khasanof.annotation.methods.HandleDocument;
 import org.khasanof.models.executors.AppropriateMethod;
-import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 /**
@@ -10,7 +9,6 @@ import org.telegram.telegrambots.meta.api.objects.Message;
  * @see org.khasanof.executors.appropriate.message
  * @since 12/24/2023 11:54 PM
  */
-@Service
 public class DocumentMessageAppropriateMethod extends AbstractMessageAppropriateMethod {
 
     @Override

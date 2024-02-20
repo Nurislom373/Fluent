@@ -1,6 +1,6 @@
 package org.khasanof.mediator;
 
-import org.khasanof.enums.DefaultMethodType;
+import org.khasanof.feature.method.MethodType;
 import org.khasanof.service.invoker.MethodTypeDefinition;
 
 import java.lang.reflect.Method;
@@ -24,11 +24,11 @@ public class DefaultMethodTypeDefinitionMediator implements MethodTypeDefinition
      * @return
      */
     @Override
-    public DefaultMethodType definition(Method method) {
+    public MethodType definition(Method method) {
         return internalDefinition(method);
     }
 
-    private DefaultMethodType internalDefinition(Method method) {
+    private MethodType internalDefinition(Method method) {
         return methodTypeDefinitions.stream()
                 .sorted(Comparator.comparing(MethodTypeDefinition::getOrder))
                 .filter(def -> def.isMatch(method))

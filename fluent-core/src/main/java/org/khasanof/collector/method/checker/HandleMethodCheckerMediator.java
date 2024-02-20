@@ -4,6 +4,7 @@ import org.khasanof.GenericCheck;
 
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -12,6 +13,15 @@ import java.util.Collection;
  */
 public interface HandleMethodCheckerMediator extends GenericCheck<Method> {
 
-    void setMethodCheckers(Collection<HandleMethodChecker> methodCheckers);
+    /**
+     *
+     * @param methodCheckers
+     */
+    void addMethodCheckers(Set<HandleMethodChecker> methodCheckers);
 
+    /**
+     *
+     * @param handleMethodChecker
+     */
+    void addMethodChecker(HandleMethodChecker handleMethodChecker);
 }

@@ -7,7 +7,7 @@ import org.khasanof.collector.method.checker.HandleMethodCheckerMediator;
 import org.khasanof.constants.FluentConstants;
 import org.khasanof.event.methodContext.MethodCollectedEvent;
 import org.khasanof.factories.invoker.method.InvokerMethodFactory;
-import org.khasanof.feature.AnnotationHandler;
+import org.khasanof.feature.annotation.AnnotationHandler;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.service.annotation.handler.AnnotationHandlerService;
@@ -90,7 +90,7 @@ public class DefaultSimpleMethodContext implements SimpleMethodContext {
      *
      */
     @Override
-    public void assembleMethods() {
+    public void assemble() {
         log.info("Default Method Context Start");
         assembleMethodsInternal();
     }

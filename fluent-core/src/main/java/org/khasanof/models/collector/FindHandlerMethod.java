@@ -1,7 +1,7 @@
 package org.khasanof.models.collector;
 
 import lombok.*;
-import org.khasanof.feature.AnnotationHandler;
+import org.khasanof.feature.annotation.AnnotationHandler;
 
 /**
  * @author Nurislom

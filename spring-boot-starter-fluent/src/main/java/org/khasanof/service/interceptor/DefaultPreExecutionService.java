@@ -1,6 +1,6 @@
 package org.khasanof.service.interceptor;
 
-import org.khasanof.feature.PreExecutionInterceptor;
+import org.khasanof.feature.interceptor.PreExecutionInterceptor;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.service.FindBeansOfTypeService;
 import org.springframework.beans.factory.InitializingBean;

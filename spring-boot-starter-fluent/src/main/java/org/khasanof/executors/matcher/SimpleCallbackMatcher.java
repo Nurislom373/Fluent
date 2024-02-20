@@ -27,7 +27,7 @@ public class SimpleCallbackMatcher extends GenericMatcher<HandleCallback, String
     public boolean matcher(HandleCallback handleCallback, String value) {
         return Arrays.stream(handleCallback.value())
                 .anyMatch(any -> matchFunctions.get(Map.entry(handleCallback.scope(),
-                        getScopeType(value, handleCallback.scope()))).apply(any, value));
+                        getMatchType(value, handleCallback.scope()))).apply(any, value));
     }
 
     @Override

@@ -16,7 +16,7 @@ import static org.khasanof.utils.SortUtils.sortList;
  */
 public class DefaultUpdateChainProcessorRegistryContainer implements UpdateChainProcessorRegistryContainer {
 
-    private final List<AbstractUpdateChainProcessor> processors = new ArrayList<>();
+    private final List<AbstractUpdateChainProcessor> processors = new CopyOnWriteArrayList<>();
 
     @Override
     public List<AbstractUpdateChainProcessor> getUpdateChainProcessors() {

@@ -2,6 +2,7 @@ package org.khasanof.mediator;
 
 import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.executors.execution.Perform;
+import org.khasanof.feature.method.MethodType;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.beans.factory.InitializingBean;
@@ -22,7 +23,7 @@ import java.util.Objects;
 public class DefaultPerformMediator implements PerformMediator, InitializingBean {
 
     private final ApplicationContext applicationContext;
-    private final Map<DefaultMethodType, Perform> methodTypePerformMap = new HashMap<>();
+    private final Map<MethodType, Perform> methodTypePerformMap = new HashMap<>();
 
     public DefaultPerformMediator(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
@@ -30,12 +31,11 @@ public class DefaultPerformMediator implements PerformMediator, InitializingBean
 
     @Override
     public void execute(SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException {
-        methodTypePerformMap.get(getType(simpleInvoker))
-                .execute(simpleInvoker);
+        methodTypePerformMap.get(getType(simpleInvoker)).execute(simpleInvoker);
     }
 
-    private DefaultMethodType getType(SimpleInvoker simpleInvoker) {
-        DefaultMethodType defaultMethodType = getMethodType(simpleInvoker);
+    private MethodType getType(SimpleInvoker simpleInvoker) {
+        MethodType defaultMethodType = getMethodType(simpleInvoker);
 
         if (Objects.equals(defaultMethodType, DefaultMethodType.HANDLE_ANY)) {
             defaultMethodType = DefaultMethodType.DEFAULT;
@@ -43,12 +43,12 @@ public class DefaultPerformMediator implements PerformMediator, InitializingBean
         return defaultMethodType;
     }
 
-    private DefaultMethodType getMethodType(SimpleInvoker simpleInvoker) {
-        return (DefaultMethodType) simpleInvoker.getParams().get(InvokerParam.METHOD_TYPE);
+    private MethodType getMethodType(SimpleInvoker simpleInvoker) {
+        return (MethodType) simpleInvoker.getParams().get(InvokerParam.METHOD_TYPE);
     }
 
     @Override
-    public void afterPropertiesSet() throws Exception {
+    public void afterPropertiesSet() {
         applicationContext.getBeansOfType(Perform.class)
                 .forEach((beanName, bean) -> methodTypePerformMap.put(bean.getType(), bean));
     }
