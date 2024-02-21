@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Document;
 
 import java.util.Arrays;
-import java.util.Map;
 
 /**
  * @author Nurislom
@@ -23,7 +22,7 @@ public class SimpleDocumentsMatcher extends MultiGenericMatcher<HandleDocuments,
 
     @Override
     public boolean matcher(HandleDocuments annotation, Document value) {
-        return Arrays.stream(annotation.values())
+        return Arrays.stream(annotation.value())
                 .anyMatch(handleDocument -> matcher.matcher(handleDocument, value));
     }
 

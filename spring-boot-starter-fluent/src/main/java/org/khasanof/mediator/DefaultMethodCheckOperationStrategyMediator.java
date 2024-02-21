@@ -6,7 +6,7 @@ import org.khasanof.collector.method.checker.strategy.DefaultMethodCheckOperatio
 import org.khasanof.collector.method.checker.strategy.MethodCheckOperationStrategy;
 import org.khasanof.collector.method.checker.strategy.ProcessFileMethodCheckOperationStrategy;
 import org.khasanof.collector.method.checker.strategy.VarExpressionMethodCheckOperationStrategy;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
@@ -44,7 +44,7 @@ public class DefaultMethodCheckOperationStrategyMediator implements MethodCheckO
     private MethodCheckOperationStrategy getVarExpressionMethodCheckOperationStrategy(Method method, MethodCheckOperationStrategy checkOperationStrategy) {
         HandleMessage handleMessage = method.getAnnotation(HandleMessage.class);
 
-        if (Objects.equals(handleMessage.scope(), MatchScope.VAR_EXPRESSION)) {
+        if (Objects.equals(handleMessage.match(), MatchType.VAR_EXPRESSION)) {
             checkOperationStrategy = new VarExpressionMethodCheckOperationStrategy();
         }
         return checkOperationStrategy;

@@ -4,7 +4,7 @@ import java.lang.annotation.*;
 
 /**
  * @author Nurislom
- * @see org.khasanof.annotation.extra
+ * @see org.khasanof.annotation.expression
  * @since 30.07.2023 19:32
  */
 @Documented

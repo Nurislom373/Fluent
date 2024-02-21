@@ -1,6 +1,6 @@
 package org.khasanof.executors.matcher;
 
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 import org.khasanof.executors.expression.ExpressionMatcher;
 import org.khasanof.executors.expression.ExpressionMatcherAdapter;
 
@@ -21,7 +21,7 @@ public abstract class AbstractMatcher {
 
     protected final Map<String, ExpressionMatcher> expressionMatcherMap;
 
-    protected final Map<Map.Entry<MatchScope, Class>,
+    protected final Map<Map.Entry<MatchType, Class>,
             BiFunction<Object, Object, Boolean>> matchFunctions = new HashMap<>();
 
     {
@@ -33,31 +33,30 @@ public abstract class AbstractMatcher {
     }
 
     private void setUp() {
-        matchFunctions.put(Map.entry(MatchScope.EQUALS, Integer.class), (var1, var2) -> (int) var1 == (int) var2);
-        matchFunctions.put(Map.entry(MatchScope.EQUALS, String.class), (var1, var2) -> String.valueOf(var1)
+        matchFunctions.put(Map.entry(MatchType.EQUALS, Integer.class), (var1, var2) -> (int) var1 == (int) var2);
+        matchFunctions.put(Map.entry(MatchType.EQUALS, String.class), (var1, var2) -> String.valueOf(var1)
                 .equals(String.valueOf(var2)));
-        matchFunctions.put(Map.entry(MatchScope.EQUALS_IGNORE_CASE, String.class),
+        matchFunctions.put(Map.entry(MatchType.EQUALS_IGNORE_CASE, String.class),
                 (var1, var2) -> String.valueOf(var1)
                 .equalsIgnoreCase(String.valueOf(var2)));
-        matchFunctions.put(Map.entry(MatchScope.END_WITH, String.class), (var1, var2) -> String.valueOf(var2)
+        matchFunctions.put(Map.entry(MatchType.END_WITH, String.class), (var1, var2) -> String.valueOf(var2)
                 .endsWith(String.valueOf(var1)));
-        matchFunctions.put(Map.entry(MatchScope.START_WITH, String.class), (var1, var2) -> String.valueOf(var2)
+        matchFunctions.put(Map.entry(MatchType.START_WITH, String.class), (var1, var2) -> String.valueOf(var2)
                 .startsWith(String.valueOf(var1)));
-        matchFunctions.put(Map.entry(MatchScope.CONTAINS, String.class), (var1, var2) -> String.valueOf(var2)
+        matchFunctions.put(Map.entry(MatchType.CONTAINS, String.class), (var1, var2) -> String.valueOf(var2)
                 .contains(String.valueOf(var1)));
-        matchFunctions.put(Map.entry(MatchScope.REGEX, Object.class), (var1, var2) ->
+        matchFunctions.put(Map.entry(MatchType.REGEX, Object.class), (var1, var2) ->
                 Pattern.compile(String.valueOf(var1)).matcher(String.valueOf(var2)).find());
-        matchFunctions.put(Map.entry(MatchScope.EXPRESSION, Object.class), (var1, var2) ->
+        matchFunctions.put(Map.entry(MatchType.EXPRESSION, Object.class), (var1, var2) ->
                 ExpressionMatcherAdapter.doMatch(expressionMatcherMap.get(EXPRESSION), String.valueOf(var1), var2));
-        matchFunctions.put(Map.entry(MatchScope.VAR_EXPRESSION, String.class), (var1, var2) ->
+        matchFunctions.put(Map.entry(MatchType.VAR_EXPRESSION, String.class), (var1, var2) ->
                 ExpressionMatcherAdapter.doMatch(expressionMatcherMap.get(VAR_EXPRESSION), String.valueOf(var1), String.valueOf(var2)));
     }
 
-    protected Class getMatchType(Object type, MatchScope scope) {
-        if (scope.equals(MatchScope.EXPRESSION) || scope.equals(MatchScope.REGEX)) {
+    protected Class getMatchType(Object type, MatchType scope) {
+        if (scope.equals(MatchType.EXPRESSION) || scope.equals(MatchType.REGEX)) {
             return Object.class;
         }
         return type.getClass();
     }
-
 }

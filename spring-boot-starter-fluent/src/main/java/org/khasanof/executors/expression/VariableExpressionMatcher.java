@@ -1,6 +1,5 @@
 package org.khasanof.executors.expression;
 
-import org.khasanof.tokenizer.StringTokenizerUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -8,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
+
+import static org.khasanof.tokenizer.StringTokenizerUtils.getTokenWithList;
 
 /**
  * @author Nurislom
@@ -19,15 +20,15 @@ public class VariableExpressionMatcher implements ExpressionMatcher<String>, Exp
 
     @Override
     public boolean doMatch(String expression, String value) {
-        List<String> expList = StringTokenizerUtils.getTokenWithList(expression, " ");
-        List<String> valList = StringTokenizerUtils.getTokenWithList(value, " ");
+        List<String> expList = getTokenWithList(expression, " ");
+        List<String> valList = getTokenWithList(value, " ");
         return expValListsMatcher(expList, valList).getKey();
     }
 
     @Override
     public Map<String, String> getMatchVariables(String expression, String value) {
-        List<String> expList = StringTokenizerUtils.getTokenWithList(expression, " ");
-        List<String> valList = StringTokenizerUtils.getTokenWithList(value, " ");
+        List<String> expList = getTokenWithList(expression, " ");
+        List<String> valList = getTokenWithList(value, " ");
         Map.Entry<Boolean, Map<String, String>> booleanMapEntry = expValListsMatcher(expList, valList);
         if (booleanMapEntry.getKey()) {
             return booleanMapEntry.getValue();
@@ -37,7 +38,7 @@ public class VariableExpressionMatcher implements ExpressionMatcher<String>, Exp
 
     @Override
     public boolean isExpression(String expression) {
-        List<String> list = StringTokenizerUtils.getTokenWithList(expression.strip(), "{.}");
+        List<String> list = getTokenWithList(expression.strip(), "{.}");
         List<String> strings = list.stream().filter(f -> f.contains(":") &&
                 isValidRegex(getRegex(f))).toList();
         return strings.isEmpty();
@@ -112,5 +113,4 @@ public class VariableExpressionMatcher implements ExpressionMatcher<String>, Exp
             return false;
         }
     }
-
 }

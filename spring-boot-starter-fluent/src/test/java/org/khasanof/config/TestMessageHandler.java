@@ -9,7 +9,7 @@ import org.khasanof.annotation.methods.HandleMessages;
 import org.khasanof.context.FluentContextHolder;
 import org.khasanof.custom.attributes.UpdateAttributes;
 import org.khasanof.enums.HandleType;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 import org.khasanof.service.template.FluentTemplate;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -36,29 +36,29 @@ public class TestMessageHandler {
         fluentTemplate.sendText(text);
     }
 
-    @HandleMessage(value = "/start", scope = MatchScope.START_WITH)
+    @HandleMessage(value = "/start", match = MatchType.START_WITH)
     public void fluent(Update update) {
         UpdateAttributes attributes = FluentContextHolder.getAttributes();
         String text = update.getMessage().getText();
         fluentTemplate.sendText(text);
     }
 
-    @HandleMessage(value = "START_WITH('/fluent', value)", scope = MatchScope.EXPRESSION)
+    @HandleMessage(value = "START_WITH('/fluent', value)", match = MatchType.EXPRESSION)
     public void handleStartWithFluent() {
         String text = "Handle Update With Expression";
         fluentTemplate.sendText(text);
     }
 
-    @HandleMessages(values = {
-            @HandleMessage(value = "/jeck1", scope = MatchScope.START_WITH),
-            @HandleMessage(value = "/jeck2", scope = MatchScope.START_WITH),
+    @HandleMessages(value = {
+            @HandleMessage(value = "/jeck1", match = MatchType.START_WITH),
+            @HandleMessage(value = "/jeck2", match = MatchType.START_WITH),
     })
     private void handleMessage() {
         log.info("Jecki is here!");
         fluentTemplate.sendText("Hi Jecki😎");
     }
 
-    @HandleMessage(value = "/username : {name:[a-z]}", scope = MatchScope.VAR_EXPRESSION)
+    @HandleMessage(value = "/username : {name:[a-z]}", match = MatchType.VAR_EXPRESSION)
     void startWithAbsHandler(Update update, @BotVariable("name") String username) {
         String text = update.getMessage().getText();
         log.info("Handle Start With 'abs' : {}", text);

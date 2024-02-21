@@ -3,6 +3,7 @@ package org.khasanof.service.handler.decorator.impls;
 import org.khasanof.executors.appropriate.AppropriateUpdateMethod;
 import org.khasanof.feature.annotation.HandlerAnnotationRegistry;
 import org.khasanof.registry.appropriate.AppropriateMethodRegistryContainer;
+import org.khasanof.service.FindBeansOfTypeService;
 import org.khasanof.service.handler.decorator.BaseHandlerAnnotationDecorator;
 
 import java.util.Objects;
@@ -15,9 +16,13 @@ import java.util.Objects;
 @SuppressWarnings({"rawtypes"})
 public class UpdateMethodHandlerAnnotationDecorator extends BaseHandlerAnnotationDecorator {
 
+    private final FindBeansOfTypeService findBeansOfTypeService;
     private final AppropriateMethodRegistryContainer registryContainer;
 
-    public UpdateMethodHandlerAnnotationDecorator(AppropriateMethodRegistryContainer registryContainer) {
+    public UpdateMethodHandlerAnnotationDecorator(FindBeansOfTypeService findBeansOfTypeService,
+                                                  AppropriateMethodRegistryContainer registryContainer) {
+
+        this.findBeansOfTypeService = findBeansOfTypeService;
         this.registryContainer = registryContainer;
     }
 
@@ -29,16 +34,14 @@ public class UpdateMethodHandlerAnnotationDecorator extends BaseHandlerAnnotatio
 
     private void internalExecute(HandlerAnnotationRegistry registry) {
         if (Objects.isNull(registry.getAppropriateUpdateMethod())) {
-            return;
+            throw new RuntimeException("AppropriateUpdateMethod must not be null!");
         }
-        registryContainer.addAppropriateMethod(registry.getAppropriateUpdateMethod());
+        AppropriateUpdateMethod appropriateUpdateMethod = getAppropriateUpdateMethod(registry);
+        registryContainer.addAppropriateMethod(appropriateUpdateMethod);
     }
 
-    private void checkAppropriateMethod(HandlerAnnotationRegistry registry) {
-        AppropriateUpdateMethod appropriateUpdateMethod = registry.getAppropriateUpdateMethod();
-
-        if (Objects.isNull(appropriateUpdateMethod.handleType())) {
-            throw new RuntimeException("AppropriateUpdateMethod handleType must not be null!");
-        }
+    private AppropriateUpdateMethod getAppropriateUpdateMethod(HandlerAnnotationRegistry registry) {
+        return findBeansOfTypeService.findBean(registry.getAppropriateUpdateMethod())
+                .orElseThrow(() -> new RuntimeException("AppropriateUpdateMethod instance not found!"));
     }
 }

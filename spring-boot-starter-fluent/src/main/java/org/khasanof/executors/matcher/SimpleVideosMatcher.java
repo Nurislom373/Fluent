@@ -23,7 +23,7 @@ public class SimpleVideosMatcher extends MultiGenericMatcher<HandleVideos, Handl
     @Override
     public boolean matcher(HandleVideos annotation, Video value) {
         return multiMatchScopeFunctionMap.get(annotation.match())
-                .apply(Arrays.stream(annotation.values()),
+                .apply(Arrays.stream(annotation.value()),
                         (handleVideo -> matcher.matcher(handleVideo, value)));
     }
 

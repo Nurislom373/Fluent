@@ -23,7 +23,7 @@ public class SimpleAudiosMatcher extends MultiGenericMatcher<HandleAudios, Handl
     @Override
     public boolean matcher(HandleAudios annotation, Audio value) {
         return multiMatchScopeFunctionMap.get(annotation.match())
-                .apply(Arrays.stream(annotation.values()),
+                .apply(Arrays.stream(annotation.value()),
                         (handleAudio -> matcher.matcher(handleAudio, value)));
     }
 

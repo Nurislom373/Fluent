@@ -2,16 +2,12 @@ package com.example.fluenttest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.khasanof.annotation.UpdateController;
 import org.khasanof.annotation.methods.HandleAny;
-import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.HandleType;
-import org.khasanof.enums.MatchScope;
 import org.khasanof.enums.Proceed;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;

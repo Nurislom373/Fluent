@@ -1,10 +1,12 @@
 package org.khasanof.factories.annotation;
 
+import org.khasanof.collector.method.checker.HandleMethodCheckerMediator;
 import org.khasanof.mediator.MethodTypeDefinitionMediator;
 import org.khasanof.registry.annotation.AnnotationHandlerRegistryContainer;
 import org.khasanof.registry.annotation.FluentAnnotationsRegistry;
 import org.khasanof.registry.appropriate.AppropriateMethodRegistryContainer;
 import org.khasanof.registry.appropriate.AppropriateTypeRegistryContainer;
+import org.khasanof.service.FindBeansOfTypeService;
 import org.khasanof.service.handler.HandlerAnnotationDefinition;
 import org.khasanof.service.handler.decorator.BaseHandlerAnnotationDecorator;
 import org.khasanof.service.handler.decorator.HandlerAnnotationDecorator;
@@ -17,19 +19,25 @@ import org.khasanof.service.handler.decorator.impls.*;
  */
 public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandlerDecoratorFactory {
 
+    private final FindBeansOfTypeService findBeansOfTypeService;
     private final FluentAnnotationsRegistry fluentAnnotationsRegistry;
+    private final HandleMethodCheckerMediator handleMethodCheckerMediator;
     private final MethodTypeDefinitionMediator methodTypeDefinitionMediator;
     private final AppropriateTypeRegistryContainer appropriateTypeRegistryContainer;
     private final AppropriateMethodRegistryContainer appropriateMethodRegistryContainer;
     private final AnnotationHandlerRegistryContainer annotationHandlerRegistryContainer;
 
-    public DefaultAnnotationHandlerDecoratorFactory(FluentAnnotationsRegistry fluentAnnotationsRegistry,
+    public DefaultAnnotationHandlerDecoratorFactory(FindBeansOfTypeService findBeansOfTypeService,
+                                                    FluentAnnotationsRegistry fluentAnnotationsRegistry,
+                                                    HandleMethodCheckerMediator handleMethodCheckerMediator,
                                                     MethodTypeDefinitionMediator methodTypeDefinitionMediator,
                                                     AppropriateTypeRegistryContainer appropriateTypeRegistryContainer,
                                                     AppropriateMethodRegistryContainer appropriateMethodRegistryContainer,
                                                     AnnotationHandlerRegistryContainer annotationHandlerRegistryContainer) {
 
+        this.findBeansOfTypeService = findBeansOfTypeService;
         this.fluentAnnotationsRegistry = fluentAnnotationsRegistry;
+        this.handleMethodCheckerMediator = handleMethodCheckerMediator;
         this.methodTypeDefinitionMediator = methodTypeDefinitionMediator;
         this.appropriateTypeRegistryContainer = appropriateTypeRegistryContainer;
         this.appropriateMethodRegistryContainer = appropriateMethodRegistryContainer;
@@ -82,11 +90,11 @@ public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandl
     }
 
     private PerformHandlerAnnotationDecorator createPerform() {
-        return new PerformHandlerAnnotationDecorator();
+        return new PerformHandlerAnnotationDecorator(findBeansOfTypeService);
     }
 
     private CheckerHandlerAnnotationDecorator createChecker() {
-        return new CheckerHandlerAnnotationDecorator();
+        return new CheckerHandlerAnnotationDecorator(findBeansOfTypeService, handleMethodCheckerMediator);
     }
 
     private MethodTypeAnnotationHandlerDecorator createMethodType() {
@@ -94,14 +102,14 @@ public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandl
     }
 
     private MatcherHandlerAnnotationDecorator createMatcher() {
-        return new MatcherHandlerAnnotationDecorator();
+        return new MatcherHandlerAnnotationDecorator(findBeansOfTypeService);
     }
 
     private UpdateTypeHandlerAnnotationDecorator createUpdateType() {
-        return new UpdateTypeHandlerAnnotationDecorator(appropriateTypeRegistryContainer);
+        return new UpdateTypeHandlerAnnotationDecorator(findBeansOfTypeService, appropriateTypeRegistryContainer);
     }
 
     private UpdateMethodHandlerAnnotationDecorator createUpdateMethod() {
-        return new UpdateMethodHandlerAnnotationDecorator(appropriateMethodRegistryContainer);
+        return new UpdateMethodHandlerAnnotationDecorator(findBeansOfTypeService, appropriateMethodRegistryContainer);
     }
 }

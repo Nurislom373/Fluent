@@ -6,6 +6,9 @@ import com.ezylang.evalex.config.ExpressionConfiguration;
 import com.ezylang.evalex.operators.OperatorIfc;
 import com.ezylang.evalex.parser.ParseException;
 import org.khasanof.executors.expression.functions.*;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 import java.util.Map;
 

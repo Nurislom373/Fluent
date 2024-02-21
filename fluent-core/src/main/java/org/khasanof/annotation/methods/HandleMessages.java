@@ -23,6 +23,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleMessages {
 
-    HandleMessage[] values();
+    HandleMessage[] value();
 
 }

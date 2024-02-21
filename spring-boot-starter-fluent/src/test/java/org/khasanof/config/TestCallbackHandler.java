@@ -3,12 +3,9 @@ package org.khasanof.config;
 import org.khasanof.annotation.UpdateController;
 import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleCallbacks;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 import org.khasanof.service.template.FluentTemplate;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.bots.AbsSender;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 /**
  * @author Nurislom
@@ -24,17 +21,17 @@ public class TestCallbackHandler {
         this.fluentTemplate = fluentTemplate;
     }
 
-    @HandleCallback(value = {"RU", "UZ", "EN"})
+    @HandleCallback({"RU", "UZ", "EN"})
     private void callBack() {
         System.out.println("Enter Sender !");
         String text = "<b> Choose bot language: </b>";
         fluentTemplate.sendText(text);
     }
 
-    @HandleCallbacks(values = {
+    @HandleCallbacks({
             @HandleCallback(value = {"NEXT", "PREV"}),
             @HandleCallback(value = {"TOP", "BOTTOM"}),
-            @HandleCallback(value = {"LST"}, scope = MatchScope.START_WITH)
+            @HandleCallback(value = {"LST"}, scope = MatchType.START_WITH)
     })
     private void multiCallback(Update update) {
         String text = "NPTB one handle \uD83D\uDE0E";

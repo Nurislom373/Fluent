@@ -3,6 +3,7 @@ package com.example.fluenttest.custom;
 import org.khasanof.executors.appropriate.AppropriateUpdateMethod;
 import org.khasanof.models.executors.AppropriateMethod;
 import org.khasanof.models.executors.UpdateType;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
 
 /**
@@ -10,6 +11,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
  * @see com.example.fluenttest.custom
  * @since 2/20/2024 11:59 PM
  */
+@Component
 public class StickerMessageAppropriateMethod extends AppropriateUpdateMethod<Message> {
 
     @Override

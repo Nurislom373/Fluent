@@ -1,7 +1,9 @@
 package org.khasanof.service.handler.decorator.impls;
 
+import org.khasanof.executors.appropriate.AppropriateUpdateType;
 import org.khasanof.feature.annotation.HandlerAnnotationRegistry;
 import org.khasanof.registry.appropriate.AppropriateTypeRegistryContainer;
+import org.khasanof.service.FindBeansOfTypeService;
 import org.khasanof.service.handler.decorator.BaseHandlerAnnotationDecorator;
 
 import java.util.Objects;
@@ -13,9 +15,13 @@ import java.util.Objects;
  */
 public class UpdateTypeHandlerAnnotationDecorator extends BaseHandlerAnnotationDecorator {
 
+    private final FindBeansOfTypeService findBeansOfTypeService;
     private final AppropriateTypeRegistryContainer registryContainer;
 
-    public UpdateTypeHandlerAnnotationDecorator(AppropriateTypeRegistryContainer registryContainer) {
+    public UpdateTypeHandlerAnnotationDecorator(FindBeansOfTypeService findBeansOfTypeService,
+                                                AppropriateTypeRegistryContainer registryContainer) {
+
+        this.findBeansOfTypeService = findBeansOfTypeService;
         this.registryContainer = registryContainer;
     }
 
@@ -27,8 +33,14 @@ public class UpdateTypeHandlerAnnotationDecorator extends BaseHandlerAnnotationD
 
     private void internalExecute(HandlerAnnotationRegistry registry) {
         if (Objects.isNull(registry)) {
-            return;
+            throw new RuntimeException("AppropriateUpdateType must not be null!");
         }
-        registryContainer.addAppropriateType(registry.getAppropriateUpdateType());
+        AppropriateUpdateType appropriateUpdateType = getAppropriateUpdateType(registry);
+        registryContainer.addAppropriateType(appropriateUpdateType);
+    }
+
+    private AppropriateUpdateType getAppropriateUpdateType(HandlerAnnotationRegistry registry) {
+        return findBeansOfTypeService.findBean(registry.getAppropriateUpdateType())
+                .orElseThrow(() -> new RuntimeException("AppropriateUpdateType instance not found!"));
     }
 }

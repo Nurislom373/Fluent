@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author Nurislom
@@ -29,5 +30,15 @@ public class DefaultFindBeansOfTypeService implements FindBeansOfTypeService {
     @Override
     public <T> Map<String, T> findAllByMap(Class<T> clazz) {
         return applicationContext.getBeansOfType(clazz);
+    }
+
+    @Override
+    public <T> Optional<T> findBean(Class<T> beanClass) {
+        try {
+            return Optional.of(applicationContext.getBean(beanClass));
+        } catch (Exception e) {
+            e.fillInStackTrace();
+            return Optional.empty();
+        }
     }
 }

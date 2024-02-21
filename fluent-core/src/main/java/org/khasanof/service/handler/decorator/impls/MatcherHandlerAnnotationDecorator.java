@@ -2,7 +2,9 @@ package org.khasanof.service.handler.decorator.impls;
 
 import org.khasanof.executors.matcher.GenericMatcher;
 import org.khasanof.feature.annotation.HandlerAnnotationRegistry;
+import org.khasanof.service.FindBeansOfTypeService;
 import org.khasanof.service.handler.decorator.BaseHandlerAnnotationDecorator;
+import org.springframework.context.ApplicationContext;
 
 import java.util.Objects;
 
@@ -14,6 +16,12 @@ import java.util.Objects;
 @SuppressWarnings({"rawtypes"})
 public class MatcherHandlerAnnotationDecorator extends BaseHandlerAnnotationDecorator {
 
+    private final FindBeansOfTypeService findBeansOfTypeService;
+
+    public MatcherHandlerAnnotationDecorator(FindBeansOfTypeService findBeansOfTypeService) {
+        this.findBeansOfTypeService = findBeansOfTypeService;
+    }
+
     @Override
     public void execute(HandlerAnnotationRegistry registry) {
         super.execute(registry);
@@ -21,10 +29,18 @@ public class MatcherHandlerAnnotationDecorator extends BaseHandlerAnnotationDeco
     }
 
     private void internalExecute(HandlerAnnotationRegistry registry) {
-        GenericMatcher matcher = registry.getMatcher();
+        if (Objects.isNull(registry.getMatcher())) {
+            throw new RuntimeException("Matcher class must not be null!");
+        }
 
+        GenericMatcher matcher = getMatcher(registry);
         if (!Objects.equals(matcher.getType(), registry.getAnnotation())) {
             throw new RuntimeException("Matcher type not match annotation!");
         }
+    }
+
+    private GenericMatcher getMatcher(HandlerAnnotationRegistry registry) {
+        return findBeansOfTypeService.findBean(registry.getMatcher())
+                .orElseThrow(() -> new RuntimeException("Matcher instance not found!"));
     }
 }

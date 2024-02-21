@@ -5,6 +5,8 @@ import org.khasanof.executors.expression.ExpressionMatcher;
 import java.lang.annotation.Annotation;
 import java.util.Map;
 
+import static org.khasanof.utils.BaseUtils.getFirstGenericType;
+
 /**
  * Author: Nurislom
  * <br/>
@@ -23,6 +25,7 @@ public abstract class GenericMatcher<T extends Annotation, V> extends AbstractMa
 
     public abstract boolean matcher(T annotation, V value);
 
-    public abstract Class<T> getType();
-
+    public Class<T> getType() {
+        return getFirstGenericType(getClass());
+    }
 }

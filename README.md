@@ -12,7 +12,7 @@ Make sure you are using Spring Boot version 3.0.0 or above.
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 

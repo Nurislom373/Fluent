@@ -21,7 +21,7 @@ public class SimpleMessagesMatcher extends MultiGenericMatcher<HandleMessages, H
 
     @Override
     public boolean matcher(HandleMessages annotation, String value) {
-        return Arrays.stream(annotation.values())
+        return Arrays.stream(annotation.value())
                 .anyMatch(handleMessage -> matcher.matcher(handleMessage, value));
     }
 

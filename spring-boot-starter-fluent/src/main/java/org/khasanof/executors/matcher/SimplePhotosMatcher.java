@@ -22,7 +22,7 @@ public class SimplePhotosMatcher extends MultiGenericMatcher<HandlePhotos, Handl
 
     @Override
     public boolean matcher(HandlePhotos annotation, Message value) {
-        return Arrays.stream(annotation.values())
+        return Arrays.stream(annotation.value())
                 .anyMatch(handlePhoto -> matcher.matcher(handlePhoto, value));
     }
 

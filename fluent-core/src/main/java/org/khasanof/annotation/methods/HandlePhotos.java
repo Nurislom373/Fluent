@@ -21,6 +21,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandlePhotos {
 
-    HandlePhoto[] values();
+    HandlePhoto[] value();
 
 }

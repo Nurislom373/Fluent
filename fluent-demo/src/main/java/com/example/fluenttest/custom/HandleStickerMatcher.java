@@ -25,9 +25,4 @@ public class HandleStickerMatcher extends GenericMatcher<HandleSticker, Sticker>
         return matchFunctions.get(Map.entry(annotation.match(), getMatchType(type, annotation.match())))
                 .apply(annotation.value(), type);
     }
-
-    @Override
-    public Class<HandleSticker> getType() {
-        return HandleSticker.class;
-    }
 }

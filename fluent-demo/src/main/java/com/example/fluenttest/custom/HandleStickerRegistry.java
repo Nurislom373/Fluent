@@ -18,21 +18,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class HandleStickerRegistry implements HandlerAnnotationRegistry {
 
-    private final HandleStickerMatcher matcher;
-    private final MessageUpdateTypeMatcher messageUpdateTypeMatcher;
-
-    public HandleStickerRegistry(HandleStickerMatcher matcher,
-                                 MessageUpdateTypeMatcher messageUpdateTypeMatcher) {
-
-        this.matcher = matcher;
-        this.messageUpdateTypeMatcher = messageUpdateTypeMatcher;
-    }
-
-    @Override
-    public Class<?> getAnnotation() {
-        return HandleSticker.class;
-    }
-
     @Override
     public AnnotationHandler getAnnotationHandler() {
         return () -> HandleSticker.class;
@@ -44,17 +29,17 @@ public class HandleStickerRegistry implements HandlerAnnotationRegistry {
     }
 
     @Override
-    public GenericMatcher getMatcher() {
-        return this.matcher;
+    public Class<? extends GenericMatcher> getMatcher() {
+        return HandleStickerMatcher.class;
     }
 
     @Override
-    public AppropriateUpdateType getAppropriateUpdateType() {
-        return messageUpdateTypeMatcher;
+    public Class<? extends AppropriateUpdateType> getAppropriateUpdateType() {
+        return MessageUpdateTypeMatcher.class;
     }
 
     @Override
-    public AppropriateUpdateMethod getAppropriateUpdateMethod() {
-        return new StickerMessageAppropriateMethod();
+    public Class<? extends AppropriateUpdateMethod> getAppropriateUpdateMethod() {
+        return StickerMessageAppropriateMethod.class;
     }
 }

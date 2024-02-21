@@ -1,6 +1,6 @@
 package org.khasanof.executors.matcher;
 
-import org.khasanof.enums.MultiMatchScope;
+import org.khasanof.enums.RepeatableMatchType;
 import org.khasanof.executors.expression.ExpressionMatcher;
 
 import java.lang.annotation.Annotation;
@@ -19,7 +19,7 @@ public abstract class MultiGenericMatcher<T extends Annotation, S extends Annota
 
     protected final GenericMatcher matcher;
 
-    protected final Map<MultiMatchScope, BiFunction<Stream<S>, Predicate<S>, Boolean>>
+    protected final Map<RepeatableMatchType, BiFunction<Stream<S>, Predicate<S>, Boolean>>
             multiMatchScopeFunctionMap = new HashMap<>();
 
     protected MultiGenericMatcher(GenericMatcher matcher, Map<String, ExpressionMatcher> expressionMatcherMap) {
@@ -29,8 +29,8 @@ public abstract class MultiGenericMatcher<T extends Annotation, S extends Annota
     }
 
     void setMultiMatchScopeFunctionMap() {
-        multiMatchScopeFunctionMap.put(MultiMatchScope.ANY_MATCH, Stream::anyMatch);
-        multiMatchScopeFunctionMap.put(MultiMatchScope.ALL_MATCH, Stream::allMatch);
-        multiMatchScopeFunctionMap.put(MultiMatchScope.NONE_MATCH, Stream::noneMatch);
+        multiMatchScopeFunctionMap.put(RepeatableMatchType.ANY_MATCH, Stream::anyMatch);
+        multiMatchScopeFunctionMap.put(RepeatableMatchType.ALL_MATCH, Stream::allMatch);
+        multiMatchScopeFunctionMap.put(RepeatableMatchType.NONE_MATCH, Stream::noneMatch);
     }
 }

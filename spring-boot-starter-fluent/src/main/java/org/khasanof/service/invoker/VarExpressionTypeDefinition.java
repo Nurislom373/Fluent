@@ -3,7 +3,7 @@ package org.khasanof.service.invoker;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.constants.FluentConstants;
 import org.khasanof.enums.DefaultMethodType;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 import org.khasanof.feature.method.MethodType;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
@@ -31,7 +31,7 @@ public class VarExpressionTypeDefinition implements MethodTypeDefinition {
     }
 
     private boolean annotationMatcher(Annotation annotation) {
-        return annotation.annotationType().equals(HandleMessage.class) && ((HandleMessage) annotation).scope().equals(MatchScope.VAR_EXPRESSION);
+        return annotation.annotationType().equals(HandleMessage.class) && ((HandleMessage) annotation).match().equals(MatchType.VAR_EXPRESSION);
     }
 
     @Override

@@ -11,10 +11,10 @@ package org.khasanof.enums;
  * <br/>
  * <br/>
  *
- * MatchScope is used in annotations that accept enum updates. The purpose of this Annotation is to show how to match a
+ * MatchType is used in annotations that accept enum updates. The purpose of this Annotation is to show how to match a
  * given update value. Defaults to EQUALS if no value is specified.
  */
-public enum MatchScope {
+public enum MatchType {
 
     /**
      * END_WITH checks that the start of the incoming update matches the specified value.
@@ -24,7 +24,7 @@ public enum MatchScope {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "start", scope = MatchScope.START_WITH)
+     *    &#064;HandleMessage(value = "start", match = MatchType.START_WITH)
      * </pre>
      */
     START_WITH,
@@ -37,7 +37,7 @@ public enum MatchScope {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "end", scope = MatchScope.END_WITH)
+     *    &#064;HandleMessage(value = "end", match = MatchType.END_WITH)
      * </pre>
      */
     END_WITH,
@@ -50,7 +50,7 @@ public enum MatchScope {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "abs", scope = MatchScope.CONTAINS)
+     *    &#064;HandleMessage(value = "abs", match = MatchType.CONTAINS)
      * </pre>
      */
     CONTAINS,
@@ -63,7 +63,7 @@ public enum MatchScope {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "/start", scope = MatchScope.EQUALS)
+     *    &#064;HandleMessage(value = "/start", match = MatchType.EQUALS)
      * </pre>
      *
      */
@@ -79,8 +79,8 @@ public enum MatchScope {
      * <pre>
      *    &#064;HandleDocument(
      *             value = "([a-zA-Z0-9\\s_\\\\.\\-\\(\\):])+(.jpeg|.png|.pdf)$",
-     *             match = MatchScope.REGEX,
-     *             scope = DocumentScope.FILE_NAME
+     *             match = MatchType.REGEX,
+     *             match = DocumentScope.FILE_NAME
      *     )
      * </pre>
      *
@@ -95,7 +95,7 @@ public enum MatchScope {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "boom", scope = MatchScope.EQUALS_IGNORE_CASE)
+     *    &#064;HandleMessage(value = "boom", match = MatchType.EQUALS_IGNORE_CASE)
      * </pre>
      *
      */
@@ -109,7 +109,7 @@ public enum MatchScope {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "START_WITH('abs', value)", scope = MatchScope.EXPRESSION)
+     *    &#064;HandleMessage(value = "START_WITH('abs', value)", match = MatchType.EXPRESSION)
      * </pre>
      *
      */
@@ -125,7 +125,7 @@ public enum MatchScope {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "/name {name:[a-z]}", scope = MatchScope.VAR_EXPRESSION)
+     *    &#064;HandleMessage(value = "/name {name:[a-z]}", match = MatchType.VAR_EXPRESSION)
      * </pre>
      *
      * You write the name of the first variable in {} brackets, then you put ':' and you write a regular expression,

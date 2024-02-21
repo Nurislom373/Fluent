@@ -18,11 +18,6 @@ public interface HandlerAnnotationRegistry {
     /**
      * @return
      */
-    Class<?> getAnnotation();
-
-    /**
-     * @return
-     */
     AnnotationHandler getAnnotationHandler();
 
     /**
@@ -34,34 +29,29 @@ public interface HandlerAnnotationRegistry {
      *
      * @return
      */
-    GenericMatcher getMatcher();
+    Class<? extends GenericMatcher> getMatcher();
 
     /**
      * @return
      */
-    default AppropriateUpdateType getAppropriateUpdateType() {
-        return null;
+    Class<? extends AppropriateUpdateType> getAppropriateUpdateType();
+
+    /**
+     * @return
+     */
+    Class<? extends AppropriateUpdateMethod> getAppropriateUpdateMethod();
+
+    /**
+     * @return
+     */
+    default Class<?> getAnnotation() {
+        return getAnnotationHandler().getAnnotation();
     }
 
     /**
      * @return
      */
-    default AppropriateUpdateMethod getAppropriateUpdateMethod() {
-        return null;
-    }
-
-    /**
-     * @return
-     */
-    default Perform getPerform() {
-        return null;
-    }
-
-    /**
-     *
-     * @return
-     */
-    default HandleMethodChecker getHandleMethodChecker() {
+    default Class<? extends Perform> getPerform() {
         return null;
     }
 
@@ -69,7 +59,15 @@ public interface HandlerAnnotationRegistry {
      *
      * @return
      */
-    default UpdateTypeBinder getUpdateTypeBinder() {
+    default Class<? extends HandleMethodChecker> getHandleMethodChecker() {
+        return null;
+    }
+
+    /**
+     *
+     * @return
+     */
+    default Class<? extends UpdateTypeBinder> getUpdateTypeBinder() {
         return null;
     }
 }

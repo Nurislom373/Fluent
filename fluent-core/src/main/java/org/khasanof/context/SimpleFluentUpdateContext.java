@@ -48,5 +48,4 @@ public class SimpleFluentUpdateContext implements FluentUpdateContext {
             this.attributes = attributes;
         }
     }
-
 }

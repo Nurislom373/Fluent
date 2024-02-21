@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactoryImpl;
@@ -106,13 +106,13 @@ public class DefaultHandleMethodCheckerTest {
 
     public static class TestController {
 
-        @HandleMessage(value = "/start", scope = MatchScope.EQUALS)
+        @HandleMessage(value = "/start", match = MatchType.EQUALS)
         public void validHandleMethod(Update update) {}
 
-        @HandleMessage(value = "/start-time", scope = MatchScope.EQUALS)
+        @HandleMessage(value = "/start-time", match = MatchType.EQUALS)
         public void validHandleMethod() {}
 
-        @HandleMessage(value = "/invalid", scope = MatchScope.EQUALS)
+        @HandleMessage(value = "/invalid", match = MatchType.EQUALS)
         public void invalidHandleMethod(AbsSender sender, Update update, String test) {}
 
         @HandleCallback(value = {"EN", "RU", "UZ"})

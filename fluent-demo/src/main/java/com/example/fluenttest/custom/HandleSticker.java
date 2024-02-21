@@ -1,7 +1,7 @@
 package com.example.fluenttest.custom;
 
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -20,7 +20,7 @@ public @interface HandleSticker {
 
     String value();
 
-    MatchScope match() default MatchScope.EQUALS;
+    MatchType match() default MatchType.EQUALS;
 
     HandleStickerProperty property() default HandleStickerProperty.TYPE;
 }

@@ -1,6 +1,5 @@
 package org.khasanof.annotation.methods;
 
-
 import org.khasanof.annotation.process.ProcessContainer;
 import org.khasanof.annotation.process.ProcessUpdate;
 
@@ -24,6 +23,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleCallbacks {
 
-    HandleCallback[] values();
+    HandleCallback[] value();
 
 }
