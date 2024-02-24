@@ -89,7 +89,7 @@ public class DefaultVerifierAssertions implements VerifierAssertions {
         Set<Method> publicMethods = executeMethodReflect.getPublicMethods(expectMethodClass);
         Set<MethodInvokeMemento> mementos = getHistory(publicMethods);
 
-        if (!Objects.equals(mementos.size(), count)) {
+        if (mementos.size() != count) {
             throw new AssertionError(message);
         }
         return this;

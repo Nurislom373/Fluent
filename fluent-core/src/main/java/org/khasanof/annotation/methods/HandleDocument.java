@@ -30,6 +30,6 @@ public @interface HandleDocument {
 
     MatchType match() default MatchType.EQUALS;
 
-    DocumentScope scope() default DocumentScope.FILE_NAME;
+    DocumentScope property() default DocumentScope.FILE_NAME;
 
 }

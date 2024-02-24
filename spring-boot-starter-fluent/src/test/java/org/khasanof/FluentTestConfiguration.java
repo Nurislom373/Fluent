@@ -1,8 +1,6 @@
 package org.khasanof;
 
-import org.khasanof.config.service.runnable.RunnableServicesAutoConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.TypeExcludeFilter;
 import org.springframework.context.annotation.ComponentScan;

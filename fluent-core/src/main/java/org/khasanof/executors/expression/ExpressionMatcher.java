@@ -12,5 +12,4 @@ public interface ExpressionMatcher<T> {
     default boolean doMatch(String expression) {
         return false;
     }
-
 }

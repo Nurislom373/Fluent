@@ -3,6 +3,8 @@ package org.khasanof.executors.matcher;
 import org.khasanof.annotation.methods.HandleAudio;
 import org.khasanof.config.ApplicationConstants;
 import org.khasanof.enums.scopes.AudioScope;
+import org.khasanof.models.matcher.MatcherProperty;
+import org.khasanof.models.matcher.PropertyFunction;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Audio;
 
@@ -35,11 +37,6 @@ public class SimpleAudioMatcher extends GenericMatcher<HandleAudio, Audio> {
                 .apply(annotation.value(), apply);
     }
 
-    @Override
-    public Class<HandleAudio> getType() {
-        return HandleAudio.class;
-    }
-
     void setBiFunctionMap() {
         biFunctionMap.put(AudioScope.FILE_NAME, Audio::getFileName);
         biFunctionMap.put(AudioScope.FILE_SIZE, Audio::getFileSize);
@@ -47,5 +44,9 @@ public class SimpleAudioMatcher extends GenericMatcher<HandleAudio, Audio> {
         biFunctionMap.put(AudioScope.PERFORMER, Audio::getPerformer);
         biFunctionMap.put(AudioScope.DURATION, Audio::getDuration);
         biFunctionMap.put(AudioScope.MIME_TYPE, Audio::getMimeType);
+
+        MatcherProperty matcherProperty = new MatcherProperty();
+        matcherProperty.setProperty(AudioScope.FILE_NAME);
+        matcherProperty.setFunction((PropertyFunction<Audio>) Audio::getFileName);
     }
 }

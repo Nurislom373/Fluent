@@ -78,7 +78,7 @@ public class CallbackController {
     @HandleDocument(
             value = "([a-zA-Z0-9\\s_\\\\.\\-\\(\\):])+(.jpeg|.png|.pdf|.patch)$",
             match = MatchType.REGEX,
-            scope = DocumentScope.FILE_NAME
+            property = DocumentScope.FILE_NAME
     )
     private void handleDocumentOne(Update update) throws TelegramApiException {
         String text = "I Handle 1 File \uD83D\uDE02";

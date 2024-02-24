@@ -1,5 +1,6 @@
 package org.khasanof.method;
 
+import org.khasanof.service.template.operations.SendDocumentOperations;
 import org.khasanof.service.template.operations.SendTextOperations;
 import org.khasanof.service.template.operations.query.AnswerCallbackQueryOperations;
 
@@ -39,6 +40,7 @@ public class DefaultExecuteMethodReflect implements ExecuteMethodReflect {
     private Set<Class<?>> getClasses() {
         return Set.of(
                 SendTextOperations.class,
+                SendDocumentOperations.class,
                 AnswerCallbackQueryOperations.class
         );
     }
