@@ -34,7 +34,7 @@ public class DefaultExceptionResolverService implements ExceptionResolverService
     public void resolve(ExceptionResolver resolver) throws Exception {
         if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleAnnotation.HANDLE_EXCEPTION)) {
 
-            var handlerMethod = new FindHandlerMethod(resolver.getThrowable().getCause(), HandleAnnotation.HANDLE_EXCEPTION);
+            var handlerMethod = new FindHandlerMethod(getExceptionWithCriteria(resolver.getThrowable()), HandleAnnotation.HANDLE_EXCEPTION);
             var invokerResult = operationExecutor.execute(FindHandlerMethodOperation.class, handlerMethod);
 
             if (invokerResult.isPresent()) {
@@ -43,6 +43,13 @@ public class DefaultExceptionResolverService implements ExceptionResolverService
             }
         }
         throw new RuntimeException(resolver.getThrowable());
+    }
+
+    private Object getExceptionWithCriteria(Throwable throwable) {
+        if (throwable instanceof InvocationTargetException) {
+            return throwable.getCause();
+        }
+        return throwable;
     }
 
     private void perform(ExceptionResolver resolver, SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException {

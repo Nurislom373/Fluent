@@ -43,7 +43,7 @@ public class TestMessageHandler {
         fluentTemplate.sendText(text);
     }
 
-    @HandleMessage(value = "START_WITH('/fluent', value)", match = MatchType.EXPRESSION)
+    @HandleMessage(value = "#value.startsWith('/fluent')", match = MatchType.EXPRESSION)
     public void handleStartWithFluent() {
         String text = "Handle Update With Expression";
         fluentTemplate.sendText(text);

@@ -1,16 +1,13 @@
 package org.khasanof.factories.invoker.method;
 
-import org.khasanof.mediator.MethodTypeDefinitionMediator;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.models.invoker.SimpleInvokerMethod;
-import org.springframework.stereotype.Component;
+import org.khasanof.service.interceptor.invoke.InvokerMethodInterceptorService;
 
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * @author Nurislom
@@ -19,10 +16,10 @@ import java.util.Objects;
  */
 public class DefaultInvokerMethodFactory implements InvokerMethodFactory {
 
-    private final MethodTypeDefinitionMediator methodTypeDefinitionMediator;
+    private final InvokerMethodInterceptorService interceptorService;
 
-    public DefaultInvokerMethodFactory(MethodTypeDefinitionMediator methodTypeDefinitionMediator) {
-        this.methodTypeDefinitionMediator = methodTypeDefinitionMediator;
+    public DefaultInvokerMethodFactory(InvokerMethodInterceptorService interceptorService) {
+        this.interceptorService = interceptorService;
     }
 
     /**
@@ -58,19 +55,6 @@ public class DefaultInvokerMethodFactory implements InvokerMethodFactory {
     }
 
     private void fillParams(Map.Entry<Method, Object> entry, SimpleInvokerMethod simpleInvokerMethod) {
-        putParamsMethodType(entry, simpleInvokerMethod.getParams());
-        checkMethodParams(entry, simpleInvokerMethod.getParams());
-    }
-
-    private void putParamsMethodType(Map.Entry<Method, Object> entry, Map<InvokerParam, Object> params) {
-        params.put(InvokerParam.METHOD_TYPE, methodTypeDefinitionMediator.definition(entry.getKey()));
-    }
-
-    private void checkMethodParams(Map.Entry<Method, Object> entry, Map<InvokerParam, Object> params) {
-        Method method = entry.getKey();
-
-        if (method.getParameterCount() > 0) {
-            params.put(InvokerParam.METHOD_PARAMETER_TYPES, Arrays.asList(method.getParameterTypes()));
-        }
+        interceptorService.intercept(entry, simpleInvokerMethod.getParams());
     }
 }

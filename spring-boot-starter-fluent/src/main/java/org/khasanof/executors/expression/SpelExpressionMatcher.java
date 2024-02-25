@@ -14,18 +14,15 @@ import java.util.Objects;
 public class SpelExpressionMatcher implements ExpressionMatcher<Object> {
 
     private final ExpressionParser parser = new SpelExpressionParser();
-    private final StandardEvaluationContext context;
-
-    public SpelExpressionMatcher(StandardEvaluationContext context) {
-        this.context = context;
-    }
 
     @Override
     public boolean doMatch(String expression, Object value) {
-        return Objects.equals(executeExpression(expression), Boolean.TRUE);
+        StandardEvaluationContext context = new StandardEvaluationContext();
+        context.setVariable("value", value);
+        return Objects.equals(executeExpression(expression, context), Boolean.TRUE);
     }
 
-    private Boolean executeExpression(String expression) {
+    private Boolean executeExpression(String expression, StandardEvaluationContext context) {
         return parser.parseExpression(expression).getValue(context, Boolean.class);
     }
 }

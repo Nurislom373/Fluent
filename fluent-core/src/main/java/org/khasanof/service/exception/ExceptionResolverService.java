@@ -7,6 +7,10 @@ package org.khasanof.service.exception;
  */
 public interface ExceptionResolverService {
 
+    /**
+     *
+     * @param resolver
+     * @throws Exception
+     */
     void resolve(ExceptionResolver resolver) throws Exception;
-
 }

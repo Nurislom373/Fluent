@@ -3,6 +3,7 @@ package org.khasanof.service.runnable.expression;
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.enums.MatchType;
 import org.khasanof.executors.expression.SimpleExpressionMatcher;
+import org.khasanof.executors.expression.SpelExpressionMatcher;
 import org.khasanof.executors.expression.VariableExpressionMatcher;
 import org.khasanof.registry.expression.ExpressionMatcherRegistry;
 import org.khasanof.service.runnable.PostProcessor;
@@ -25,7 +26,7 @@ public class ExpressionMatcherRegistryPostProcessor implements PostProcessor {
 
     @Override
     public void run() {
-        expressionMatcherRegistry.addExpressionMatcher(MatchType.EXPRESSION.name(), new SimpleExpressionMatcher());
+        expressionMatcherRegistry.addExpressionMatcher(MatchType.EXPRESSION.name(), new SpelExpressionMatcher());
         expressionMatcherRegistry.addExpressionMatcher(MatchType.VAR_EXPRESSION.name(), new VariableExpressionMatcher());
     }
 }

@@ -109,7 +109,7 @@ public enum MatchType {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "START_WITH('abs', value)", match = MatchType.EXPRESSION)
+     *    &#064;HandleMessage(value = "#value.startsWith('/start')", match = MatchType.EXPRESSION)
      * </pre>
      *
      */

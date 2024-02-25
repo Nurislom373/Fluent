@@ -78,13 +78,13 @@ public class FluentController {
         fluentTemplate.sendText(text);
     }
 
-    @HandleMessage(value = "START_WITH('/fluent', value)", match = MatchType.EXPRESSION)
+    @HandleMessage(value = "#value.startsWith('/fluent')", match = MatchType.EXPRESSION)
     public void handleStartWithFluent() {
         String text = "Handle Update With Expression";
         fluentTemplate.sendText(text);
     }
 
-    @HandleMessage(value = "START_WITH('a', value) && END_WITH('z', value)", match = MatchType.EXPRESSION)
+    @HandleMessage(value = "#value.startsWith('a') && #value.endsWith('z')", match = MatchType.EXPRESSION)
     public void handleStartWithA() {
         fluentTemplate.sendText("...");
 
