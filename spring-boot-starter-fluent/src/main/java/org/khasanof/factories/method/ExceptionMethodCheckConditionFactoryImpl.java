@@ -1,7 +1,7 @@
 package org.khasanof.factories.method;
 
 import org.khasanof.annotation.exception.HandleException;
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.MethodGenericCondition;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +19,11 @@ public class ExceptionMethodCheckConditionFactoryImpl extends ExceptionMethodChe
     private final Class<? extends Annotation> annotation = HandleException.class;
 
     @Override
-    public Set<MethodCondition> create() {
+    public Set<MethodGenericCondition> create() {
         return Set.of(firstCondition());
     }
 
-    private MethodCondition firstCondition() {
+    private MethodGenericCondition firstCondition() {
         return method -> AnnotationUtils.hasAnnotation(method, annotation, false);
     }
 }

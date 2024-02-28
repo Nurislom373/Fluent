@@ -1,4 +1,4 @@
-package org.khasanof.service;
+package org.khasanof.service.search;
 
 import org.khasanof.GenericFind;
 import org.khasanof.models.collector.FindHandlerMethod;

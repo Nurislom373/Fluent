@@ -3,7 +3,7 @@ package org.khasanof.collector.method.checker;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.factories.method.DefaultMethodCheckConditionFactory;
 import org.khasanof.mediator.MethodCheckOperationStrategyMediator;
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.MethodGenericCondition;
 import org.khasanof.registry.annotation.FluentAnnotationsRegistry;
 import org.springframework.stereotype.Component;
 
@@ -63,7 +63,7 @@ public class DefaultHandleMethodChecker extends AbstractHandleMethodChecker {
     }
 
     @Override
-    public Set<MethodCondition> conditions() {
+    public Set<MethodGenericCondition> conditions() {
         return conditionFactory.cachedCreate();
     }
 

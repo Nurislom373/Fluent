@@ -10,10 +10,10 @@ import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.Proceed;
 import org.khasanof.enums.ProcessType;
-import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
-import org.khasanof.models.executors.AppropriateMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.service.annotation.type.HandleTypeService;
+import org.khasanof.service.interceptor.invoker.PostFindInvokerInterceptorService;
+import org.khasanof.utils.InvokerUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -22,6 +22,8 @@ import java.lang.reflect.Method;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiConsumer;
+
+import static org.khasanof.utils.InvokerUtils.hasCondition;
 
 /**
  * @author Nurislom
@@ -35,16 +37,19 @@ public class DeterminationHandleAnyFunction implements DeterminationFunction {
     public static final String NAME = "handleAnyFunction";
     private final HandleTypeService handleTypeService;
     private final ContextOperationExecutor operationExecutor;
+    private final PostFindInvokerInterceptorService invokerInterceptorService;
 
     public DeterminationHandleAnyFunction(HandleTypeService handleTypeService,
-                                          ContextOperationExecutor operationExecutor) {
+                                          ContextOperationExecutor operationExecutor,
+                                          PostFindInvokerInterceptorService invokerInterceptorService) {
 
         this.handleTypeService = handleTypeService;
         this.operationExecutor = operationExecutor;
+        this.invokerInterceptorService = invokerInterceptorService;
     }
 
     @Override
-    public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
+    public BiConsumer<Update, Set<SimpleInvoker>> getConsumer(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
             if (operationExecutor.execute(ContainsHandlerMethodOperation.class, HandleAnnotation.HANDLE_ANY)) {
                 internalAccept(update, invokerResults);
@@ -58,14 +63,13 @@ public class DeterminationHandleAnyFunction implements DeterminationFunction {
                 .forEach(handleType -> foundMethodsAddInvokers(invokerResults, handleType));
     }
 
-    private void addAllTypeHandleAnyInvokers(Set<SimpleInvoker> simpleInvokers) {
+    private void addAllTypeHandleAnyInvokers(Set<SimpleInvoker> invokerResults) {
         var invokers = operationExecutor.execute(FindMoreHandleAnyOperation.class, HandleType.ALL);
 
         if (Objects.isNull(invokers) || invokers.isEmpty()) {
             return;
         }
-        simpleInvokers.addAll(invokers);
-        isCanProcess(invokers);
+        checkInvokerThenAdd(invokerResults, invokers);
     }
 
     private void foundMethodsAddInvokers(Set<SimpleInvoker> invokerResults, HandleType handleType) {
@@ -74,8 +78,17 @@ public class DeterminationHandleAnyFunction implements DeterminationFunction {
         if (Objects.isNull(allHandleAnyMethods) || allHandleAnyMethods.isEmpty()) {
             return;
         }
-        invokerResults.addAll(allHandleAnyMethods);
-        isCanProcess(allHandleAnyMethods);
+        checkInvokerThenAdd(invokerResults, allHandleAnyMethods);
+    }
+
+    private void checkInvokerThenAdd(Set<SimpleInvoker> invokerResults, Set<SimpleInvoker> invokers) {
+        invokers.forEach(simpleInvoker -> {
+            if (hasCondition(simpleInvoker) && !invokerInterceptorService.intercept(simpleInvoker)) {
+                return;
+            }
+            invokerResults.add(simpleInvoker);
+        });
+        isCanProcess(invokers);
     }
 
     private void isCanProcess(Set<SimpleInvoker> allHandleAnyMethods) {

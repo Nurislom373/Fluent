@@ -4,7 +4,7 @@ import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.factories.method.HandleAnyMethodCheckConditionFactory;
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.MethodGenericCondition;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -60,7 +60,7 @@ public class HandleAnyMethodChecker extends AbstractHandleMethodChecker {
     }
 
     @Override
-    public Set<MethodCondition> conditions() {
+    public Set<MethodGenericCondition> conditions() {
         return conditionFactory.cachedCreate();
     }
 

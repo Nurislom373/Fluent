@@ -1,7 +1,7 @@
 package org.khasanof.context;
 
 import lombok.Getter;
-import org.khasanof.custom.attributes.UpdateAttributes;
+import org.khasanof.custom.attributes.Attributes;
 import org.khasanof.factories.context.DefaultFluentUpdateContextFactory;
 
 /**
@@ -19,7 +19,7 @@ public abstract class FluentContextHolder {
                 .orElseThrow(() -> new RuntimeException("UpdateContext not found!"));
     }
 
-    public static UpdateAttributes getAttributes() {
+    public static Attributes getAttributes() {
         return getCurrentUpdate().getAttributes();
     }
 

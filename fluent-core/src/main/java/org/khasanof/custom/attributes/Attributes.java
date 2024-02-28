@@ -7,7 +7,7 @@ import java.util.Set;
  * @see org.khasanof.custom.attributes
  * @since 12/9/2023 2:41 PM
  */
-public interface UpdateAttributes {
+public interface Attributes {
 
     void setAttribute(String name, Object value);
 

@@ -5,11 +5,11 @@ import org.khasanof.constants.FluentConstants;
 import org.khasanof.executors.determination.DeterminationFunction;
 import org.khasanof.mediator.PerformMediator;
 import org.khasanof.models.invoker.SimpleInvoker;
+import org.khasanof.models.processor.SimpleInvokerFillerModel;
 import org.khasanof.service.interceptor.PreExecutionService;
 import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -39,21 +39,11 @@ public class DefaultChainProcessor extends AbstractUpdateChainProcessor {
     @Override
     public void process(Update update) throws Exception {
         Set<SimpleInvoker> simpleInvokers = new LinkedHashSet<>();
-        fillSimpleInvokers(update, simpleInvokers);
-        internalProcess(simpleInvokers);
+        SimpleInvokerFillerModel fillerModel = new SimpleInvokerFillerModel(update, applicationContext, determinationFunction);
+
+        fillSimpleInvokers(simpleInvokers, fillerModel);
+        internalProcess(simpleInvokers, performMediator);
         callNextProcess(update);
-    }
-
-    private void fillSimpleInvokers(Update update, Set<SimpleInvoker> simpleInvokers) {
-        determinationFunction.accept(applicationContext)
-                .accept(update, simpleInvokers);
-    }
-
-    private void internalProcess(Set<SimpleInvoker> simpleInvokers) throws InvocationTargetException, IllegalAccessException {
-        for (SimpleInvoker simpleInvoker : simpleInvokers) {
-            callPreExecution(simpleInvoker);
-            performMediator.execute(simpleInvoker);
-        }
     }
 
     @Override

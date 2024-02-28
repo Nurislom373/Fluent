@@ -9,6 +9,9 @@ import org.khasanof.models.invoker.SimpleInvoker;
  */
 public interface PreExecutionService {
 
-    void preHandle(SimpleInvoker simpleInvoker);
-
+    /**
+     *
+     * @param simpleInvoker
+     */
+    boolean preHandle(SimpleInvoker simpleInvoker);
 }

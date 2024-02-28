@@ -56,10 +56,10 @@ public class DefaultDeterminationService implements DeterminationService, Config
     private void addDeterminationFunction(DeterminationFunction orderFunction) {
         if (orderListMap.containsKey(orderFunction.getOrder())) {
             List<BiConsumer<Update, Set<SimpleInvoker>>> list = orderListMap.get(orderFunction.getOrder());
-            list.add(orderFunction.accept(applicationContext));
+            list.add(orderFunction.getConsumer(applicationContext));
         } else {
             orderListMap.put(orderFunction.getOrder(), new ArrayList<>() {{
-                add(orderFunction.accept(applicationContext));
+                add(orderFunction.getConsumer(applicationContext));
             }});
         }
     }

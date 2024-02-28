@@ -27,13 +27,14 @@ public class ExtraParamPreExecutionInterceptor implements PreExecutionIntercepto
     }
 
     @Override
-    public void preHandle(SimpleInvoker simpleInvoker) {
+    public boolean preHandle(SimpleInvoker simpleInvoker) {
         DefaultMethodType defaultMethodType = getMethodType(simpleInvoker);
 
         if (handleMethodCustomParamMap.containsKey(defaultMethodType)) {
             handleMethodCustomParamMap.get(defaultMethodType)
                     .execute(simpleInvoker);
         }
+        return true;
     }
 
     private DefaultMethodType getMethodType(SimpleInvoker simpleInvoker) {

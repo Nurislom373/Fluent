@@ -7,7 +7,7 @@ import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.annotation.methods.HandleMessages;
 import org.khasanof.context.FluentContextHolder;
-import org.khasanof.custom.attributes.UpdateAttributes;
+import org.khasanof.custom.attributes.Attributes;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.MatchType;
 import org.khasanof.service.template.FluentTemplate;
@@ -30,7 +30,7 @@ public class TestMessageHandler {
 
     @HandleAny(type = HandleType.MESSAGE)
     private void handleAnyMessages() {
-        UpdateAttributes attributes = FluentContextHolder.getAttributes();
+        Attributes attributes = FluentContextHolder.getAttributes();
         attributes.setAttribute("foo", "bar");
         String text = "I'm handle any messages";
         fluentTemplate.sendText(text);
@@ -38,7 +38,7 @@ public class TestMessageHandler {
 
     @HandleMessage(value = "/start", match = MatchType.START_WITH)
     public void fluent(Update update) {
-        UpdateAttributes attributes = FluentContextHolder.getAttributes();
+        Attributes attributes = FluentContextHolder.getAttributes();
         String text = update.getMessage().getText();
         fluentTemplate.sendText(text);
     }

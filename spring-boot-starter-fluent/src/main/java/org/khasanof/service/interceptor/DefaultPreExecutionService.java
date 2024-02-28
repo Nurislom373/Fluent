@@ -25,8 +25,9 @@ public class DefaultPreExecutionService implements PreExecutionService, Initiali
     }
 
     @Override
-    public void preHandle(SimpleInvoker simpleInvoker) {
-        preExecutionInterceptors.forEach(preExecutionInterceptor -> preExecutionInterceptor.preHandle(simpleInvoker));
+    public boolean preHandle(SimpleInvoker simpleInvoker) {
+        return preExecutionInterceptors.stream()
+                .allMatch(preExecutionInterceptor -> preExecutionInterceptor.preHandle(simpleInvoker));
     }
 
     @Override

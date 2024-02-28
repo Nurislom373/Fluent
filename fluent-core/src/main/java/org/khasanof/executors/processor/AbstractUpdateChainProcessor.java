@@ -2,11 +2,17 @@ package org.khasanof.executors.processor;
 
 import org.khasanof.SortOrder;
 import org.khasanof.chain.AbstractNopChainProcessor;
+import org.khasanof.executors.determination.DeterminationFunction;
+import org.khasanof.mediator.PerformMediator;
 import org.khasanof.models.invoker.SimpleInvoker;
+import org.khasanof.models.processor.SimpleInvokerFillerModel;
 import org.khasanof.service.interceptor.PreExecutionService;
+import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -36,9 +42,22 @@ public abstract class AbstractUpdateChainProcessor extends AbstractNopChainProce
         }
     }
 
-    protected void callPreExecution(SimpleInvoker simpleInvoker) {
-        if (Objects.nonNull(preExecutionService)) {
-            preExecutionService.preHandle(simpleInvoker);
+    protected void fillSimpleInvokers(Set<SimpleInvoker> simpleInvokers, SimpleInvokerFillerModel model) {
+        model.accept(simpleInvokers);
+    }
+
+    protected void internalProcess(Set<SimpleInvoker> simpleInvokers, PerformMediator performMediator) throws InvocationTargetException, IllegalAccessException {
+        for (SimpleInvoker simpleInvoker : simpleInvokers) {
+            if (callPreExecution(simpleInvoker)) {
+                performMediator.execute(simpleInvoker);
+            }
         }
+    }
+
+    protected boolean callPreExecution(SimpleInvoker simpleInvoker) {
+        if (Objects.nonNull(preExecutionService)) {
+            return preExecutionService.preHandle(simpleInvoker);
+        }
+        return true;
     }
 }

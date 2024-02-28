@@ -35,7 +35,7 @@ public class HandleStateFunction implements DeterminationFunction {
     }
 
     @Override
-    public BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext) {
+    public BiConsumer<Update, Set<SimpleInvoker>> getConsumer(ApplicationContext applicationContext) {
         return ((update, invokerResults) -> {
             StateRepositoryStrategy repository = applicationContext.getBean(StateRepositoryStrategy.class);
             Long id = UpdateUtils.getUserId(update);

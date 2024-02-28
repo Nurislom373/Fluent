@@ -4,7 +4,7 @@ import org.khasanof.annotation.exception.HandleException;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.exceptions.InvalidParamsException;
 import org.khasanof.factories.method.ExceptionMethodCheckConditionFactory;
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.MethodGenericCondition;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.bots.AbsSender;
@@ -62,7 +62,7 @@ public class ExceptionHandleMethodChecker extends AbstractHandleMethodChecker {
     }
 
     @Override
-    public Set<MethodCondition> conditions() {
+    public Set<MethodGenericCondition> conditions() {
         return conditionFactory.cachedCreate();
     }
 

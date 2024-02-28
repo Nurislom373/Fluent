@@ -1,13 +1,11 @@
 package org.khasanof.collector.method.checker;
 
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.MethodGenericCondition;
 
 import java.lang.reflect.Method;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Nurislom
@@ -41,7 +39,7 @@ public class DefaultHandleMethodCheckerMediator implements HandleMethodCheckerMe
         }
     }
 
-    private boolean isMatchConditions(Set<MethodCondition> conditions, Method method) {
+    private boolean isMatchConditions(Set<MethodGenericCondition> conditions, Method method) {
         return conditions.stream()
                 .allMatch(methodCondition -> methodCondition.match(method));
     }

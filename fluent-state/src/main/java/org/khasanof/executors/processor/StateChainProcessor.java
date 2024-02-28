@@ -9,7 +9,6 @@ import org.khasanof.service.interceptor.PreExecutionService;
 import org.springframework.context.ApplicationContext;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -39,20 +38,13 @@ public class StateChainProcessor extends AbstractUpdateChainProcessor {
     public void process(Update update) throws Exception {
         Set<SimpleInvoker> simpleInvokers = new LinkedHashSet<>();
         fillSimpleInvokers(update, simpleInvokers);
-        internalProcess(simpleInvokers);
+        internalProcess(simpleInvokers, performMediator);
         callNextProcess(update, !FluentThreadLocalContext.determinationServiceBoolean.get());
     }
 
     private void fillSimpleInvokers(Update update, Set<SimpleInvoker> simpleInvokers) {
-        determinationFunction.accept(applicationContext)
+        determinationFunction.getConsumer(applicationContext)
                 .accept(update, simpleInvokers);
-    }
-
-    private void internalProcess(Set<SimpleInvoker> simpleInvokers) throws InvocationTargetException, IllegalAccessException {
-        for (SimpleInvoker simpleInvoker : simpleInvokers) {
-            callPreExecution(simpleInvoker);
-            performMediator.execute(simpleInvoker);
-        }
     }
 
     @Override

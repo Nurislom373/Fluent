@@ -3,7 +3,7 @@ package org.khasanof.collector.context.operation;
 import org.khasanof.collector.context.ContextOperation;
 import org.khasanof.models.collector.FindHandlerMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
-import org.khasanof.service.SearchHandlerMethodService;
+import org.khasanof.service.search.SearchHandlerMethodService;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

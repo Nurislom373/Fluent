@@ -1,5 +1,7 @@
 package org.khasanof.custom.attributes;
 
+import org.springframework.context.annotation.Conditional;
+
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -9,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @see org.khasanof.custom.attributes
  * @since 12/10/2023 8:13 PM
  */
-public class DefaultUpdateAttributes implements UpdateAttributes {
+public class DefaultAttributes implements Attributes {
 
     private final Map<String, Object> attributes = new ConcurrentHashMap<>();
 

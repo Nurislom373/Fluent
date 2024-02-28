@@ -1,7 +1,7 @@
 package org.khasanof.collector.method.checker;
 
 import org.khasanof.GenericCheck;
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.MethodGenericCondition;
 
 import java.lang.reflect.Method;
 import java.util.Set;
@@ -13,6 +13,6 @@ import java.util.Set;
  */
 public interface HandleMethodChecker extends GenericCheck<Method> {
 
-    Set<MethodCondition> conditions();
+    Set<MethodGenericCondition> conditions();
 
 }

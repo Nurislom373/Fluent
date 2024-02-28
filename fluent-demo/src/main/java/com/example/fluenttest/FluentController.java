@@ -1,5 +1,7 @@
 package com.example.fluenttest;
 
+import com.example.fluenttest.custom.condition.CustomCondition;
+import org.khasanof.annotation.ConditionOnExpression;
 import org.khasanof.annotation.UpdateController;
 import org.khasanof.annotation.expression.BotVariable;
 import org.khasanof.annotation.methods.HandleAny;
@@ -7,7 +9,7 @@ import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.annotation.methods.HandlePhoto;
 import org.khasanof.context.FluentContextHolder;
-import org.khasanof.custom.attributes.UpdateAttributes;
+import org.khasanof.custom.attributes.Attributes;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.MatchType;
 import org.khasanof.enums.scopes.PhotoScope;
@@ -32,13 +34,15 @@ public class FluentController {
     }
 
     @HandleMessage("/template")
+    @ConditionOnExpression("#{conditionBean.exist()}")
     public void templateExample() {
         fluentTemplate.sendText("Hello World");
     }
 
+    @CustomCondition
     @HandleAny(type = {HandleType.MESSAGE, HandleType.AUDIO})
     private void handleAnyMessagesWithUpdate(Update update) {
-        UpdateAttributes attributes = FluentContextHolder.getAttributes();
+        Attributes attributes = FluentContextHolder.getAttributes();
         attributes.setAttribute("foo", "bar");
         System.out.println(Objects.nonNull(update));
         String text = "I'm handle any messages with update";
@@ -47,7 +51,7 @@ public class FluentController {
 
     @HandleAny(type = HandleType.ALL)
     private void handleAnyMessages() {
-        UpdateAttributes attributes = FluentContextHolder.getAttributes();
+        Attributes attributes = FluentContextHolder.getAttributes();
         attributes.setAttribute("foo", "bar");
         String text = "I'm handle any updates";
         fluentTemplate.sendText(text);
@@ -62,7 +66,7 @@ public class FluentController {
 
     @HandleMessage(value = "/start", match = MatchType.START_WITH)
     public void fluent(Update update) {
-        UpdateAttributes attributes = FluentContextHolder.getAttributes();
+        Attributes attributes = FluentContextHolder.getAttributes();
         String text = update.getMessage().getText();
         fluentTemplate.sendText(text);
     }

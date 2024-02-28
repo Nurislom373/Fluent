@@ -1,7 +1,7 @@
 package org.khasanof.factories.method;
 
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.models.condition.MethodCondition;
+import org.khasanof.models.condition.MethodGenericCondition;
 import org.khasanof.utils.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
@@ -19,11 +19,11 @@ public class DefaultMethodCheckConditionFactoryImpl extends DefaultMethodCheckCo
     private final Class<? extends Annotation> annotation = ProcessUpdate.class;
 
     @Override
-    public Set<MethodCondition> create() {
+    public Set<MethodGenericCondition> create() {
         return Set.of(firstCondition());
     }
 
-    private MethodCondition firstCondition() {
+    private MethodGenericCondition firstCondition() {
         return method -> AnnotationUtils.hasAnnotation(method, annotation, true);
     }
 }

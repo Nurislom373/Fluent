@@ -1,4 +1,4 @@
-package org.khasanof.service;
+package org.khasanof.service.search;
 
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
@@ -23,14 +23,16 @@ public class DefaultSearchHandlerMethodService implements SearchHandlerMethodSer
     private final MatcherMediator matcher;
     private final SimpleMethodContext methodContext;
 
-    public DefaultSearchHandlerMethodService(MatcherMediator matcher, SimpleMethodContext methodContext) {
+    public DefaultSearchHandlerMethodService(MatcherMediator matcher,
+                                             SimpleMethodContext methodContext) {
+
         this.matcher = matcher;
         this.methodContext = methodContext;
     }
 
     @Override
     public Optional<SimpleInvoker> find(FindHandlerMethod findHandlerMethod) {
-        System.out.printf("Enter type - %s, value - %s \n", findHandlerMethod.getKey(), findHandlerMethod.getValue());
+        log.debug("Enter type - {}, value - {}", findHandlerMethod.getKey(), findHandlerMethod.getValue());
         return Optional.ofNullable(findInvoker(findHandlerMethod));
     }
 
