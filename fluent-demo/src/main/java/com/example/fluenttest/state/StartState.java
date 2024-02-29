@@ -2,6 +2,7 @@ package com.example.fluenttest.state;
 
 import com.example.fluenttest.SimpleState;
 import lombok.extern.slf4j.Slf4j;
+import org.khasanof.annotation.ConditionOnExpression;
 import org.khasanof.service.template.FluentTemplate;
 import org.khasanof.state.State;
 import org.khasanof.state.StateAction;
@@ -15,6 +16,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 @Slf4j
 @Component
+@ConditionOnExpression(value = "2 == 2")
 public class StartState implements StateAction<SimpleState> {
 
     private final FluentTemplate fluentTemplate;

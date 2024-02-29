@@ -63,7 +63,8 @@ public class FluentController {
         fluentTemplate.sendText(text);
     }
 
-
+    @ConditionOnExpression("1 == 1")
+    @ConditionOnExpression("2 == 2")
     @HandleMessage(value = "/start", match = MatchType.START_WITH)
     public void fluent(Update update) {
         Attributes attributes = FluentContextHolder.getAttributes();

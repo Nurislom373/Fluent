@@ -23,6 +23,10 @@ public class DefaultAnnotatedTypeMetadata implements AnnotatedTypeMetadata {
 
     @Override
     public <T> T getAnnotationCast() {
-        return (T) annotation;
+        try {
+            return (T) annotation;
+        } catch (RuntimeException e) {
+            return null;
+        }
     }
 }

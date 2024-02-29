@@ -4,6 +4,7 @@ import org.khasanof.collector.DefaultStateMethodContext;
 import org.khasanof.collector.StateMethodContext;
 import org.khasanof.collector.loader.HandlerLoader;
 import org.khasanof.factories.invoker.StateInvokerMethodFactory;
+import org.khasanof.service.interceptor.invoke.InvokerMethodInterceptorService;
 import org.khasanof.state.validator.StateValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +24,10 @@ public class StateMethodContextConfiguration {
      * @return {@link StateMethodContext} bean
      */
     @Bean(DefaultStateMethodContext.NAME)
-    public StateMethodContext stateMethodContext(HandlerLoader resourceLoader, StateValidator stateValidator) {
-        return new DefaultStateMethodContext(resourceLoader, stateValidator, new StateInvokerMethodFactory());
+    public StateMethodContext stateMethodContext(HandlerLoader resourceLoader,
+                                                 StateValidator stateValidator,
+                                                 InvokerMethodInterceptorService interceptorService) {
+
+        return new DefaultStateMethodContext(resourceLoader, stateValidator, new StateInvokerMethodFactory(interceptorService));
     }
 }

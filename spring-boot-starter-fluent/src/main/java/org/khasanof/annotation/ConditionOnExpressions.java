@@ -1,6 +1,8 @@
 package org.khasanof.annotation;
 
+import org.khasanof.annotation.condition.Condition;
 import org.khasanof.annotation.process.ProcessCondition;
+import org.khasanof.feature.expression.FluentExpressionCondition;
 
 import java.lang.annotation.*;
 
@@ -12,6 +14,7 @@ import java.lang.annotation.*;
 @Documented
 @ProcessCondition
 @Retention(RetentionPolicy.RUNTIME)
+@Condition(FluentExpressionCondition.class)
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface ConditionOnExpressions {
 

@@ -6,8 +6,10 @@ import org.khasanof.condition.Condition;
 import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.models.invoker.SimpleInvoker;
+import org.khasanof.service.interceptor.invoker.PostFindInvokerInterceptorService;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.repository.StateRepositoryStrategy;
+import org.khasanof.utils.InvokerUtils;
 import org.khasanof.utils.UpdateUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -17,6 +19,8 @@ import org.telegram.telegrambots.meta.api.objects.User;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.BiConsumer;
+
+import static org.khasanof.utils.InvokerUtils.hasCondition;
 
 /**
  * @author Nurislom
@@ -29,9 +33,13 @@ public class HandleStateFunction implements DeterminationFunction {
 
     public static final String NAME = "handleStateFunction";
     private final ContextOperationExecutor operationExecutor;
+    private final PostFindInvokerInterceptorService invokerInterceptorService;
 
-    public HandleStateFunction(ContextOperationExecutor operationExecutor) {
+    public HandleStateFunction(ContextOperationExecutor operationExecutor,
+                               PostFindInvokerInterceptorService invokerInterceptorService) {
+
         this.operationExecutor = operationExecutor;
+        this.invokerInterceptorService = invokerInterceptorService;
     }
 
     @Override
@@ -58,11 +66,16 @@ public class HandleStateFunction implements DeterminationFunction {
     private void findHandlerObject(Set<SimpleInvoker> invokerResults, StateRepositoryStrategy repository, Long id) {
         repository.findById(id)
                 .flatMap(state -> operationExecutor.execute(FindHandlerObjectOperation.class, state.getState()))
-                .ifPresent(simpleInvoker -> {
-                    invokerResults.add(simpleInvoker);
-                    Condition.isTrueThen(isNotProcessedUpdates(simpleInvoker))
-                            .thenCall(() -> FluentThreadLocalContext.determinationServiceBoolean.set(true));
-                });
+                .ifPresent(simpleInvoker -> checkConditionThenAddResult(invokerResults, simpleInvoker));
+    }
+
+    private void checkConditionThenAddResult(Set<SimpleInvoker> invokerResults, SimpleInvoker simpleInvoker) {
+        if (hasCondition(simpleInvoker) && !invokerInterceptorService.intercept(simpleInvoker)) {
+            return;
+        }
+        invokerResults.add(simpleInvoker);
+        Condition.isTrueThen(isNotProcessedUpdates(simpleInvoker))
+                .thenCall(() -> FluentThreadLocalContext.determinationServiceBoolean.set(true));
     }
 
     private boolean isNotProcessedUpdates(SimpleInvoker result) {
