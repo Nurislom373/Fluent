@@ -4,8 +4,7 @@ import org.khasanof.collector.DefaultStateMethodContext;
 import org.khasanof.collector.StateMethodContext;
 import org.khasanof.collector.loader.HandlerLoader;
 import org.khasanof.factories.invoker.StateInvokerMethodFactory;
-import org.khasanof.state.collector.StateValidator;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.khasanof.state.validator.StateValidator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,8 +16,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class StateMethodContextConfiguration {
 
+    /**
+     *
+     * @param resourceLoader
+     * @param stateValidator
+     * @return {@link StateMethodContext} bean
+     */
     @Bean(DefaultStateMethodContext.NAME)
-//    @ConditionalOnBean({HandlerLoader.class, StateValidator.class})
     public StateMethodContext stateMethodContext(HandlerLoader resourceLoader, StateValidator stateValidator) {
         return new DefaultStateMethodContext(resourceLoader, stateValidator, new StateInvokerMethodFactory());
     }

@@ -9,10 +9,10 @@ import java.util.EnumSet;
  * @see org.khasanof.state.collector
  * @since 10/7/2023 9:27 PM
  */
-@Component(SimpleStateConfigCollector.NAME)
-public class SimpleStateConfigCollector implements StateConfigCollector {
+@Component(DefaultStateConfigCollector.NAME)
+public class DefaultStateConfigCollector implements StateConfigCollector {
 
-    public static final String NAME = "simpleStateConfigCollector";
+    public static final String NAME = "defaultStateConfigCollector";
 
     private Enum initial;
     private EnumSet states;

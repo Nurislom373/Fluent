@@ -5,9 +5,8 @@ import org.khasanof.collector.loader.HandlerLoader;
 import org.khasanof.factories.invoker.method.InvokerMethodFactory;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.state.StateAction;
-import org.khasanof.state.collector.StateValidator;
+import org.khasanof.state.validator.StateValidator;
 import org.khasanof.utils.MethodUtils;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;

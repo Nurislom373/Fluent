@@ -8,7 +8,7 @@ import lombok.AllArgsConstructor;
  * @since 8/20/2023 5:26 PM
  */
 @AllArgsConstructor
-public class StateImpl implements State {
+public class DefaultState implements State {
 
     private Enum state;
 

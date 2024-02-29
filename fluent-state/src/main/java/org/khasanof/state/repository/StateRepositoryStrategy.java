@@ -22,14 +22,41 @@ public interface StateRepositoryStrategy {
      */
     Optional<State> findById(Long id);
 
+    /**
+     *
+     * @return
+     */
     Map<Long, State> getStates();
 
+    /**
+     *
+     * @param id
+     * @param state
+     */
     void addState(Long id, State state);
 
+    /**
+     *
+     * @param id
+     */
     void addState(Long id);
 
+    /**
+     *
+     * @param id
+     */
+    void removeState(Long id);
+
+    /**
+     *
+     * @param id
+     * @return
+     */
     boolean existById(Long id);
 
+    /**
+     *
+     * @return
+     */
     long count();
-
 }

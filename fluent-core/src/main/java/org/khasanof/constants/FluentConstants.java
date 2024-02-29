@@ -9,6 +9,8 @@ import java.util.Set;
  */
 public abstract class FluentConstants {
 
+    public static final String BASE_PACKAGE = "org.khasanof";
+
     // Orders
     public static final int HIGH_ORDER = 1;
     public static final int DEFAULT_ORDER = 5;

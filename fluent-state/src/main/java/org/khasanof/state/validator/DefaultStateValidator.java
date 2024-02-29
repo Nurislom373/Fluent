@@ -1,14 +1,10 @@
-package org.khasanof.state.collector;
+package org.khasanof.state.validator;
 
 import lombok.extern.slf4j.Slf4j;
-import org.khasanof.GenericContains;
-import org.khasanof.collector.GenericMethodContext;
 import org.khasanof.exceptions.InvalidValidationException;
 import org.khasanof.state.StateAction;
-import org.springframework.stereotype.Component;
+import org.khasanof.state.collector.StateConfigCollector;
 
-import java.lang.reflect.Method;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -17,16 +13,16 @@ import java.util.Objects;
  * @since 8/19/2023 12:31 AM
  */
 @Slf4j
-@Component
 @SuppressWarnings({"rawtypes"})
-public class StateValidator {
+public class DefaultStateValidator implements StateValidator {
 
     private final StateConfigCollector stateConfigCollector;
 
-    public StateValidator(StateConfigCollector stateConfigCollector) {
+    public DefaultStateValidator(StateConfigCollector stateConfigCollector) {
         this.stateConfigCollector = stateConfigCollector;
     }
 
+    @Override
     public boolean valid(StateAction stateActions) {
         if (Objects.isNull(stateActions.state())) {
             log.warn("state must not be null in this class : {}", stateActions.getClass());
@@ -38,5 +34,4 @@ public class StateValidator {
         }
         return true;
     }
-
 }

@@ -29,7 +29,7 @@ public class FluentConfigRunner implements InitializingBean, Ordered {
 
     static {
         ClassLoader classLoader = FluentConfigRunner.class.getClassLoader();
-        statePresent = ClassUtils.isPresent("org.khasanof.FluentStateAutoConfiguration", classLoader);
+        statePresent = ClassUtils.isPresent("org.khasanof.FluentStateStarterAutoConfiguration", classLoader);
     }
 
     public FluentConfigRunner(ApplicationContext applicationContext, FluentProperties properties) {

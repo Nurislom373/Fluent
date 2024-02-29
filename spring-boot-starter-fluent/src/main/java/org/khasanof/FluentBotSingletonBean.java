@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 @Component(FluentBotSingletonBean.NAME)
 public class FluentBotSingletonBean extends GenericSingleton<FluentBot> {
 
+    /**
+     * {@link FluentBotSingletonBean} name
+     */
     public static final String NAME = "fluentBotSingletonBean";
-
 }

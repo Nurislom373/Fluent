@@ -1,6 +1,6 @@
 package com.example.fluenttest;
 
-import org.khasanof.state.StateConfigurerAdapter;
+import org.khasanof.StateConfigurerAdapter;
 import org.khasanof.state.configurer.StateConfigurer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

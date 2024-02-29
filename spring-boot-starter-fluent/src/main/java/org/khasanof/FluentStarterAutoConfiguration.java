@@ -1,6 +1,7 @@
 package org.khasanof;
 
 import org.khasanof.config.FluentProperties;
+import org.khasanof.constants.FluentConstants;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
 import org.springframework.boot.context.TypeExcludeFilter;
@@ -10,6 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
+
+import static org.khasanof.constants.FluentConstants.BASE_PACKAGE;
 
 /**
  * Author: Nurislom
@@ -22,8 +25,8 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
  */
 @EnableConfigurationProperties(value = {FluentProperties.class})
 @ComponentScan(excludeFilters = { @ComponentScan.Filter(type = FilterType.CUSTOM, classes = TypeExcludeFilter.class),
-        @ComponentScan.Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) }, basePackages = {"org.khasanof"})
-public class FluentStarter {
+        @ComponentScan.Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class) }, basePackages = {BASE_PACKAGE})
+public class FluentStarterAutoConfiguration {
 
     @Bean
     CommandLineRunner getRunner(UpdateHandlerManager handler, FluentProperties properties, FluentBotSingletonBean singletonBean) {
