@@ -27,10 +27,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public enum HandleAnnotation implements AnnotationHandler {
 
-    UNKNOWN(Annotation.class, false) {
+    HANDLE_UNKNOWN(HandleUnknown.class, false) {
         @Override
         public Class<? extends Annotation> getAnnotation() {
-            return Annotation.class;
+            return HandleUnknown.class;
         }
     },
     HANDLE_ANY(HandleAny.class, false) {

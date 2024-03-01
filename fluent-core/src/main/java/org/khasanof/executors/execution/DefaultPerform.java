@@ -32,7 +32,7 @@ public class DefaultPerform implements Perform {
         Method invokerMethod = simpleInvoker.getMethod();
 
         tryAccessWhenMethodNotPublic(invokerMethod);
-        invokerMethod.invoke(simpleInvoker.getReference(), FluentContextHolder.getCurrentUpdate().getUpdate());
+        invokerMethod.invoke(simpleInvoker.getReference(), FluentContextHolder.getCurrentFluentUpdate().getUpdate());
     }
 
     @Override

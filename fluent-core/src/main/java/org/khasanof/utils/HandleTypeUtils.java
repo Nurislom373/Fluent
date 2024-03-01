@@ -37,7 +37,7 @@ public abstract class HandleTypeUtils {
             case DOCUMENT -> HandleAnnotation.HANDLE_DOCUMENT;
             case VIDEO -> HandleAnnotation.HANDLE_VIDEO;
             case AUDIO -> HandleAnnotation.HANDLE_AUDIO;
-            default -> HandleAnnotation.UNKNOWN;
+            default -> HandleAnnotation.HANDLE_UNKNOWN;
         };
     }
 

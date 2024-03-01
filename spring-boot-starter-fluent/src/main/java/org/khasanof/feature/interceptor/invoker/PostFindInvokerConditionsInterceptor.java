@@ -58,7 +58,7 @@ public class PostFindInvokerConditionsInterceptor implements PostFindInvokerInte
 
     private Attributes createDefaultAttributes() {
         Attributes attributes = new DefaultAttributes();
-        attributes.setAttribute("update", FluentContextHolder.getCurrentUpdate().getUpdate());
+        attributes.setAttribute("update", FluentContextHolder.getCurrentFluentUpdate().getUpdate());
         return attributes;
     }
 

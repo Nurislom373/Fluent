@@ -23,7 +23,7 @@ public class PerformProcessFile extends AbstractPerform {
     @Override
     void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
         if (!simpleInvoker.getParams().containsKey(InvokerParam.ADDITIONAL_PARAM)) {
-            params.add(FluentContextHolder.getCurrentUpdate().getUpdate());
+            params.add(FluentContextHolder.getCurrentFluentUpdate().getUpdate());
             return;
         }
         internalFillParams(simpleInvoker, params);
@@ -41,7 +41,7 @@ public class PerformProcessFile extends AbstractPerform {
         }
 
         if (Objects.equals(parameterType, Update.class)) {
-            params.add(FluentContextHolder.getCurrentUpdate().getUpdate());
+            params.add(FluentContextHolder.getCurrentFluentUpdate().getUpdate());
         }
     }
 

@@ -1,9 +1,9 @@
 package org.khasanof.executors.determination;
 
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.khasanof.collector.context.ContextOperationExecutor;
 import org.khasanof.collector.context.operation.FindHandlerMethodOperation;
+import org.khasanof.enums.HandleAnnotation;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.executors.appropriate.determining.AppropriateDetermining;
 import org.khasanof.models.collector.FindHandlerMethod;
@@ -19,6 +19,7 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+import static org.khasanof.context.FluentContextHolder.getCurrentUpdate;
 import static org.khasanof.utils.InvokerUtils.hasCondition;
 
 /**
@@ -63,12 +64,18 @@ public class DeterminationHandleUpdateFunction implements DeterminationFunction 
         annotationHandlerService.findByAnnotationClass(appropriateMethod.getAnnotation())
                 .ifPresent(handler -> {
                     var handlerMethod = new FindHandlerMethod(appropriateMethod.getValue(), handler);
+
                     operationExecutor.execute(FindHandlerMethodOperation.class, handlerMethod)
-                            .ifPresentOrElse(getInvokerConsumer(invokerResults), () -> log.warn("Method not found!"));
+                            .ifPresentOrElse(getInvokerConsumer(invokerResults), methodNotFoundRunner(invokerResults));
                 });
     }
 
-    @NotNull
+    private Runnable methodNotFoundRunner(Set<SimpleInvoker> invokerResults) {
+        return () -> operationExecutor.execute(FindHandlerMethodOperation.class,
+                        new FindHandlerMethod(getCurrentUpdate(), HandleAnnotation.HANDLE_UNKNOWN))
+                .ifPresentOrElse(getInvokerConsumer(invokerResults), () -> log.warn("Method not found!"));
+    }
+
     private Consumer<SimpleInvoker> getInvokerConsumer(Set<SimpleInvoker> invokerResults) {
         return simpleInvoker -> {
             if (hasCondition(simpleInvoker) && !invokerInterceptorService.intercept(simpleInvoker)) {

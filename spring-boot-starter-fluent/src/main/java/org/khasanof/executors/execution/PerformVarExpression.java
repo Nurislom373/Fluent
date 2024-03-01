@@ -29,7 +29,7 @@ public class PerformVarExpression extends AbstractPerform {
 
     private void checkSimpleInvoker(SimpleInvoker simpleInvoker, List<Object> params) {
         if (invokerMethodFirstParamIsUpdate(simpleInvoker.getMethod())) {
-            params.add(FluentContextHolder.getCurrentUpdate().getUpdate());
+            params.add(FluentContextHolder.getCurrentFluentUpdate().getUpdate());
         }
     }
 

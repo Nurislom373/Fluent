@@ -22,7 +22,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -2510,7 +2509,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
     }
 
     protected Update getUpdate() {
-        return FluentContextHolder.getCurrentUpdate().getUpdate();
+        return FluentContextHolder.getCurrentFluentUpdate().getUpdate();
     }
 
     protected FluentBot getInstance() {

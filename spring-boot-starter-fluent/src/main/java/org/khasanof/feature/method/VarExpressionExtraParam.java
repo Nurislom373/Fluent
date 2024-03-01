@@ -28,7 +28,7 @@ public class VarExpressionExtraParam implements HandleMethodExtraParam {
 
     @Override
     public void execute(SimpleInvoker simpleInvoker) {
-        FluentUpdate currentUpdate = FluentContextHolder.getCurrentUpdate();
+        FluentUpdate currentUpdate = FluentContextHolder.getCurrentFluentUpdate();
         Map<String, String> matchVariables = getMatchVariables(simpleInvoker, currentUpdate);
         simpleInvoker.getParams().put(InvokerParam.ADDITIONAL_PARAM, matchVariables);
     }

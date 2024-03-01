@@ -28,7 +28,7 @@ public class ProcessFileExtraParam implements HandleMethodExtraParam {
 
     @Override
     public void execute(SimpleInvoker simpleInvoker) {
-        FluentUpdate currentUpdate = FluentContextHolder.getCurrentUpdate();
+        FluentUpdate currentUpdate = FluentContextHolder.getCurrentFluentUpdate();
         simpleInvoker.getParams().put(InvokerParam.ADDITIONAL_PARAM, getFileInputStream(currentUpdate));
     }
 

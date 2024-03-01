@@ -27,7 +27,7 @@ public class ExceptionPerform extends AbstractPerform {
 
     private void matchThenAdd(SimpleInvoker simpleInvoker, Class<?> parameterType, List<Object> params) {
         if (Objects.equals(parameterType, Update.class)) {
-            params.add(FluentContextHolder.getCurrentUpdate().getUpdate());
+            params.add(FluentContextHolder.getCurrentFluentUpdate().getUpdate());
             return;
         }
 

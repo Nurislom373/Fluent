@@ -30,7 +30,7 @@ public class TestMessageHandler {
 
     @HandleAny(type = HandleType.MESSAGE)
     private void handleAnyMessages() {
-        Attributes attributes = FluentContextHolder.getAttributes();
+        Attributes attributes = FluentContextHolder.getCurrentAttributes();
         attributes.setAttribute("foo", "bar");
         String text = "I'm handle any messages";
         fluentTemplate.sendText(text);
@@ -38,7 +38,7 @@ public class TestMessageHandler {
 
     @HandleMessage(value = "/start", match = MatchType.START_WITH)
     public void fluent(Update update) {
-        Attributes attributes = FluentContextHolder.getAttributes();
+        Attributes attributes = FluentContextHolder.getCurrentAttributes();
         String text = update.getMessage().getText();
         fluentTemplate.sendText(text);
     }

@@ -3,6 +3,7 @@ package org.khasanof.context;
 import lombok.Getter;
 import org.khasanof.custom.attributes.Attributes;
 import org.khasanof.factories.context.DefaultFluentUpdateContextFactory;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 /**
  * @author Nurislom
@@ -14,17 +15,32 @@ public abstract class FluentContextHolder {
     @Getter
     private static final FluentUpdateContext context = DefaultFluentUpdateContextFactory.create();
 
-    public static FluentUpdate getCurrentUpdate() {
-        return context.getFluentUpdate(getThreadName())
-                .orElseThrow(() -> new RuntimeException("UpdateContext not found!"));
+    /**
+     *
+     * @return current {@link Update}
+     */
+    public static Update getCurrentUpdate() {
+        return getCurrentFluentUpdate().getUpdate();
     }
 
-    public static Attributes getAttributes() {
-        return getCurrentUpdate().getAttributes();
+    /**
+     *
+     * @return current {@link Attributes}
+     */
+    public static Attributes getCurrentAttributes() {
+        return getCurrentFluentUpdate().getAttributes();
+    }
+
+    /**
+     *
+     * @return current {@link FluentUpdate}
+     */
+    public static FluentUpdate getCurrentFluentUpdate() {
+        return context.getFluentUpdate(getThreadName())
+                .orElseThrow(() -> new RuntimeException("UpdateContext not found!"));
     }
 
     private static String getThreadName() {
         return Thread.currentThread().getName();
     }
-
 }
