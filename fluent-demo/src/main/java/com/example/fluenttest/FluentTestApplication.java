@@ -19,5 +19,4 @@ public class FluentTestApplication implements StateConfigurerAdapter<SimpleState
         state.initial(SimpleState.START)
                 .states(EnumSet.allOf(SimpleState.class));
     }
-
 }

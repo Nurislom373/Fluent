@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 
+import static org.khasanof.context.FluentContextHolder.getCurrentUpdate;
 import static org.khasanof.utils.BaseUtils.notNull;
 
 /**
@@ -2509,7 +2510,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
     }
 
     protected Update getUpdate() {
-        return FluentContextHolder.getCurrentFluentUpdate().getUpdate();
+        return getCurrentUpdate();
     }
 
     protected FluentBot getInstance() {

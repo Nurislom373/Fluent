@@ -1,5 +1,6 @@
 package com.example.fluenttest.custom;
 
+import com.example.fluenttest.custom.annotation.HandleStickerRegistry;
 import jakarta.annotation.PostConstruct;
 import org.khasanof.registry.handler.HandlerAnnotationRegistryContainer;
 import org.springframework.context.annotation.Configuration;

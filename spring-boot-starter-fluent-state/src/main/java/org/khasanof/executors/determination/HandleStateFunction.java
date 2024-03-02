@@ -9,7 +9,6 @@ import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.service.interceptor.invoker.PostFindInvokerInterceptorService;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.repository.StateRepositoryStrategy;
-import org.khasanof.utils.InvokerUtils;
 import org.khasanof.utils.UpdateUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;

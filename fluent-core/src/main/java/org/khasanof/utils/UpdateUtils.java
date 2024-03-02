@@ -28,7 +28,7 @@ public abstract class UpdateUtils {
         } else if (update.hasCallbackQuery()) {
             return update.getCallbackQuery().getFrom().getId();
         }
-        return Long.MIN_VALUE;
+        return null;
     }
 
     /**
@@ -99,8 +99,27 @@ public abstract class UpdateUtils {
     public static User getFrom(Update update) {
         if (update.hasMessage()) {
             return update.getMessage().getFrom();
-        } else if (update.hasCallbackQuery()) {
+        }
+        if (update.hasCallbackQuery()) {
             return update.getCallbackQuery().getFrom();
+        }
+        if (update.hasEditedMessage()) {
+            return update.getEditedMessage().getFrom();
+        }
+        if (update.hasEditedChannelPost()) {
+            return update.getEditedChannelPost().getFrom();
+        }
+        if (update.hasInlineQuery()) {
+            return update.getInlineQuery().getFrom();
+        }
+        if (update.hasChosenInlineQuery()) {
+            return update.getChosenInlineQuery().getFrom();
+        }
+        if (update.hasMyChatMember()) {
+            return update.getChatMember().getFrom();
+        }
+        if (update.hasPollAnswer()) {
+            return update.getPollAnswer().getUser();
         }
         return null;
     }

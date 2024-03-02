@@ -2,7 +2,6 @@ package org.khasanof.collector.context.operation;
 
 import org.khasanof.collector.StateMethodContext;
 import org.khasanof.collector.context.ContextOperation;
-import org.khasanof.factories.invoker.method.InvokerMethodFactory;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.springframework.stereotype.Component;
 
@@ -27,5 +26,4 @@ public class FindHandlerObjectOperation implements ContextOperation<Enum, Option
     public Optional<SimpleInvoker> execute(Enum state) {
         return methodContext.find(state);
     }
-
 }

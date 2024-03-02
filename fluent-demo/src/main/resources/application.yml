@@ -3,3 +3,14 @@ fluent:
     token: 5101184142:AAF2StFB5HciO6N4--eh3mDP6RJ4Helmooo
     username: '@lunch_pdp_bot'
     process-type: both
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    jdbc-url: jdbc:postgresql://localhost:5432/fluent
+    username: fluent
+    password: 123
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show-sql: true

@@ -1,6 +1,6 @@
 package com.example.fluenttest;
 
-import com.example.fluenttest.custom.HandleSticker;
+import com.example.fluenttest.custom.annotation.HandleSticker;
 import org.khasanof.annotation.UpdateController;
 import org.khasanof.service.template.FluentTemplate;
 
