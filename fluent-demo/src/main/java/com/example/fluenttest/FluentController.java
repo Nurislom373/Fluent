@@ -13,6 +13,8 @@ import org.khasanof.enums.scopes.DocumentScope;
 import org.khasanof.enums.scopes.PhotoScope;
 import org.khasanof.enums.scopes.VideoScope;
 import org.khasanof.service.template.FluentTemplate;
+import org.khasanof.utils.keyboards.inline.InlineKeyboardMarkupBuilder;
+import org.khasanof.utils.keyboards.reply.ReplyKeyboardMarkupBuilder;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.io.InputStream;
@@ -70,6 +72,41 @@ public class FluentController {
     @HandleDocument(value = "caption:", match = MatchType.START_WITH, property = DocumentScope.CAPTION)
     public void handleDocumentCaption() {
         fluentTemplate.sendText("Handle start with 'caption:' text document");
+    }
+
+    @HandleMessage(value = "/button")
+    public void handleButtonCommand() {
+        InlineKeyboardMarkupBuilder builder = new InlineKeyboardMarkupBuilder();
+
+        builder.addButton("First")
+                .callbackData("First");
+        builder.addButton("Second")
+                .callbackData("Second");
+
+        builder.addRow();
+
+        builder.addButton("Third")
+                .callbackData("Third");
+        builder.addButton("Fourth")
+                .callbackData("Fourth");
+
+        fluentTemplate.sendText("This is inline button", builder.build());
+    }
+
+    @HandleMessage(value = "/reply")
+    public void handleReplyCommand() {
+        ReplyKeyboardMarkupBuilder builder = new ReplyKeyboardMarkupBuilder();
+        builder.oneTimeKeyboard(true);
+
+        builder.addButton("First");
+        builder.addButton("Second");
+
+        builder.addRow();
+
+        builder.addButton("Third");
+        builder.addButton("Fourth");
+
+        fluentTemplate.sendText("This is reply button", builder.build());
     }
 
     @ConditionOnExpression("1 == 1")

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @since 24.06.2023 1:00
  */
 @Component
-public class SimpleMessagesMatcher extends MultiGenericMatcher<HandleMessages, HandleMessage, String> {
+public class SimpleMessagesMatcher extends MultiGenericMatcher<HandleMessages, String> {
 
     protected SimpleMessagesMatcher(GenericMatcher<HandleMessage, String> matcher, MultiExpressionMatcherService multiExpressionMatcherService) {
         super(matcher, multiExpressionMatcherService);

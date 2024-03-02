@@ -13,7 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
  * @since 06.07.2023 22:57
  */
 @Component
-public class SimplePhotosMatcher extends MultiGenericMatcher<HandlePhotos, HandlePhoto, Message> {
+public class SimplePhotosMatcher extends MultiGenericMatcher<HandlePhotos, Message> {
 
     public SimplePhotosMatcher(GenericMatcher<HandlePhoto, Message> matcher, MultiExpressionMatcherService expressionMatcherService) {
         super(matcher, expressionMatcherService);

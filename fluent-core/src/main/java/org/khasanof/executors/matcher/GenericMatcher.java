@@ -4,8 +4,6 @@ import org.khasanof.service.expression.ExpressionMatcherService;
 
 import java.lang.annotation.Annotation;
 
-import static org.khasanof.utils.BaseUtils.getFirstGenericType;
-
 /**
  * Author: Nurislom
  * <br/>
@@ -15,17 +13,11 @@ import static org.khasanof.utils.BaseUtils.getFirstGenericType;
  * <br/>
  * Package: org.khasanof.core.executors.matcher
  */
-public abstract class GenericMatcher<T extends Annotation, V> {
+public abstract class GenericMatcher<T extends Annotation, V> implements AbstractMatcher<T, V>{
 
     protected final ExpressionMatcherService expressionMatcherService;
 
     public GenericMatcher(ExpressionMatcherService expressionMatcherService) {
         this.expressionMatcherService = expressionMatcherService;
-    }
-
-    public abstract boolean matcher(T annotation, V value);
-
-    public Class<T> getType() {
-        return getFirstGenericType(getClass());
     }
 }

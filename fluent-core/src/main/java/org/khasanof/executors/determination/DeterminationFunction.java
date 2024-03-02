@@ -18,5 +18,4 @@ public interface DeterminationFunction extends DefineProcessType {
     BiConsumer<Update, Set<SimpleInvoker>> getConsumer(ApplicationContext applicationContext);
 
     Integer getOrder();
-
 }

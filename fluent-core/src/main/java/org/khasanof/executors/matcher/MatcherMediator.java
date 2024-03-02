@@ -21,7 +21,7 @@ import java.util.Map;
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class MatcherMediator implements InitializingBean {
 
-    private final Map<Class<? extends Annotation>, GenericMatcher> matchers = new HashMap<>();
+    private final Map<Class<? extends Annotation>, AbstractMatcher> matchers = new HashMap<>();
     private final ApplicationContext applicationContext;
 
     public MatcherMediator(ApplicationContext applicationContext) {
@@ -44,11 +44,11 @@ public class MatcherMediator implements InitializingBean {
     }
 
     private void internalAfterPropertiesSet() {
-        applicationContext.getBeansOfType(GenericMatcher.class)
+        applicationContext.getBeansOfType(AbstractMatcher.class)
                 .forEach((beanName, bean) -> addMatcher(bean));
     }
 
-    private void addMatcher(GenericMatcher instance) {
+    private void addMatcher(AbstractMatcher instance) {
         if (!Modifier.isAbstract(instance.getClass().getModifiers())) {
             matchers.put(instance.getType(), instance);
         }

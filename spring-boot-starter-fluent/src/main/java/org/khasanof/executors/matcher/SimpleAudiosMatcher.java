@@ -13,9 +13,9 @@ import org.telegram.telegrambots.meta.api.objects.Message;
  * @since 09.07.2023 16:08
  */
 @Component
-public class SimpleAudiosMatcher extends MultiGenericMatcher<HandleAudios, HandleAudio, Message> {
+public class SimpleAudiosMatcher extends MultiGenericMatcher<HandleAudios, Message> {
 
-    public SimpleAudiosMatcher(SimpleAudioMatcher matcher, MultiExpressionMatcherService expressionMatcherService) {
+    public SimpleAudiosMatcher(GenericMatcher<HandleAudio, Message> matcher, MultiExpressionMatcherService expressionMatcherService) {
         super(matcher, expressionMatcherService);
     }
 

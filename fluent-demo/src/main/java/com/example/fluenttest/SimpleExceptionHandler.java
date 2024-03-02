@@ -16,7 +16,8 @@ public class SimpleExceptionHandler {
 
     @HandleException({RuntimeException.class})
     public void handleRuntimeException(RuntimeException exception) {
-        log.info("Exception handle : {}", exception.getMessage());
+        exception.printStackTrace();
+        log.info("Exception handle!!!");
     }
 
 }
