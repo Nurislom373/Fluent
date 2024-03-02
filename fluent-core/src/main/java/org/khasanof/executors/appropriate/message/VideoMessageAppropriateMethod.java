@@ -18,6 +18,6 @@ public class VideoMessageAppropriateMethod extends AbstractMessageAppropriateMet
 
     @Override
     public AppropriateMethod getAppropriate(Message message) {
-        return createAppropriateMethod(HandleVideo.class, message.getVideo());
+        return createAppropriateMethod(HandleVideo.class, message);
     }
 }

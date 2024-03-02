@@ -1,8 +1,7 @@
 package org.khasanof.config.service.expression;
 
-import org.jetbrains.annotations.NotNull;
 import org.khasanof.enums.MatchType;
-import org.khasanof.models.matcher.MatcherFunction;
+import org.khasanof.models.matcher.function.MatcherFunction;
 import org.khasanof.models.matcher.MatcherModel;
 import org.khasanof.registry.expression.DefaultExpressionMatcherRegistry;
 import org.khasanof.registry.expression.ExpressionMatcherRegistry;

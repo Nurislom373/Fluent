@@ -2,11 +2,10 @@ package org.khasanof.executors.matcher;
 
 import org.khasanof.annotation.methods.HandlePhoto;
 import org.khasanof.annotation.methods.HandlePhotos;
-import org.khasanof.config.ApplicationConstants;
+import org.khasanof.models.matcher.RepeatableMatcherParameters;
+import org.khasanof.service.expression.MultiExpressionMatcherService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Message;
-
-import java.util.Arrays;
 
 /**
  * @author Nurislom
@@ -16,18 +15,12 @@ import java.util.Arrays;
 @Component
 public class SimplePhotosMatcher extends MultiGenericMatcher<HandlePhotos, HandlePhoto, Message> {
 
-    public SimplePhotosMatcher(GenericMatcher<HandlePhoto, Message> matcher) {
-        super(matcher, ApplicationConstants.MATCHER_MAP);
+    public SimplePhotosMatcher(GenericMatcher<HandlePhoto, Message> matcher, MultiExpressionMatcherService expressionMatcherService) {
+        super(matcher, expressionMatcherService);
     }
 
     @Override
     public boolean matcher(HandlePhotos annotation, Message value) {
-        return Arrays.stream(annotation.value())
-                .anyMatch(handlePhoto -> matcher.matcher(handlePhoto, value));
-    }
-
-    @Override
-    public Class<HandlePhotos> getType() {
-        return HandlePhotos.class;
+        return expressionMatcherService.match(new RepeatableMatcherParameters(annotation.match(), annotation.value(), matcher, value));
     }
 }

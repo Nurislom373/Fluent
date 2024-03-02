@@ -1,15 +1,17 @@
 package org.khasanof.executors.matcher;
 
 import org.khasanof.annotation.methods.HandleAudio;
-import org.khasanof.config.ApplicationConstants;
 import org.khasanof.enums.scopes.AudioScope;
+import org.khasanof.models.matcher.MatcherParameters;
 import org.khasanof.models.matcher.MatcherProperty;
-import org.khasanof.models.matcher.PropertyFunction;
+import org.khasanof.models.matcher.function.PropertyFunction;
+import org.khasanof.service.expression.ExpressionMatcherService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.Audio;
+import org.telegram.telegrambots.meta.api.objects.Message;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Function;
 
 /**
@@ -18,35 +20,35 @@ import java.util.function.Function;
  * @since 09.07.2023 16:04
  */
 @Component
-public class SimpleAudioMatcher extends GenericMatcher<HandleAudio, Audio> {
+public class SimpleAudioMatcher extends GenericMatcher<HandleAudio, Message> {
 
-    private final Map<AudioScope, Function<Audio, Object>> biFunctionMap = new HashMap<>();
+    private final Set<MatcherProperty> matcherProperties = new HashSet<>();
 
-    {
-        setBiFunctionMap();
-    }
-
-    public SimpleAudioMatcher() {
-        super(ApplicationConstants.MATCHER_MAP);
+    public SimpleAudioMatcher(ExpressionMatcherService expressionMatcherService) {
+        super(expressionMatcherService);
+        fillMatcherProperties();
     }
 
     @Override
-    public boolean matcher(HandleAudio annotation, Audio value) {
-        Object apply = biFunctionMap.get(annotation.scope()).apply(value);
-        return matchFunctions.get(Map.entry(annotation.match(), getMatchType(apply, annotation.match())))
-                .apply(annotation.value(), apply);
+    public boolean matcher(HandleAudio annotation, Message value) {
+        return expressionMatcherService.match(createParameters(annotation, value));
     }
 
-    void setBiFunctionMap() {
-        biFunctionMap.put(AudioScope.FILE_NAME, Audio::getFileName);
-        biFunctionMap.put(AudioScope.FILE_SIZE, Audio::getFileSize);
-        biFunctionMap.put(AudioScope.TITLE, Audio::getTitle);
-        biFunctionMap.put(AudioScope.PERFORMER, Audio::getPerformer);
-        biFunctionMap.put(AudioScope.DURATION, Audio::getDuration);
-        biFunctionMap.put(AudioScope.MIME_TYPE, Audio::getMimeType);
+    private MatcherParameters createParameters(HandleAudio annotation, Message value) {
+        return new MatcherParameters(value, annotation.property(), annotation.match(), annotation.value(), matcherProperties);
+    }
 
-        MatcherProperty matcherProperty = new MatcherProperty();
-        matcherProperty.setProperty(AudioScope.FILE_NAME);
-        matcherProperty.setFunction((PropertyFunction<Audio>) Audio::getFileName);
+    void fillMatcherProperties() {
+        matcherProperties.add(new MatcherProperty(AudioScope.TITLE, audioPropertyFunction(Audio::getTitle)));
+        matcherProperties.add(new MatcherProperty(AudioScope.DURATION, audioPropertyFunction(Audio::getDuration)));
+        matcherProperties.add(new MatcherProperty(AudioScope.FILE_NAME, audioPropertyFunction(Audio::getFileName)));
+        matcherProperties.add(new MatcherProperty(AudioScope.FILE_SIZE, audioPropertyFunction(Audio::getFileSize)));
+        matcherProperties.add(new MatcherProperty(AudioScope.MIME_TYPE, audioPropertyFunction(Audio::getMimeType)));
+        matcherProperties.add(new MatcherProperty(AudioScope.PERFORMER, audioPropertyFunction(Audio::getPerformer)));
+        matcherProperties.add(new MatcherProperty(AudioScope.CAPTION, (PropertyFunction<Message>) Message::getCaption));
+    }
+
+    private PropertyFunction<Message> audioPropertyFunction(Function<Audio, Object> function) {
+        return message -> function.apply(message.getAudio());
     }
 }

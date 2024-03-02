@@ -25,6 +25,5 @@ public @interface HandlePhoto {
 
     MatchType match() default MatchType.EQUALS;
 
-    PhotoScope scope() default PhotoScope.FILE_SIZE;
-
+    PhotoScope property() default PhotoScope.CAPTION;
 }

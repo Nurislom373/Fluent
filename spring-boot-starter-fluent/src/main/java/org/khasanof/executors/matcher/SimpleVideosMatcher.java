@@ -2,11 +2,10 @@ package org.khasanof.executors.matcher;
 
 import org.khasanof.annotation.methods.HandleVideo;
 import org.khasanof.annotation.methods.HandleVideos;
-import org.khasanof.config.ApplicationConstants;
+import org.khasanof.models.matcher.RepeatableMatcherParameters;
+import org.khasanof.service.expression.MultiExpressionMatcherService;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.objects.Video;
-
-import java.util.Arrays;
+import org.telegram.telegrambots.meta.api.objects.Message;
 
 /**
  * @author Nurislom
@@ -14,22 +13,14 @@ import java.util.Arrays;
  * @since 06.07.2023 23:42
  */
 @Component
-public class SimpleVideosMatcher extends MultiGenericMatcher<HandleVideos, HandleVideo, Video> {
+public class SimpleVideosMatcher extends MultiGenericMatcher<HandleVideos, HandleVideo, Message> {
 
-    public SimpleVideosMatcher(GenericMatcher<HandleVideo, Video> matcher) {
-        super(matcher, ApplicationConstants.MATCHER_MAP);
+    public SimpleVideosMatcher(GenericMatcher<HandleVideo, Message> matcher, MultiExpressionMatcherService expressionMatcherService) {
+        super(matcher, expressionMatcherService);
     }
 
     @Override
-    public boolean matcher(HandleVideos annotation, Video value) {
-        return multiMatchScopeFunctionMap.get(annotation.match())
-                .apply(Arrays.stream(annotation.value()),
-                        (handleVideo -> matcher.matcher(handleVideo, value)));
+    public boolean matcher(HandleVideos annotation, Message value) {
+        return expressionMatcherService.match(new RepeatableMatcherParameters(annotation.match(), annotation.value(), matcher, value));
     }
-
-    @Override
-    public Class<HandleVideos> getType() {
-        return HandleVideos.class;
-    }
-
 }

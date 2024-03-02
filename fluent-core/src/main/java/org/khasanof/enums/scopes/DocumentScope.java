@@ -6,5 +6,6 @@ package org.khasanof.enums.scopes;
  * @since 28.06.2023 10:23
  */
 public enum DocumentScope {
-    FILE_NAME, MIME_TYPE, FILE_SIZE
+
+    CAPTION, FILE_NAME, MIME_TYPE, FILE_SIZE
 }

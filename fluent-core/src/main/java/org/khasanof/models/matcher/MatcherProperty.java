@@ -1,6 +1,7 @@
 package org.khasanof.models.matcher;
 
 import lombok.*;
+import org.khasanof.models.matcher.function.PropertyFunction;
 
 /**
  * @author Nurislom

@@ -25,6 +25,6 @@ public @interface HandleAudio {
 
     MatchType match() default MatchType.EQUALS;
 
-    AudioScope scope() default AudioScope.FILE_NAME;
+    AudioScope property() default AudioScope.FILE_NAME;
 
 }

@@ -25,5 +25,4 @@ public @interface HandleAudios {
     HandleAudio[] value();
 
     RepeatableMatchType match() default RepeatableMatchType.ANY_MATCH;
-
 }

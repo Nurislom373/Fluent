@@ -1,4 +1,4 @@
-package org.khasanof.models.matcher;
+package org.khasanof.models.matcher.function;
 
 import java.util.function.Function;
 

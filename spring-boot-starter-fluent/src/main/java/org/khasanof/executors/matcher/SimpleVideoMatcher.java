@@ -1,13 +1,17 @@
 package org.khasanof.executors.matcher;
 
 import org.khasanof.annotation.methods.HandleVideo;
-import org.khasanof.config.ApplicationConstants;
 import org.khasanof.enums.scopes.VideoScope;
+import org.khasanof.models.matcher.MatcherParameters;
+import org.khasanof.models.matcher.MatcherProperty;
+import org.khasanof.models.matcher.function.PropertyFunction;
+import org.khasanof.service.expression.ExpressionMatcherService;
 import org.springframework.stereotype.Component;
+import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Video;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Function;
 
 /**
@@ -16,36 +20,35 @@ import java.util.function.Function;
  * @since 06.07.2023 23:34
  */
 @Component
-public class SimpleVideoMatcher extends GenericMatcher<HandleVideo, Video> {
+public class SimpleVideoMatcher extends GenericMatcher<HandleVideo, Message> {
 
-    private final Map<VideoScope, Function<Video, Object>> biFunctionMap = new HashMap<>();
+    private final Set<MatcherProperty> matcherProperties = new HashSet<>();
 
-    {
-        setBiFunctionMap();
-    }
-
-    public SimpleVideoMatcher() {
-        super(ApplicationConstants.MATCHER_MAP);
+    public SimpleVideoMatcher(ExpressionMatcherService expressionMatcherService) {
+        super(expressionMatcherService);
+        fillMatcherProperties();
     }
 
     @Override
-    public boolean matcher(HandleVideo annotation, Video value) {
-        Object apply = biFunctionMap.get(annotation.scope()).apply(value);
-        return matchFunctions.get(Map.entry(annotation.match(), getMatchType(apply, annotation.match())))
-                .apply(annotation.value(), apply);
+    public boolean matcher(HandleVideo annotation, Message value) {
+        return expressionMatcherService.match(createParameters(annotation, value));
     }
 
-    @Override
-    public Class<HandleVideo> getType() {
-        return HandleVideo.class;
+    private MatcherParameters createParameters(HandleVideo annotation, Message value) {
+        return new MatcherParameters(value, annotation.property(), annotation.match(), annotation.value(), matcherProperties);
     }
 
-    void setBiFunctionMap() {
-        biFunctionMap.put(VideoScope.HEIGHT, Video::getHeight);
-        biFunctionMap.put(VideoScope.WIDTH, Video::getWidth);
-        biFunctionMap.put(VideoScope.DURATION, Video::getDuration);
-        biFunctionMap.put(VideoScope.FILE_NAME, Video::getFileName);
-        biFunctionMap.put(VideoScope.MIME_TYPE, Video::getMimeType);
-        biFunctionMap.put(VideoScope.FILE_SIZE, Video::getFileSize);
+    void fillMatcherProperties() {
+        matcherProperties.add(new MatcherProperty(VideoScope.WIDTH, videoPropertyFunction(Video::getWidth)));
+        matcherProperties.add(new MatcherProperty(VideoScope.HEIGHT, videoPropertyFunction(Video::getHeight)));
+        matcherProperties.add(new MatcherProperty(VideoScope.DURATION, videoPropertyFunction(Video::getDuration)));
+        matcherProperties.add(new MatcherProperty(VideoScope.FILE_NAME, videoPropertyFunction(Video::getFileName)));
+        matcherProperties.add(new MatcherProperty(VideoScope.MIME_TYPE, videoPropertyFunction(Video::getMimeType)));
+        matcherProperties.add(new MatcherProperty(VideoScope.FILE_SIZE, videoPropertyFunction(Video::getFileSize)));
+        matcherProperties.add(new MatcherProperty(VideoScope.CAPTION, (PropertyFunction<Message>) Message::getCaption));
+    }
+
+    private PropertyFunction<Message> videoPropertyFunction(Function<Video, Object> function) {
+        return message -> function.apply(message.getVideo());
     }
 }

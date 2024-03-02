@@ -24,7 +24,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fluent-core.version>1.0.4</fluent-core.version>
         <reflections.version>0.10.2</reflections.version>
-        <evalex.version>3.0.5</evalex.version>
         <gpg.keyname>0x9D13AEE9</gpg.keyname>
         <spring-boot-starter-fluent-test.version>1.0.0</spring-boot-starter-fluent-test.version>
     </properties>
@@ -136,11 +135,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.ezylang</groupId>
-            <artifactId>EvalEx</artifactId>
-            <version>${evalex.version}</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>

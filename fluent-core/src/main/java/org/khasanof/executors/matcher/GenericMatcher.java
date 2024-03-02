@@ -1,9 +1,8 @@
 package org.khasanof.executors.matcher;
 
-import org.khasanof.executors.expression.ExpressionMatcher;
+import org.khasanof.service.expression.ExpressionMatcherService;
 
 import java.lang.annotation.Annotation;
-import java.util.Map;
 
 import static org.khasanof.utils.BaseUtils.getFirstGenericType;
 
@@ -16,11 +15,12 @@ import static org.khasanof.utils.BaseUtils.getFirstGenericType;
  * <br/>
  * Package: org.khasanof.core.executors.matcher
  */
-@SuppressWarnings({"rawtypes"})
-public abstract class GenericMatcher<T extends Annotation, V> extends AbstractMatcher {
+public abstract class GenericMatcher<T extends Annotation, V> {
 
-    public GenericMatcher(Map<String, ExpressionMatcher> expressionMatcherMap) {
-        super(expressionMatcherMap);
+    protected final ExpressionMatcherService expressionMatcherService;
+
+    public GenericMatcher(ExpressionMatcherService expressionMatcherService) {
+        this.expressionMatcherService = expressionMatcherService;
     }
 
     public abstract boolean matcher(T annotation, V value);

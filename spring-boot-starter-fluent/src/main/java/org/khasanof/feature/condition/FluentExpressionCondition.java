@@ -1,4 +1,4 @@
-package org.khasanof.feature.expression;
+package org.khasanof.feature.condition;
 
 import org.jetbrains.annotations.NotNull;
 import org.khasanof.annotation.ConditionOnExpression;
@@ -17,7 +17,7 @@ import java.util.Objects;
 
 /**
  * @author Nurislom
- * @see org.khasanof.feature.expression
+ * @see org.khasanof.feature.condition
  * @since 2/28/2024 12:00 AM
  */
 @Component

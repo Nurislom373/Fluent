@@ -18,6 +18,6 @@ public class AudioMessageAppropriateMethod extends AbstractMessageAppropriateMet
 
     @Override
     public AppropriateMethod getAppropriate(Message message) {
-        return createAppropriateMethod(HandleAudio.class, message.getAudio());
+        return createAppropriateMethod(HandleAudio.class, message);
     }
 }

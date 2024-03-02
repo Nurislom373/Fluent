@@ -26,6 +26,5 @@ public @interface HandleVideo {
 
     MatchType match() default MatchType.EQUALS;
 
-    VideoScope scope();
-
+    VideoScope property();
 }

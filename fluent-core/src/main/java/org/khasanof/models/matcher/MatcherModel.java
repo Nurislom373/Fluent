@@ -2,6 +2,7 @@ package org.khasanof.models.matcher;
 
 import lombok.*;
 import org.khasanof.enums.MatchType;
+import org.khasanof.models.matcher.function.MatcherFunction;
 
 import java.util.Objects;
 

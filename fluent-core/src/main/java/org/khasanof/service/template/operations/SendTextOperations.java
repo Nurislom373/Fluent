@@ -21,7 +21,7 @@ public interface SendTextOperations {
 
     Message sendText(String text, Boolean disableNotification);
 
-    Message sendTextWithParseMode(String text, String parseMode);
+    Message sendText(String text, String parseMode);
 
     Message sendText(String text, Long chatId, Integer replyMessageId);
 

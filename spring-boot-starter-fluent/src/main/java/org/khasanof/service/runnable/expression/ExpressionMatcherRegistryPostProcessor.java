@@ -2,7 +2,6 @@ package org.khasanof.service.runnable.expression;
 
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.enums.MatchType;
-import org.khasanof.executors.expression.SimpleExpressionMatcher;
 import org.khasanof.executors.expression.SpelExpressionMatcher;
 import org.khasanof.executors.expression.VariableExpressionMatcher;
 import org.khasanof.registry.expression.ExpressionMatcherRegistry;

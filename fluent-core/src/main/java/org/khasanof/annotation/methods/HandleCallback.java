@@ -25,6 +25,5 @@ public @interface HandleCallback {
 
     String[] value() default {};
 
-    MatchType scope() default MatchType.EQUALS;
-
+    MatchType match() default MatchType.EQUALS;
 }

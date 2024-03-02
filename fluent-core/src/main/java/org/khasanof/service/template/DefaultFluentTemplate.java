@@ -73,7 +73,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
     }
 
     @Override
-    public Message sendTextWithParseMode(String text, String parseMode) {
+    public Message sendText(String text, String parseMode) {
         return tryExecuteBotMethod(sendMessageBuilder(text, null, null, null, parseMode, null));
     }
 

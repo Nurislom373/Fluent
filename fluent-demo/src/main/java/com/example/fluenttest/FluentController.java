@@ -9,7 +9,9 @@ import org.khasanof.context.FluentContextHolder;
 import org.khasanof.custom.attributes.Attributes;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.MatchType;
+import org.khasanof.enums.scopes.DocumentScope;
 import org.khasanof.enums.scopes.PhotoScope;
+import org.khasanof.enums.scopes.VideoScope;
 import org.khasanof.service.template.FluentTemplate;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
@@ -60,6 +62,16 @@ public class FluentController {
         fluentTemplate.sendText(text);
     }
 
+    @HandleVideo(value = "caption:", match = MatchType.START_WITH, property = VideoScope.CAPTION)
+    public void handleVideoCaption() {
+        fluentTemplate.sendText("Handle start with 'caption:' text video");
+    }
+
+    @HandleDocument(value = "caption:", match = MatchType.START_WITH, property = DocumentScope.CAPTION)
+    public void handleDocumentCaption() {
+        fluentTemplate.sendText("Handle start with 'caption:' text document");
+    }
+
     @ConditionOnExpression("1 == 1")
     @ConditionOnExpression("2 == 2")
     @HandleMessage(value = "/start", match = MatchType.START_WITH)
@@ -69,7 +81,7 @@ public class FluentController {
         fluentTemplate.sendText(text);
     }
 
-    @HandlePhoto(value = "start: ", match = MatchType.START_WITH, scope = PhotoScope.CAPTION)
+    @HandlePhoto(value = "start: ", match = MatchType.START_WITH, property = PhotoScope.CAPTION)
     public void handleStartCaptionPhoto() {
         fluentTemplate.sendText("Hi I handle photo");
     }

@@ -18,6 +18,6 @@ public class DocumentMessageAppropriateMethod extends AbstractMessageAppropriate
 
     @Override
     public AppropriateMethod getAppropriate(Message message) {
-        return createAppropriateMethod(HandleDocument.class, message.getDocument());
+        return createAppropriateMethod(HandleDocument.class, message);
     }
 }

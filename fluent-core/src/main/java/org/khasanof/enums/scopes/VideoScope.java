@@ -6,5 +6,6 @@ package org.khasanof.enums.scopes;
  * @since 06.07.2023 23:27
  */
 public enum VideoScope {
-    FILE_SIZE, FILE_NAME, MIME_TYPE, HEIGHT, WIDTH, DURATION
+
+    CAPTION, FILE_SIZE, FILE_NAME, MIME_TYPE, HEIGHT, WIDTH, DURATION
 }

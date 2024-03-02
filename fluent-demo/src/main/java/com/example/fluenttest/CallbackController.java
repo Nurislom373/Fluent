@@ -38,7 +38,7 @@ public class CallbackController {
         this.fluentTemplate = fluentTemplate;
     }
 
-    @HandleMessage(value = "[1-5]", match = MatchType.REGEX)
+//    @HandleMessage(value = "[1-5]", match = MatchType.REGEX)
     public void world(Update update) throws TelegramApiException {
         String text = """
                 <b> What is Lorem Ipsum? </b> \s
@@ -67,7 +67,7 @@ public class CallbackController {
     @HandleCallbacks(value = {
             @HandleCallback(value = {"NEXT", "PREV"}),
             @HandleCallback(value = {"TOP", "BOTTOM"}),
-            @HandleCallback(value = {"LST"}, scope = MatchType.START_WITH)
+            @HandleCallback(value = {"LST"}, match = MatchType.START_WITH)
     })
     private void multiCallback(Update update) {
         String text = "NPTB one handle \uD83D\uDE0E";
@@ -76,7 +76,7 @@ public class CallbackController {
     }
 
     @HandleDocument(
-            value = "([a-zA-Z0-9\\s_\\\\.\\-\\(\\):])+(.jpeg|.png|.pdf|.patch)$",
+            value = "([a-zA-Z0-9\\s_\\\\.\\-\\(\\):])+(.jpeg|.png|.pdf)$",
             match = MatchType.REGEX,
             property = DocumentScope.FILE_NAME
     )

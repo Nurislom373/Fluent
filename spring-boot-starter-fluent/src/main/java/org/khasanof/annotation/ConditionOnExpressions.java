@@ -2,7 +2,7 @@ package org.khasanof.annotation;
 
 import org.khasanof.annotation.condition.Condition;
 import org.khasanof.annotation.process.ProcessCondition;
-import org.khasanof.feature.expression.FluentExpressionCondition;
+import org.khasanof.feature.condition.FluentExpressionCondition;
 
 import java.lang.annotation.*;
 

@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
 public class ConditionBean {
 
     public boolean exist() {
-        return false;
+        return true;
     }
 }

@@ -25,5 +25,4 @@ public @interface HandleVideos {
     HandleVideo[] value();
 
     RepeatableMatchType match() default RepeatableMatchType.ANY_MATCH;
-
 }
