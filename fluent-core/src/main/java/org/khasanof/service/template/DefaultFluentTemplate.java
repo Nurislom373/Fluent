@@ -11,6 +11,9 @@ import org.telegram.telegrambots.meta.api.methods.AnswerInlineQuery;
 import org.telegram.telegrambots.meta.api.methods.ForwardMessage;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodBoolean;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage;
+import org.telegram.telegrambots.meta.api.methods.pinnedmessages.PinChatMessage;
+import org.telegram.telegrambots.meta.api.methods.pinnedmessages.UnpinAllChatMessages;
+import org.telegram.telegrambots.meta.api.methods.pinnedmessages.UnpinChatMessage;
 import org.telegram.telegrambots.meta.api.methods.send.*;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -2188,6 +2191,68 @@ public class DefaultFluentTemplate implements FluentTemplate {
         return tryExecuteSendMediaGroup(mediaGroup);
     }
 
+    @Override
+    public Boolean pinChatMessage(Long chatId, Integer messageId) {
+        return tryPinChatMessage(pinChatMessageBuilder(chatId, messageId, null));
+    }
+
+    @Override
+    public Boolean pinChatMessage(Long chatId, Integer messageId, Boolean disableNotification) {
+        return tryPinChatMessage(pinChatMessageBuilder(chatId, messageId, disableNotification));
+    }
+
+    @Override
+    public Boolean pinChatMessage(PinChatMessage pinChatMessage) {
+        notNull(pinChatMessage, "pinChatMessage param must not be null!");
+        pinChatMessage.setChatId(getChatId(Long.valueOf(pinChatMessage.getChatId())));
+        return tryPinChatMessage(pinChatMessage);
+    }
+
+    @Override
+    public Boolean unpinAllChatMessages(Long chatId) {
+        return tryUnpinAllChatMessages(unpinAllChatMessageBuilder(chatId));
+    }
+
+    @Override
+    public Boolean unpinAllChatMessages(UnpinAllChatMessages unpinAllChatMessages) {
+        notNull(unpinAllChatMessages, "pinAllChatMessage param must not be null!");
+        unpinAllChatMessages.setChatId(getChatId(Long.valueOf(unpinAllChatMessages.getChatId())));
+        return tryPinChatMessage(unpinAllChatMessages);
+    }
+
+    @Override
+    public Boolean unpinChatMessage(Long chatId, Integer messageId) {
+        return tryUnpinChatMessage(unpinChatMessageBuilder(chatId, messageId));
+    }
+
+    @Override
+    public Boolean unpinChatMessage(UnpinChatMessage unpinChatMessage) {
+        notNull(unpinChatMessage, "unpinChatMessage param must not be null!");
+        unpinChatMessage.setChatId(getChatId(Long.valueOf(unpinChatMessage.getChatId())));
+        return tryPinChatMessage(unpinChatMessage);
+    }
+
+    protected PinChatMessage pinChatMessageBuilder(Long chatId, Integer messageId, Boolean disableNotification) {
+        return PinChatMessage.builder()
+                .chatId(chatId)
+                .messageId(messageId)
+                .disableNotification(disableNotification)
+                .build();
+    }
+
+    protected UnpinChatMessage unpinChatMessageBuilder(Long chatId, Integer messageId) {
+        return UnpinChatMessage.builder()
+                .chatId(chatId)
+                .messageId(messageId)
+                .build();
+    }
+
+    protected UnpinAllChatMessages unpinAllChatMessageBuilder(Long chatId) {
+        return UnpinAllChatMessages.builder()
+                .chatId(chatId)
+                .build();
+    }
+
     protected SendMediaGroup sendMediaGroupBuilder(List<InputMedia> medias, Long chatId, Integer replyMessageId, Boolean disableNotification) {
         return SendMediaGroup.builder()
                 .medias(medias)
@@ -2408,6 +2473,30 @@ public class DefaultFluentTemplate implements FluentTemplate {
     protected List<Message> tryExecuteSendMediaGroup(SendMediaGroup mediaGroup) {
         try {
             return getInstance().execute(mediaGroup);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Boolean tryUnpinChatMessage(BotApiMethodBoolean apiMethodBoolean) {
+        try {
+            return getInstance().execute(apiMethodBoolean);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Boolean tryPinChatMessage(BotApiMethodBoolean apiMethodBoolean) {
+        try {
+            return getInstance().execute(apiMethodBoolean);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected Boolean tryUnpinAllChatMessages(BotApiMethodBoolean apiMethodBoolean) {
+        try {
+            return getInstance().execute(apiMethodBoolean);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
