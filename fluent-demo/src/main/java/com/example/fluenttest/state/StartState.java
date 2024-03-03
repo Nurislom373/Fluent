@@ -28,7 +28,9 @@ public class StartState implements StateAction<SimpleState> {
     @Override
     public void onReceive(Update update, State state) throws Exception {
         log.info("Hello World I'm Start State");
-        fluentTemplate.sendText("Hello World I'm Start State");
+        if (update.hasMessage()) {
+            fluentTemplate.sendText("Hello World I'm Start State");
+        }
         state.nextState();
     }
 

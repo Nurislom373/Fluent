@@ -37,10 +37,16 @@ public class DefaultHandlerAnnotationDefinitionService implements HandlerAnnotat
     }
 
     private boolean isNewAppropriateUpdateType(HandlerAnnotationRegistry registry) {
+        if (registry.getAppropriateUpdateType() == null) {
+            return true;
+        }
         return typeRegistryContainer.getAppropriateTypes().contains(registry.getAppropriateUpdateType());
     }
 
     private boolean isNewAppropriateUpdateMethod(HandlerAnnotationRegistry registry) {
+        if (registry.getAppropriateUpdateMethod() == null) {
+            return true;
+        }
         return methodRegistryContainer.getAppropriateMethods()
                 .values().stream()
                 .anyMatch(appropriates -> appropriates.contains(registry.getAppropriateUpdateMethod()));

@@ -13,6 +13,9 @@ import java.util.Set;
  */
 public interface HandleMethodChecker extends GenericCheck<Method> {
 
+    /**
+     *
+     * @return
+     */
     Set<MethodGenericCondition> conditions();
-
 }

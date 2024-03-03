@@ -23,12 +23,8 @@ import java.util.function.Function;
 public abstract class UpdateUtils {
 
     public static Long getUserId(Update update) {
-        if (update.hasMessage()) {
-            return update.getMessage().getFrom().getId();
-        } else if (update.hasCallbackQuery()) {
-            return update.getCallbackQuery().getFrom().getId();
-        }
-        return null;
+        User from = getFrom(update);
+        return from != null ? from.getId() : null;
     }
 
     /**
@@ -118,8 +114,26 @@ public abstract class UpdateUtils {
         if (update.hasMyChatMember()) {
             return update.getChatMember().getFrom();
         }
+        if (update.hasChannelPost()) {
+            return update.getChannelPost().getFrom();
+        }
+        if (update.hasShippingQuery()) {
+            return update.getShippingQuery().getFrom();
+        }
+        if (update.hasPreCheckoutQuery()) {
+            return update.getPreCheckoutQuery().getFrom();
+        }
         if (update.hasPollAnswer()) {
             return update.getPollAnswer().getUser();
+        }
+        if (update.hasMyChatMember()) {
+            return update.getMyChatMember().getFrom();
+        }
+        if (update.hasChatMember()) {
+            return update.getChatMember().getFrom();
+        }
+        if (update.hasChatJoinRequest()) {
+            return update.getChatJoinRequest().getUser();
         }
         return null;
     }

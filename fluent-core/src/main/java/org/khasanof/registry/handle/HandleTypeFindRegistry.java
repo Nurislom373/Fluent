@@ -3,6 +3,7 @@ package org.khasanof.registry.handle;
 import org.khasanof.models.handle.HandleTypeFind;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -15,13 +16,13 @@ public interface HandleTypeFindRegistry {
      *
      * @return
      */
-    List<HandleTypeFind> getHandleTypeFinds();
+    Set<HandleTypeFind> getHandleTypeFinds();
 
     /**
      *
      * @param handleTypes
      */
-    void addHandleTypeFinds(List<HandleTypeFind> handleTypes);
+    void addHandleTypeFinds(Set<HandleTypeFind> handleTypes);
 
     /**
      *

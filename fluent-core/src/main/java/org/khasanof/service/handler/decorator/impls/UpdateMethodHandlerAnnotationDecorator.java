@@ -34,7 +34,7 @@ public class UpdateMethodHandlerAnnotationDecorator extends BaseHandlerAnnotatio
 
     private void internalExecute(HandlerAnnotationRegistry registry) {
         if (Objects.isNull(registry.getAppropriateUpdateMethod())) {
-            throw new RuntimeException("AppropriateUpdateMethod must not be null!");
+            throw new RuntimeException("appropriate method is null!");
         }
         AppropriateUpdateMethod appropriateUpdateMethod = getAppropriateUpdateMethod(registry);
         registryContainer.addAppropriateMethod(appropriateUpdateMethod);

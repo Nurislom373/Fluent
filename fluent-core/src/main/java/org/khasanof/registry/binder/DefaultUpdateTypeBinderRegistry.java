@@ -2,9 +2,7 @@ package org.khasanof.registry.binder;
 
 import org.khasanof.feature.binder.UpdateTypeBinder;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author Nurislom
@@ -13,17 +11,17 @@ import java.util.Objects;
  */
 public class DefaultUpdateTypeBinderRegistry implements UpdateTypeBinderRegistry {
 
-    private final List<UpdateTypeBinder> binders = new ArrayList<>();
+    private final Set<UpdateTypeBinder> binders = new HashSet<>();
 
     @Override
-    public List<UpdateTypeBinder> getUpdateTypeBinders() {
+    public Set<UpdateTypeBinder> getUpdateTypeBinders() {
         return this.binders;
     }
 
     @Override
-    public void addUpdateTypeBinders(List<UpdateTypeBinder> binders) {
+    public void addUpdateTypeBinders(Set<UpdateTypeBinder> binders) {
         if (Objects.nonNull(binders)) {
-            binders.forEach(this::addUpdateTypeBinder);
+            this.binders.addAll(binders);
         }
     }
 

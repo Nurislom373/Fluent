@@ -41,10 +41,10 @@ public class FluentBot extends AbstractFluentBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        if (update.hasInlineQuery()) {
-            sendAnswer(update);
-            return;
-        }
+//        if (update.hasInlineQuery()) {
+//            sendAnswer(update);
+//            return;
+//        }
         handler.process(update);
     }
 

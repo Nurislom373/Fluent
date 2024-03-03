@@ -3,6 +3,7 @@ package org.khasanof.registry.binder;
 import org.khasanof.feature.binder.UpdateTypeBinder;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -11,9 +12,21 @@ import java.util.List;
  */
 public interface UpdateTypeBinderRegistry {
 
-    List<UpdateTypeBinder> getUpdateTypeBinders();
+    /**
+     *
+     * @return
+     */
+    Set<UpdateTypeBinder> getUpdateTypeBinders();
 
-    void addUpdateTypeBinders(List<UpdateTypeBinder> binders);
+    /**
+     *
+     * @param binders
+     */
+    void addUpdateTypeBinders(Set<UpdateTypeBinder> binders);
 
+    /**
+     *
+     * @param binder
+     */
     void addUpdateTypeBinder(UpdateTypeBinder binder);
 }

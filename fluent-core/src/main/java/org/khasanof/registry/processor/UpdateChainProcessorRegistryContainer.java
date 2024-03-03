@@ -11,9 +11,21 @@ import java.util.List;
  */
 public interface UpdateChainProcessorRegistryContainer {
 
+    /**
+     *
+     * @return
+     */
     List<AbstractUpdateChainProcessor> getUpdateChainProcessors();
 
+    /**
+     *
+     * @param processor
+     */
     void addUpdateChainProcessors(List<AbstractUpdateChainProcessor> processor);
 
+    /**
+     *
+     * @param processor
+     */
     void addUpdateChainProcessor(AbstractUpdateChainProcessor processor);
 }

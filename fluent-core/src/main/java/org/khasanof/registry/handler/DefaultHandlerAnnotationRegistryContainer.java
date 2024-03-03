@@ -22,9 +22,9 @@ public class DefaultHandlerAnnotationRegistryContainer implements HandlerAnnotat
     }
 
     @Override
-    public void addHandlerAnnotationRegistries(List<HandlerAnnotationRegistry> annotationRegistries) {
+    public void addHandlerAnnotationRegistries(Set<HandlerAnnotationRegistry> annotationRegistries) {
         if (Objects.nonNull(annotationRegistries)) {
-            annotationRegistries.forEach(this::addHandlerAnnotationRegistry);
+            this.annotationRegistries.addAll(annotationRegistries);
         }
     }
 

@@ -2,9 +2,7 @@ package org.khasanof.registry.condition;
 
 import org.khasanof.feature.condition.FluentCondition;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Predicate;
 
@@ -15,10 +13,10 @@ import java.util.function.Predicate;
  */
 public class DefaultFluentConditionRegistry implements FluentConditionRegistry {
 
-    private final List<FluentCondition> conditions = new CopyOnWriteArrayList<>();
+    private final Set<FluentCondition> conditions = new HashSet<>();
 
     @Override
-    public List<FluentCondition> getFluentConditions() {
+    public Set<FluentCondition> getFluentConditions() {
         return this.conditions;
     }
 
@@ -36,7 +34,7 @@ public class DefaultFluentConditionRegistry implements FluentConditionRegistry {
     }
 
     @Override
-    public void addFluentConditions(List<FluentCondition> conditions) {
+    public void addFluentConditions(Set<FluentCondition> conditions) {
         if (Objects.nonNull(conditions)) {
             this.conditions.addAll(conditions);
         }

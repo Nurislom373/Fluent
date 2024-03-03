@@ -2,9 +2,7 @@ package org.khasanof.registry.handle;
 
 import org.khasanof.models.handle.HandleTypeFind;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author Nurislom
@@ -13,17 +11,17 @@ import java.util.Objects;
  */
 public class DefaultHandleTypeFindRegistry implements HandleTypeFindRegistry {
 
-    private final List<HandleTypeFind> handleTypes = new ArrayList<>();
+    private final Set<HandleTypeFind> handleTypes = new HashSet<>();
 
     @Override
-    public List<HandleTypeFind> getHandleTypeFinds() {
+    public Set<HandleTypeFind> getHandleTypeFinds() {
         return this.handleTypes;
     }
 
     @Override
-    public void addHandleTypeFinds(List<HandleTypeFind> handleTypes) {
+    public void addHandleTypeFinds(Set<HandleTypeFind> handleTypes) {
         if (Objects.nonNull(handleTypes)) {
-            handleTypes.forEach(this::addHandleTypeFind);
+            this.handleTypes.addAll(handleTypes);
         }
     }
 

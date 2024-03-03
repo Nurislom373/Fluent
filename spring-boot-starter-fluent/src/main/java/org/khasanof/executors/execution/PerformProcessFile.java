@@ -21,7 +21,7 @@ import java.util.Objects;
 public class PerformProcessFile extends AbstractPerform {
 
     @Override
-    void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
+    public void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
         if (!simpleInvoker.getParams().containsKey(InvokerParam.ADDITIONAL_PARAM)) {
             params.add(FluentContextHolder.getCurrentFluentUpdate().getUpdate());
             return;

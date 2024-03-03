@@ -28,6 +28,13 @@ public class ExtraHandlerAnnotationDecorator extends BaseHandlerAnnotationDecora
     }
 
     private void internalExecute(HandlerAnnotationRegistry registry) {
+        if (Objects.isNull(registry.getMethodExtraParam())) {
+            return;
+        }
+        checkMethodExtraParam(registry);
+    }
+
+    private void checkMethodExtraParam(HandlerAnnotationRegistry registry) {
         findBeansOfTypeService.findBean(registry.getMethodExtraParam())
                 .ifPresentOrElse(handleMethodExtraParam -> {
                     if (!Objects.equals(handleMethodExtraParam.methodType(), registry.getMethodType())) {

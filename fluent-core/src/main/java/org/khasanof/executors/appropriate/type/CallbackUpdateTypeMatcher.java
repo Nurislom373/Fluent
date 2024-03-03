@@ -23,5 +23,4 @@ public class CallbackUpdateTypeMatcher implements AppropriateUpdateType {
     public AppropriateType getAppropriate(Update update) {
         return new AppropriateType(UpdateType.CALLBACK, update.getCallbackQuery().getData(), hasSubMethods());
     }
-
 }

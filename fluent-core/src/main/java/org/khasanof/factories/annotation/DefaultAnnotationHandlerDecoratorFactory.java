@@ -6,6 +6,7 @@ import org.khasanof.registry.annotation.AnnotationHandlerRegistryContainer;
 import org.khasanof.registry.annotation.FluentAnnotationsRegistry;
 import org.khasanof.registry.appropriate.AppropriateMethodRegistryContainer;
 import org.khasanof.registry.appropriate.AppropriateTypeRegistryContainer;
+import org.khasanof.registry.binder.UpdateTypeBinderRegistry;
 import org.khasanof.service.FindBeansOfTypeService;
 import org.khasanof.service.handler.HandlerAnnotationDefinition;
 import org.khasanof.service.handler.decorator.BaseHandlerAnnotationDecorator;
@@ -20,6 +21,7 @@ import org.khasanof.service.handler.decorator.impls.*;
 public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandlerDecoratorFactory {
 
     private final FindBeansOfTypeService findBeansOfTypeService;
+    private final UpdateTypeBinderRegistry updateTypeBinderRegistry;
     private final FluentAnnotationsRegistry fluentAnnotationsRegistry;
     private final HandleMethodCheckerMediator handleMethodCheckerMediator;
     private final MethodTypeDefinitionMediator methodTypeDefinitionMediator;
@@ -28,6 +30,7 @@ public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandl
     private final AnnotationHandlerRegistryContainer annotationHandlerRegistryContainer;
 
     public DefaultAnnotationHandlerDecoratorFactory(FindBeansOfTypeService findBeansOfTypeService,
+                                                    UpdateTypeBinderRegistry updateTypeBinderRegistry,
                                                     FluentAnnotationsRegistry fluentAnnotationsRegistry,
                                                     HandleMethodCheckerMediator handleMethodCheckerMediator,
                                                     MethodTypeDefinitionMediator methodTypeDefinitionMediator,
@@ -36,6 +39,7 @@ public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandl
                                                     AnnotationHandlerRegistryContainer annotationHandlerRegistryContainer) {
 
         this.findBeansOfTypeService = findBeansOfTypeService;
+        this.updateTypeBinderRegistry = updateTypeBinderRegistry;
         this.fluentAnnotationsRegistry = fluentAnnotationsRegistry;
         this.handleMethodCheckerMediator = handleMethodCheckerMediator;
         this.methodTypeDefinitionMediator = methodTypeDefinitionMediator;
@@ -68,6 +72,10 @@ public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandl
             ExtraHandlerAnnotationDecorator extraParam = createExtraParam();
             extraParam.decorator(handlerAnnotationDecorator);
             handlerAnnotationDecorator = extraParam;
+
+            BinderHandlerAnnotationDecorator binder = createBinder();
+            binder.decorator(handlerAnnotationDecorator);
+            handlerAnnotationDecorator = binder;
         }
 
         MatcherHandlerAnnotationDecorator matcher = createMatcher();
@@ -87,6 +95,10 @@ public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandl
         }
 
         return handlerAnnotationDecorator;
+    }
+
+    private BinderHandlerAnnotationDecorator createBinder() {
+        return new BinderHandlerAnnotationDecorator(findBeansOfTypeService, updateTypeBinderRegistry);
     }
 
     private ExtraHandlerAnnotationDecorator createExtraParam() {

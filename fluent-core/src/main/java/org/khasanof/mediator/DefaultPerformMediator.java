@@ -1,5 +1,6 @@
 package org.khasanof.mediator;
 
+import lombok.extern.slf4j.Slf4j;
 import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.executors.execution.Perform;
 import org.khasanof.feature.method.MethodType;
@@ -19,6 +20,7 @@ import java.util.Objects;
  * @see org.khasanof.mediator
  * @since 2/1/2024 11:41 PM
  */
+@Slf4j
 @Component
 public class DefaultPerformMediator implements PerformMediator, InitializingBean {
 
@@ -31,7 +33,11 @@ public class DefaultPerformMediator implements PerformMediator, InitializingBean
 
     @Override
     public void execute(SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException {
-        methodTypePerformMap.get(getType(simpleInvoker)).execute(simpleInvoker);
+        Perform perform = methodTypePerformMap.get(getType(simpleInvoker));
+        if (Objects.isNull(perform)) {
+            log.debug("perform not found : {}", getType(simpleInvoker));
+        }
+        perform.execute(simpleInvoker);
     }
 
     private MethodType getType(SimpleInvoker simpleInvoker) {

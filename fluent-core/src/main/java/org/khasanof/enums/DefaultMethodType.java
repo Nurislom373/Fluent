@@ -12,37 +12,37 @@ public enum DefaultMethodType implements MethodType {
     DEFAULT {
         @Override
         public String getName() {
-            return DEFAULT.getName();
+            return DEFAULT.name();
         }
     },
     STATE {
         @Override
         public String getName() {
-            return STATE.getName();
+            return STATE.name();
         }
     },
     HANDLE_ANY {
         @Override
         public String getName() {
-            return HANDLE_ANY.getName();
+            return HANDLE_ANY.name();
         }
     },
     EXCEPTION_HANDLER {
         @Override
         public String getName() {
-            return EXCEPTION_HANDLER.getName();
+            return EXCEPTION_HANDLER.name();
         }
     },
     VAR_EXPRESSION {
         @Override
         public String getName() {
-            return VAR_EXPRESSION.getName();
+            return VAR_EXPRESSION.name();
         }
     },
     PROCESS_FILE {
         @Override
         public String getName() {
-            return PROCESS_FILE.getName();
+            return PROCESS_FILE.name();
         }
     }
 }

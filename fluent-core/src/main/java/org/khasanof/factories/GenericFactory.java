@@ -7,6 +7,10 @@ package org.khasanof.factories;
  */
 public interface GenericFactory<P, R> {
 
+    /**
+     *
+     * @param p
+     * @return
+     */
     R create(P p);
-
 }

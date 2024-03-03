@@ -17,7 +17,7 @@ import java.util.List;
 public class PerformState extends AbstractPerform {
 
     @Override
-    void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
+    protected void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
         params.add(FluentContextHolder.getCurrentFluentUpdate().getUpdate());
         params.add(simpleInvoker.getParams().get(InvokerParam.ADDITIONAL_PARAM));
     }

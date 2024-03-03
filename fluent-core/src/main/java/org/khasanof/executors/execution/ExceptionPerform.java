@@ -20,7 +20,7 @@ import java.util.Objects;
 public class ExceptionPerform extends AbstractPerform {
 
     @Override
-    void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
+    protected void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
         Arrays.stream(simpleInvoker.getMethod().getParameterTypes())
                 .forEach(parameterType -> matchThenAdd(simpleInvoker, parameterType, params));
     }

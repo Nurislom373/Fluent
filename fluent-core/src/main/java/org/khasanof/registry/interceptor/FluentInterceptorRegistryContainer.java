@@ -2,7 +2,7 @@ package org.khasanof.registry.interceptor;
 
 import org.khasanof.feature.interceptor.FluentInterceptor;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -11,10 +11,21 @@ import java.util.List;
  */
 public interface FluentInterceptorRegistryContainer {
 
-    List<FluentInterceptor> getFluentInterceptors();
+    /**
+     *
+     * @return
+     */
+    Set<FluentInterceptor> getFluentInterceptors();
 
-    void addFluentInterceptors(List<FluentInterceptor> interceptors);
+    /**
+     *
+     * @param interceptors
+     */
+    void addFluentInterceptors(Set<FluentInterceptor> interceptors);
 
+    /**
+     *
+     * @param interceptor
+     */
     void addFluentInterceptor(FluentInterceptor interceptor);
-
 }

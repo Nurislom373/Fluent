@@ -42,5 +42,5 @@ public abstract class AbstractPerform implements Perform {
      * @param simpleInvoker
      * @param params
      */
-    abstract void fillParams(SimpleInvoker simpleInvoker, List<Object> params);
+    protected abstract void fillParams(SimpleInvoker simpleInvoker, List<Object> params);
 }

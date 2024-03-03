@@ -8,6 +8,7 @@ import org.khasanof.registry.annotation.AnnotationHandlerRegistryContainer;
 import org.khasanof.registry.annotation.FluentAnnotationsRegistry;
 import org.khasanof.registry.appropriate.AppropriateMethodRegistryContainer;
 import org.khasanof.registry.appropriate.AppropriateTypeRegistryContainer;
+import org.khasanof.registry.binder.UpdateTypeBinderRegistry;
 import org.khasanof.service.FindBeansOfTypeService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,7 @@ public class AnnotationHandlerDecoratorFactoryConfiguration {
     /**
      *
      * @param findBeansOfTypeService
+     * @param updateTypeBinderRegistry
      * @param fluentAnnotationsRegistry
      * @param handleMethodCheckerMediator
      * @param methodTypeDefinitionMediator
@@ -33,6 +35,7 @@ public class AnnotationHandlerDecoratorFactoryConfiguration {
      */
     @Bean
     public AnnotationHandlerDecoratorFactory annotationHandlerDecoratorFactory(FindBeansOfTypeService findBeansOfTypeService,
+                                                                               UpdateTypeBinderRegistry updateTypeBinderRegistry,
                                                                                FluentAnnotationsRegistry fluentAnnotationsRegistry,
                                                                                HandleMethodCheckerMediator handleMethodCheckerMediator,
                                                                                MethodTypeDefinitionMediator methodTypeDefinitionMediator,
@@ -40,8 +43,8 @@ public class AnnotationHandlerDecoratorFactoryConfiguration {
                                                                                AppropriateMethodRegistryContainer appropriateMethodRegistryContainer,
                                                                                AnnotationHandlerRegistryContainer annotationHandlerRegistryContainer) {
 
-        return new DefaultAnnotationHandlerDecoratorFactory(findBeansOfTypeService, fluentAnnotationsRegistry,
-                handleMethodCheckerMediator, methodTypeDefinitionMediator, appropriateTypeRegistryContainer,
+        return new DefaultAnnotationHandlerDecoratorFactory(findBeansOfTypeService, updateTypeBinderRegistry,
+                fluentAnnotationsRegistry, handleMethodCheckerMediator, methodTypeDefinitionMediator, appropriateTypeRegistryContainer,
                 appropriateMethodRegistryContainer, annotationHandlerRegistryContainer);
     }
 }

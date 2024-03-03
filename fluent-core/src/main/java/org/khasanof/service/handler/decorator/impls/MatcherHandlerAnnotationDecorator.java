@@ -30,9 +30,8 @@ public class MatcherHandlerAnnotationDecorator extends BaseHandlerAnnotationDeco
 
     private void internalExecute(HandlerAnnotationRegistry registry) {
         if (Objects.isNull(registry.getMatcher())) {
-            throw new RuntimeException("Matcher class must not be null!");
+            return;
         }
-
         GenericMatcher matcher = getMatcher(registry);
         if (!Objects.equals(matcher.getType(), registry.getAnnotation())) {
             throw new RuntimeException("Matcher type not match annotation!");

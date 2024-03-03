@@ -22,7 +22,7 @@ public interface HandlerAnnotationRegistryContainer {
      *
      * @param annotationRegistries
      */
-    void addHandlerAnnotationRegistries(List<HandlerAnnotationRegistry> annotationRegistries);
+    void addHandlerAnnotationRegistries(Set<HandlerAnnotationRegistry> annotationRegistries);
 
     /**
      *

@@ -2,9 +2,7 @@ package org.khasanof.registry.interceptor;
 
 import org.khasanof.feature.interceptor.FluentInterceptor;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author Nurislom
@@ -13,17 +11,17 @@ import java.util.Objects;
  */
 public class DefaultFluentInterceptorRegistryContainer implements FluentInterceptorRegistryContainer {
 
-    private final List<FluentInterceptor> interceptors = new ArrayList<>();
+    private final Set<FluentInterceptor> interceptors = new HashSet<>();
 
     @Override
-    public List<FluentInterceptor> getFluentInterceptors() {
+    public Set<FluentInterceptor> getFluentInterceptors() {
         return this.interceptors;
     }
 
     @Override
-    public void addFluentInterceptors(List<FluentInterceptor> interceptors) {
-        if (Objects.nonNull(interceptors) && !interceptors.isEmpty()) {
-            interceptors.forEach(this::addFluentInterceptor);
+    public void addFluentInterceptors(Set<FluentInterceptor> interceptors) {
+        if (Objects.nonNull(interceptors)) {
+            this.interceptors.addAll(interceptors);
         }
     }
 

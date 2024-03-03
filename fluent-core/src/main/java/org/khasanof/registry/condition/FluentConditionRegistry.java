@@ -4,6 +4,7 @@ import org.khasanof.feature.condition.FluentCondition;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -16,7 +17,7 @@ public interface FluentConditionRegistry {
      *
      * @return
      */
-    List<FluentCondition> getFluentConditions();
+    Set<FluentCondition> getFluentConditions();
 
     /**
      *
@@ -36,7 +37,7 @@ public interface FluentConditionRegistry {
      *
      * @param conditions
      */
-    void addFluentConditions(List<FluentCondition> conditions);
+    void addFluentConditions(Set<FluentCondition> conditions);
 
     /**
      *

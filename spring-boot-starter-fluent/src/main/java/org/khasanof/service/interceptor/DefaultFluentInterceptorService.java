@@ -5,7 +5,7 @@ import org.khasanof.registry.interceptor.FluentInterceptorRegistryContainer;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -34,7 +34,7 @@ public class DefaultFluentInterceptorService implements FluentInterceptorService
                 .forEach(fluentInterceptor -> fluentInterceptor.postHandle(update));
     }
 
-    private List<FluentInterceptor> getInterceptors() {
+    private Set<FluentInterceptor> getInterceptors() {
         return registryContainer.getFluentInterceptors();
     }
 }

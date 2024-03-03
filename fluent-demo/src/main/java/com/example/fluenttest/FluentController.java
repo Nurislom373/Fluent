@@ -50,7 +50,7 @@ public class FluentController {
         fluentTemplate.sendText(text);
     }
 
-    @HandleAny(type = HandleType.ALL)
+    @HandleAny(type = HandleType.MESSAGE)
     private void handleAnyMessages() {
         Attributes attributes = FluentContextHolder.getCurrentAttributes();
         attributes.setAttribute("foo", "bar");
@@ -145,6 +145,8 @@ public class FluentController {
 
     @HandleUnknown
     public void handleUnknown(Update update) {
-        fluentTemplate.sendText("yuborilgan command topilmadi!!!");
+        if (update.hasMessage()) {
+            fluentTemplate.sendText("yuborilgan command topilmadi!!!");
+        }
     }
 }

@@ -22,7 +22,7 @@ import java.util.*;
 public class PerformVarExpression extends AbstractPerform {
 
     @Override
-    void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
+    protected void fillParams(SimpleInvoker simpleInvoker, List<Object> params) {
         checkSimpleInvoker(simpleInvoker, params);
         params.addAll(mapGetValues(getAdditionalParam(simpleInvoker), simpleInvoker.getMethod()));
     }
