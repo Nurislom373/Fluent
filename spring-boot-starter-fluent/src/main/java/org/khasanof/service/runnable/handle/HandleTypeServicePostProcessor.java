@@ -64,9 +64,45 @@ public class HandleTypeServicePostProcessor implements PostProcessor {
                 // document
                 new HandleTypeFind(HandleType.DOCUMENT, false,
                         update -> Objects.equals(update.getMessage().hasDocument(), Boolean.TRUE), Collections.emptyList()),
-                // document
+                // video
                 new HandleTypeFind(HandleType.VIDEO, false,
-                        update -> Objects.equals(update.getMessage().hasVideo(), Boolean.TRUE), Collections.emptyList())
+                        update -> Objects.equals(update.getMessage().hasVideo(), Boolean.TRUE), Collections.emptyList()),
+                // video note
+                new HandleTypeFind(HandleType.VIDEO_NOTE, false,
+                        update -> Objects.equals(update.getMessage().hasVideoNote(), Boolean.TRUE), Collections.emptyList()),
+                // sticker
+                new HandleTypeFind(HandleType.STICKER, false,
+                        update -> Objects.equals(update.getMessage().hasSticker(), Boolean.TRUE), Collections.emptyList()),
+                // poll
+                new HandleTypeFind(HandleType.POLL, false,
+                        update -> Objects.equals(update.getMessage().hasPoll(), Boolean.TRUE), Collections.emptyList()),
+                // audio
+                new HandleTypeFind(HandleType.AUDIO, false,
+                        update -> Objects.equals(update.getMessage().hasAudio(), Boolean.TRUE), Collections.emptyList()),
+                // animation
+                new HandleTypeFind(HandleType.ANIMATION, false,
+                        update -> Objects.equals(update.getMessage().hasAnimation(), Boolean.TRUE), Collections.emptyList()),
+                // contact
+                new HandleTypeFind(HandleType.CONTACT, false,
+                        update -> Objects.equals(update.getMessage().hasContact(), Boolean.TRUE), Collections.emptyList()),
+                // voice
+                new HandleTypeFind(HandleType.VOICE, false,
+                        update -> Objects.equals(update.getMessage().hasVoice(), Boolean.TRUE), Collections.emptyList()),
+                // location
+                new HandleTypeFind(HandleType.LOCATION, false,
+                        update -> Objects.equals(update.getMessage().hasLocation(), Boolean.TRUE), Collections.emptyList()),
+                // passport data
+                new HandleTypeFind(HandleType.PASSPORT_DATA, false,
+                        update -> Objects.equals(update.getMessage().hasPassportData(), Boolean.TRUE), Collections.emptyList()),
+                // web app data
+                new HandleTypeFind(HandleType.WEB_APP_DATA, false,
+                        update -> Objects.nonNull(update.getMessage().getWebAppData()), Collections.emptyList()),
+                // invoice
+                new HandleTypeFind(HandleType.INVOICE, false,
+                        update -> Objects.equals(update.getMessage().hasInvoice(), Boolean.TRUE), Collections.emptyList()),
+                // dice
+                new HandleTypeFind(HandleType.DICE, false,
+                        update -> Objects.equals(update.getMessage().hasDice(), Boolean.TRUE), Collections.emptyList())
         );
     }
 }

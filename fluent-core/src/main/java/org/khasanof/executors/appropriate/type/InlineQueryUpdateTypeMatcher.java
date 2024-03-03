@@ -22,5 +22,4 @@ public class InlineQueryUpdateTypeMatcher implements AppropriateUpdateType {
     public AppropriateType getAppropriate(Update update) {
         return new AppropriateType(); // TODO inline query
     }
-
 }

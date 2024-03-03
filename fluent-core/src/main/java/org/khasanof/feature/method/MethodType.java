@@ -14,5 +14,4 @@ public interface MethodType {
      * @return name
      */
     String getName();
-
 }

@@ -64,6 +64,10 @@ public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandl
             CheckerHandlerAnnotationDecorator checker = createChecker();
             checker.decorator(handlerAnnotationDecorator);
             handlerAnnotationDecorator = checker;
+
+            ExtraHandlerAnnotationDecorator extraParam = createExtraParam();
+            extraParam.decorator(handlerAnnotationDecorator);
+            handlerAnnotationDecorator = extraParam;
         }
 
         MatcherHandlerAnnotationDecorator matcher = createMatcher();
@@ -83,6 +87,10 @@ public class DefaultAnnotationHandlerDecoratorFactory implements AnnotationHandl
         }
 
         return handlerAnnotationDecorator;
+    }
+
+    private ExtraHandlerAnnotationDecorator createExtraParam() {
+        return new ExtraHandlerAnnotationDecorator(findBeansOfTypeService);
     }
 
     private RegistryHandlerAnnotationDecorator createRegistry() {

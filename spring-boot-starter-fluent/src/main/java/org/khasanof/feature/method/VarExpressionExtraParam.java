@@ -39,7 +39,7 @@ public class VarExpressionExtraParam implements HandleMethodExtraParam {
     }
 
     @Override
-    public DefaultMethodType methodType() {
+    public MethodType methodType() {
         return DefaultMethodType.VAR_EXPRESSION;
     }
 }

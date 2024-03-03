@@ -37,7 +37,7 @@ public class ProcessFileExtraParam implements HandleMethodExtraParam {
     }
 
     @Override
-    public DefaultMethodType methodType() {
+    public MethodType methodType() {
         return DefaultMethodType.PROCESS_FILE;
     }
 }

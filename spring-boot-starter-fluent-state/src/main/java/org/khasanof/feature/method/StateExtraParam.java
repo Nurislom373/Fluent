@@ -38,7 +38,7 @@ public class StateExtraParam implements HandleMethodExtraParam {
     }
 
     @Override
-    public DefaultMethodType methodType() {
+    public MethodType methodType() {
         return DefaultMethodType.STATE;
     }
 }

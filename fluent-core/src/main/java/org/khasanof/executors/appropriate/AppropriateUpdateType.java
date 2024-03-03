@@ -10,12 +10,25 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public interface AppropriateUpdateType {
 
+    /**
+     *
+     * @param update
+     * @return
+     */
     boolean isMatch(Update update);
 
+    /**
+     *
+     * @param update
+     * @return
+     */
     AppropriateType getAppropriate(Update update);
 
+    /**
+     *
+     * @return
+     */
     default boolean hasSubMethods() {
         return false;
     }
-
 }

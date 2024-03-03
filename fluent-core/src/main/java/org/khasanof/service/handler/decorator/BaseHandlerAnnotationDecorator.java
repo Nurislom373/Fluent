@@ -13,11 +13,11 @@ public abstract class BaseHandlerAnnotationDecorator implements HandlerAnnotatio
 
     private HandlerAnnotationDecorator handlerAnnotationDecorator;
 
-    public BaseHandlerAnnotationDecorator(HandlerAnnotationDecorator handlerAnnotationDecorator) {
-        this.handlerAnnotationDecorator = handlerAnnotationDecorator;
+    public BaseHandlerAnnotationDecorator() {
     }
 
-    public BaseHandlerAnnotationDecorator() {
+    public BaseHandlerAnnotationDecorator(HandlerAnnotationDecorator handlerAnnotationDecorator) {
+        this.handlerAnnotationDecorator = handlerAnnotationDecorator;
     }
 
     public BaseHandlerAnnotationDecorator decorator(HandlerAnnotationDecorator handlerAnnotationDecorator) {

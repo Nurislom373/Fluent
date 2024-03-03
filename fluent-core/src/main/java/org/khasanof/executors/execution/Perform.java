@@ -12,8 +12,17 @@ import java.lang.reflect.InvocationTargetException;
  */
 public interface Perform {
 
+    /**
+     *
+     * @param simpleInvoker
+     * @throws InvocationTargetException
+     * @throws IllegalAccessException
+     */
     void execute(SimpleInvoker simpleInvoker) throws InvocationTargetException, IllegalAccessException;
 
+    /**
+     *
+     * @return
+     */
     MethodType getType();
-
 }

@@ -37,6 +37,10 @@ public abstract class AbstractPerform implements Perform {
         invokerMethod.invoke(simpleInvoker.getReference(), paramsArray);
     }
 
+    /**
+     *
+     * @param simpleInvoker
+     * @param params
+     */
     abstract void fillParams(SimpleInvoker simpleInvoker, List<Object> params);
-
 }

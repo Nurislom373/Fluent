@@ -1,7 +1,7 @@
 package org.khasanof.feature.interceptor;
 
-import org.khasanof.enums.DefaultMethodType;
 import org.khasanof.feature.HandleMethodExtraParam;
+import org.khasanof.feature.method.MethodType;
 import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 import org.khasanof.service.FindBeansOfTypeService;
@@ -20,7 +20,7 @@ import java.util.Map;
 public class ExtraParamPreExecutionInterceptor implements PreExecutionInterceptor, InitializingBean {
 
     private final FindBeansOfTypeService findBeansOfTypeService;
-    private final Map<DefaultMethodType, HandleMethodExtraParam> handleMethodCustomParamMap = new HashMap<>();
+    private final Map<MethodType, HandleMethodExtraParam> handleMethodCustomParamMap = new HashMap<>();
 
     public ExtraParamPreExecutionInterceptor(FindBeansOfTypeService findBeansOfTypeService) {
         this.findBeansOfTypeService = findBeansOfTypeService;
@@ -28,7 +28,7 @@ public class ExtraParamPreExecutionInterceptor implements PreExecutionIntercepto
 
     @Override
     public boolean preHandle(SimpleInvoker simpleInvoker) {
-        DefaultMethodType defaultMethodType = getMethodType(simpleInvoker);
+        MethodType defaultMethodType = getMethodType(simpleInvoker);
 
         if (handleMethodCustomParamMap.containsKey(defaultMethodType)) {
             handleMethodCustomParamMap.get(defaultMethodType)
@@ -37,8 +37,8 @@ public class ExtraParamPreExecutionInterceptor implements PreExecutionIntercepto
         return true;
     }
 
-    private DefaultMethodType getMethodType(SimpleInvoker simpleInvoker) {
-        return (DefaultMethodType) simpleInvoker.getParams().get(InvokerParam.METHOD_TYPE);
+    private MethodType getMethodType(SimpleInvoker simpleInvoker) {
+        return (MethodType) simpleInvoker.getParams().get(InvokerParam.METHOD_TYPE);
     }
 
     @Override

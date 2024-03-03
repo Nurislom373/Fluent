@@ -5,6 +5,7 @@ import org.khasanof.executors.appropriate.AppropriateUpdateMethod;
 import org.khasanof.executors.appropriate.AppropriateUpdateType;
 import org.khasanof.executors.execution.Perform;
 import org.khasanof.executors.matcher.GenericMatcher;
+import org.khasanof.feature.HandleMethodExtraParam;
 import org.khasanof.feature.binder.UpdateTypeBinder;
 import org.khasanof.feature.method.MethodType;
 
@@ -52,6 +53,14 @@ public interface HandlerAnnotationRegistry {
      * @return
      */
     default Class<? extends Perform> getPerform() {
+        return null;
+    }
+
+    /**
+     *
+     * @return
+     */
+    default Class<? extends HandleMethodExtraParam> getMethodExtraParam() {
         return null;
     }
 
