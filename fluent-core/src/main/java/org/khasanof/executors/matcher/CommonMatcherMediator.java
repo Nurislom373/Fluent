@@ -2,9 +2,8 @@ package org.khasanof.executors.matcher;
 
 import org.khasanof.annotation.methods.HandleAny;
 import org.khasanof.enums.HandleType;
+import org.khasanof.service.FindBeansOfTypeService;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -17,15 +16,14 @@ import java.util.Map;
  * @see org.khasanof.executors.matcher
  * @since 24.06.2023 1:14
  */
-@Component
 @SuppressWarnings({"rawtypes", "unchecked"})
-public class MatcherMediator implements InitializingBean {
+public class CommonMatcherMediator implements InitializingBean {
 
+    private final FindBeansOfTypeService findBeansOfTypeService;
     private final Map<Class<? extends Annotation>, AbstractMatcher> matchers = new HashMap<>();
-    private final ApplicationContext applicationContext;
 
-    public MatcherMediator(ApplicationContext applicationContext) {
-        this.applicationContext = applicationContext;
+    public CommonMatcherMediator(FindBeansOfTypeService findBeansOfTypeService) {
+        this.findBeansOfTypeService = findBeansOfTypeService;
     }
 
     public boolean match(Method method, Object value, Class<? extends Annotation> annotation) {
@@ -44,8 +42,8 @@ public class MatcherMediator implements InitializingBean {
     }
 
     private void internalAfterPropertiesSet() {
-        applicationContext.getBeansOfType(AbstractMatcher.class)
-                .forEach((beanName, bean) -> addMatcher(bean));
+        findBeansOfTypeService.findAllByList(AbstractMatcher.class)
+                .forEach(this::addMatcher);
     }
 
     private void addMatcher(AbstractMatcher instance) {

@@ -3,7 +3,7 @@ package org.khasanof.service.search;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.Nullable;
 import org.khasanof.collector.context.SimpleMethodContext;
-import org.khasanof.executors.matcher.MatcherMediator;
+import org.khasanof.executors.matcher.CommonMatcherMediator;
 import org.khasanof.feature.annotation.AnnotationHandler;
 import org.khasanof.models.collector.FindHandlerMethod;
 import org.khasanof.models.invoker.SimpleInvoker;
@@ -20,10 +20,10 @@ import java.util.Optional;
 @Slf4j
 public class DefaultSearchHandlerMethodService implements SearchHandlerMethodService {
 
-    private final MatcherMediator matcher;
+    private final CommonMatcherMediator matcher;
     private final SimpleMethodContext methodContext;
 
-    public DefaultSearchHandlerMethodService(MatcherMediator matcher,
+    public DefaultSearchHandlerMethodService(CommonMatcherMediator matcher,
                                              SimpleMethodContext methodContext) {
 
         this.matcher = matcher;

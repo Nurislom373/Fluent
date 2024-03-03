@@ -22,6 +22,11 @@ import java.util.function.Function;
  */
 public abstract class UpdateUtils {
 
+    /**
+     *
+     * @param update
+     * @return
+     */
     public static Long getUserId(Update update) {
         User from = getFrom(update);
         return from != null ? from.getId() : null;
