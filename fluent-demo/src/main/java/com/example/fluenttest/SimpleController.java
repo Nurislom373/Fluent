@@ -1,16 +1,14 @@
 package com.example.fluenttest;
 
 import lombok.extern.slf4j.Slf4j;
+import org.khasanof.annotation.ConditionOnState;
 import org.khasanof.annotation.UpdateController;
 import org.khasanof.annotation.expression.BotVariable;
 import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.annotation.methods.HandleMessages;
 import org.khasanof.enums.MatchType;
 import org.khasanof.service.template.FluentTemplate;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.bots.AbsSender;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 /**
  * @author Nurislom
@@ -31,6 +29,7 @@ public class SimpleController {
         @HandleMessage(value = "/jeck1", match = MatchType.START_WITH),
         @HandleMessage(value = "/jeck2", match = MatchType.START_WITH),
     })
+    @ConditionOnState({"START"})
     private void handleMessage(Update update) {
         fluentTemplate.sendText("Hi jecki");
     }

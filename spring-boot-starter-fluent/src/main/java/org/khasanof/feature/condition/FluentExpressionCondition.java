@@ -21,7 +21,7 @@ import java.util.Objects;
  * @since 2/28/2024 12:00 AM
  */
 @Component
-public class FluentExpressionCondition implements FluentBeanCondition {
+public class FluentExpressionCondition implements FluentCondition {
 
     private final ApplicationContext applicationContext;
 
