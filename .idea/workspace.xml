@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="added ConditionOnState annotation #86">
-      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/factories/bot/DefaultTelegramBotApiFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/factories/bot/TelegramBotApiFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/factories/bot/WebhookTelegramBotApiFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/bot/TelegramBotApiRegistry.java" afterDir="false" />
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="auto restart conflict bot instance problem writing... #87">
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/bot/TelegramBotRegistryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/service/bot/DefaultTelegramBotRegistryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/bot/TelegramBotApiRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/bot/TelegramBotApiRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/FluentStarterAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/FluentStarterAutoConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -418,15 +419,8 @@
       <workItem from="1709482086460" duration="1213000" />
       <workItem from="1709654566934" duration="5166000" />
       <workItem from="1709665183031" duration="17000" />
-      <workItem from="1709736735801" duration="5877000" />
-    </task>
-    <task id="LOCAL-00002" summary="prepare new release #31">
-      <option name="closed" value="true" />
-      <created>1703423282770</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1703423282770</updated>
+      <workItem from="1709736735801" duration="6465000" />
+      <workItem from="1709830936306" duration="839000" />
     </task>
     <task id="LOCAL-00003" summary="update gpg key #33">
       <option name="closed" value="true" />
@@ -812,7 +806,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709741847033</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="auto restart conflict bot instance problem writing... #87">
+      <option name="closed" value="true" />
+      <created>1709749378677</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1709749378677</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -883,7 +885,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed unused class from modules #55" />
     <MESSAGE value="added send photo operations #56" />
     <MESSAGE value="added some methods template operations #57" />
     <MESSAGE value="added template new operations #58" />
@@ -908,7 +909,8 @@
     <MESSAGE value="added new module fluent-inline-query #84" />
     <MESSAGE value="renamed MatcherMediator.java #85" />
     <MESSAGE value="added ConditionOnState annotation #86" />
-    <option name="LAST_COMMIT_MESSAGE" value="added ConditionOnState annotation #86" />
+    <MESSAGE value="auto restart conflict bot instance problem writing... #87" />
+    <option name="LAST_COMMIT_MESSAGE" value="auto restart conflict bot instance problem writing... #87" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

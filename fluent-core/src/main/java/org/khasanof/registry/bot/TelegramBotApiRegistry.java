@@ -1,8 +1,6 @@
 package org.khasanof.registry.bot;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.khasanof.factories.bot.TelegramBotApiFactory;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
@@ -39,7 +37,7 @@ public class TelegramBotApiRegistry {
      *
      * @return
      */
-    public static TelegramBotApiRegistry getInstance() {
+    public static TelegramBotApiRegistry getBotApiRegistryInstance() {
         return registry;
     }
 
