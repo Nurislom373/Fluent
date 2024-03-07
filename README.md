@@ -1,8 +1,15 @@
 # Fluent - Easy Telegram Bots with Spring!
 
+## Overview
+
+This library provides a high-level abstraction for developing Telegram bots 🤖. The library simplifies the process of
+receiving updates from Telegram and sending messages 📨. Additionally, you can easily integrate this library into your
+project and customize it according to your preferences by using its latest version when developing your application 🚀.
+
 ## Prerequisites
 
-Make sure you are using Spring Boot version 3.0.0 or above.
+* Fluent 1.2.0 requires at least Java 17
+* Make sure you are using Spring Boot version 3.0.0 or above.
 
 ## Getting Started
 
@@ -77,13 +84,7 @@ public class ExceptionHandler  {
 
 # Detailed documentation
 
-## 1. Overview
-
-This library provides a high-level abstraction for developing Telegram bots 🤖. The library simplifies the process of 
-receiving updates from Telegram and sending messages 📨. Additionally, you can easily integrate this library into your 
-project and customize it according to your preferences by using its latest version when developing your application 🚀. 
-
-## 1.1 Architecture
+## 1. Architecture
 
 ...
 
