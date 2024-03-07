@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="auto restart conflict bot instance problem writing... #87">
-      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/bot/TelegramBotRegistryService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/service/bot/DefaultTelegramBotRegistryService.java" afterDir="false" />
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="auto restart conflict bot instance problem finished #88">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/bot/TelegramBotApiRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/bot/TelegramBotApiRegistry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/FluentStarterAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/FluentStarterAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -420,15 +417,7 @@
       <workItem from="1709654566934" duration="5166000" />
       <workItem from="1709665183031" duration="17000" />
       <workItem from="1709736735801" duration="6465000" />
-      <workItem from="1709830936306" duration="839000" />
-    </task>
-    <task id="LOCAL-00003" summary="update gpg key #33">
-      <option name="closed" value="true" />
-      <created>1703428251335</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1703428251335</updated>
+      <workItem from="1709830936306" duration="2921000" />
     </task>
     <task id="LOCAL-00004" summary="rewriting update matchers #34">
       <option name="closed" value="true" />
@@ -814,7 +803,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709749378677</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="auto restart conflict bot instance problem finished #88">
+      <option name="closed" value="true" />
+      <created>1709831951694</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1709831951695</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -885,7 +882,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added send photo operations #56" />
     <MESSAGE value="added some methods template operations #57" />
     <MESSAGE value="added template new operations #58" />
     <MESSAGE value="fluent test module removed some classes #59" />
@@ -910,7 +906,8 @@
     <MESSAGE value="renamed MatcherMediator.java #85" />
     <MESSAGE value="added ConditionOnState annotation #86" />
     <MESSAGE value="auto restart conflict bot instance problem writing... #87" />
-    <option name="LAST_COMMIT_MESSAGE" value="auto restart conflict bot instance problem writing... #87" />
+    <MESSAGE value="auto restart conflict bot instance problem finished #88" />
+    <option name="LAST_COMMIT_MESSAGE" value="auto restart conflict bot instance problem finished #88" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

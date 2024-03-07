@@ -77,7 +77,48 @@ public class ExceptionHandler  {
 
 # Detailed documentation
 
-## 1. Creating your bot
+## 1. Overview
+
+This library provides a high-level abstraction for developing Telegram bots 🤖. The library simplifies the process of 
+receiving updates from Telegram and sending messages 📨. Additionally, you can easily integrate this library into your 
+project and customize it according to your preferences by using its latest version when developing your application 🚀. 
+
+## 1.1 Architecture
+
+...
+
+## 2. Creating your bot
+
+As written in the 'Getting Started' section of the tutorial, after adding the necessary dependency to our first program, 
+you need to write the credentials related to the bot in a properties or YAML file. This alone is sufficient for now to 
+start the bot and use it.
+
+### Maven
+
+```xml
+<dependency>
+    <groupId>io.github.nurislom373</groupId>
+    <artifactId>spring-boot-starter-fluent</artifactId>
+    <version>1.2.0</version>
+</dependency>
+```
+
+### Gradle
+
+```groovy
+implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent', version: '1.2.0'
+```
+
+### Yaml configuration
+
+```yaml
+fluent:
+  bot:
+    token: <your bot token>
+    username: <your bot username>
+    process-type: update
+```
+
 ## 2. Receiving updates
 ## 3. Making requests
 ## 4. Making keyboards
