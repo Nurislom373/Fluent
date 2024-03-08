@@ -36,8 +36,13 @@ public class FluentController {
 
     @HandleMessage("/template")
     @ConditionOnExpression("#{conditionBean.exist()}")
-    public void templateExample() {
+    public void templateExample(Update update) {
         fluentTemplate.sendText("Hello World");
+    }
+
+    @HandleMessage(value = "message:", match = MatchType.START_WITH)
+    public void startWithExampleHandler() {
+        fluentTemplate.sendText("I handle requests start with 'message:'");
     }
 
     @CustomCondition

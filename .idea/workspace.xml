@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="writing documentation #89">
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="writing documentation #90">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,15 +418,8 @@
       <workItem from="1709654566934" duration="5166000" />
       <workItem from="1709665183031" duration="17000" />
       <workItem from="1709736735801" duration="6465000" />
-      <workItem from="1709830936306" duration="3304000" />
-    </task>
-    <task id="LOCAL-00005" summary="matchFunctions enum separate #35">
-      <option name="closed" value="true" />
-      <created>1703448812866</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1703448812866</updated>
+      <workItem from="1709830936306" duration="3976000" />
+      <workItem from="1709911292925" duration="7610000" />
     </task>
     <task id="LOCAL-00006" summary="matchFunctions enum separate finished #36">
       <option name="closed" value="true" />
@@ -810,7 +805,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709835049379</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="writing documentation #90">
+      <option name="closed" value="true" />
+      <created>1709835238836</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1709835238836</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -881,7 +884,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added template new operations #58" />
     <MESSAGE value="fluent test module removed some classes #59" />
     <MESSAGE value="change operations methods #63" />
     <MESSAGE value="added new operations #67" />
@@ -906,7 +908,8 @@
     <MESSAGE value="auto restart conflict bot instance problem writing... #87" />
     <MESSAGE value="auto restart conflict bot instance problem finished #88" />
     <MESSAGE value="writing documentation #89" />
-    <option name="LAST_COMMIT_MESSAGE" value="writing documentation #89" />
+    <MESSAGE value="writing documentation #90" />
+    <option name="LAST_COMMIT_MESSAGE" value="writing documentation #90" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
