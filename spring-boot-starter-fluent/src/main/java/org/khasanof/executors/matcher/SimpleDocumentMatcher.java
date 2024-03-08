@@ -1,14 +1,16 @@
 package org.khasanof.executors.matcher;
 
 import org.khasanof.annotation.methods.HandleDocument;
-import org.khasanof.config.ApplicationConstants;
 import org.khasanof.enums.scopes.DocumentScope;
+import org.khasanof.models.matcher.MatcherParameters;
+import org.khasanof.models.matcher.MatcherProperty;
+import org.khasanof.models.matcher.function.PropertyFunction;
+import org.khasanof.service.expression.ExpressionMatcherService;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.objects.Document;
+import org.telegram.telegrambots.meta.api.objects.Message;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Nurislom
@@ -16,35 +18,28 @@ import java.util.function.Function;
  * @since 28.06.2023 10:27
  */
 @Component
-public class SimpleDocumentMatcher extends GenericMatcher<HandleDocument, Document> {
+public class SimpleDocumentMatcher extends GenericMatcher<HandleDocument, Message> {
 
-    private final Map<DocumentScope, Function<Document, Object>> biFunctionMap = new HashMap<>();
+    private final Set<MatcherProperty> matcherProperties = new HashSet<>();
 
-    {
-        setFunctionMap();
-    }
-
-    public SimpleDocumentMatcher() {
-        super(ApplicationConstants.MATCHER_MAP);
+    public SimpleDocumentMatcher(ExpressionMatcherService expressionMatcherService) {
+        super(expressionMatcherService);
+        fillMatcherProperties();
     }
 
     @Override
-    public boolean matcher(HandleDocument annotation, Document value) {
-        Object apply = biFunctionMap.get(annotation.scope()).apply(value);
-        return matchFunctions.get(Map.entry(annotation.match(), getScopeType(apply, annotation.match())))
-                .apply(annotation.value(), apply);
+    public boolean matcher(HandleDocument annotation, Message value) {
+        return expressionMatcherService.match(createParameter(annotation, value));
     }
 
-    @Override
-    public Class<HandleDocument> getType() {
-        return HandleDocument.class;
+    private MatcherParameters createParameter(HandleDocument annotation, Message value) {
+        return new MatcherParameters(value, annotation.property(), annotation.match(), annotation.value(), matcherProperties);
     }
 
-    private void setFunctionMap() {
-        biFunctionMap.put(DocumentScope.FILE_NAME, Document::getFileName);
-        biFunctionMap.put(DocumentScope.MIME_TYPE, Document::getMimeType);
-        biFunctionMap.put(DocumentScope.FILE_SIZE, Document::getFileSize);
+    private void fillMatcherProperties() {
+        matcherProperties.add(new MatcherProperty(DocumentScope.CAPTION, (PropertyFunction<Message>) Message::getCaption));
+        matcherProperties.add(new MatcherProperty(DocumentScope.FILE_NAME, (PropertyFunction<Message>) msg -> msg.getDocument().getFileName()));
+        matcherProperties.add(new MatcherProperty(DocumentScope.MIME_TYPE, (PropertyFunction<Message>) msg -> msg.getDocument().getMimeType()));
+        matcherProperties.add(new MatcherProperty(DocumentScope.FILE_SIZE, (PropertyFunction<Message>) msg -> msg.getDocument().getFileSize()));
     }
-
-
 }

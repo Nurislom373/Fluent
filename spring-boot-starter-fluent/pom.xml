@@ -12,7 +12,7 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <inceptionYear>2023</inceptionYear>
     <name>Spring Boot Starter Fluent</name>
     <description>Fluent - Easy Telegram Bots with Spring</description>
@@ -22,10 +22,10 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fluent-core.version>1.0.3</fluent-core.version>
+        <fluent-core.version>1.0.4</fluent-core.version>
         <reflections.version>0.10.2</reflections.version>
-        <evalex.version>3.0.5</evalex.version>
-        <gpg.keyname>0x0BF62FA3</gpg.keyname>
+        <gpg.keyname>0x9D13AEE9</gpg.keyname>
+        <spring-boot-starter-fluent-test.version>1.0.0</spring-boot-starter-fluent-test.version>
     </properties>
 
     <issueManagement>
@@ -137,11 +137,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.ezylang</groupId>
-            <artifactId>EvalEx</artifactId>
-            <version>${evalex.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>${reflections.version}</version>
@@ -150,6 +145,12 @@
             <groupId>io.github.nurislom373</groupId>
             <artifactId>fluent-core</artifactId>
             <version>${fluent-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.khasanof</groupId>
+            <artifactId>spring-boot-starter-fluent-test</artifactId>
+            <version>${spring-boot-starter-fluent-test.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

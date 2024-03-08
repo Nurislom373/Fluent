@@ -2,7 +2,7 @@ package org.khasanof.executors.matcher;
 
 import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleCallbacks;
-import org.khasanof.config.ApplicationConstants;
+import org.khasanof.service.expression.ExpressionMatcherService;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -17,20 +17,14 @@ public class SimpleCallbacksMatcher extends GenericMatcher<HandleCallbacks, Stri
 
     private final GenericMatcher<HandleCallback, String> matcher;
 
-    public SimpleCallbacksMatcher(GenericMatcher<HandleCallback, String> matcher) {
-        super(ApplicationConstants.MATCHER_MAP);
+    public SimpleCallbacksMatcher(GenericMatcher<HandleCallback, String> matcher, ExpressionMatcherService expressionMatcherService) {
+        super(expressionMatcherService);
         this.matcher = matcher;
     }
 
     @Override
     public boolean matcher(HandleCallbacks annotation, String value) {
-        return Arrays.stream(annotation.values())
+        return Arrays.stream(annotation.value())
                 .anyMatch(handleCallback -> matcher.matcher(handleCallback, value));
     }
-
-    @Override
-    public Class<HandleCallbacks> getType() {
-        return HandleCallbacks.class;
-    }
-
 }

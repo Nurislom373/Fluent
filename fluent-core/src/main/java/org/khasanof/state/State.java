@@ -12,5 +12,4 @@ public interface State {
     void nextState();
 
     void nextState(Enum state);
-
 }

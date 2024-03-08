@@ -3,6 +3,7 @@ package org.khasanof.models.invoker;
 import org.khasanof.enums.InvokerType;
 
 import java.lang.reflect.Method;
+import java.util.Map;
 
 /**
  * @author Nurislom
@@ -17,4 +18,7 @@ public interface SimpleInvoker {
 
     InvokerType getType();
 
+    Boolean hasMethodParams();
+
+    Map<InvokerParam, Object> getParams();
 }

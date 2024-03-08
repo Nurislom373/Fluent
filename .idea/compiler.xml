@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="fluent-core" />
+        <module name="fluent-demo" />
+        <module name="spring-boot-starter-fluent-state" />
+        <module name="spring-boot-starter-fluent" />
+        <module name="fluent-test" />
+        <module name="fluent-state" />
+        <module name="spring-boot-starter-fluent-test" />
+        <module name="spring-boot-fluent-postgresql" />
+        <module name="fluent-inline-query" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="examples" target="17" />
+      <module name="fluent-utils" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="fluent-demo" options="-parameters" />
+      <module name="fluent-inline-query" options="-parameters" />
+      <module name="fluent-state" options="-parameters" />
+      <module name="fluent-test" options="" />
+      <module name="spring-boot-fluent-postgresql" options="-parameters" />
+      <module name="spring-boot-starter-fluent" options="-parameters" />
+      <module name="spring-boot-starter-fluent-state" options="-parameters" />
+      <module name="spring-boot-starter-fluent-test" options="-parameters" />
+    </option>
+  </component>
+</project>

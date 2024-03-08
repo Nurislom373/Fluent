@@ -3,7 +3,7 @@ package org.khasanof.annotation.methods;
 
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 import org.khasanof.enums.scopes.VideoScope;
 
 import java.lang.annotation.ElementType;
@@ -24,8 +24,7 @@ public @interface HandleVideo {
 
     String value();
 
-    MatchScope match() default MatchScope.EQUALS;
+    MatchType match() default MatchType.EQUALS;
 
-    VideoScope scope();
-
+    VideoScope property();
 }

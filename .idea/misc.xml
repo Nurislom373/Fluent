@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/fluent-core/pom.xml" />
+        <option value="$PROJECT_DIR$/fluent-test/pom.xml" />
+        <option value="$PROJECT_DIR$/fluent-state/pom.xml" />
+        <option value="$PROJECT_DIR$/fluent-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/fluent-state-postgresql/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" />
+        <option value="$PROJECT_DIR$/examples/pom.xml" />
+        <option value="$PROJECT_DIR$/fluent-engine/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" />
+        <option value="$PROJECT_DIR$/fluent-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" />
+        <option value="$PROJECT_DIR$/fluent-inline-query/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/fluent-engine/pom.xml" />
+        <option value="$PROJECT_DIR$/fluent-utils/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

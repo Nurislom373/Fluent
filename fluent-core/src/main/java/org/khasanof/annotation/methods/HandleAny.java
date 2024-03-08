@@ -17,7 +17,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleAny {
 
-    HandleType type() default HandleType.MESSAGE;
+    HandleType[] type() default {HandleType.MESSAGE};
 
     Proceed proceed() default Proceed.PROCEED;
 

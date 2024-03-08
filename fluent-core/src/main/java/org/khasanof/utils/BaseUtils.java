@@ -3,6 +3,7 @@ package org.khasanof.utils;
 import org.springframework.aop.framework.Advised;
 import org.springframework.aop.support.AopUtils;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 /**
@@ -15,6 +16,12 @@ public abstract class BaseUtils {
 
     private static final String[] EMPTY_STRING_ARRAY = {};
 
+    /**
+     *
+     * @param proxyBean
+     * @return
+     * @param <T>
+     */
     public static <T> T unwrapProxyBean(T proxyBean) {
         try {
             if (AopUtils.isAopProxy(proxyBean) && proxyBean instanceof Advised) {
@@ -24,6 +31,16 @@ public abstract class BaseUtils {
             e.printStackTrace();
         }
         return proxyBean;
+    }
+
+    /**
+     *
+     * @param clazz
+     * @return
+     * @param <T>
+     */
+    public static <T> Class<T> getFirstGenericType(Class<?> clazz) {
+        return (Class<T>) ((ParameterizedType) clazz.getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     /**

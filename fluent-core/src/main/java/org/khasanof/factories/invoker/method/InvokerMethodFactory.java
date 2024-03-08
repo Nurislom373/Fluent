@@ -1,6 +1,7 @@
 package org.khasanof.factories.invoker.method;
 
 import org.khasanof.factories.GenericFactory;
+import org.khasanof.models.invoker.InvokerParam;
 import org.khasanof.models.invoker.SimpleInvoker;
 
 import java.lang.reflect.Method;
@@ -12,4 +13,7 @@ import java.util.Map;
  * @since 12/16/2023 9:09 PM
  */
 public interface InvokerMethodFactory extends GenericFactory<Map.Entry<Method, Object>, SimpleInvoker> {
+
+    SimpleInvoker create(Map.Entry<Method, Object> entry, Map<InvokerParam, Object> params);
+
 }

@@ -2,7 +2,7 @@ package org.khasanof.annotation.methods;
 
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 import org.khasanof.enums.scopes.PhotoScope;
 
 import java.lang.annotation.ElementType;
@@ -23,8 +23,7 @@ public @interface HandlePhoto {
 
     String value();
 
-    MatchScope match() default MatchScope.EQUALS;
+    MatchType match() default MatchType.EQUALS;
 
-    PhotoScope scope() default PhotoScope.FILE_SIZE;
-
+    PhotoScope property() default PhotoScope.CAPTION;
 }

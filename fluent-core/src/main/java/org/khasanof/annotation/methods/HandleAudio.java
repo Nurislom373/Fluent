@@ -2,7 +2,7 @@ package org.khasanof.annotation.methods;
 
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 import org.khasanof.enums.scopes.AudioScope;
 
 import java.lang.annotation.ElementType;
@@ -23,8 +23,8 @@ public @interface HandleAudio {
 
     String value();
 
-    MatchScope match() default MatchScope.EQUALS;
+    MatchType match() default MatchType.EQUALS;
 
-    AudioScope scope() default AudioScope.FILE_NAME;
+    AudioScope property() default AudioScope.FILE_NAME;
 
 }

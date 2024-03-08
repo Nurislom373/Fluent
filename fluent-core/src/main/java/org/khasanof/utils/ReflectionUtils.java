@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
  * @see org.khasanof.utils
  * @since 05.07.2023 22:33
  */
+@SuppressWarnings({"unchecked"})
 public class ReflectionUtils {
 
     private static final Reflections systemReflections = new Reflections("org.khasanof");
@@ -20,7 +21,6 @@ public class ReflectionUtils {
         return systemReflections;
     }
 
-    @SuppressWarnings("unchecked")
     public static <T> List<T> getSubTypesObject(Class<T> clazz) {
         return (List<T>) systemReflections.getSubTypesOf(clazz).stream().map(clz -> {
             try {
@@ -32,7 +32,9 @@ public class ReflectionUtils {
     }
 
     public static Set<Class<?>> getSubTypesSuperAnnotation(Class<? extends Annotation> annotation) {
-        return systemReflections.getTypesAnnotatedWith(annotation).stream().filter(Class::isAnnotation)
+        return systemReflections.getTypesAnnotatedWith(annotation)
+                .stream()
+                .filter(Class::isAnnotation)
                 .collect(Collectors.toSet());
     }
 }

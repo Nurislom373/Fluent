@@ -30,5 +30,4 @@ public enum ClassLevelTypes {
         return Arrays.stream(values()).map(ClassLevelTypes::getType)
                 .collect(Collectors.toSet());
     }
-
 }

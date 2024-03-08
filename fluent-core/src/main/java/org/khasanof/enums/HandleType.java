@@ -1,9 +1,5 @@
 package org.khasanof.enums;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 /**
  * Author: Nurislom
  * <br/>
@@ -13,28 +9,38 @@ import lombok.RequiredArgsConstructor;
  * <br/>
  * Package: org.khasanof.core.enums
  */
-@Getter
-@AllArgsConstructor
-@RequiredArgsConstructor
 public enum HandleType {
 
-    MESSAGE(HandleClasses.HANDLE_MESSAGE),
-    CALLBACK(HandleClasses.HANDLE_CALLBACK), STICKER,
-    PHOTO(HandleClasses.HANDLE_PHOTO),
-    DOCUMENT(HandleClasses.HANDLE_DOCUMENT),
-    VIDEO(HandleClasses.HANDLE_VIDEO),
-    INLINE_QUERY(HandleClasses.HANDLE_INLINE_QUERY),
-    VOICE, CONTACT,
-    VIDEO_NOTE(HandleClasses.HANDLE_VIDEO_NOTE),
-    LOCATION, MEDIA_GROUP,
-    AUDIO(HandleClasses.HANDLE_AUDIO),
-    ANIMATION, CHAT_ACTION, VENUE,
-    DICE, POLL;
-
-    private HandleClasses handleClasses;
-
-    public static boolean hasHandleAnnotation(HandleType type) {
-        return type.handleClasses != null;
-    }
-
+    UNKNOWN, // special type
+    ALL, // special type
+    MESSAGE, // message
+    WEB_APP_DATA,
+    TEXT,
+    CALLBACK,
+    STICKER,
+    PHOTO,
+    DOCUMENT,
+    VIDEO,
+    PASSPORT_DATA,
+    INVOICE,
+    POLL,
+    VOICE,
+    CONTACT,
+    VIDEO_NOTE,
+    LOCATION,
+    AUDIO,
+    ANIMATION,
+    VENUE,
+    DICE,
+    INLINE_QUERY, // inline query
+    MY_CHAT_MEMBER,
+    CHOSEN_INLINE_QUERY,
+    CHAT_JOIN_REQUEST,
+    EDIT_MESSAGE,
+    CHANNEL_POST,
+    EDIT_CHANNEL_POST,
+    SHIPPING_QUERY,
+    PRE_CHECKOUT_QUERY,
+    POLL_ANSWER,
+    CHAT_MEMBER,
 }

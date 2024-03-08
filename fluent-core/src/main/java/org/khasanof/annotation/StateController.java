@@ -2,10 +2,7 @@ package org.khasanof.annotation;
 
 import org.springframework.stereotype.Component;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 import java.util.EnumSet;
 
 /**
@@ -14,6 +11,7 @@ import java.util.EnumSet;
  * @since 09.07.2023 18:40
  */
 @Component
+@Documented
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StateController {

@@ -12,7 +12,7 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-state</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <inceptionYear>2023</inceptionYear>
     <name>Fluent State</name>
     <description>Fluent - Easy Telegram Bots with Spring</description>
@@ -22,8 +22,8 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fluent-core.version>1.0.3</fluent-core.version>
-        <gpg.keyname>0x0BF62FA3</gpg.keyname>
+        <fluent-core.version>1.0.4</fluent-core.version>
+        <gpg.keyname>0x9D13AEE9</gpg.keyname>
     </properties>
 
     <issueManagement>

@@ -15,8 +15,7 @@ import java.util.function.BiConsumer;
  */
 public interface DeterminationFunction extends DefineProcessType {
 
-    BiConsumer<Update, Set<SimpleInvoker>> accept(ApplicationContext applicationContext);
+    BiConsumer<Update, Set<SimpleInvoker>> getConsumer(ApplicationContext applicationContext);
 
     Integer getOrder();
-
 }

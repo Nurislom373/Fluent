@@ -1,12 +1,13 @@
 package org.khasanof.event.assembleMethods;
 
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.khasanof.collector.AssembleMethods;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.Comparator;
 
 /**
  * @author Nurislom
@@ -24,10 +25,11 @@ public class AssembleMethodsListener implements ApplicationListener<AssembleMeth
     }
 
     @Override
-    public void onApplicationEvent(AssembleMethodsEvent event) {
-        log.info("assemble methods start!");
+    public void onApplicationEvent(@NotNull AssembleMethodsEvent event) {
+        log.info("Assemble Methods Started!");
         applicationContext.getBeansOfType(AssembleMethods.class)
-                .forEach(((s, assembleMethods) -> CompletableFuture.runAsync(assembleMethods::assembleMethods)));
+                .values().stream()
+                .sorted(Comparator.comparing(AssembleMethods::getOrder))
+                .forEach(AssembleMethods::assemble);
     }
-
 }

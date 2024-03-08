@@ -1,0 +1,1000 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="writing documentation #90">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Enum" />
+        <option value="AnnotationType" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Nurislom &lt;nurislomx72@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Abdulloh" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Nurislom373&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="66c5f0a7-f8a6-4fd9-81e3-9381ce61fefd" />
+        <option name="url" value="https://github.com/Nurislom373/Fluent" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2ZtDnrGuQfFhpcH3W4v8lXvAPwP" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DefaultExecuteMethodReflect.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TariffPlan.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnyHandleMethodCheckerTest and 1 more.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnyHandleMethodCheckerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnyHandleMethodCheckerTest.fifthTestCheckMethodShouldFailed.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnyHandleMethodCheckerTest.fourthTestCheckMethodShouldFailed.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AnyHandleMethodCheckerTest.sixthTestCheckMethodShouldNotSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldFailed.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.AnyHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DefaultHandleMethodCheckerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DefaultHandleMethodCheckerTest.fourthTestCheckMethodShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DefaultHandleMethodCheckerTest.secondTestCheckMethodShouldFailed.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldFailed.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.DefaultHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.ExceptionHandleMethodCheckerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentCallbackHandlerIT and 1 more.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentCallbackHandlerIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentCallbackHandlerIT.firstTestShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentCallbackHandlerIT.secondTestSentCallbackShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentDocumentHandlerIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentDocumentHandlerIT.fifthTestShouldSuccess.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.FluentDocumentHandlerIT.firstTestShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentDocumentHandlerIT.secondTestShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentDocumentHandlerIT.sixthTestShouldSuccess.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.FluentMessageHandleIT.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentMessageHandleIT.firstTestShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentMessageHandleIT.fourthTestShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentMessageHandleIT.secondTestShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentMessageHandleIT.thirdTestShouldSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FluentTestApplicationTests.firstTestShouldSuccess.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.SpringBootFluentStarterApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SpringBootFluentStarterApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.handler in spring-boot-starter-fluent.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.org.khasanof.handler in spring-boot-starter-fluent.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fluent-core [clean,compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fluent-core [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fluent-core [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fluent-core [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fluent-core [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fluent-demo [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fluent-test [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fluent-test [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-boot-starter-fluent [clean...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-boot-starter-fluent [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.spring-boot-starter-fluent-test [clean...].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.FluentTestApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Nurislom/Projects/Java/Fluent&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
+    &quot;vcs.patch.path&quot;: &quot;C:/Users/Nurislom/Downloads&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Nurislom\Projects\Java\Fluent\utils" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.khasanof" />
+      <recent name="org.khasanof.config" />
+    </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="org.khasanof.service.annotation.type" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.khasanof.collector.loader" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.FluentTestApplication">
+    <configuration name="FluentCallbackHandlerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-boot-starter-fluent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.khasanof.handler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.khasanof.handler" />
+      <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentCallbackHandlerIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FluentDocumentHandlerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-boot-starter-fluent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.khasanof.handler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.khasanof.handler" />
+      <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentDocumentHandlerIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FluentDocumentHandlerIT.sixthTestShouldSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-boot-starter-fluent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.khasanof.handler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.khasanof.handler" />
+      <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentDocumentHandlerIT" />
+      <option name="METHOD_NAME" value="sixthTestShouldSuccess" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FluentMessageHandleIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-boot-starter-fluent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.khasanof.handler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.khasanof.handler" />
+      <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentMessageHandleIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="handler in spring-boot-starter-fluent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-boot-starter-fluent" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/spring-boot-starter-fluent/src/test/java/org/khasanof/handler" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FluentInlineQueryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="fluent-inline-query" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.khasanof.fluentinlinequery.FluentInlineQueryApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FluentTestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="fluent-demo" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.fluenttest.FluentTestApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringBootStarterFluentStateApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="spring-boot-starter-fluent-state" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.khasanof.SpringBootStarterFluentStateApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringBootStarterFluentTestApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="spring-boot-starter-fluent-test" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.khasanof.SpringBootStarterFluentTestApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.FluentMessageHandleIT" />
+        <item itemvalue="JUnit.FluentDocumentHandlerIT" />
+        <item itemvalue="JUnit.FluentCallbackHandlerIT" />
+        <item itemvalue="JUnit.handler in spring-boot-starter-fluent" />
+        <item itemvalue="JUnit.FluentDocumentHandlerIT.sixthTestShouldSuccess" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.10-corretto-17.0.10-f644763e9732-24fca987" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="" />
+      <created>1703232652831</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1703232652831</updated>
+      <workItem from="1703232655409" duration="421000" />
+      <workItem from="1703233608812" duration="108000" />
+      <workItem from="1703416015126" duration="14714000" />
+      <workItem from="1703442994176" duration="6404000" />
+      <workItem from="1703533132249" duration="3624000" />
+      <workItem from="1703603944125" duration="10501000" />
+      <workItem from="1703694538393" duration="9385000" />
+      <workItem from="1703866863582" duration="18000" />
+      <workItem from="1704194591695" duration="72000" />
+      <workItem from="1704199592607" duration="6000" />
+      <workItem from="1704199677704" duration="34000" />
+      <workItem from="1704199880522" duration="22000" />
+      <workItem from="1704199906952" duration="23000" />
+      <workItem from="1704199934148" duration="50000" />
+      <workItem from="1704200087958" duration="162000" />
+      <workItem from="1704200277758" duration="223000" />
+      <workItem from="1704200507832" duration="1969000" />
+      <workItem from="1704204609691" duration="3146000" />
+      <workItem from="1704207817438" duration="160000" />
+      <workItem from="1704207983854" duration="93000" />
+      <workItem from="1704208084760" duration="124000" />
+      <workItem from="1704263035103" duration="38000" />
+      <workItem from="1704263697259" duration="192000" />
+      <workItem from="1704554888334" duration="3902000" />
+      <workItem from="1704559141124" duration="1421000" />
+      <workItem from="1704613444215" duration="2260000" />
+      <workItem from="1704619754533" duration="629000" />
+      <workItem from="1704654944813" duration="446000" />
+      <workItem from="1704731295718" duration="396000" />
+      <workItem from="1704732328406" duration="5505000" />
+      <workItem from="1704740166093" duration="4993000" />
+      <workItem from="1704815413680" duration="12152000" />
+      <workItem from="1704902746959" duration="6217000" />
+      <workItem from="1705167611754" duration="9539000" />
+      <workItem from="1705258008315" duration="741000" />
+      <workItem from="1705336984836" duration="12238000" />
+      <workItem from="1705422862651" duration="11448000" />
+      <workItem from="1705507645163" duration="194000" />
+      <workItem from="1705778741701" duration="77000" />
+      <workItem from="1705824647189" duration="13511000" />
+      <workItem from="1705840340227" duration="245000" />
+      <workItem from="1705842475037" duration="12000" />
+      <workItem from="1705842495799" duration="18000" />
+      <workItem from="1705842618843" duration="151000" />
+      <workItem from="1706024913013" duration="691000" />
+      <workItem from="1706026598248" duration="7535000" />
+      <workItem from="1706113639183" duration="6978000" />
+      <workItem from="1706197792601" duration="4614000" />
+      <workItem from="1706340410504" duration="625000" />
+      <workItem from="1706342971375" duration="1829000" />
+      <workItem from="1706355825241" duration="1759000" />
+      <workItem from="1706361361287" duration="12425000" />
+      <workItem from="1706635358853" duration="5454000" />
+      <workItem from="1706804612150" duration="11281000" />
+      <workItem from="1706946887478" duration="24610000" />
+      <workItem from="1707043556809" duration="136000" />
+      <workItem from="1707059166487" duration="9572000" />
+      <workItem from="1707157140204" duration="1340000" />
+      <workItem from="1707192620391" duration="731000" />
+      <workItem from="1707405266725" duration="1412000" />
+      <workItem from="1707407049564" duration="59000" />
+      <workItem from="1707407116627" duration="35000" />
+      <workItem from="1707407160722" duration="2463000" />
+      <workItem from="1707411589927" duration="4674000" />
+      <workItem from="1707506387596" duration="1243000" />
+      <workItem from="1707579895828" duration="1509000" />
+      <workItem from="1707583161650" duration="6837000" />
+      <workItem from="1707657695332" duration="9038000" />
+      <workItem from="1707751083372" duration="16231000" />
+      <workItem from="1707792225275" duration="1152000" />
+      <workItem from="1707842019339" duration="2636000" />
+      <workItem from="1707846851338" duration="300000" />
+      <workItem from="1707847381853" duration="22000" />
+      <workItem from="1707847412372" duration="324000" />
+      <workItem from="1707848188180" duration="564000" />
+      <workItem from="1707968829651" duration="4308000" />
+      <workItem from="1708020429669" duration="2073000" />
+      <workItem from="1708023157576" duration="1345000" />
+      <workItem from="1708098052755" duration="3819000" />
+      <workItem from="1708108667096" duration="1378000" />
+      <workItem from="1708168124662" duration="4995000" />
+      <workItem from="1708173939164" duration="1308000" />
+      <workItem from="1708177031745" duration="8771000" />
+      <workItem from="1708193325793" duration="5072000" />
+      <workItem from="1708256983266" duration="14621000" />
+      <workItem from="1708283791204" duration="1547000" />
+      <workItem from="1708356604846" duration="8463000" />
+      <workItem from="1708443583280" duration="13979000" />
+      <workItem from="1708530809040" duration="9569000" />
+      <workItem from="1708617406117" duration="6440000" />
+      <workItem from="1708709962729" duration="3699000" />
+      <workItem from="1708766343292" duration="2000" />
+      <workItem from="1708766452749" duration="28000" />
+      <workItem from="1708766587642" duration="14000" />
+      <workItem from="1708766643870" duration="15000" />
+      <workItem from="1708787708181" duration="6233000" />
+      <workItem from="1708800391771" duration="627000" />
+      <workItem from="1708838682110" duration="116000" />
+      <workItem from="1708870127920" duration="6751000" />
+      <workItem from="1708882634568" duration="139000" />
+      <workItem from="1708964644712" duration="4809000" />
+      <workItem from="1709002342062" duration="6000" />
+      <workItem from="1709053335308" duration="7029000" />
+      <workItem from="1709061598980" duration="1883000" />
+      <workItem from="1709137821041" duration="1164000" />
+      <workItem from="1709139649273" duration="8542000" />
+      <workItem from="1709221115734" duration="9616000" />
+      <workItem from="1709310356855" duration="9273000" />
+      <workItem from="1709358185425" duration="21393000" />
+      <workItem from="1709403894262" duration="5692000" />
+      <workItem from="1709445589112" duration="1532000" />
+      <workItem from="1709452628868" duration="4115000" />
+      <workItem from="1709465602218" duration="12853000" />
+      <workItem from="1709482086460" duration="1213000" />
+      <workItem from="1709654566934" duration="5166000" />
+      <workItem from="1709665183031" duration="17000" />
+      <workItem from="1709736735801" duration="6465000" />
+      <workItem from="1709830936306" duration="3976000" />
+      <workItem from="1709911292925" duration="7610000" />
+    </task>
+    <task id="LOCAL-00006" summary="matchFunctions enum separate finished #36">
+      <option name="closed" value="true" />
+      <created>1703536633394</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1703536633394</updated>
+    </task>
+    <task id="LOCAL-00007" summary="method check module separate #37">
+      <option name="closed" value="true" />
+      <created>1703614837419</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1703614837419</updated>
+    </task>
+    <task id="LOCAL-00008" summary="add new modules #38">
+      <option name="closed" value="true" />
+      <created>1703701149658</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1703701149658</updated>
+    </task>
+    <task id="LOCAL-00009" summary="HandleType enum field removed">
+      <option name="closed" value="true" />
+      <created>1704619840962</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1704619840962</updated>
+    </task>
+    <task id="LOCAL-00010" summary="ExecutorServiceFactoryConfiguration add #33">
+      <option name="closed" value="true" />
+      <created>1704732862993</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1704732862993</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fluent-test module written #34">
+      <option name="closed" value="true" />
+      <created>1704744642389</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1704744642389</updated>
+    </task>
+    <task id="LOCAL-00012" summary="new Module Spring-Boot-Starter-Fluent-Test #35">
+      <option name="closed" value="true" />
+      <created>1704745028641</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1704745028641</updated>
+    </task>
+    <task id="LOCAL-00013" summary="new Module Spring-Boot-Starter-Fluent-Test finished #42">
+      <option name="closed" value="true" />
+      <created>1704828004229</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1704828004229</updated>
+    </task>
+    <task id="LOCAL-00014" summary="some Configuration class change name #43">
+      <option name="closed" value="true" />
+      <created>1704828224686</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1704828224686</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add Document Factory #44">
+      <option name="closed" value="true" />
+      <created>1704911908861</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1704911908861</updated>
+    </task>
+    <task id="LOCAL-00016" summary="start write test #45">
+      <option name="closed" value="true" />
+      <created>1705177091288</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1705177091288</updated>
+    </task>
+    <task id="LOCAL-00017" summary="collector and questMethod removed #46">
+      <option name="closed" value="true" />
+      <created>1705424559087</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1705424559087</updated>
+    </task>
+    <task id="LOCAL-00018" summary="renamed some classes #47">
+      <option name="closed" value="true" />
+      <created>1705435487557</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1705435487557</updated>
+    </task>
+    <task id="LOCAL-00019" summary="default method checker rewrited #48">
+      <option name="closed" value="true" />
+      <created>1705834911334</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1705834911334</updated>
+    </task>
+    <task id="LOCAL-00020" summary="add new test and rename some class #49">
+      <option name="closed" value="true" />
+      <created>1705840486787</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1705840486787</updated>
+    </task>
+    <task id="LOCAL-00021" summary="added FluentTemplate #50">
+      <option name="closed" value="true" />
+      <created>1706815385480</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1706815385480</updated>
+    </task>
+    <task id="LOCAL-00022" summary="everything is ready to use in my opinion and write tests #51">
+      <option name="closed" value="true" />
+      <created>1706986313294</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1706986313294</updated>
+    </task>
+    <task id="LOCAL-00023" summary="everything is ready to use in my opinion and write tests #52">
+      <option name="closed" value="true" />
+      <created>1707071299250</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1707071299250</updated>
+    </task>
+    <task id="LOCAL-00024" summary="fluent test module rewriting... #53">
+      <option name="closed" value="true" />
+      <created>1707589922043</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1707589922044</updated>
+    </task>
+    <task id="LOCAL-00025" summary="fluent test module rewriting... #54">
+      <option name="closed" value="true" />
+      <created>1707668913618</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1707668913618</updated>
+    </task>
+    <task id="LOCAL-00026" summary="removed unused class from modules #55">
+      <option name="closed" value="true" />
+      <created>1707669875541</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1707669875541</updated>
+    </task>
+    <task id="LOCAL-00027" summary="added send photo operations #56">
+      <option name="closed" value="true" />
+      <created>1707758202782</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1707758202782</updated>
+    </task>
+    <task id="LOCAL-00028" summary="added some methods template operations #57">
+      <option name="closed" value="true" />
+      <created>1707848473759</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1707848473759</updated>
+    </task>
+    <task id="LOCAL-00029" summary="added template new operations #58">
+      <option name="closed" value="true" />
+      <created>1707973616155</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1707973616155</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fluent test module removed some classes #59">
+      <option name="closed" value="true" />
+      <created>1708099457360</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1708099457360</updated>
+    </task>
+    <task id="LOCAL-00031" summary="change operations methods #63">
+      <option name="closed" value="true" />
+      <created>1708100735153</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1708100735153</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added new operations #67">
+      <option name="closed" value="true" />
+      <created>1708174995458</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1708174995458</updated>
+    </task>
+    <task id="LOCAL-00033" summary="rewrite README.md #68">
+      <option name="closed" value="true" />
+      <created>1708177116180</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1708177116180</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Added new classes #69">
+      <option name="closed" value="true" />
+      <created>1708284739765</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1708284739765</updated>
+    </task>
+    <task id="LOCAL-00035" summary="custom annotation is worked 🥳🥳🥳 #71">
+      <option name="closed" value="true" />
+      <created>1708459627400</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1708459627400</updated>
+    </task>
+    <task id="LOCAL-00036" summary="custom annotation is worked 🥳🥳🥳 #72">
+      <option name="closed" value="true" />
+      <created>1708543055297</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1708543055297</updated>
+    </task>
+    <task id="LOCAL-00037" summary="ExpressionMatcherService finished #73">
+      <option name="closed" value="true" />
+      <created>1708800419252</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1708800419252</updated>
+    </task>
+    <task id="LOCAL-00038" summary="added InvokerMethodInterceptor #74">
+      <option name="closed" value="true" />
+      <created>1708874552134</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1708874552134</updated>
+    </task>
+    <task id="LOCAL-00039" summary="added Condition #75">
+      <option name="closed" value="true" />
+      <created>1709149255370</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1709149255370</updated>
+    </task>
+    <task id="LOCAL-00040" summary="composing fluent state module #76">
+      <option name="closed" value="true" />
+      <created>1709225227398</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1709225227398</updated>
+    </task>
+    <task id="LOCAL-00041" summary="added repeatable and state condition #77">
+      <option name="closed" value="true" />
+      <created>1709231521706</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1709231521706</updated>
+    </task>
+    <task id="LOCAL-00042" summary="added handle unknown annotation #78">
+      <option name="closed" value="true" />
+      <created>1709313640998</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1709313640998</updated>
+    </task>
+    <task id="LOCAL-00043" summary="added module spring-boot-fluent-postgresql #79">
+      <option name="closed" value="true" />
+      <created>1709365029339</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1709365029339</updated>
+    </task>
+    <task id="LOCAL-00044" summary="rewritten matcher finished #80">
+      <option name="closed" value="true" />
+      <created>1709390068269</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1709390068269</updated>
+    </task>
+    <task id="LOCAL-00045" summary="added feature keyboard builders #81">
+      <option name="closed" value="true" />
+      <created>1709408930746</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1709408930746</updated>
+    </task>
+    <task id="LOCAL-00046" summary="removed fluent-utils module #82">
+      <option name="closed" value="true" />
+      <created>1709446869903</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1709446869903</updated>
+    </task>
+    <task id="LOCAL-00047" summary="added extra param decorator #84">
+      <option name="closed" value="true" />
+      <created>1709468619814</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1709468619814</updated>
+    </task>
+    <task id="LOCAL-00048" summary="added new module fluent-inline-query #84">
+      <option name="closed" value="true" />
+      <created>1709477568909</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1709477568909</updated>
+    </task>
+    <task id="LOCAL-00049" summary="renamed MatcherMediator.java #85">
+      <option name="closed" value="true" />
+      <created>1709478177417</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1709478177417</updated>
+    </task>
+    <task id="LOCAL-00050" summary="added ConditionOnState annotation #86">
+      <option name="closed" value="true" />
+      <created>1709741847033</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1709741847033</updated>
+    </task>
+    <task id="LOCAL-00051" summary="auto restart conflict bot instance problem writing... #87">
+      <option name="closed" value="true" />
+      <created>1709749378677</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1709749378677</updated>
+    </task>
+    <task id="LOCAL-00052" summary="auto restart conflict bot instance problem finished #88">
+      <option name="closed" value="true" />
+      <created>1709831951694</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1709831951695</updated>
+    </task>
+    <task id="LOCAL-00053" summary="writing documentation #89">
+      <option name="closed" value="true" />
+      <created>1709835049379</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1709835049379</updated>
+    </task>
+    <task id="LOCAL-00054" summary="writing documentation #90">
+      <option name="closed" value="true" />
+      <created>1709835238836</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1709835238836</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="c74902d4-fa76-4b9e-803b-6b562ae9ae43" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/development" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="c74902d4-fa76-4b9e-803b-6b562ae9ae43">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Nurislom/Projects/Java/Fluent/fluent-utils" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fluent test module removed some classes #59" />
+    <MESSAGE value="change operations methods #63" />
+    <MESSAGE value="added new operations #67" />
+    <MESSAGE value="rewrite README.md #68" />
+    <MESSAGE value="Added new classes #69" />
+    <MESSAGE value="custom annotation is worked  #71" />
+    <MESSAGE value="custom annotation is worked  #72" />
+    <MESSAGE value="ExpressionMatcherService finished #73" />
+    <MESSAGE value="added InvokerMethodInterceptor #74" />
+    <MESSAGE value="added Condition #75" />
+    <MESSAGE value="composing fluent state module #76" />
+    <MESSAGE value="added repeatable and state condition #77" />
+    <MESSAGE value="added handle unknown annotation #78" />
+    <MESSAGE value="added module spring-boot-fluent-postgresql #79" />
+    <MESSAGE value="rewritten matcher finished #80" />
+    <MESSAGE value="added feature keyboard builders #81" />
+    <MESSAGE value="removed fluent-utils module #82" />
+    <MESSAGE value="added extra param decorator #84" />
+    <MESSAGE value="added new module fluent-inline-query #84" />
+    <MESSAGE value="renamed MatcherMediator.java #85" />
+    <MESSAGE value="added ConditionOnState annotation #86" />
+    <MESSAGE value="auto restart conflict bot instance problem writing... #87" />
+    <MESSAGE value="auto restart conflict bot instance problem finished #88" />
+    <MESSAGE value="writing documentation #89" />
+    <MESSAGE value="writing documentation #90" />
+    <option name="LAST_COMMIT_MESSAGE" value="writing documentation #90" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-test/src/main/java/org/khasanof/verifier/DefaultFluentVerifier.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-test/src/main/java/org/khasanof/verifier/DefaultFluentVerifier.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-test/src/main/java/org/khasanof/simulate/SimulateUpdateHandlerManager.java</url>
+          <line>26</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="75" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-test/src/main/java/org/khasanof/verifier/assertions/DefaultVerifierAssertions.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-test/src/main/java/org/khasanof/verifier/assertions/DefaultVerifierAssertions.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/state/event/listener/FltStateEventListener.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/FltStateEventService.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="99" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/FltStateEventService.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/InlineQueryPerform.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="116" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/matcher/InlineQueryMatcher.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/feature/condition/FluentStateCondition.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/feature/interceptor/invoker/PostFindInvokerConditionsInterceptor.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="125" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.telegram.telegrambots.meta.api.objects.ChatMemberUpdated" memberName="date" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="executeMethodReflect" language="JAVA" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Fluent$FluentTestApplication.ic" NAME="FluentTestApplication Coverage Results" MODIFIED="1706977468370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

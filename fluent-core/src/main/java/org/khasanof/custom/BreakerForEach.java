@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 public class BreakerForEach {
 
     public static class Breaker {
+
         private boolean shouldBreak = false;
 
         public void stop() {
@@ -46,7 +47,4 @@ public class BreakerForEach {
             });
         }
     }
-
-
-
 }

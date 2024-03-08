@@ -2,7 +2,7 @@ package org.khasanof.annotation.methods;
 
 
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.enums.MatchScope;
+import org.khasanof.enums.MatchType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -23,8 +23,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleCallback {
 
-    String[] values() default {};
+    String[] value() default {};
 
-    MatchScope scope() default MatchScope.EQUALS;
-
+    MatchType match() default MatchType.EQUALS;
 }

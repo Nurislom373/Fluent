@@ -1,8 +1,9 @@
 package org.khasanof.annotation.methods;
 
+import org.khasanof.annotation.process.ProcessContainer;
 import org.khasanof.annotation.process.ProcessFile;
 import org.khasanof.annotation.process.ProcessUpdate;
-import org.khasanof.enums.MultiMatchScope;
+import org.khasanof.enums.RepeatableMatchType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -16,12 +17,12 @@ import java.lang.annotation.Target;
  */
 @ProcessFile
 @ProcessUpdate
+@ProcessContainer
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface HandleVideos {
 
-    HandleVideo[] values();
+    HandleVideo[] value();
 
-    MultiMatchScope match() default MultiMatchScope.ANY_MATCH;
-
+    RepeatableMatchType match() default RepeatableMatchType.ANY_MATCH;
 }
