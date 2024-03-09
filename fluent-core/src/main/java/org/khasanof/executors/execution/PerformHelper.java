@@ -14,11 +14,16 @@ import static org.khasanof.utils.MethodUtils.tryAccessWhenMethodNotPublic;
  */
 public interface PerformHelper {
 
+    /**
+     *
+     * @param simpleInvoker
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     */
     static void invokeNoParamMethod(SimpleInvoker simpleInvoker) throws IllegalAccessException, InvocationTargetException {
         Method invokerMethod = simpleInvoker.getMethod();
 
         tryAccessWhenMethodNotPublic(invokerMethod);
         invokerMethod.invoke(simpleInvoker.getReference());
     }
-
 }

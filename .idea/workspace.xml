@@ -5,9 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="writing documentation #90">
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/annotation/HandleChosenInlineQuery.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/enums/ChosenInlineQueryProperty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/HandleChosenInlineQueryRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/appropriate/ChosenInlineQueryUpdateTypeMatcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/binder/ChosenInlineQueryBinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/checker/ChosenInlineHandleMethodChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/matcher/ChosenInlineQueryMatcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/param/ChosenInlineQueryHandleMethodExtraParam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/ChosenInlineQueryPerform.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/InlineQueryModePerform.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/model/ChosenInlineQueryParam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/executors/execution/PerformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/executors/execution/PerformHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/CustomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/CustomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/annotation/HandleInlineQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/annotation/HandleInlineQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/InlineQueryAnnotationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/InlineQueryAnnotationsConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/appropriate/InlineQueryUpdateTypeMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/appropriate/InlineQueryUpdateTypeMatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/InlineQueryPerform.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/InlineQueryPerform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/type/InlineMethodType.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/type/InlineMethodType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,8 +35,8 @@
       <list>
         <option value="package-info" />
         <option value="Enum" />
-        <option value="AnnotationType" />
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -75,85 +91,85 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DefaultExecuteMethodReflect.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TariffPlan.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest and 1 more.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.fifthTestCheckMethodShouldFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.fourthTestCheckMethodShouldFailed.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.sixthTestCheckMethodShouldNotSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldFailed.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.fourthTestCheckMethodShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.secondTestCheckMethodShouldFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExceptionHandleMethodCheckerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentCallbackHandlerIT and 1 more.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentCallbackHandlerIT.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentCallbackHandlerIT.firstTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentCallbackHandlerIT.secondTestSentCallbackShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.fifthTestShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.firstTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.secondTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.sixthTestShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.FluentMessageHandleIT.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentMessageHandleIT.firstTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentMessageHandleIT.fourthTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentMessageHandleIT.secondTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentMessageHandleIT.thirdTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentTestApplicationTests.firstTestShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.SpringBootFluentStarterApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SpringBootFluentStarterApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.handler in spring-boot-starter-fluent.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.org.khasanof.handler in spring-boot-starter-fluent.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-demo [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-test [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-test [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.spring-boot-starter-fluent [clean...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.spring-boot-starter-fluent [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.spring-boot-starter-fluent-test [clean...].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.FluentTestApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Nurislom/Projects/Java/Fluent&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
-    &quot;vcs.patch.path&quot;: &quot;C:/Users/Nurislom/Downloads&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DefaultExecuteMethodReflect.executor": "Run",
+    "Application.TariffPlan.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest and 1 more.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest.fifthTestCheckMethodShouldFailed.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest.fourthTestCheckMethodShouldFailed.executor": "Debug",
+    "JUnit.AnyHandleMethodCheckerTest.sixthTestCheckMethodShouldNotSuccess.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldFailed.executor": "Debug",
+    "JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor": "Debug",
+    "JUnit.AnyHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.fourthTestCheckMethodShouldSuccess.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.secondTestCheckMethodShouldFailed.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldFailed.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor": "Debug",
+    "JUnit.DefaultHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor": "Run",
+    "JUnit.ExceptionHandleMethodCheckerTest.executor": "Run",
+    "JUnit.FluentCallbackHandlerIT and 1 more.executor": "Run",
+    "JUnit.FluentCallbackHandlerIT.executor": "Run",
+    "JUnit.FluentCallbackHandlerIT.firstTestShouldSuccess.executor": "Run",
+    "JUnit.FluentCallbackHandlerIT.secondTestSentCallbackShouldSuccess.executor": "Run",
+    "JUnit.FluentDocumentHandlerIT.executor": "Run",
+    "JUnit.FluentDocumentHandlerIT.fifthTestShouldSuccess.executor": "Debug",
+    "JUnit.FluentDocumentHandlerIT.firstTestShouldSuccess.executor": "Run",
+    "JUnit.FluentDocumentHandlerIT.secondTestShouldSuccess.executor": "Run",
+    "JUnit.FluentDocumentHandlerIT.sixthTestShouldSuccess.executor": "Debug",
+    "JUnit.FluentMessageHandleIT.executor": "Run",
+    "JUnit.FluentMessageHandleIT.firstTestShouldSuccess.executor": "Run",
+    "JUnit.FluentMessageHandleIT.fourthTestShouldSuccess.executor": "Run",
+    "JUnit.FluentMessageHandleIT.secondTestShouldSuccess.executor": "Run",
+    "JUnit.FluentMessageHandleIT.thirdTestShouldSuccess.executor": "Run",
+    "JUnit.FluentTestApplicationTests.firstTestShouldSuccess.executor": "Debug",
+    "JUnit.SpringBootFluentStarterApplicationTests.contextLoads.executor": "Run",
+    "JUnit.SpringBootFluentStarterApplicationTests.executor": "Run",
+    "JUnit.handler in spring-boot-starter-fluent.executor": "Run",
+    "JUnit.org.khasanof.handler in spring-boot-starter-fluent.executor": "Run",
+    "Maven.fluent-core [clean,compile].executor": "Run",
+    "Maven.fluent-core [clean,install].executor": "Run",
+    "Maven.fluent-core [clean,package].executor": "Run",
+    "Maven.fluent-core [clean].executor": "Run",
+    "Maven.fluent-core [compile].executor": "Run",
+    "Maven.fluent-demo [clean].executor": "Run",
+    "Maven.fluent-test [clean,install].executor": "Run",
+    "Maven.fluent-test [clean].executor": "Run",
+    "Maven.spring-boot-starter-fluent [clean...].executor": "Run",
+    "Maven.spring-boot-starter-fluent [clean].executor": "Run",
+    "Maven.spring-boot-starter-fluent-test [clean...].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.FluentTestApplication.executor": "Run",
+    "git-widget-placeholder": "development",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Nurislom/Projects/Java/Fluent",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
+    "vcs.patch.path": "C:/Users/Nurislom/Downloads",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Nurislom\Projects\Java\Fluent\utils" />
@@ -420,6 +436,8 @@
       <workItem from="1709736735801" duration="6465000" />
       <workItem from="1709830936306" duration="3976000" />
       <workItem from="1709911292925" duration="7610000" />
+      <workItem from="1709920318014" duration="711000" />
+      <workItem from="1709967724769" duration="6497000" />
     </task>
     <task id="LOCAL-00006" summary="matchFunctions enum separate finished #36">
       <option name="closed" value="true" />
@@ -958,24 +976,14 @@
           <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/InlineQueryPerform.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="116" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/matcher/InlineQueryMatcher.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/feature/condition/FluentStateCondition.java</url>
           <line>34</line>
           <option name="timeStamp" value="124" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/feature/interceptor/invoker/PostFindInvokerConditionsInterceptor.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="125" />
+          <url>file://$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/FluentBot.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="126" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -14,5 +14,12 @@ public enum InlineMethodType implements MethodType {
         public String getName() {
             return INLINE_QUERY.name();
         }
+    },
+
+    CHOSEN_INLINE_QUERY {
+        @Override
+        public String getName() {
+            return CHOSEN_INLINE_QUERY.name();
+        }
     }
 }

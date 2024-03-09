@@ -11,18 +11,18 @@ import java.util.Objects;
 /**
  * @author Nurislom
  * @see org.khasanof.inline.appropriate
- * @since 12/24/2023 7:51 PM
+ * @since 3/9/2024 12:30 PM
  */
 @Component
-public class InlineQueryUpdateTypeMatcher implements AppropriateUpdateType {
+public class ChosenInlineQueryUpdateTypeMatcher implements AppropriateUpdateType {
 
     @Override
     public boolean isMatch(Update update) {
-        return Objects.equals(update.hasInlineQuery(), Boolean.TRUE);
+        return Objects.equals(update.hasChosenInlineQuery(), Boolean.TRUE);
     }
 
     @Override
     public AppropriateType getAppropriate(Update update) {
-        return new AppropriateType(UpdateType.INLINE_QUERY, update.getInlineQuery(), hasSubMethods());
+        return new AppropriateType(UpdateType.CHOSEN_INLINE_QUERY, update.getChosenInlineQuery(), hasSubMethods());
     }
 }
