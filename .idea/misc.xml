@@ -17,6 +17,7 @@
         <option value="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" />
         <option value="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" />
         <option value="$PROJECT_DIR$/fluent-inline-query/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-fluent-redis/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

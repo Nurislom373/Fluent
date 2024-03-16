@@ -19,6 +19,10 @@ public class FltStateEventListener {
         this.fltStateEventService = fltStateEventService;
     }
 
+    /**
+     *
+     * @param event
+     */
     @EventListener
     public void handleFltStateEvent(FltStateEvent event) {
         fltStateEventService.updateState(event);

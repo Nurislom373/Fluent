@@ -4,26 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="writing documentation #90">
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/annotation/HandleChosenInlineQuery.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/enums/ChosenInlineQueryProperty.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/HandleChosenInlineQueryRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/appropriate/ChosenInlineQueryUpdateTypeMatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/binder/ChosenInlineQueryBinder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/checker/ChosenInlineHandleMethodChecker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/matcher/ChosenInlineQueryMatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/param/ChosenInlineQueryHandleMethodExtraParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/ChosenInlineQueryPerform.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/InlineQueryModePerform.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/model/ChosenInlineQueryParam.java" afterDir="false" />
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="added chosen inline query #91">
+      <change afterPath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/service/FltStateEventService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/HELP.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/docker/redis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/RedisRepositoryStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/SpringBootFluentRedisAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/config/RedisConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/config/RedisProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/entity/FltStateHash.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/entity/FltUserHash.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/repository/FltStateRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/repository/FltUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/service/RedisFltStateEventService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/util/RedisRepositoryStrategyHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-fluent-redis/src/test/java/org/khasanof/SpringBootFluentRedisApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/executors/execution/PerformHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/executors/execution/PerformHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/CustomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/CustomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/annotation/HandleInlineQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/annotation/HandleInlineQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/InlineQueryAnnotationConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/InlineQueryAnnotationsConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/appropriate/InlineQueryUpdateTypeMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/appropriate/InlineQueryUpdateTypeMatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/InlineQueryPerform.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/perform/InlineQueryPerform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/type/InlineMethodType.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/src/main/java/org/khasanof/inline/type/InlineMethodType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/state/DefaultState.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/state/DefaultState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/state/repository/StateRepositoryStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/state/repository/StateRepositoryStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/FltStateEventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/PostgresqlFltStateEventService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/state/FltState.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/state/FltState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/state/event/FltStateEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/state/event/FltStateEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/state/event/listener/FltStateEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/state/event/listener/FltStateEventListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +49,8 @@
       <list>
         <option value="package-info" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="AnnotationType" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -95,6 +109,7 @@
   "keyToString": {
     "Application.DefaultExecuteMethodReflect.executor": "Run",
     "Application.TariffPlan.executor": "Run",
+    "Docker.docker/redis.yml.redis: Compose Deployment.executor": "Run",
     "JUnit.AnyHandleMethodCheckerTest and 1 more.executor": "Run",
     "JUnit.AnyHandleMethodCheckerTest.executor": "Run",
     "JUnit.AnyHandleMethodCheckerTest.fifthTestCheckMethodShouldFailed.executor": "Run",
@@ -170,6 +185,9 @@
     ]
   }
 }]]></component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Nurislom\Projects\Java\Fluent\utils" />
@@ -225,22 +243,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FluentDocumentHandlerIT.sixthTestShouldSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-boot-starter-fluent" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.khasanof.handler.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.khasanof.handler" />
-      <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentDocumentHandlerIT" />
-      <option name="METHOD_NAME" value="sixthTestShouldSuccess" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FluentMessageHandleIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-boot-starter-fluent" />
       <extension name="coverage">
@@ -278,6 +280,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SpringBootFluentRedisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="spring-boot-fluent-redis" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.khasanof.SpringBootFluentRedisApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SpringBootStarterFluentStateApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="spring-boot-starter-fluent-state" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.khasanof.SpringBootStarterFluentStateApplication" />
@@ -292,13 +301,30 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker/redis.yml.redis: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="redis" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="spring-boot-fluent-redis/src/main/docker/redis.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker/redis.yml.redis: Compose Deployment" />
         <item itemvalue="JUnit.FluentMessageHandleIT" />
         <item itemvalue="JUnit.FluentDocumentHandlerIT" />
         <item itemvalue="JUnit.FluentCallbackHandlerIT" />
         <item itemvalue="JUnit.handler in spring-boot-starter-fluent" />
-        <item itemvalue="JUnit.FluentDocumentHandlerIT.sixthTestShouldSuccess" />
       </list>
     </recent_temporary>
   </component>
@@ -437,15 +463,10 @@
       <workItem from="1709830936306" duration="3976000" />
       <workItem from="1709911292925" duration="7610000" />
       <workItem from="1709920318014" duration="711000" />
-      <workItem from="1709967724769" duration="6497000" />
-    </task>
-    <task id="LOCAL-00006" summary="matchFunctions enum separate finished #36">
-      <option name="closed" value="true" />
-      <created>1703536633394</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1703536633394</updated>
+      <workItem from="1709967724769" duration="6984000" />
+      <workItem from="1710048186357" duration="119000" />
+      <workItem from="1710594997187" duration="4095000" />
+      <workItem from="1710614666146" duration="5302000" />
     </task>
     <task id="LOCAL-00007" summary="method check module separate #37">
       <option name="closed" value="true" />
@@ -831,7 +852,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709835238836</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="added chosen inline query #91">
+      <option name="closed" value="true" />
+      <created>1709982420720</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1709982420720</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -902,7 +931,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fluent test module removed some classes #59" />
     <MESSAGE value="change operations methods #63" />
     <MESSAGE value="added new operations #67" />
     <MESSAGE value="rewrite README.md #68" />
@@ -927,7 +955,8 @@
     <MESSAGE value="auto restart conflict bot instance problem finished #88" />
     <MESSAGE value="writing documentation #89" />
     <MESSAGE value="writing documentation #90" />
-    <option name="LAST_COMMIT_MESSAGE" value="writing documentation #90" />
+    <MESSAGE value="added chosen inline query #91" />
+    <option name="LAST_COMMIT_MESSAGE" value="added chosen inline query #91" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -959,21 +988,6 @@
           <url>file://$PROJECT_DIR$/fluent-test/src/main/java/org/khasanof/verifier/assertions/DefaultVerifierAssertions.java</url>
           <line>88</line>
           <option name="timeStamp" value="82" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/state/event/listener/FltStateEventListener.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="98" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/FltStateEventService.java</url>
-          <line>22</line>
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/FltStateEventService.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/feature/condition/FluentStateCondition.java</url>

@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="fluent-core" />
+        <module name="spring-boot-fluent-redis" />
         <module name="fluent-demo" />
         <module name="spring-boot-starter-fluent-state" />
         <module name="spring-boot-starter-fluent" />
@@ -30,6 +31,7 @@
       <module name="fluent-state" options="-parameters" />
       <module name="fluent-test" options="" />
       <module name="spring-boot-fluent-postgresql" options="-parameters" />
+      <module name="spring-boot-fluent-redis" options="-parameters" />
       <module name="spring-boot-starter-fluent" options="-parameters" />
       <module name="spring-boot-starter-fluent-state" options="-parameters" />
       <module name="spring-boot-starter-fluent-test" options="-parameters" />

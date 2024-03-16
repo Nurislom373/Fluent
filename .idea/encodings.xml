@@ -15,6 +15,7 @@
     <file url="file://$PROJECT_DIR$/fluent-utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/fluent-utils/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-starter-fluent-test/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java" charset="UTF-8" />

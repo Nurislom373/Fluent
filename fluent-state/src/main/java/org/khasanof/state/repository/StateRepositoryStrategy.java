@@ -31,15 +31,15 @@ public interface StateRepositoryStrategy {
     /**
      *
      * @param id
-     * @param state
      */
-    void addState(Long id, State state);
+    void addState(Long id);
 
     /**
      *
      * @param id
+     * @param state
      */
-    void addState(Long id);
+    void addState(Long id, State state);
 
     /**
      *

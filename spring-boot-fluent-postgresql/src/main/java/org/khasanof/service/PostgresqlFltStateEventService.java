@@ -11,14 +11,15 @@ import org.springframework.stereotype.Service;
  * @since 3/2/2024 12:16 PM
  */
 @Service
-public class FltStateEventService {
+public class PostgresqlFltStateEventService implements FltStateEventService {
 
     private final FltStateRepository fltStateRepository;
 
-    public FltStateEventService(FltStateRepository fltStateRepository) {
+    public PostgresqlFltStateEventService(FltStateRepository fltStateRepository) {
         this.fltStateRepository = fltStateRepository;
     }
 
+    @Override
     public void updateState(FltStateEvent event) {
         fltStateRepository.findById(event.getState().getStateId())
                 .ifPresent(fltStateEntity -> updateStateInternal(event, fltStateEntity));

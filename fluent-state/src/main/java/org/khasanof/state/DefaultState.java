@@ -39,5 +39,4 @@ public class DefaultState implements State {
         }
         throw new RuntimeException("next state not found!");
     }
-
 }

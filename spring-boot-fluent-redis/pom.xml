@@ -5,55 +5,40 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.4</version>
+        <version>3.0.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.example</groupId>
-    <artifactId>fluent-demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>fluent-demo</name>
-    <description>fluent-demo</description>
+    <groupId>org.khasanof</groupId>
+    <artifactId>spring-boot-fluent-redis</artifactId>
+    <version>1.2.0</version>
+    <name>spring-boot-fluent-redis</name>
+    <description>spring-boot-fluent-redis</description>
 
     <properties>
         <java.version>17</java.version>
+        <fluent.state.version>1.0.2</fluent.state.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.8.0</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>io.github.nurislom373</groupId>
-            <artifactId>spring-boot-starter-fluent</artifactId>
-            <version>1.0.3</version>
+            <artifactId>fluent-state</artifactId>
+            <version>${fluent.state.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.github.nurislom373</groupId>
-            <artifactId>spring-boot-starter-fluent-state</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.khasanof</groupId>
-            <artifactId>fluent-inline-query</artifactId>
-            <version>1.2.0</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.khasanof</groupId>-->
-<!--            <artifactId>spring-boot-fluent-redis</artifactId>-->
-<!--            <version>1.2.0</version>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>io.github.nurislom373</groupId>
-            <artifactId>spring-boot-fluent-postgresql</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.khasanof</groupId>
-            <artifactId>spring-boot-starter-fluent-test</artifactId>
-            <version>1.0.0</version>
-            <scope>test</scope>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -67,6 +52,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <image>
+                        <builder>paketobuildpacks/builder-jammy-base:latest</builder>
+                    </image>
+                </configuration>
             </plugin>
         </plugins>
     </build>
