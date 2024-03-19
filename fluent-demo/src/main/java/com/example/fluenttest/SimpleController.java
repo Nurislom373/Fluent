@@ -26,8 +26,8 @@ public class SimpleController {
     }
 
     @HandleMessages(value = {
-        @HandleMessage(value = "/jeck1", match = MatchType.START_WITH),
-        @HandleMessage(value = "/jeck2", match = MatchType.START_WITH),
+        @HandleMessage(value = "/jeck1", match = MatchType.STARTS_WITH),
+        @HandleMessage(value = "/jeck2", match = MatchType.STARTS_WITH),
     })
     @ConditionOnState({"START"})
     private void handleMessage(Update update) {
@@ -39,6 +39,6 @@ public class SimpleController {
         System.out.println("username = " + username);
         String text = update.getMessage().getText();
         log.info("Handle Start With 'abs' : {}", text);
-        fluentTemplate.sendText("Start With 'abs' : " + text);
+        fluentTemplate.sendText("Username : " + username);
     }
 }

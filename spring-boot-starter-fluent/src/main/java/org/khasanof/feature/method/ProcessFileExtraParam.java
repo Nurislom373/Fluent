@@ -33,7 +33,7 @@ public class ProcessFileExtraParam implements HandleMethodExtraParam {
     }
 
     private InputStream getFileInputStream(FluentUpdate currentUpdate) {
-        return UpdateUtils.getInputStreamWithFileId(UpdateUtils.getFileId(currentUpdate.getUpdate()), fluentBotSingletonBean.getInstance());
+        return UpdateUtils.getFileInputStream(UpdateUtils.getFileId(currentUpdate.getUpdate()), fluentBotSingletonBean.getInstance());
     }
 
     @Override

@@ -49,9 +49,9 @@ public class ExpressionMatcherServiceConfiguration {
 
                 new MatcherModel(MatchType.EQUALS_IGNORE_CASE, String.class, getEqualsIgnoreCaseMatcherFunction()),
 
-                new MatcherModel(MatchType.END_WITH, String.class, getEndWithMatcherFunction()),
+                new MatcherModel(MatchType.ENDS_WITH, String.class, getEndWithMatcherFunction()),
 
-                new MatcherModel(MatchType.START_WITH, String.class, getStartWithMatcherFunction()),
+                new MatcherModel(MatchType.STARTS_WITH, String.class, getStartWithMatcherFunction()),
 
                 new MatcherModel(MatchType.CONTAINS, String.class, getContainsMatcherFunction()),
 

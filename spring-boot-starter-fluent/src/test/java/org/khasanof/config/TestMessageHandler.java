@@ -36,7 +36,7 @@ public class TestMessageHandler {
         fluentTemplate.sendText(text);
     }
 
-    @HandleMessage(value = "/start", match = MatchType.START_WITH)
+    @HandleMessage(value = "/start", match = MatchType.STARTS_WITH)
     public void fluent(Update update) {
         Attributes attributes = FluentContextHolder.getCurrentAttributes();
         String text = update.getMessage().getText();
@@ -50,8 +50,8 @@ public class TestMessageHandler {
     }
 
     @HandleMessages(value = {
-            @HandleMessage(value = "/jeck1", match = MatchType.START_WITH),
-            @HandleMessage(value = "/jeck2", match = MatchType.START_WITH),
+            @HandleMessage(value = "/jeck1", match = MatchType.STARTS_WITH),
+            @HandleMessage(value = "/jeck2", match = MatchType.STARTS_WITH),
     })
     private void handleMessage() {
         log.info("Jecki is here!");

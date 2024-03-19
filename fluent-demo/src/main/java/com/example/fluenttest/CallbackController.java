@@ -4,7 +4,6 @@ import org.khasanof.annotation.UpdateController;
 import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleCallbacks;
 import org.khasanof.annotation.methods.HandleDocument;
-import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.MatchType;
 import org.khasanof.enums.scopes.DocumentScope;
 import org.khasanof.service.template.FluentTemplate;
@@ -67,7 +66,7 @@ public class CallbackController {
     @HandleCallbacks(value = {
             @HandleCallback(value = {"NEXT", "PREV"}),
             @HandleCallback(value = {"TOP", "BOTTOM"}),
-            @HandleCallback(value = {"LST"}, match = MatchType.START_WITH)
+            @HandleCallback(value = {"LST"}, match = MatchType.STARTS_WITH)
     })
     private void multiCallback(Update update) {
         String text = "NPTB one handle \uD83D\uDE0E";
@@ -80,7 +79,7 @@ public class CallbackController {
             match = MatchType.REGEX,
             property = DocumentScope.FILE_NAME
     )
-    private void handleDocumentOne(Update update) throws TelegramApiException {
+    private void handleDocumentOne() {
         String text = "I Handle 1 File \uD83D\uDE02";
         fluentTemplate.sendText(text);
     }

@@ -173,9 +173,9 @@ Misol uchun `message: ` bilan boshlangan istalgan matnli xabarni ulashni ko'rami
 methodni `MatchType` ni o'zgartirishimiz kerak. Pastdagi kodga ergashing:
 
 ```java
-@HandleMessage(value = "message:", match = MatchType.START_WITH)
-public void startWithExampleHandler() {
-    fluentTemplate.sendText("I handle requests start with 'message:'");
+@HandleMessage(value = "message:", match = MatchType.STARTS_WITH)
+public void startsWithExampleHandler() {
+    fluentTemplate.sendText("I handle requests starts with 'message:'");
 }
 ```
 
@@ -201,14 +201,116 @@ Ushbu bo'limda MatchType strategiyalarni ko'rib chiqamiz.
 MatchType strategiyalari telegramdan kelgan xabarlarni tekshirish strategiyasini o'zgartirish uchun ishlatiladi.
 Bu sizga murakkab conditionlarni yozish imkoni beradi.
 
-* `START_WITH`
-* `END_WITH`
+* `STARTS_WITH`
+
+START_WITH - match qilish strategiyasi telegramdan kelgan text xabarlarni match qilish uchun ishlatiladi. Belgilangan qiymatga
+kelgan xabarni boshlanishi belgilangan qiymatga mos kelishiga tekshiradi. Yani kelgan xabar boshlanishi 'abs' bilan boshlanganligiga
+tekshiradi agar mos kelsa ushbu handle ishga tushadi, aks bo'lsa yo'q :(
+
+```java
+@HandleMessage(value = "abs", match = MatchType.STARTS_WITH)
+public void startsWithExampleHandler() {
+    // ...
+}
+```
+
+* `ENDS_WITH`
+
+END_WITH - match strategiyasi ham `STARTS_WITH` ga o'xshab asosan text xabarlar match qilish uchun ishlatiladi. ENDS_WITH
+strategiyasi STARTS_WITH ga o'xshash faqat ENDS_WITH xabarni boshlanishini emas oxirini belgilangan qiymatga mos kelishini
+tekshiradi.
+
+```java
+@HandleMessage(value = "xyz", match = MatchType.ENDS_WITH)
+public void endsWithExampleHandler() {
+    // ...
+}
+```
+
 * `CONTAINS`
+
+CONTAINS - match strategiyasi ham asosan text xabarlar match qilish uchun ishlatiladi. CONTAINS strategiyasi belgilangan qiymatni
+kelgan xabarni ichida bor yoki yoqligiga tekshiradi. Agar belgilangan qiymat telegramdan kelgan xabarni ichida mavjud bo'lsa
+handler chaqiriladi.
+
+```java
+@HandleMessage(value = "hello", match = MatchType.CONTAINS)
+public void endsWithExampleHandler() {
+    // ...
+}
+```
+
 * `EQUALS`
+
+EQUALS - match strategiyasi default match strategiyasi hisoblanadi. EQUALS strategiyasi belgilangan qiymatga telegramdan kelgan
+xabar mos kelgan taqdirdagina handler chaqiriladi.
+
+```java
+@HandleMessage(value = "/start", match = MatchType.EQUALS)
+private void startExample(Update update) {
+    // ...
+}
+```
+
 * `REGEX`
+
+REGEX - match strategiyasi belgilangan regex qiymatga telegramdan kelgan xabarni mos kelishini tekshiradi.
+Pastdagi kodga e'tibor bering. Ushbu kodda file type `jpeg, png, pdf` bo'lsagina ushbu handler chaqiriladi.
+
+```java
+@HandleDocument(
+        value = "([a-zA-Z0-9\\s_\\\\.\\-\\(\\):])+(.jpeg|.png|.pdf)$",
+        match = MatchType.REGEX,
+        property = DocumentScope.FILE_NAME
+)
+private void handleDocument() {
+    // ...
+}
+```
+
 * `EQUALS_IGNORE_CASE`
+
+EQUALS_IGNORE_CASE - match strategiyasi `EQUALS` bilan bir xil faqat bitta farqi `EQUALS_IGNORE_CASE` harflarni katta yoki
+kichikligiga qaramaydi.
+
+```java
+@HandleMessage(value = "/START", match = MatchType.EQUALS_IGNORE_CASE)
+private void startExample(Update update) {
+    // ...
+}
+```
+
 * `EXPRESSION`
+
+EXPRESSION - match strategiyasi sizga spel yani (Spring Expression Language) dan foydalanib expressionlarni yozish imkoni beradi va ushbu 
+expressionga kelgan xabar mos kelsagina handler method chaqiriladi. Pastdagi kodga e'tibor bering. SPEL dan foydalanib
+kelgan xabar boshlanishi 'a' harfdan boshlansa va tugashi esa 'z' harf bilan tugasa ushbu handler chaqiriladi.
+
+'#value' - bu telegramdan kelgan xabar spelga o'zgaruvchi sifatida qo'shib qoyiladi. value o'zgaruvchisiga murojaat qilib o'zingizga
+mos expressionni yozishingiz mumkin.
+
+```java
+@HandleMessage(value = "#value.startsWith('a') && #value.endsWith('z')", match = MatchType.EXPRESSION)
+public void handleExpression() {
+    // ...
+}
+```
+
 * `VAR_EXPRESSION`
+
+VAR_EXPRESSION - match strategiyasi ham text xabarlar bilan ishlash uchun ishlatiladi. VAR_EXPRESSION kelgan xabardan
+regex patternga mos kelgan o'zgaruvchilarni ajratib olish uchun ishlatiladi. Pastdagi kodni ko'rishingiz mumkin.
+
+```java
+@HandleMessage(value = "/username : {name:[a-z]}", match = MatchType.VAR_EXPRESSION)
+void startWithAbsHandler(Update update, @BotVariable("name") String username) {
+    fluentTemplate.sendText("Username : " + username);
+}
+```
+
+### Handle any
+
+
 
 ## 3. FluentTemplate
 ## 3. Handling exceptions

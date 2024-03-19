@@ -40,7 +40,7 @@ public class FluentController {
         fluentTemplate.sendText("Hello World");
     }
 
-    @HandleMessage(value = "message:", match = MatchType.START_WITH)
+    @HandleMessage(value = "message:", match = MatchType.STARTS_WITH)
     public void startWithExampleHandler() {
         fluentTemplate.sendText("I handle requests start with 'message:'");
     }
@@ -69,12 +69,12 @@ public class FluentController {
         fluentTemplate.sendText(text);
     }
 
-    @HandleVideo(value = "caption:", match = MatchType.START_WITH, property = VideoScope.CAPTION)
+    @HandleVideo(value = "caption:", match = MatchType.STARTS_WITH, property = VideoScope.CAPTION)
     public void handleVideoCaption() {
         fluentTemplate.sendText("Handle start with 'caption:' text video");
     }
 
-    @HandleDocument(value = "caption:", match = MatchType.START_WITH, property = DocumentScope.CAPTION)
+    @HandleDocument(value = "caption:", match = MatchType.STARTS_WITH, property = DocumentScope.CAPTION)
     public void handleDocumentCaption() {
         fluentTemplate.sendText("Handle start with 'caption:' text document");
     }
@@ -116,14 +116,14 @@ public class FluentController {
 
     @ConditionOnExpression("1 == 1")
     @ConditionOnExpression("2 == 2")
-    @HandleMessage(value = "/start", match = MatchType.START_WITH)
+    @HandleMessage(value = "/start", match = MatchType.STARTS_WITH)
     public void fluent(Update update) {
         Attributes attributes = FluentContextHolder.getCurrentAttributes();
         String text = update.getMessage().getText();
         fluentTemplate.sendText(text);
     }
 
-    @HandlePhoto(value = "start: ", match = MatchType.START_WITH, property = PhotoScope.CAPTION)
+    @HandlePhoto(value = "start: ", match = MatchType.STARTS_WITH, property = PhotoScope.CAPTION)
     public void handleStartCaptionPhoto() {
         fluentTemplate.sendText("Hi I handle photo");
     }

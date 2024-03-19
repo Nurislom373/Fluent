@@ -24,6 +24,7 @@
       <set>
         <option value="$PROJECT_DIR$/fluent-engine/pom.xml" />
         <option value="$PROJECT_DIR$/fluent-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-boot-fluent-redis/pom.xml" />
       </set>
     </option>
   </component>

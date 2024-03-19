@@ -8,6 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.net.URL;
@@ -143,6 +144,21 @@ public abstract class UpdateUtils {
         return null;
     }
 
+    /**
+     *
+     * @param id
+     * @param bot
+     * @return
+     */
+    @SneakyThrows
+    public static InputStream getFileInputStream(String id, TelegramLongPollingBot bot) {
+        return getFileInputStreamInternal(bot.getBotToken(), bot.execute(new GetFile(id)));
+    }
+
+    private static InputStream getFileInputStreamInternal(String token, File file) throws IOException {
+        return new URL(file.getFileUrl(token)).openStream();
+    }
+
     public static String getFileId(Update update) {
         Map<Function<Message, Boolean>, Function<Message, Object>> functionMap = new HashMap<>() {{
             put((message -> message.getClass().equals(Message.class)), (Message::getDocument));
@@ -154,15 +170,6 @@ public abstract class UpdateUtils {
         return getListMatchFunctionValue(update.getMessage(), functionMap, "fileId");
     }
 
-    @SneakyThrows
-    public static InputStream getInputStreamWithFileId(String id, TelegramLongPollingBot bot) {
-        GetFile file = new GetFile();
-        file.setFileId(id);
-        File executed = bot.execute(file);
-        return new URL(executed.getFileUrl(bot.getBotToken()))
-                .openStream();
-    }
-
     @SuppressWarnings("unchecked")
     public static <T> T getListMatchFunctionValue(Message message, Map<Function<Message, Boolean>, Function<Message, Object>> functionMap,
                                                    String fieldName) {
@@ -171,13 +178,6 @@ public abstract class UpdateUtils {
                 .filter(functionFunctionEntry -> functionFunctionEntry.getKey().apply(message))
                 .findFirst()
                 .map(functionFunctionEntry -> getObjField(functionFunctionEntry.getValue().apply(message), fieldName))
-                .orElse(null);
-    }
-
-    public static <T, R> R getListMatchFunctionValue(T message, Map<Function<T, Boolean>, Function<T, R>> functionMap) {
-        return functionMap.entrySet().stream().filter(functionFunctionEntry ->
-                        functionFunctionEntry.getKey().apply(message)).findFirst()
-                .map(functionFunctionEntry -> functionFunctionEntry.getValue().apply(message))
                 .orElse(null);
     }
 
@@ -192,5 +192,4 @@ public abstract class UpdateUtils {
         }
         throw new RuntimeException("field not found!");
     }
-
 }

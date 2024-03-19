@@ -8,7 +8,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="fluent-core" />
-        <module name="spring-boot-fluent-redis" />
         <module name="fluent-demo" />
         <module name="spring-boot-starter-fluent-state" />
         <module name="spring-boot-starter-fluent" />
@@ -22,6 +21,7 @@
     <bytecodeTargetLevel>
       <module name="examples" target="17" />
       <module name="fluent-utils" target="17" />
+      <module name="spring-boot-fluent-redis" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

@@ -24,10 +24,10 @@ public enum MatchType {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "start", match = MatchType.START_WITH)
+     *    &#064;HandleMessage(value = "start", match = MatchType.STARTS_WITH)
      * </pre>
      */
-    START_WITH,
+    STARTS_WITH,
 
     /**
      * END_WITH checks that the end of the incoming update matches the specified value.
@@ -37,10 +37,10 @@ public enum MatchType {
      * Using Example:
      *
      * <pre>
-     *    &#064;HandleMessage(value = "end", match = MatchType.END_WITH)
+     *    &#064;HandleMessage(value = "end", match = MatchType.ENDS_WITH)
      * </pre>
      */
-    END_WITH,
+    ENDS_WITH,
 
     /**
      * CONTAINS checks whether the incoming update contains the specified value.

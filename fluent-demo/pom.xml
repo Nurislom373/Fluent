@@ -40,15 +40,10 @@
             <version>1.2.0</version>
         </dependency>
 <!--        <dependency>-->
-<!--            <groupId>org.khasanof</groupId>-->
-<!--            <artifactId>spring-boot-fluent-redis</artifactId>-->
-<!--            <version>1.2.0</version>-->
+<!--            <groupId>io.github.nurislom373</groupId>-->
+<!--            <artifactId>spring-boot-fluent-postgresql</artifactId>-->
+<!--            <version>1.0.0</version>-->
 <!--        </dependency>-->
-        <dependency>
-            <groupId>io.github.nurislom373</groupId>
-            <artifactId>spring-boot-fluent-postgresql</artifactId>
-            <version>1.0.0</version>
-        </dependency>
         <dependency>
             <groupId>org.khasanof</groupId>
             <artifactId>spring-boot-starter-fluent-test</artifactId>

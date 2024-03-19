@@ -32,7 +32,7 @@ public class TestDocumentHandler {
         fluentTemplate.sendText(text);
     }
 
-    @HandleDocument(value = "food", match = MatchType.START_WITH, property = DocumentScope.FILE_NAME)
+    @HandleDocument(value = "food", match = MatchType.STARTS_WITH, property = DocumentScope.FILE_NAME)
     private void handleDocumentStartWithFood() {
         String text = "I Handle file name start with food";
         fluentTemplate.sendText(text);

@@ -9,6 +9,10 @@ import java.lang.reflect.Method;
  */
 public interface MethodCheckOperationStrategy {
 
+    /**
+     *
+     * @param method
+     * @return
+     */
     boolean check(Method method);
-
 }

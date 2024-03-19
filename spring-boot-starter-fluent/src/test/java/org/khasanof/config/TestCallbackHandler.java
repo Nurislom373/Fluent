@@ -31,7 +31,7 @@ public class TestCallbackHandler {
     @HandleCallbacks({
             @HandleCallback(value = {"NEXT", "PREV"}),
             @HandleCallback(value = {"TOP", "BOTTOM"}),
-            @HandleCallback(value = {"LST"}, match = MatchType.START_WITH)
+            @HandleCallback(value = {"LST"}, match = MatchType.STARTS_WITH)
     })
     private void multiCallback(Update update) {
         String text = "NPTB one handle \uD83D\uDE0E";
