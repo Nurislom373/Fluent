@@ -194,7 +194,20 @@ Tepadagi kodda ko'rganingizdek handler methodlarga update parameter qo'shish imk
 parameter sifatida kutsangiz, ushbu handler methodga update parameteri kiritilgan holatda chaqiriladi. Bu sizga update 
 objectdan o'zingizga kerak qiymatlarni olish imkoni beradi.
 
-### MatchType
+Bundan tashqari `Update` parameter kutib olmasdan turib ham uni olishingiz mumkin. `FluentContextHolder` classini 
+`getCurrentUpdate` methodidan foydalanib.
+
+```java
+@HandleAny(type = HandleType.MESSAGE, proceed = Proceed.NOT_PROCEED)
+private void handleAnyMessages() {
+    Update currentUpdate = FluentContextHolder.getCurrentUpdate();
+
+    String text = currentUpdate.getMessage().getText();
+    fluentTemplate.sendText(text);
+}
+```
+
+### 2.4 MatchType
 
 Ushbu bo'limda MatchType strategiyalarni ko'rib chiqamiz.
 
@@ -308,7 +321,7 @@ void startWithAbsHandler(Update update, @BotVariable("name") String username) {
 }
 ```
 
-### Handle any
+### 2.5 Handle any
 
 `@HandleAny` annotatsiyasi telegramdan kelgan istalgan update handle qilish uchun ishlatiladi. `@HandleAny` boshqa handler
 annotatsiyalaridan birinchi ishlaydi yani kelgan update birinchi `@HandleAny` annotatsiya bor method kiradi undan keyin

@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="new module spring-boot-fluent-redis #95">
-      <change afterPath="$PROJECT_DIR$/documentation/images/first_screen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/annotation/methods/HandleAny.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/annotation/methods/HandleAny.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/HandleAnyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/HandleAnyTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="HandleAny documented #97" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +24,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="N" />
         <option value="Nurislom &lt;nurislomx72@gmail.com&gt;" />
       </list>
     </option>
@@ -439,15 +433,7 @@
       <workItem from="1710594997187" duration="4095000" />
       <workItem from="1710614666146" duration="5667000" />
       <workItem from="1710863566374" duration="5815000" />
-      <workItem from="1711099513480" duration="1708000" />
-    </task>
-    <task id="LOCAL-00008" summary="add new modules #38">
-      <option name="closed" value="true" />
-      <created>1703701149658</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1703701149658</updated>
+      <workItem from="1711099513480" duration="2198000" />
     </task>
     <task id="LOCAL-00009" summary="HandleType enum field removed">
       <option name="closed" value="true" />
@@ -833,7 +819,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710620294730</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="HandleAny documented #97">
+      <option name="closed" value="true" />
+      <created>1711101599180</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1711101599181</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -904,7 +898,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added new operations #67" />
     <MESSAGE value="rewrite README.md #68" />
     <MESSAGE value="Added new classes #69" />
     <MESSAGE value="custom annotation is worked  #71" />
@@ -929,7 +922,8 @@
     <MESSAGE value="writing documentation #90" />
     <MESSAGE value="added chosen inline query #91" />
     <MESSAGE value="new module spring-boot-fluent-redis #95" />
-    <option name="LAST_COMMIT_MESSAGE" value="new module spring-boot-fluent-redis #95" />
+    <MESSAGE value="HandleAny documented #97" />
+    <option name="LAST_COMMIT_MESSAGE" value="HandleAny documented #97" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -979,7 +973,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java</url>
-          <line>127</line>
+          <line>128</line>
           <option name="timeStamp" value="133" />
         </line-breakpoint>
       </breakpoints>
