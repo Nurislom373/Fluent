@@ -20,5 +20,4 @@ public @interface HandleAny {
     HandleType[] type() default {HandleType.MESSAGE};
 
     Proceed proceed() default Proceed.PROCEED;
-
 }

@@ -24,7 +24,7 @@ public class HandleAnyTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @HandleAny(type = HandleType.STICKER, proceed = Proceed.NOT_PROCEED)
+    @HandleAny(type = HandleType.STICKER)
     private void handleAnyStickers(Update update, AbsSender sender) throws TelegramApiException, JsonProcessingException {
         String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getSticker());
         String text = "I'm handle this sticker : \n" + value;
@@ -32,7 +32,7 @@ public class HandleAnyTest {
         sender.execute(message);
     }
 
-    @HandleAny(type = HandleType.PHOTO, proceed = Proceed.PROCEED)
+    @HandleAny(type = HandleType.PHOTO)
     private void handleAnyPhoto(Update update, AbsSender sender) throws TelegramApiException, JsonProcessingException {
         System.out.println("update.getMessage().getText() = " + update.getMessage().getCaption());
         String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getPhoto());
@@ -41,7 +41,7 @@ public class HandleAnyTest {
         sender.execute(message);
     }
 
-    @HandleAny(type = HandleType.DOCUMENT, proceed = Proceed.PROCEED)
+    @HandleAny(type = HandleType.DOCUMENT)
     private void handleAnyDocument(Update update, AbsSender sender) throws TelegramApiException, JsonProcessingException {
         String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getDocument());
         String text = "I'm handle this document : \n" + value;
@@ -49,7 +49,7 @@ public class HandleAnyTest {
         sender.execute(message);
     }
 
-    @HandleAny(type = HandleType.AUDIO, proceed = Proceed.PROCEED)
+    @HandleAny(type = HandleType.AUDIO)
     private void handleAnyCallbacks(Update update, AbsSender sender) throws TelegramApiException, JsonProcessingException {
         String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getAudio());
         String text = "I'm handle this audio : \n" + value;
@@ -57,7 +57,7 @@ public class HandleAnyTest {
         sender.execute(message);
     }
 
-    @HandleAny(type = HandleType.VIDEO_NOTE, proceed = Proceed.PROCEED)
+    @HandleAny(type = HandleType.VIDEO_NOTE)
     private void handleAnyVideoNote(Update update, AbsSender sender) throws TelegramApiException, JsonProcessingException {
         String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getVideoNote());
         String text = "I'm handle this video note : \n" + value;
@@ -65,7 +65,7 @@ public class HandleAnyTest {
         sender.execute(message);
     }
 
-    @HandleAny(type = HandleType.VIDEO, proceed = Proceed.PROCEED)
+    @HandleAny(type = HandleType.VIDEO)
     private void handleAnyPhotos(Update update, AbsSender sender) throws TelegramApiException, JsonProcessingException {
         String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getVideo());
         String text = "I'm handle this video : \n" + value;

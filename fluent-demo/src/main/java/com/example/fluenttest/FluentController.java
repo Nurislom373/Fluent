@@ -9,6 +9,7 @@ import org.khasanof.context.FluentContextHolder;
 import org.khasanof.custom.attributes.Attributes;
 import org.khasanof.enums.HandleType;
 import org.khasanof.enums.MatchType;
+import org.khasanof.enums.Proceed;
 import org.khasanof.enums.scopes.DocumentScope;
 import org.khasanof.enums.scopes.PhotoScope;
 import org.khasanof.enums.scopes.VideoScope;
@@ -55,7 +56,7 @@ public class FluentController {
         fluentTemplate.sendText(text);
     }
 
-    @HandleAny(type = HandleType.MESSAGE)
+    @HandleAny(type = HandleType.MESSAGE, proceed = Proceed.NOT_PROCEED)
     private void handleAnyMessages() {
         Attributes attributes = FluentContextHolder.getCurrentAttributes();
         attributes.setAttribute("foo", "bar");

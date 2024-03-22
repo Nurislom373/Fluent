@@ -5,44 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="new module spring-boot-fluent-redis #95">
-      <change afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/service/DefaultFltStateEventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/images/first_screen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/constants/ParamConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/constants/ParamConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/enums/MatchType.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/enums/MatchType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/CallbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/CallbackController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/SimpleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/SimpleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/HELP.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/docker/redis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/RedisRepositoryStrategy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/SpringBootFluentRedisAutoConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/config/RedisConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/config/RedisProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/entity/FltStateHash.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/entity/FltUserHash.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/repository/FltStateRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/repository/FltUserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/service/RedisFltStateEventService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/util/RedisRepositoryStrategyHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-redis/src/test/java/org/khasanof/SpringBootFluentRedisApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/collector/method/checker/strategy/MethodCheckOperationStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/collector/method/checker/strategy/MethodCheckOperationStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/collector/method/checker/strategy/ProcessFileMethodCheckOperationStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/collector/method/checker/strategy/ProcessFileMethodCheckOperationStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/config/service/expression/ExpressionMatcherServiceConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/config/service/expression/ExpressionMatcherServiceConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/test/java/org/khasanof/config/TestCallbackHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/test/java/org/khasanof/config/TestCallbackHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/test/java/org/khasanof/config/TestDocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/test/java/org/khasanof/config/TestDocumentHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/test/java/org/khasanof/config/TestMessageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/test/java/org/khasanof/config/TestMessageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/annotation/methods/HandleAny.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/annotation/methods/HandleAny.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/HandleAnyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/HandleAnyTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +64,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -166,11 +134,11 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.FluentTestApplication.executor": "Debug",
+    "Spring Boot.FluentTestApplication.executor": "Run",
     "git-widget-placeholder": "development",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Nurislom/Projects/Java/Fluent",
+    "last_opened_file_path": "C:/Nurislom/Projects/Java/Fluent/documentation/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -194,6 +162,9 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Nurislom\Projects\Java\Fluent\documentation\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Nurislom\Projects\Java\Fluent\utils" />
     </key>
@@ -335,13 +306,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-17.0.10-corretto-17.0.10-f644763e9732-24fca987" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -475,6 +439,7 @@
       <workItem from="1710594997187" duration="4095000" />
       <workItem from="1710614666146" duration="5667000" />
       <workItem from="1710863566374" duration="5815000" />
+      <workItem from="1711099513480" duration="1708000" />
     </task>
     <task id="LOCAL-00008" summary="add new modules #38">
       <option name="closed" value="true" />

@@ -310,7 +310,153 @@ void startWithAbsHandler(Update update, @BotVariable("name") String username) {
 
 ### Handle any
 
+`@HandleAny` annotatsiyasi telegramdan kelgan istalgan update handle qilish uchun ishlatiladi. `@HandleAny` boshqa handler
+annotatsiyalaridan birinchi ishlaydi yani kelgan update birinchi `@HandleAny` annotatsiya bor method kiradi undan keyin
+boshqa handler methodlarga birin ketin kirishni boshlaydi.
 
+```java
+@HandleAny(type = HandleType.MESSAGE)
+private void handleAnyMessages() {
+    String text = "I'm handle any updates";
+    fluentTemplate.sendText(text);
+}
+
+@HandleMessage(value = "/button")
+public void handleButtonCommand() {
+    InlineKeyboardMarkupBuilder builder = new InlineKeyboardMarkupBuilder();
+
+    builder.addButton("First")
+            .callbackData("First");
+    builder.addButton("Second")
+            .callbackData("Second");
+
+    builder.addRow();
+
+    builder.addButton("Third")
+            .callbackData("Third");
+    builder.addButton("Fourth")
+            .callbackData("Fourth");
+
+    fluentTemplate.sendText("This is inline button", builder.build());
+}
+```
+
+![first_screen](documentation/images/first_screen.png)
+
+`@HandleAny` annotatsiyasi 2ta parameter qabul qiladi.
+
+1. type - orqali biz qaysi typedagi updatelarni handle qilishni ko'rsatish uchun ishlatishimiz mumkin. default holatda biz
+`@HandleAny` type ko'rsatmasak HandleType.MESSAGE ni oladi.
+
+Quyidagi kodga qarang
+
+```java
+@HandleAny(type = HandleType.STICKER)
+private void handleAnyStickers(Update update) {
+    String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getSticker());
+    String text = "I'm handle this sticker : \n" + value;
+    fluentTemplate.sendText(text);
+}
+
+@HandleAny(type = HandleType.PHOTO)
+private void handleAnyPhoto(Update update) {
+    String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getPhoto());
+    String text = "handle any this photo : \n" + value;
+    fluentTemplate.sendText(text);
+}
+
+@HandleAny(type = HandleType.DOCUMENT)
+private void handleAnyDocument(Update update) {
+    String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getDocument());
+    String text = "I'm handle this document : \n" + value;
+    fluentTemplate.sendText(text);
+}
+
+@HandleAny(type = HandleType.AUDIO)
+private void handleAnyCallbacks(Update update) {
+    String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getAudio());
+    String text = "I'm handle this audio : \n" + value;
+    fluentTemplate.sendText(text);
+}
+
+@HandleAny(type = HandleType.VIDEO_NOTE)
+private void handleAnyVideoNote(Update update) {
+    String value = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(update.getMessage().getVideoNote());
+    String text = "I'm handle this video note : \n" + value;
+    fluentTemplate.sendText(text);
+}
+```
+
+bir vaqtni o'zida bir nechta typelarni qabul qilishimiz ham mumkin.
+
+```java
+@HandleAny(type = {HandleType.MESSAGE, HandleType.AUDIO})
+private void handleAnyMessagesWithUpdate(Update update) {
+    String text = "I'm handle message or audio updates";
+    fluentTemplate.sendText(text);
+}
+```
+
+2. proceed - orqali biz `@HandleAny` annotatsiyasi qoyilgan method bajarilgandan so'ng undan keyingi handler methodlar
+bajarilishi yoki bajarilmasligini belgilashimiz mumkin. Agar Proceed.PROCEED turgan bo'lsa o'zidan keyingi
+method bajarilishiga ruhsat beradi. Agar aksi bo'lsa unda o'zidan keyingi handler methodlarni bajarilishiga ruhsat
+bermaydi. Qiymat belgilanmagan holda `@HandleAny` type parameteri _HandleType.MESSAGE_ ni, proceed parameteri esa
+_Proceed.PROCEED_ oladi.
+
+Quyidagi misolga qarang
+
+Ushbu misolda `@HandleAny` annotatsiyasini proceed parameteri default holatda turibdi. Yani `Proceed.PROCEED`
+
+```java
+@UpdateController
+public class SimpleController {
+
+    @HandleAny
+    void handleAnyMessage(Update update) {
+        fluentTemplate.sendText("Handler Any Message😎");
+    }
+
+    @HandleMessage(value = "abs", scope = MatchScope.START_WITH)
+    void startWithAbsHandler(Update update) {
+        String text = "Start With 'abs' : " + update.getMessage().getText();
+        fluentTemplate.sendText(text);
+    }
+}
+```
+
+![handle_any_1](documentation/images/handle_any_1.png)
+
+`@HandleAny` annotatsiyani proceed type `NOT_PROCEED` ga o'zgartiramiz va natijasini ko'ramiz.
+
+```java
+@UpdateController
+public class SimpleController {
+
+    @HandleAny(proceed = Proceed.NOT_PROCEED)
+    void handleAnyMessage(Update update) {
+        fluentTemplate.sendText("Handler Any Message😎");
+    }
+
+    @HandleMessage(value = "abs", scope = MatchScope.START_WITH)
+    void startWithAbsHandler(Update update, AbsSender sender) {
+        String text = "Start With 'abs' : " + update.getMessage().getText();
+        fluentTemplate.sendText(text);
+    }
+}
+```
+
+![handle_any_2](documentation/images/handle_any_2.png)
+
+rasmdagi natijani ko’rgan bo’lsangiz faqat `@HandleAny` method ishladi va undan keyin handlar method bajarilmadi.
+
+`@HandleAny` annotatsiyasi qoyilgan methodni hech qanday parameterlarsiz ham yozishimiz mumkin. 
+
+```java
+@HandleAny
+public void handleAnyMessage() {
+    fluentTemplate.sendText("Handler Any Message😎");
+}
+```
 
 ## 3. FluentTemplate
 ## 3. Handling exceptions
