@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="added updating message operations #100">
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented FluentTemplate #101">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -437,15 +438,7 @@
       <workItem from="1710614666146" duration="5667000" />
       <workItem from="1710863566374" duration="5815000" />
       <workItem from="1711099513480" duration="5037000" />
-      <workItem from="1711307377326" duration="3838000" />
-    </task>
-    <task id="LOCAL-00012" summary="new Module Spring-Boot-Starter-Fluent-Test #35">
-      <option name="closed" value="true" />
-      <created>1704745028641</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1704745028641</updated>
+      <workItem from="1711307377326" duration="4444000" />
     </task>
     <task id="LOCAL-00013" summary="new Module Spring-Boot-Starter-Fluent-Test finished #42">
       <option name="closed" value="true" />
@@ -831,7 +824,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711311221087</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="documented FluentTemplate #101">
+      <option name="closed" value="true" />
+      <created>1711311268033</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1711311268033</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -902,7 +903,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="custom annotation is worked  #72" />
     <MESSAGE value="ExpressionMatcherService finished #73" />
     <MESSAGE value="added InvokerMethodInterceptor #74" />
     <MESSAGE value="added Condition #75" />
@@ -927,7 +927,8 @@
     <MESSAGE value="CurrentUpdate documented #98" />
     <MESSAGE value="added HandleTypeFinds #99" />
     <MESSAGE value="added updating message operations #100" />
-    <option name="LAST_COMMIT_MESSAGE" value="added updating message operations #100" />
+    <MESSAGE value="documented FluentTemplate #101" />
+    <option name="LAST_COMMIT_MESSAGE" value="documented FluentTemplate #101" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
