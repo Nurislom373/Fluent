@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="HandleAny documented #97" />
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="added updating message operations #100">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,8 +19,8 @@
         <option value="package-info" />
         <option value="Enum" />
         <option value="AnnotationType" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -142,7 +145,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
+    "settings.editor.selected.configurable": "fileTemplates",
     "vcs.patch.path": "C:/Users/Nurislom/Downloads",
     "vue.rearranger.settings.migration": "true"
   },
@@ -433,31 +436,8 @@
       <workItem from="1710594997187" duration="4095000" />
       <workItem from="1710614666146" duration="5667000" />
       <workItem from="1710863566374" duration="5815000" />
-      <workItem from="1711099513480" duration="2198000" />
-    </task>
-    <task id="LOCAL-00009" summary="HandleType enum field removed">
-      <option name="closed" value="true" />
-      <created>1704619840962</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1704619840962</updated>
-    </task>
-    <task id="LOCAL-00010" summary="ExecutorServiceFactoryConfiguration add #33">
-      <option name="closed" value="true" />
-      <created>1704732862993</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1704732862993</updated>
-    </task>
-    <task id="LOCAL-00011" summary="fluent-test module written #34">
-      <option name="closed" value="true" />
-      <created>1704744642389</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1704744642389</updated>
+      <workItem from="1711099513480" duration="5037000" />
+      <workItem from="1711307377326" duration="3838000" />
     </task>
     <task id="LOCAL-00012" summary="new Module Spring-Boot-Starter-Fluent-Test #35">
       <option name="closed" value="true" />
@@ -827,7 +807,31 @@
       <option name="project" value="LOCAL" />
       <updated>1711101599181</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="CurrentUpdate documented #98">
+      <option name="closed" value="true" />
+      <created>1711102192455</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1711102192455</updated>
+    </task>
+    <task id="LOCAL-00059" summary="added HandleTypeFinds #99">
+      <option name="closed" value="true" />
+      <created>1711311185857</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1711311185857</updated>
+    </task>
+    <task id="LOCAL-00060" summary="added updating message operations #100">
+      <option name="closed" value="true" />
+      <created>1711311221087</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1711311221087</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -898,9 +902,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rewrite README.md #68" />
-    <MESSAGE value="Added new classes #69" />
-    <MESSAGE value="custom annotation is worked  #71" />
     <MESSAGE value="custom annotation is worked  #72" />
     <MESSAGE value="ExpressionMatcherService finished #73" />
     <MESSAGE value="added InvokerMethodInterceptor #74" />
@@ -923,7 +924,10 @@
     <MESSAGE value="added chosen inline query #91" />
     <MESSAGE value="new module spring-boot-fluent-redis #95" />
     <MESSAGE value="HandleAny documented #97" />
-    <option name="LAST_COMMIT_MESSAGE" value="HandleAny documented #97" />
+    <MESSAGE value="CurrentUpdate documented #98" />
+    <MESSAGE value="added HandleTypeFinds #99" />
+    <MESSAGE value="added updating message operations #100" />
+    <option name="LAST_COMMIT_MESSAGE" value="added updating message operations #100" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -970,11 +974,6 @@
           <url>file://$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/RedisRepositoryStrategy.java</url>
           <line>55</line>
           <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java</url>
-          <line>128</line>
-          <option name="timeStamp" value="133" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

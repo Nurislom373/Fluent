@@ -472,8 +472,55 @@ public void handleAnyMessage() {
 ```
 
 ## 3. FluentTemplate
-## 3. Handling exceptions
-## 3. Making requests
+
+Fluent xabar yuborish uchun asosiy rol o'ynaydigan "template" ni taqdim etadi. Xabar yuborish uchun asosiy operatsiyalarni
+belgilaydigan interface `FluentTemplate` deb ataladi.
+
+FluentTemplate o'z ichiga qamrab olgan asosiy operatsiyalar
+
+- text, audio, document, photo, video va boshqalarni yuborish uchun operatsiyalar
+- callback va inline query larga javob yuborish uchun operatsiyalar
+- xabarlarni yangilash o'chirish, o'zgarishtirish va boshqalar uchun operatsiyalar
+
+Quyidagi kodga e'tibor bering
+
+- Xabar yuborishga misol
+
+```java
+private void sendTextExample() {
+    fluentTemplate.sendText("'Hello World' message send!");
+}
+```
+
+- Xabarni reply keyboard bilan birga yuborishga misol
+
+```java
+public void sendTextWithReplyKeyboardExample() {
+    ReplyKeyboardMarkupBuilder builder = new ReplyKeyboardMarkupBuilder();
+    builder.oneTimeKeyboard(true);
+
+    builder.addButton("First");
+    builder.addButton("Second");
+
+    builder.addRow();
+
+    builder.addButton("Third");
+    builder.addButton("Fourth");
+
+    fluentTemplate.sendText("This is reply button", builder.build());
+}
+```
+
+- Audio yuborishga misol
+
+```java
+public void sendAudioExample() {
+    InputStream inputStream = getClass().getResourceAsStream("/fluent.m4a");
+    fluentTemplate.sendAudio(inputStream, "fluent.m4a");
+}
+```
+
+## 4. Handling exceptions
 ## 4. Making keyboards
 ## 5. State
 ## 6. Interceptors
