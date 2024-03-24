@@ -51,6 +51,24 @@ public class HandleTypeServicePostProcessor implements PostProcessor {
         // edit channel post
         handleTypeFindRegistry.addHandleTypeFind(new HandleTypeFind(HandleType.EDIT_CHANNEL_POST, false,
                 update -> Objects.equals(update.hasEditedChannelPost(), Boolean.TRUE), Collections.emptyList()));
+        // shipping query
+        handleTypeFindRegistry.addHandleTypeFind(new HandleTypeFind(HandleType.SHIPPING_QUERY, false,
+                update -> Objects.equals(update.hasShippingQuery(), Boolean.TRUE), Collections.emptyList()));
+        // pre checkout query
+        handleTypeFindRegistry.addHandleTypeFind(new HandleTypeFind(HandleType.PRE_CHECKOUT_QUERY, false,
+                update -> Objects.equals(update.hasPreCheckoutQuery(), Boolean.TRUE), Collections.emptyList()));
+        // poll answer
+        handleTypeFindRegistry.addHandleTypeFind(new HandleTypeFind(HandleType.POLL_ANSWER, false,
+                update -> Objects.equals(update.hasPollAnswer(), Boolean.TRUE), Collections.emptyList()));
+        // chat member
+        handleTypeFindRegistry.addHandleTypeFind(new HandleTypeFind(HandleType.CHAT_MEMBER, false,
+                update -> Objects.equals(update.hasChatMember(), Boolean.TRUE), Collections.emptyList()));
+        // chat join request
+        handleTypeFindRegistry.addHandleTypeFind(new HandleTypeFind(HandleType.CHAT_JOIN_REQUEST, false,
+                update -> Objects.equals(update.hasChatJoinRequest(), Boolean.TRUE), Collections.emptyList()));
+        // chosen inline query
+        handleTypeFindRegistry.addHandleTypeFind(new HandleTypeFind(HandleType.CHOSEN_INLINE_QUERY, false,
+                update -> Objects.equals(update.hasChosenInlineQuery(), Boolean.TRUE), Collections.emptyList()));
     }
 
     private List<HandleTypeFind> messageSubServices() {
