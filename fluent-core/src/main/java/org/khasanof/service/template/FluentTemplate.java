@@ -2,7 +2,6 @@ package org.khasanof.service.template;
 
 import org.khasanof.service.template.operations.ForwardMessageOperations;
 import org.khasanof.service.template.operations.SendMessageOperations;
-import org.khasanof.service.template.operations.query.AnswerCallbackQueryOperations;
 import org.khasanof.service.template.operations.query.AnswerQueriesOperations;
 import org.khasanof.service.template.operations.updatingmessages.UpdatingMessageOperations;
 
