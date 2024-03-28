@@ -794,14 +794,8 @@ kerak bo'ladi. `FluentInterceptorRegistryContainer` classini siz interceptorlarn
     <tbody>
         <tr>
             <td align="center" valign="top" width="14.28%"><a href="https://github.com/Nurislom373"><img src="https://github.com/Nurislom373/khasanof-common-util/blob/main/etc/images/khasanof.png" width="100px;" alt="Nurislom Xasanov"/><br /><sub><b>Nurislom Xasanov</b></sub></a><br /><a href="#" title="Code">💻</a></td>
-        </tr>
-        <tr>
             <td align="center" valign="top" width="14.28%"><a href="https://github.com/Nurislom373"><img src="https://github.com/Nurislom373/fluent/blob/main/etc/images/abdulloh.jpg" width="100px;" alt="Shukrullaev Abdulloh"/><br /><sub><b>Shukrullaev Abdulloh</b></sub></a><br /><a href="#" title="Code">💻</a></td>
-        </tr>
-        <tr>
             <td align="center" valign="top" width="14.28%"><a href="https://github.com/Nurislom373"><img src="https://github.com/Nurislom373/fluent/blob/main/etc/images/shoxista.jpg" width="100px;" alt="Rahimova Shoxista"/><br /><sub><b>Rahimova Shoxista</b></sub></a><br /><a href="#" title="Code">💻</a></td>
-        </tr>
-        <tr>
             <td align="center" valign="top" width="14.28%"><a href="https://github.com/Nurislom373"><img src="https://github.com/Nurislom373/fluent/blob/main/etc/images/jlkesh.jpg" width="100px;" alt="Elmurodov Javohir"/><br /><sub><b>Elmurodov Javohir</b></sub></a><br /><a href="#" title="Code">🌍💻</a></td>
         </tr>
     </tbody>
