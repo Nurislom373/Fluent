@@ -729,12 +729,64 @@ Natijasi:
 
 ![reply-keyboard.png](documentation/images/reply-keyboard.png)
 
-## 5. Interceptors
-## 6. State
-## 7. Conditions
-## 8. Configure Postgresql
-## 9. Inline Query
-## 10. Customization
+## 6. Interceptors
+
+Fluent kutubxonasi sizga Interceptorlarni qo'shish imkonini beradi. Interceptor nima ekanligini bilmaydiganlarga
+uchun istalgan action chaqiruvchidan oldin va keyin framework tomonidan chaqiriladigan funksiya yani method.
+Spring Interceptorlari httpdan kirib request kelganda va chiqib ketayotgan chiqariladi. Fluent tomonidan taqdim etiladigan
+interceptorlar ham huddi shunday faqat telegramdan kirib kelgan requestlar uchun ishlaydi.
+
+Quyidagi kodga qarang:
+
+```java
+@Slf4j
+public class SimpleFluentInterceptor implements FluentInterceptor {
+
+    @Override
+    public boolean preHandle(Update update) {
+        log.info("FluentInterceptor handle update! : {}", update.getUpdateId());
+        return FluentInterceptor.super.preHandle(update);
+    }
+
+    @Override
+    public void postHandle(Update update) {
+        log.warn("FluentInterceptor handle update end!");
+    }
+}
+```
+```java
+@Configuration
+public class FluentInterceptorConfig {
+
+    private final FluentInterceptorRegistryContainer registryContainer;
+
+    public FluentInterceptorConfig(FluentInterceptorRegistryContainer registryContainer) {
+        this.registryContainer = registryContainer;
+    }
+
+    @PostConstruct
+    public void registerFluentInterceptor() {
+        registryContainer.addFluentInterceptor(new SimpleFluentInterceptor());
+    }
+}
+```
+
+Natijasi:
+
+![interceptor](documentation/images/fluent-interceptor.png)
+
+Birinchi `SimpleFluentInterceptor` classi bu interceptor. Fluentda interceptor yozishingiz uchun `FluentInterceptor`
+interfacedan implementatsiya olishingiz va uni ichida kerakli logikangizni yozishingiz mumkin bo'ladi.
+
+Ikkinchi `FluentInterceptorConfig` classi esa oldin yozilgan `SimpleFluentInterceptor` ni ro'yxatdan o'tkazish uchun
+yozildi boshqacha qilib aytganda yozgan interceptorimizni Fluent kutubxonasi tanib olishi uchun uni ro'yxatdan o'tkazishimiz
+kerak bo'ladi. `FluentInterceptorRegistryContainer` classini siz interceptorlarni ro'yxatdan o'tkazish uchun ishlatasiz.
+
+## 7. State
+## 8. Conditions
+## 9. Configure Postgresql
+## 10. Inline Query
+## 11. Customization
 
 ## License
 
