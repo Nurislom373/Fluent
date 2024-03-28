@@ -560,9 +560,177 @@ public void sendAudioExample() {
   - [AnswerInlineQueryOperations.java](fluent-core%2Fsrc%2Fmain%2Fjava%2Forg%2Fkhasanof%2Fservice%2Ftemplate%2Foperations%2Fquery%2FAnswerInlineQueryOperations.java)
 
 ## 4. Handling exceptions
-## 4. Making keyboards
-## 5. State
-## 6. Interceptors
+
+Fluent kutubxonasi xatolar bilan ham ishlash uchun kuchli funksionalikni taqdim etadi. Bu funksionalikdan foydalanib dastur 
+ishlash vaqtida yuzagan kelishi mumkin bo'lgan xatolarni osonlik bilan ushlab uni qayta ishlashimiz mumkin.
+
+Quyidagi kodga qarang:
+```java
+@ExceptionController
+public class SimpleExceptionHandler {
+
+    @HandleException({RuntimeException.class})
+    public void handleRuntimeException(RuntimeException exception) {
+        // write your logic...
+    }
+}
+```
+
+`@ExceptionController` annotatsiyasi xatolarni qayta ishlovchi class sifatida belgilash uchun qo'yishingiz kerak!.
+ushbu annotatsiyani classni ustiga qo'yganingizdan so'ng. Ushbu class ichida xatolarni qayta ishlovchi methodlarni
+yozishingiz mumkin. 
+
+Xatolarni qayta ishlovchi method yozish qoidalari.
+
+1. Xatolarni qayta ishlovchi method yozishingiz uchun siz qilishingiz shart bo'lgan ish method ustiga `@HandleException`
+annotatsiyasini qo'yish va annotatsiyada qaysi `Exception`larni handle qilishini ko'rsatishdir.
+2. Methodni hech qanday parametersiz ham yozishingiz ham mumkin. Xatolarni qayta ishlovchi methodlarga 2ta parameter kirib 
+kelishi mumkin birinchisi `Exception`, ikkinchisi esa `Update` bu ikklasini istalgani kutib olishingiz hamda ikkalasini ham 
+kutib olishingiz mumkin. Birinchi `Exception` keyin `Update` kirishi ham majuburiy emas qaysi biri birinchi kirishi ahamiyatsiz asosiysi
+shu 2ta parameterlarni to'g'ir belgilashingiz.
+
+## 5. Making keyboards
+
+Fluent kutubxonasi keyboardlarni yasash uchun ham API larni taqdim etadi. Ushbu API lar keyboardlarni yasashi ancha osonlashtiradi.
+
+Fluent API dan foydalanmasdan keyboardlarni yaratish uchun yozilgan kod:
+
+```java
+public InlineKeyboardMarkup inlineKeyboardMarkup() {
+    InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+
+    InlineKeyboardButton next = new InlineKeyboardButton("NEXT");
+    next.setCallbackData("NEXT");
+
+    InlineKeyboardButton prev = new InlineKeyboardButton("PREV");
+    prev.setCallbackData("PREV");
+
+    InlineKeyboardButton top = new InlineKeyboardButton("TOP");
+    top.setCallbackData("TOP");
+
+    InlineKeyboardButton bottom = new InlineKeyboardButton("BOTTOM");
+    bottom.setCallbackData("BOTTOM");
+
+    List<InlineKeyboardButton> row1 = new ArrayList<>();
+    row1.add(next);
+    row1.add(prev);
+
+    List<InlineKeyboardButton> row2 = new ArrayList<>();
+    row2.add(top);
+    row2.add(bottom);
+
+    inlineKeyboardMarkup.setKeyboard(Arrays.asList(row1, row2));
+    return inlineKeyboardMarkup;
+}
+```
+
+Fluent API dan foydalanib keyboardlarni yaratish uchun yozilgan kod:
+```java
+public InlineKeyboardMarkup inlineKeyboardMarkup() {
+    InlineKeyboardMarkupBuilder builder = new InlineKeyboardMarkupBuilder();
+
+    builder.addButton("NEXT")
+            .callbackData("NEXT");
+    
+    builder.addButton("PREV")
+            .callbackData("PREV");
+
+    builder.addRow();
+
+    builder.addButton("TOP")
+            .callbackData("TOP");
+    
+    builder.addButton("BOTTOM")
+            .callbackData("BOTTOM");
+
+    InlineKeyboardMarkup inlineKeyboardMarkup = builder.build();
+}
+```
+
+Tepadagi ko'rsatilgan kodlar ikkalasi ham bir xil keyboardlarni yaratish uchun yozilgan kodlar.
+
+Result:
+
+![inline-keyboards](documentation/images/inline-keyboards.png)
+
+### 5.1 Inline keyboard
+
+Inline keyboardlarni yasash uchun ishlashtiladigan class `InlineKeyboardMarkupBuilder`.
+Ushbu classdan foydalanib siz inline keyboardlarni osonlik bilan yasashingiz mumkin.
+
+Quyidagi kodga qarang:
+
+```java
+public InlineKeyboardMarkup inlineKeyboardMarkupExample() {
+    InlineKeyboardMarkupBuilder builder = new InlineKeyboardMarkupBuilder();
+
+    builder.addButton("Next")
+            .callbackData("Next");
+
+    InlineKeyboardMarkup inlineKeyboardMarkup = builder.build();
+}
+```
+
+Natijasi:
+
+![inline-keyboard-result](documentation/images/inline-keyboard-result.png)
+
+`addRow` method foydalanib osongina yangi row qo'shingiz mumkin.
+
+```java
+builder.addRow();
+```
+
+```java
+public InlineKeyboardMarkup inlineKeyboardMarkupExample() {
+    InlineKeyboardMarkupBuilder builder = new InlineKeyboardMarkupBuilder();
+
+    builder.addButton("Next")
+            .callbackData("Next");
+
+    builder.addRow();
+    
+    builder.addButton("Prev")
+          .callbackData("Prev");
+
+    InlineKeyboardMarkup inlineKeyboardMarkup = builder.build();
+}
+```
+
+Tepadagi kodni natijasi:
+
+![inline-keyboard-result-2](documentation/images/inline-keyboard-result-2.png)
+
+### 5.2 Reply keyboard
+
+Reply keyboardlarni yasash uchun ishlatiladigan class `ReplyKeyboardMarkupBuilder`.
+Ushbu classdan foydalanib siz reply keyboardlarni osonlik bilan yasashingiz mumkin huddi inline keyboardga o'xshab.
+
+Quyidagi kodga qarang:
+
+```java
+public void handleReplyCommand() {
+    ReplyKeyboardMarkupBuilder builder = new ReplyKeyboardMarkupBuilder();
+    builder.oneTimeKeyboard(true);
+
+    builder.addButton("First");
+    builder.addButton("Second");
+
+    builder.addRow();
+
+    builder.addButton("Third");
+    builder.addButton("Fourth");
+
+    ReplyKeyboardMarkup replyKeyboardMarkup = builder.build();
+}
+```
+
+Natijasi:
+
+![reply-keyboard.png](documentation/images/reply-keyboard.png)
+
+## 5. Interceptors
+## 6. State
 ## 7. Conditions
 ## 8. Configure Postgresql
 ## 9. Inline Query

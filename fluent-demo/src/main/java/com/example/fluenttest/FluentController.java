@@ -17,6 +17,8 @@ import org.khasanof.service.template.FluentTemplate;
 import org.khasanof.utils.keyboards.inline.InlineKeyboardMarkupBuilder;
 import org.khasanof.utils.keyboards.reply.ReplyKeyboardMarkupBuilder;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
 import java.io.InputStream;
 import java.util.Objects;
@@ -56,7 +58,7 @@ public class FluentController {
         fluentTemplate.sendText(text);
     }
 
-    @HandleAny(type = HandleType.MESSAGE, proceed = Proceed.NOT_PROCEED)
+    @HandleAny(type = HandleType.MESSAGE)
     private void handleAnyMessages() {
         Attributes attributes = FluentContextHolder.getCurrentAttributes();
         attributes.setAttribute("foo", "bar");
@@ -84,19 +86,26 @@ public class FluentController {
     public void handleButtonCommand() {
         InlineKeyboardMarkupBuilder builder = new InlineKeyboardMarkupBuilder();
 
-        builder.addButton("First")
-                .callbackData("First");
-        builder.addButton("Second")
-                .callbackData("Second");
+        builder.addButton("Next")
+                .callbackData("Next");
 
         builder.addRow();
 
-        builder.addButton("Third")
-                .callbackData("Third");
-        builder.addButton("Fourth")
-                .callbackData("Fourth");
+        builder.addButton("Prev")
+                .callbackData("Prev");
+//        builder.addButton("PREV")
+//                .callbackData("PREV");
+//
+//        builder.addRow();
+//
+//        builder.addButton("TOP")
+//                .callbackData("TOP");
+//        builder.addButton("BOTTOM")
+//                .callbackData("BOTTOM");
 
-        fluentTemplate.sendText("This is inline button", builder.build());
+        InlineKeyboardMarkup inlineKeyboardMarkup = builder.build();
+
+        fluentTemplate.sendText("This is inline button", inlineKeyboardMarkup);
     }
 
     @HandleMessage(value = "/reply")
@@ -112,7 +121,9 @@ public class FluentController {
         builder.addButton("Third");
         builder.addButton("Fourth");
 
-        fluentTemplate.sendText("This is reply button", builder.build());
+        ReplyKeyboardMarkup replyKeyboardMarkup = builder.build();
+
+        fluentTemplate.sendText("This is reply button", replyKeyboardMarkup);
     }
 
     @ConditionOnExpression("1 == 1")
