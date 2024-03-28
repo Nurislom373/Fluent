@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented Handling Exceptions and Making keyboards #103">
-      <change afterPath="$PROJECT_DIR$/documentation/images/fluent-interceptor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented Interceptors #104">
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/template/DefaultFluentTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/template/DefaultFluentTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/template/FluentTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/template/FluentTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/template/operations/updatingmessages/EditMessageCaptionOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/template/operations/updatingmessages/EditMessageCaptionOperations.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -440,15 +440,7 @@
       <workItem from="1711099513480" duration="5037000" />
       <workItem from="1711307377326" duration="5759000" />
       <workItem from="1711562675986" duration="1721000" />
-      <workItem from="1711638737163" duration="3800000" />
-    </task>
-    <task id="LOCAL-00015" summary="add Document Factory #44">
-      <option name="closed" value="true" />
-      <created>1704911908861</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1704911908861</updated>
+      <workItem from="1711638737163" duration="4746000" />
     </task>
     <task id="LOCAL-00016" summary="start write test #45">
       <option name="closed" value="true" />
@@ -834,7 +826,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711641636570</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="documented Interceptors #104">
+      <option name="closed" value="true" />
+      <created>1711642626392</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1711642626392</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -905,7 +905,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added Condition #75" />
     <MESSAGE value="composing fluent state module #76" />
     <MESSAGE value="added repeatable and state condition #77" />
     <MESSAGE value="added handle unknown annotation #78" />
@@ -930,7 +929,8 @@
     <MESSAGE value="documented FluentTemplate #101" />
     <MESSAGE value="documented FluentTemplate #102" />
     <MESSAGE value="documented Handling Exceptions and Making keyboards #103" />
-    <option name="LAST_COMMIT_MESSAGE" value="documented Handling Exceptions and Making keyboards #103" />
+    <MESSAGE value="documented Interceptors #104" />
+    <option name="LAST_COMMIT_MESSAGE" value="documented Interceptors #104" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

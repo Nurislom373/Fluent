@@ -11,17 +11,22 @@ import org.telegram.telegrambots.meta.api.methods.AnswerInlineQuery;
 import org.telegram.telegrambots.meta.api.methods.ForwardMessage;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodBoolean;
 import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodMessage;
+import org.telegram.telegrambots.meta.api.methods.botapimethods.BotApiMethodSerializable;
 import org.telegram.telegrambots.meta.api.methods.send.*;
+import org.telegram.telegrambots.meta.api.methods.updatingmessages.*;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQueryResult;
 import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 
@@ -2188,6 +2193,339 @@ public class DefaultFluentTemplate implements FluentTemplate {
         return tryExecuteSendMediaGroup(mediaGroup);
     }
 
+    @Override
+    public Boolean deleteMessage(Integer messageId) {
+        return tryExecuteAnswerQueryMethod(deleteMessageBuilder(messageId, null));
+    }
+
+    @Override
+    public Boolean deleteMessage(Integer messageId, Long chatId) {
+        return tryExecuteAnswerQueryMethod(deleteMessageBuilder(messageId, chatId));
+    }
+
+    @Override
+    public Boolean deleteMessage(DeleteMessage deleteMessage) {
+        notNull(deleteMessage, "deleteMessage param must not be null!");
+        deleteMessage.setChatId(getChatId(Long.valueOf(deleteMessage.getChatId())));
+        return tryExecuteAnswerQueryMethod(deleteMessage);
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, null, null, null, null));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, Long chatId) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, null, chatId, null, null));
+    }
+
+    @Override
+    public Serializable editMessageCaption(String inlineMessageId, String caption) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(null, inlineMessageId, caption, null, null, null, null));
+    }
+
+    @Override
+    public Serializable editMessageCaption(String inlineMessageId, String caption, Long chatId) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(null, inlineMessageId, caption, null, chatId, null, null));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, InlineKeyboardMarkup replyKeyboard) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, null, null, replyKeyboard, null));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, Long chatId, InlineKeyboardMarkup replyKeyboard) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, null, chatId, replyKeyboard, null));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, List<MessageEntity> captionEntities) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, null, null, null, captionEntities));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, Long chatId, List<MessageEntity> captionEntities) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, null, chatId, null, captionEntities));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, String parseMode, InlineKeyboardMarkup replyKeyboard) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, parseMode, null, replyKeyboard, null));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, Long chatId, String parseMode, InlineKeyboardMarkup replyKeyboard) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, parseMode, chatId, replyKeyboard, null));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, String parseMode, List<MessageEntity> captionEntities) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, parseMode, null, null, captionEntities));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, Long chatId, String parseMode, List<MessageEntity> captionEntities) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, parseMode, chatId, null, captionEntities));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, InlineKeyboardMarkup replyKeyboard, List<MessageEntity> captionEntities) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, null, null, replyKeyboard, captionEntities));
+    }
+
+    @Override
+    public Serializable editMessageCaption(Integer messageId, String caption, Long chatId, InlineKeyboardMarkup replyKeyboard, List<MessageEntity> captionEntities) {
+        return tryExecuteSerializableMethod(editMessageCaptionBuilder(messageId, null, caption, null, chatId, replyKeyboard, captionEntities));
+    }
+
+    @Override
+    public Serializable editMessageCaption(EditMessageCaption editMessageCaption) {
+        notNull(editMessageCaption, "editMessageCaption param must not be null!");
+        editMessageCaption.setChatId(getChatId(Long.valueOf(editMessageCaption.getChatId())));
+        return tryExecuteSerializableMethod(editMessageCaption);
+    }
+
+    @Override
+    public Serializable editMessageLiveLocation(Integer messageId, Round round) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageLiveLocation(Integer messageId, Round round, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageLiveLocation(String inlineMessageId, Round round) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageLiveLocation(String inlineMessageId, Round round, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageLiveLocation(Integer messageId, Round round, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageLiveLocation(Integer messageId, Round round, Long chatId, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageLiveLocation(Integer messageId, Round round, Double horizontalAccuracy) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageLiveLocation(Integer messageId, Round round, Long chatId, Double horizontalAccuracy) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageLiveLocation(EditMessageLiveLocation editMessageLiveLocation) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(Integer messageId, File media) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(Integer messageId, File media, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(String inlineMessageId, File media) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(String inlineMessageId, File media, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(Integer messageId, File media, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(Integer messageId, File media, Long chatId, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(String inlineMessageId, File media, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(String inlineMessageId, File media, Long chatId, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(Integer messageId, InputStream media, String filename) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(Integer messageId, InputStream media, String filename, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(String inlineMessageId, InputStream media, String filename) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(String inlineMessageId, InputStream media, String filename, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(Integer messageId, InputStream media, String filename, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(Integer messageId, InputStream media, String filename, Long chatId, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(String inlineMessageId, InputStream media, String filename, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(String inlineMessageId, InputStream media, String filename, Long chatId, ReplyKeyboard replyKeyboard) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageMedia(EditMessageMedia editMessageMedia) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageReplyMarkup(Integer messageId, InlineKeyboardMarkup replyMarkup) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageReplyMarkup(Integer messageId, InlineKeyboardMarkup replyMarkup, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageReplyMarkup(String inlineMessageId, InlineKeyboardMarkup replyMarkup) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageReplyMarkup(String inlineMessageId, InlineKeyboardMarkup replyMarkup, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageReplyMarkup(EditMessageReplyMarkup editMessageReplyMarkup) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(Integer messageId, String text) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(Integer messageId, String text, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(Integer messageId, String text, String parseMode) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(Integer messageId, String text, InlineKeyboardMarkup replyMarkup) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(Integer messageId, String text, Long chatId, String parseMode) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(Integer messageId, String text, Long chatId, InlineKeyboardMarkup replyMarkup) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(String inlineMessageId, String text) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(String inlineMessageId, String text, Long chatId) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(String inlineMessageId, String text, String parseMode) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(String inlineMessageId, String text, InlineKeyboardMarkup replyMarkup) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(String inlineMessageId, String text, Long chatId, String parseMode) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(String inlineMessageId, String text, Long chatId, InlineKeyboardMarkup replyMarkup) {
+        return null;
+    }
+
+    @Override
+    public Serializable editMessageText(EditMessageText editMessageText) {
+        return null;
+    }
+
+    protected EditMessageCaption editMessageCaptionBuilder(Integer messageId, String inlineMessageId, String caption, String parseMode, Long chatId, InlineKeyboardMarkup replyKeyboard, List<MessageEntity> captionEntities) {
+        return EditMessageCaption.builder()
+                .messageId(messageId)
+                .inlineMessageId(inlineMessageId)
+                .parseMode(parseMode)
+                .caption(caption)
+                .chatId(getChatId(chatId))
+                .replyMarkup(replyKeyboard)
+                .captionEntities(captionEntities)
+                .build();
+    }
+
+    protected DeleteMessage deleteMessageBuilder(Integer messageId, Long chatId) {
+        return DeleteMessage.builder()
+                .messageId(messageId)
+                .chatId(getChatId(chatId))
+                .build();
+    }
+
     protected SendMediaGroup sendMediaGroupBuilder(List<InputMedia> medias, Long chatId, Integer replyMessageId, Boolean disableNotification) {
         return SendMediaGroup.builder()
                 .medias(medias)
@@ -2403,6 +2741,14 @@ public class DefaultFluentTemplate implements FluentTemplate {
             throw new RuntimeException(message);
         }
         return param;
+    }
+
+    protected Serializable tryExecuteSerializableMethod(BotApiMethodSerializable methodSerializable) {
+        try {
+            return getInstance().execute(methodSerializable);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     protected List<Message> tryExecuteSendMediaGroup(SendMediaGroup mediaGroup) {
