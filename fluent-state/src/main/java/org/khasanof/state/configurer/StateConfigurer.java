@@ -9,8 +9,17 @@ import java.util.EnumSet;
  */
 public interface StateConfigurer<T extends Enum> {
 
+    /**
+     *
+     * @param e
+     * @return
+     */
     StateConfigurer<T> initial(T e);
 
+    /**
+     *
+     * @param ts
+     * @return
+     */
     StateConfigurer<T> states(EnumSet ts);
-
 }
