@@ -790,6 +790,8 @@ Ushbu jarayoni commandalar bilan qilish to'g'ri bolmaydi sababi ketma ketlikni b
 bilan shu jarayon qilishingiz mumkin osonlik bilan. fluentni state foydalanmoqchi bo'lsangiz state design pattern o'qib 
 chiqingizni maslahat beramiz. Sababi fluent state, state design pattern bir xil yoziladi va ishlaydi.
 
+### 7.1 Dependency
+
 Fluent State dan foydalanish uchun birinchi qo'shimcha dependency qo'shishingiz kerak.
 
 ### Maven
@@ -808,7 +810,7 @@ Fluent State dan foydalanish uchun birinchi qo'shimcha dependency qo'shishingiz 
 implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent-state', version: '1.2.0'
 ```
 
-### Process Type
+### 7.2 Process Type
 
 Ushbu dependency qo'shganingizdan so'ng qilishingiz kerak bo'lgan keyingi ish configration filedan `process-type` ni
 to'g'irlashingiz kerak 
@@ -824,7 +826,7 @@ fluent:
 Eski holatida `process-type` update turib endi siz uni `both` yoki `state` qilishingiz kerak state bilan ishlashingiz uchun.
 `process-type` orqali biz handler va state larni fluentga ishlatishi kerakligi yoki aks qilishini ko'rsatish uchun ishlatamiz.
 
-### Declaring states
+### 7.3 Declaring states
 
 Process Type ni to'g'irlab bo'lganingizdan so'ng endi State larni e'lon qilishingiz kerak bo'ladi. State larni bitta enum
 ichida e'lon qilishingiz kerak.
@@ -837,7 +839,7 @@ public enum SimpleState {
 }
 ```
 
-### State configurer
+### 7.4 State configurer
 
 Statelarni e'lon qilib bo'lganingizdan so'ng endi statelarni konfiguratsiya qilishingiz kerak bo'ladi. Buning uchun
 `StateConfigurerAdapter` interfaceda implementatsiya olgan bean yozishingiz kerak. Bean bitta bo'lishi majburiy agar 
@@ -868,7 +870,7 @@ o'xshatib. Configure methodda parameter sifatida kirib kelgan `StateConfigurer` 
 - `states`: methodida esa barcha statelarni ro'yxatdan o'tkazish uchun ishlatiladi. Statesda ko'rsatilgan statelargina
 dasturda ishlatiladi.
 
-### Writing state
+### 7.5 Writing state
 
 Stateni konfiguratsiya qilishni tugatganingizdan so'ng statelarni yozishingiz mumkin bo'ladi. Statelarni yozish uchun
 `StateAction` interface implementatsiya olgan class bo'lishi kerak va ushbu class bean bo'lishi kerak.
@@ -905,12 +907,12 @@ public class StartState implements StateAction<SimpleState> {
 
 parameter sifatida kirib kelgan `State` esa bu kirib kelgan updateni state yani updateni yuborgan foydalanuvchini holati.
 Ushbu `State` interfaceni `nextState` method bu enumda yozilgan ketma ketlik bo'yicha foydalanuvchini stateni undan 
-keyingisiga o'tkazadi. Misol uchun `SimpleState` da `START` statedan keyin `CHECK` turibdi nextState method `START` 
-stateni o'zi `CHECK ` otkazib qoyadi yani o'zidan keyingisiga. Agar keyinsiga emas oldingisiga yoki bir nechta keyingi 
+keyingisiga o'tkazadi. Misol uchun `SimpleState` da `START` statedan keyin `CHECK` turibdi `nextState` methodi `START` 
+stateni o'zi `CHECK ` o'tkazib qoyadi yani o'zidan keyingisiga. Agar keyingisiga emas oldingisiga yoki bir nechta keyingi 
 statega o'tmoqchi bo'lsangiz huddi shu methodni state qabul qiluvchi varianti ham mavjud. Ushbu variantidan foydalanib
-hohlagan statengizga foydalanuvchini o'tkazishingiz mumkin.
+hohlagan foydalanuvchingizni stateni o'zgartirishingiz mumkin.
 
-### State repository
+### 7.6 State repository
 
 State lar saqlanadigan repositorydan foydalanib foydalanuvchilarni statelarni olishingiz ham mumkin. Ushbu repositorydan
 foydalanib statelarni manipulatsiya qilishingiz ham mumkin. Ushbu repositoryni nomi `StateRepositoryStrategy` interfacesi.
