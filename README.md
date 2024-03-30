@@ -471,6 +471,76 @@ public void handleAnyMessage() {
 }
 ```
 
+### 2.6 Other handlers
+
+Hozirgacha ko'rsatilgan `@HandleMessage`, `@HandleDocument` va `@HandleAny` annotatsiyalaridan boshqa annotatsiyalari ham
+bor ularga birma bir to'xtalish shart emas sababi ular ham huddi `@HandleMessage` va `@HandleDocument` bilan bir xil
+faqat propertylarida farq qiladi.
+
+### 2.6.1 Handle callback
+
+`@HandleCallback` annotatsiyasi nomidan ma'lum callbacklarni handle qilish uchun ishlatiladi.
+
+Quyidagi kodga qarang:
+
+```java
+@HandleCallback({"EN", "RU", "UZ"})
+private void callBack() {
+    // ...
+}
+```
+
+`@HandleCallback` annotatsiyasini ko'plik varianti ham mavjud `@HandleCallbacks` unda siz bir nechta `@HandleCallback` larni e'lon qilishingiz
+mumkin.
+
+```java
+@HandleCallbacks(value = {
+        @HandleCallback({"NEXT", "PREV"}),
+        @HandleCallback({"TOP", "BOTTOM"}),
+        @HandleCallback(value = {"INDEX"}, match = MatchType.STARTS_WITH)
+})
+private void multiCallback(Update update) {
+    // ...
+}
+```
+
+### 2.6.2 Handle photo
+
+`@HandlePhoto` annotatsiyasi nomidan ma'lum rasmlarni handle qilish uchun ishlatiladi.
+
+Quyidagi kodga qarang:
+
+```java
+@HandlePhoto(value = "start: ", match = MatchType.STARTS_WITH, property = PhotoScope.CAPTION)
+public void handleStartCaptionPhoto() {
+    // ...
+}
+```
+
+### 2.6.3 Handle video
+
+`@HandleVideo` annotatsiyasi nomidan ma'lum videolarni handle qilish uchun ishlatiladi.
+
+Quyidagi kodga qarang:
+
+```java
+@HandleVideo(value = "caption:", match = MatchType.STARTS_WITH, property = VideoScope.CAPTION)
+public void handleVideoCaption() {
+    // ...
+}
+```
+
+### 2.6.4 Handle audio
+
+`@HandleVideo` annotatsiyasi nomidan ma'lum audiolarni handle qilish uchun ishlatiladi.
+
+```java
+@HandleAudio(value = "caption:", match = MatchType.STARTS_WITH, property = VideoScope.CAPTION)
+public void handleAudioCaption() {
+    // ...
+}
+```
+
 ## 3. FluentTemplate
 
 Fluent xabar yuborish uchun asosiy rol o'ynaydigan "template" ni taqdim etadi. Xabar yuborish uchun asosiy operatsiyalarni
@@ -908,11 +978,51 @@ public class StartState implements StateAction<SimpleState> {
 parameter sifatida kirib kelgan `State` esa bu kirib kelgan updateni state yani updateni yuborgan foydalanuvchini holati.
 Ushbu `State` interfaceni `nextState` method bu enumda yozilgan ketma ketlik bo'yicha foydalanuvchini stateni undan 
 keyingisiga o'tkazadi. Misol uchun `SimpleState` da `START` statedan keyin `CHECK` turibdi `nextState` methodi `START` 
-stateni o'zi `CHECK ` o'tkazib qoyadi yani o'zidan keyingisiga. Agar keyingisiga emas oldingisiga yoki bir nechta keyingi 
+stateni o'zi `CHECK` o'tkazib qoyadi yani o'zidan keyingisiga. Agar keyingisiga emas oldingisiga yoki bir nechta keyingi 
 statega o'tmoqchi bo'lsangiz huddi shu methodni state qabul qiluvchi varianti ham mavjud. Ushbu variantidan foydalanib
 hohlagan foydalanuvchingizni stateni o'zgartirishingiz mumkin.
 
-### 7.6 State repository
+### 7.6 Update Handlers proceed
+
+State lar default holatda tepada aytib o'tilganidek commanda sifatida yuborilgan requestlarni qabul qilmaydi yani `@Handle...`
+bilan boshlanadigan annotatsiya qo'yilgan handlerlaringiz ishlamaydi buning sababi `StateAction` interfaceni `updateHandlersProceed`
+method default holatda false qaytaradi yani update handlerlarni ishlashini cheklaydi. Sizga state ham update handler lar
+ishlashi kerak bo'lganda ushbu method override qilib `true` qiymat qaytarishingiz kerak shunda update handlerlar va state
+birga ishlab ketaveradi.
+
+Quyidagi kodga qarang:
+
+```java
+@Slf4j
+@Component
+public class StartState implements StateAction<SimpleState> {
+
+    private final FluentTemplate fluentTemplate;
+
+    public StartState(FluentTemplate fluentTemplate) {
+        this.fluentTemplate = fluentTemplate;
+    }
+
+    @Override
+    public void onReceive(Update update, State state) {
+        log.info("Hello World I'm Start State");
+        fluentTemplate.sendText("Hello World I'm Start State");
+        state.nextState();
+    }
+
+    @Override
+    public SimpleState state() {
+        return SimpleState.START;
+    }
+
+    @Override
+    public boolean updateHandlersProceed() {
+        return true;
+    }
+}
+```
+
+### 7.7 State repository
 
 State lar saqlanadigan repositorydan foydalanib foydalanuvchilarni statelarni olishingiz ham mumkin. Ushbu repositorydan
 foydalanib statelarni manipulatsiya qilishingiz ham mumkin. Ushbu repositoryni nomi `StateRepositoryStrategy` interfacesi.

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented State #109">
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented State #110">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" afterDir="false" />
     </list>
@@ -145,7 +147,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
     &quot;vcs.patch.path&quot;: &quot;C:/Users/Nurislom/Downloads&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -441,15 +443,9 @@
       <workItem from="1711307377326" duration="5759000" />
       <workItem from="1711562675986" duration="1721000" />
       <workItem from="1711638737163" duration="6957000" />
-      <workItem from="1711739005507" duration="4495000" />
-    </task>
-    <task id="LOCAL-00021" summary="added FluentTemplate #50">
-      <option name="closed" value="true" />
-      <created>1706815385480</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1706815385480</updated>
+      <workItem from="1711739005507" duration="4845000" />
+      <workItem from="1711785796885" duration="1344000" />
+      <workItem from="1711824959583" duration="959000" />
     </task>
     <task id="LOCAL-00022" summary="everything is ready to use in my opinion and write tests #51">
       <option name="closed" value="true" />
@@ -835,7 +831,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711743505764</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="documented State #110">
+      <option name="closed" value="true" />
+      <created>1711743785359</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1711743785360</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -906,7 +910,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added feature keyboard builders #81" />
     <MESSAGE value="removed fluent-utils module #82" />
     <MESSAGE value="added extra param decorator #84" />
     <MESSAGE value="added new module fluent-inline-query #84" />
@@ -931,7 +934,8 @@
     <MESSAGE value="edited Contributors section #107" />
     <MESSAGE value="edited Contributors section #108" />
     <MESSAGE value="documented State #109" />
-    <option name="LAST_COMMIT_MESSAGE" value="documented State #109" />
+    <MESSAGE value="documented State #110" />
+    <option name="LAST_COMMIT_MESSAGE" value="documented State #110" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
