@@ -490,20 +490,6 @@ private void callBack() {
 }
 ```
 
-`@HandleCallback` annotatsiyasini ko'plik varianti ham mavjud `@HandleCallbacks` unda siz bir nechta `@HandleCallback` larni e'lon qilishingiz
-mumkin.
-
-```java
-@HandleCallbacks(value = {
-        @HandleCallback({"NEXT", "PREV"}),
-        @HandleCallback({"TOP", "BOTTOM"}),
-        @HandleCallback(value = {"INDEX"}, match = MatchType.STARTS_WITH)
-})
-private void multiCallback(Update update) {
-    // ...
-}
-```
-
 ### 2.6.2 Handle photo
 
 `@HandlePhoto` annotatsiyasi nomidan ma'lum rasmlarni handle qilish uchun ishlatiladi.
@@ -540,6 +526,24 @@ public void handleAudioCaption() {
     // ...
 }
 ```
+
+### 2.6.5 Repeatable
+
+Bazi annotatsiyalarni ko'plik varianti ham mavjud misol uchun `@HandleCallback` annotatsiyasini ko'plik varianti mavjud 
+`@HandleCallbacks` unda siz bir nechta `@HandleCallback` larni e'lon qilishingiz mumkin.
+
+```java
+@HandleCallbacks(value = {
+        @HandleCallback({"NEXT", "PREV"}),
+        @HandleCallback({"TOP", "BOTTOM"}),
+        @HandleCallback(value = {"INDEX"}, match = MatchType.STARTS_WITH)
+})
+private void multiCallback(Update update) {
+    // ...
+}
+```
+
+`@HandleAny`, `@HandleUnknown` va boshqa bir nechta annotatsiyalarni ko'plik variantlari mavjud emas.
 
 ## 3. FluentTemplate
 
@@ -1029,10 +1033,57 @@ foydalanib statelarni manipulatsiya qilishingiz ham mumkin. Ushbu repositoryni n
 Ushbu interfacedan implementatsiya olib o'zingiz statelarni hohlagancha boshqarishingiz ham mumkin yani statelar qayerdan 
 saqlanishini va hokazolarni.
 
-## 8. Configure Postgresql
+## 8. State configure postgresql
+
+Statelarni default holatda hotirada saqlanadi bu kamchiliklaridan biri dasturni o'chirganingizda barcha foydalanuvchilarni 
+statelari o'chib ketadi. Shuning uchun siz statelarni ma'lumotlar bazasidan birida saqlashingiz kerak. fluent sizga postgresql
+bilan osonlik bilan integratsiya qilish imkoni beradi. Sizni qilishingiz kerak bo'lgan narsa faqat ma'lumotlar bazasini
+credentiallarni sozlash shundan so'ng fluent siz sozlagan baza bilan to'g'ridan to'g'ri ishlashni boshlaydi va statelarni 
+ushbu ma'lumotlar bazasida saqlaydi va dasturni ochirib yoqsangiz ham ma'luomotlar o'chib ketmaydi.
+
+Qilishingiz kerak bo'lgan birinchi ish dependency qo'shish.
+
+```xml
+<dependency>
+    <groupId>io.github.nurislom373</groupId>
+    <artifactId>spring-boot-fluent-postgresql</artifactId>
+    <version>1.2.0</version>
+</dependency>
+```
+
+Keyingi qilishingiz kerak bo'lgan ish konfiguratsiyalarni sozlash.
+
+```yaml
+fluent:
+  bot:
+    token: <your_token>
+    username: <your_bot_username>
+    process-type: both
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    jdbc-url: jdbc:postgresql://localhost:5432/fluent
+    username: fluent
+    password: 123
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show-sql: true
+```
+
+`fluent.datasource` ichida kerakli sozlamalarni yozishingiz kerak bo'ladi tepadagi misolga o'xshab.
+
 ## 9. Conditions
 ## 10. Inline Query
 ## 11. Customization
+
+fluent kutubxonasini o'zingizga moslashtirib olishingiz misol uchun kutubxona tomondan taqdim etilgan annotatsiyalar
+sizga yetarli bo'lamayabdi o'zngizga kerakli annotatsiyani yozib olishingiz mumkin hech qanday muammosiz. Yana bir misol
+state hozircha faqat postgresql bilan integratsiyasi mavjud bu ham sizga yetarli nosql ma'lumotlar bazasi bilan ishlamoqchisiz
+bu ham muammo emas kerakli interfaceni implementatsiya qilib o'zingizga moslashingiz mumkin. Qisqa qilib aytganda fluent 
+kutubxonasini 1.2.0 versiyasini o'zingiz qiynalmasdan kengaytirishingiz mumkin kutubxonadagi kodlar SOLID prinspiga toliq
+holda amal qilib yozilgan :).
 
 # Contributors
 

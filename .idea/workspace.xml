@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented State #110">
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented lost annotations #111">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -445,15 +447,7 @@
       <workItem from="1711638737163" duration="6957000" />
       <workItem from="1711739005507" duration="4845000" />
       <workItem from="1711785796885" duration="1344000" />
-      <workItem from="1711824959583" duration="959000" />
-    </task>
-    <task id="LOCAL-00022" summary="everything is ready to use in my opinion and write tests #51">
-      <option name="closed" value="true" />
-      <created>1706986313294</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1706986313294</updated>
+      <workItem from="1711824959583" duration="2790000" />
     </task>
     <task id="LOCAL-00023" summary="everything is ready to use in my opinion and write tests #52">
       <option name="closed" value="true" />
@@ -839,7 +833,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711743785360</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="documented lost annotations #111">
+      <option name="closed" value="true" />
+      <created>1711826435104</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1711826435104</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -910,7 +912,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed fluent-utils module #82" />
     <MESSAGE value="added extra param decorator #84" />
     <MESSAGE value="added new module fluent-inline-query #84" />
     <MESSAGE value="renamed MatcherMediator.java #85" />
@@ -935,7 +936,8 @@
     <MESSAGE value="edited Contributors section #108" />
     <MESSAGE value="documented State #109" />
     <MESSAGE value="documented State #110" />
-    <option name="LAST_COMMIT_MESSAGE" value="documented State #110" />
+    <MESSAGE value="documented lost annotations #111" />
+    <option name="LAST_COMMIT_MESSAGE" value="documented lost annotations #111" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
