@@ -4,16 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented State configure postgresql and Customization #112">
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented Conditions and Inline Query #113">
+      <change afterPath="$PROJECT_DIR$/documentation/README-EN.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/documentation/README-UZ.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/fluent-bot-en.adoc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/fluent-bot-uz.adoc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/fluent-bot-uz.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/documentation/linkedin-post.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/ConditionBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/ConditionBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -451,15 +453,7 @@
       <workItem from="1711739005507" duration="4845000" />
       <workItem from="1711785796885" duration="1344000" />
       <workItem from="1711824959583" duration="3494000" />
-      <workItem from="1711871000737" duration="3368000" />
-    </task>
-    <task id="LOCAL-00024" summary="fluent test module rewriting... #53">
-      <option name="closed" value="true" />
-      <created>1707589922043</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1707589922044</updated>
+      <workItem from="1711871000737" duration="3672000" />
     </task>
     <task id="LOCAL-00025" summary="fluent test module rewriting... #54">
       <option name="closed" value="true" />
@@ -845,7 +839,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711827852464</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="documented Conditions and Inline Query #113">
+      <option name="closed" value="true" />
+      <created>1711874475174</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1711874475175</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -916,7 +918,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added new module fluent-inline-query #84" />
     <MESSAGE value="renamed MatcherMediator.java #85" />
     <MESSAGE value="added ConditionOnState annotation #86" />
     <MESSAGE value="auto restart conflict bot instance problem writing... #87" />
@@ -941,7 +942,8 @@
     <MESSAGE value="documented State #110" />
     <MESSAGE value="documented lost annotations #111" />
     <MESSAGE value="documented State configure postgresql and Customization #112" />
-    <option name="LAST_COMMIT_MESSAGE" value="documented State configure postgresql and Customization #112" />
+    <MESSAGE value="documented Conditions and Inline Query #113" />
+    <option name="LAST_COMMIT_MESSAGE" value="documented Conditions and Inline Query #113" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
