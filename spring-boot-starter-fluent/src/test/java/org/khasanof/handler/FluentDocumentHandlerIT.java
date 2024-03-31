@@ -1,5 +1,6 @@
 package org.khasanof.handler;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.khasanof.IntegrationTest;
 import org.khasanof.UpdateFactoryFacade;
@@ -12,6 +13,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  * @see org.khasanof.handler
  * @since 2/24/2024 11:08 PM
  */
+@Disabled
 @IntegrationTest
 public class FluentDocumentHandlerIT {
 

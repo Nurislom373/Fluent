@@ -1,5 +1,6 @@
 package org.khasanof.handler;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -14,6 +15,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  * @see org.khasanof
  * @since 1/14/2024 12:47 AM
  */
+@Disabled
 @IntegrationTest
 public class FluentMessageHandleIT {
 

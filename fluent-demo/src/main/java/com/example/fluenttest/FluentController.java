@@ -163,7 +163,7 @@ public class FluentController {
     @HandleUnknown
     public void handleUnknown(Update update) {
         if (update.hasMessage()) {
-            fluentTemplate.sendText("yuborilgan command topilmadi!!!", 574635734L);
+            fluentTemplate.sendText("yuborilgan command topilmadi!!!");
         }
     }
 }

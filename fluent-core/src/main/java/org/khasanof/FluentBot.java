@@ -41,28 +41,6 @@ public class FluentBot extends AbstractFluentBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-//        if (update.hasInlineQuery()) {
-//            sendAnswer(update);
-//            return;
-//        }
         handler.process(update);
-    }
-
-    private void sendAnswer(Update update) {
-        List<String> sites = List.of("Google", "Github", "Telegram", "Wikipedia");
-        InlineQuery inlineQuery = update.getInlineQuery();
-        var results = new ArrayList<InlineQueryResult>();
-
-        for (int i = 0; i < sites.size(); i++) {
-            String site = sites.get(i);
-            results.add(new InlineQueryResultArticle(String.valueOf(i), site, new InputTextMessageContent("Hello")));
-        }
-
-        AnswerInlineQuery answerInlineQuery = new AnswerInlineQuery(inlineQuery.getId(), results);
-        try {
-            execute(answerInlineQuery);
-        } catch (TelegramApiException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
