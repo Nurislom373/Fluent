@@ -11,13 +11,13 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent-state</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <name>Spring Boot Starter Fluent State</name>
     <description>spring-boot-starter-fluent-state</description>
 
     <properties>
         <java.version>17</java.version>
-        <fluent.state-version>1.0.2</fluent.state-version>
+        <fluent.state-version>1.2.0</fluent.state-version>
     </properties>
 
     <dependencies>

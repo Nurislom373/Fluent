@@ -9,15 +9,15 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.khasanof</groupId>
+    <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent-test</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <name>Spring Boot Starter Fluent Test</name>
     <description>spring-boot-starter-fluent-test</description>
 
     <properties>
         <java.version>17</java.version>
-        <fluent-test.version>1.0.0</fluent-test.version>
+        <fluent-test.version>1.2.0</fluent-test.version>
     </properties>
 
     <dependencies>

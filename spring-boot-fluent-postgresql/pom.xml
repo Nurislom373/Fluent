@@ -11,7 +11,7 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-fluent-postgresql</artifactId>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <name>Fluent State Postgresql</name>
     <description>Fluent - Easy Telegram Bots with Spring</description>
 
@@ -20,7 +20,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fluent.state.version>1.0.2</fluent.state.version>
+        <fluent.state.version>1.2.0</fluent.state.version>
         <gpg.keyname>0x9D13AEE9</gpg.keyname>
     </properties>
 

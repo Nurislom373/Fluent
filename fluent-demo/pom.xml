@@ -27,27 +27,27 @@
         <dependency>
             <groupId>io.github.nurislom373</groupId>
             <artifactId>spring-boot-starter-fluent</artifactId>
-            <version>1.0.3</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.nurislom373</groupId>
             <artifactId>spring-boot-starter-fluent-state</artifactId>
-            <version>1.0.0</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>io.github.nurislom373</groupId>
             <artifactId>fluent-inline-query</artifactId>
             <version>1.2.0</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.github.nurislom373</groupId>-->
-<!--            <artifactId>spring-boot-fluent-postgresql</artifactId>-->
-<!--            <version>1.0.0</version>-->
-<!--        </dependency>-->
         <dependency>
-            <groupId>org.khasanof</groupId>
+            <groupId>io.github.nurislom373</groupId>
+            <artifactId>spring-boot-fluent-postgresql</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.nurislom373</groupId>
             <artifactId>spring-boot-starter-fluent-test</artifactId>
-            <version>1.0.0</version>
+            <version>1.2.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>

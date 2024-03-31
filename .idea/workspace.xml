@@ -4,18 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented Conditions and Inline Query #113">
-      <change afterPath="$PROJECT_DIR$/documentation/README-EN.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/documentation/README-UZ.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/fluent-bot-en.adoc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/fluent-bot-uz.adoc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/fluent-bot-uz.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documentation/linkedin-post.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/ConditionBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/ConditionBean.java" afterDir="false" />
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="add new README files #114">
+      <change afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/AudioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/FluentBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/FluentBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-inline-query/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/service/DefaultFltStateEventService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +31,8 @@
         <option value="package-info" />
         <option value="Enum" />
         <option value="AnnotationType" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -84,86 +87,86 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DefaultExecuteMethodReflect.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TariffPlan.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker/redis.yml.redis: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest and 1 more.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.fifthTestCheckMethodShouldFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.fourthTestCheckMethodShouldFailed.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.sixthTestCheckMethodShouldNotSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldFailed.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.AnyHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.fourthTestCheckMethodShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.secondTestCheckMethodShouldFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldFailed.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.DefaultHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ExceptionHandleMethodCheckerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentCallbackHandlerIT and 1 more.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentCallbackHandlerIT.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentCallbackHandlerIT.firstTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentCallbackHandlerIT.secondTestSentCallbackShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.fifthTestShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.firstTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.secondTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentDocumentHandlerIT.sixthTestShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.FluentMessageHandleIT.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentMessageHandleIT.firstTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentMessageHandleIT.fourthTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentMessageHandleIT.secondTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentMessageHandleIT.thirdTestShouldSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FluentTestApplicationTests.firstTestShouldSuccess.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.SpringBootFluentStarterApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.SpringBootFluentStarterApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.handler in spring-boot-starter-fluent.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.org.khasanof.handler in spring-boot-starter-fluent.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-core [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-demo [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-test [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.fluent-test [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.spring-boot-starter-fluent [clean...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.spring-boot-starter-fluent [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.spring-boot-starter-fluent-test [clean...].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.FluentTestApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Nurislom/Projects/Java/Fluent/etc/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
-    &quot;vcs.patch.path&quot;: &quot;C:/Users/Nurislom/Downloads&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DefaultExecuteMethodReflect.executor": "Run",
+    "Application.TariffPlan.executor": "Run",
+    "Docker.docker/redis.yml.redis: Compose Deployment.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest and 1 more.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest.fifthTestCheckMethodShouldFailed.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest.fourthTestCheckMethodShouldFailed.executor": "Debug",
+    "JUnit.AnyHandleMethodCheckerTest.sixthTestCheckMethodShouldNotSuccess.executor": "Run",
+    "JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldFailed.executor": "Debug",
+    "JUnit.AnyHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor": "Debug",
+    "JUnit.AnyHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.fourthTestCheckMethodShouldSuccess.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.secondTestCheckMethodShouldFailed.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldFailed.executor": "Run",
+    "JUnit.DefaultHandleMethodCheckerTest.testCheckMethodShouldSuccess.executor": "Debug",
+    "JUnit.DefaultHandleMethodCheckerTest.thirdTestCheckMethodShouldSuccess.executor": "Run",
+    "JUnit.ExceptionHandleMethodCheckerTest.executor": "Run",
+    "JUnit.FluentCallbackHandlerIT and 1 more.executor": "Run",
+    "JUnit.FluentCallbackHandlerIT.executor": "Run",
+    "JUnit.FluentCallbackHandlerIT.firstTestShouldSuccess.executor": "Run",
+    "JUnit.FluentCallbackHandlerIT.secondTestSentCallbackShouldSuccess.executor": "Run",
+    "JUnit.FluentDocumentHandlerIT.executor": "Run",
+    "JUnit.FluentDocumentHandlerIT.fifthTestShouldSuccess.executor": "Debug",
+    "JUnit.FluentDocumentHandlerIT.firstTestShouldSuccess.executor": "Run",
+    "JUnit.FluentDocumentHandlerIT.secondTestShouldSuccess.executor": "Run",
+    "JUnit.FluentDocumentHandlerIT.sixthTestShouldSuccess.executor": "Debug",
+    "JUnit.FluentMessageHandleIT.executor": "Run",
+    "JUnit.FluentMessageHandleIT.firstTestShouldSuccess.executor": "Run",
+    "JUnit.FluentMessageHandleIT.fourthTestShouldSuccess.executor": "Run",
+    "JUnit.FluentMessageHandleIT.secondTestShouldSuccess.executor": "Run",
+    "JUnit.FluentMessageHandleIT.thirdTestShouldSuccess.executor": "Run",
+    "JUnit.FluentTestApplicationTests.firstTestShouldSuccess.executor": "Debug",
+    "JUnit.SpringBootFluentStarterApplicationTests.contextLoads.executor": "Run",
+    "JUnit.SpringBootFluentStarterApplicationTests.executor": "Run",
+    "JUnit.handler in spring-boot-starter-fluent.executor": "Run",
+    "JUnit.org.khasanof.handler in spring-boot-starter-fluent.executor": "Run",
+    "Maven.fluent-core [clean,compile].executor": "Run",
+    "Maven.fluent-core [clean,install].executor": "Run",
+    "Maven.fluent-core [clean,package].executor": "Run",
+    "Maven.fluent-core [clean].executor": "Run",
+    "Maven.fluent-core [compile].executor": "Run",
+    "Maven.fluent-demo [clean].executor": "Run",
+    "Maven.fluent-test [clean,install].executor": "Run",
+    "Maven.fluent-test [clean].executor": "Run",
+    "Maven.spring-boot-starter-fluent [clean...].executor": "Run",
+    "Maven.spring-boot-starter-fluent [clean].executor": "Run",
+    "Maven.spring-boot-starter-fluent-test [clean...].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.FluentTestApplication.executor": "Run",
+    "git-widget-placeholder": "development",
+    "jdk.selected.JAVA_MODULE": "17",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Nurislom/Projects/Java/Fluent/etc/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
+    "vcs.patch.path": "C:/Users/Nurislom/Downloads",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -241,10 +244,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="handler in spring-boot-starter-fluent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="org.khasanof.handler in spring-boot-starter-fluent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-boot-starter-fluent" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/spring-boot-starter-fluent/src/test/java/org/khasanof/handler" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.khasanof.handler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.khasanof.handler" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -305,11 +314,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.org.khasanof.handler in spring-boot-starter-fluent" />
         <item itemvalue="Docker.docker/redis.yml.redis: Compose Deployment" />
         <item itemvalue="JUnit.FluentMessageHandleIT" />
         <item itemvalue="JUnit.FluentDocumentHandlerIT" />
         <item itemvalue="JUnit.FluentCallbackHandlerIT" />
-        <item itemvalue="JUnit.handler in spring-boot-starter-fluent" />
       </list>
     </recent_temporary>
   </component>
@@ -453,15 +462,8 @@
       <workItem from="1711739005507" duration="4845000" />
       <workItem from="1711785796885" duration="1344000" />
       <workItem from="1711824959583" duration="3494000" />
-      <workItem from="1711871000737" duration="3672000" />
-    </task>
-    <task id="LOCAL-00025" summary="fluent test module rewriting... #54">
-      <option name="closed" value="true" />
-      <created>1707668913618</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1707668913618</updated>
+      <workItem from="1711871000737" duration="4546000" />
+      <workItem from="1711884650940" duration="1996000" />
     </task>
     <task id="LOCAL-00026" summary="removed unused class from modules #55">
       <option name="closed" value="true" />
@@ -847,7 +849,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711874475175</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="add new README files #114">
+      <option name="closed" value="true" />
+      <created>1711874988383</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1711874988383</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -918,7 +928,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="renamed MatcherMediator.java #85" />
     <MESSAGE value="added ConditionOnState annotation #86" />
     <MESSAGE value="auto restart conflict bot instance problem writing... #87" />
     <MESSAGE value="auto restart conflict bot instance problem finished #88" />
@@ -943,7 +952,8 @@
     <MESSAGE value="documented lost annotations #111" />
     <MESSAGE value="documented State configure postgresql and Customization #112" />
     <MESSAGE value="documented Conditions and Inline Query #113" />
-    <option name="LAST_COMMIT_MESSAGE" value="documented Conditions and Inline Query #113" />
+    <MESSAGE value="add new README files #114" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new README files #114" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -982,14 +992,19 @@
           <option name="timeStamp" value="124" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/FluentBot.java</url>
-          <line>47</line>
-          <option name="timeStamp" value="126" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/spring-boot-fluent-redis/src/main/java/org/khasanof/RedisRepositoryStrategy.java</url>
           <line>55</line>
           <option name="timeStamp" value="127" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/executors/determination/DeterminationHandleUpdateFunction.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/executors/determination/DeterminationHandleUpdateFunction.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="132" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
