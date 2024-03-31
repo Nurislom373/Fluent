@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="add new README files #114">
-      <change afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/AudioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/FluentBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/FluentBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/service/DefaultFltStateEventService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="removed DefaultFltStateEventService.java #116" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -463,23 +448,7 @@
       <workItem from="1711785796885" duration="1344000" />
       <workItem from="1711824959583" duration="3494000" />
       <workItem from="1711871000737" duration="4546000" />
-      <workItem from="1711884650940" duration="1996000" />
-    </task>
-    <task id="LOCAL-00026" summary="removed unused class from modules #55">
-      <option name="closed" value="true" />
-      <created>1707669875541</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1707669875541</updated>
-    </task>
-    <task id="LOCAL-00027" summary="added send photo operations #56">
-      <option name="closed" value="true" />
-      <created>1707758202782</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1707758202782</updated>
+      <workItem from="1711884650940" duration="2318000" />
     </task>
     <task id="LOCAL-00028" summary="added some methods template operations #57">
       <option name="closed" value="true" />
@@ -857,7 +826,23 @@
       <option name="project" value="LOCAL" />
       <updated>1711874988383</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="updated all modules version 1.2.0 #115">
+      <option name="closed" value="true" />
+      <created>1711886934307</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1711886934308</updated>
+    </task>
+    <task id="LOCAL-00076" summary="removed DefaultFltStateEventService.java #116">
+      <option name="closed" value="true" />
+      <created>1711886966862</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1711886966862</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -928,8 +913,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added ConditionOnState annotation #86" />
-    <MESSAGE value="auto restart conflict bot instance problem writing... #87" />
     <MESSAGE value="auto restart conflict bot instance problem finished #88" />
     <MESSAGE value="writing documentation #89" />
     <MESSAGE value="writing documentation #90" />
@@ -953,7 +936,9 @@
     <MESSAGE value="documented State configure postgresql and Customization #112" />
     <MESSAGE value="documented Conditions and Inline Query #113" />
     <MESSAGE value="add new README files #114" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new README files #114" />
+    <MESSAGE value="updated all modules version 1.2.0 #115" />
+    <MESSAGE value="removed DefaultFltStateEventService.java #116" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed DefaultFltStateEventService.java #116" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

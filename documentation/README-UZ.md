@@ -359,7 +359,7 @@ public void handleButtonCommand() {
 }
 ```
 
-![first_screen](documentation/images/first_screen.png)
+![first_screen](images/first_screen.png)
 
 `@HandleAny` annotatsiyasi 2ta parameter qabul qiladi.
 
@@ -442,7 +442,7 @@ public class SimpleController {
 }
 ```
 
-![handle_any_1](documentation/images/handle_any_1.png)
+![handle_any_1](images/handle_any_1.png)
 
 `@HandleAny` annotatsiyani proceed type `NOT_PROCEED` ga o'zgartiramiz va natijasini ko'ramiz.
 
@@ -463,7 +463,7 @@ public class SimpleController {
 }
 ```
 
-![handle_any_2](documentation/images/handle_any_2.png)
+![handle_any_2](images/handle_any_2.png)
 
 rasmdagi natijani ko’rgan bo’lsangiz faqat `@HandleAny` method ishladi va undan keyin handlar method bajarilmadi.
 
@@ -730,7 +730,7 @@ Tepadagi ko'rsatilgan kodlar ikkalasi ham bir xil keyboardlarni yaratish uchun y
 
 Result:
 
-![inline-keyboards](documentation/images/inline-keyboards.png)
+![inline-keyboards](images/inline-keyboards.png)
 
 ### 5.1 Inline keyboard
 
@@ -752,7 +752,7 @@ public InlineKeyboardMarkup inlineKeyboardMarkupExample() {
 
 Natijasi:
 
-![inline-keyboard-result](documentation/images/inline-keyboard-result.png)
+![inline-keyboard-result](images/inline-keyboard-result.png)
 
 `addRow` method foydalanib osongina yangi row qo'shingiz mumkin.
 
@@ -778,7 +778,7 @@ public InlineKeyboardMarkup inlineKeyboardMarkupExample() {
 
 Tepadagi kodni natijasi:
 
-![inline-keyboard-result-2](documentation/images/inline-keyboard-result-2.png)
+![inline-keyboard-result-2](images/inline-keyboard-result-2.png)
 
 ### 5.2 Reply keyboard
 
@@ -806,7 +806,7 @@ public void handleReplyCommand() {
 
 Natijasi:
 
-![reply-keyboard.png](documentation/images/reply-keyboard.png)
+![reply-keyboard.png](images/reply-keyboard.png)
 
 ## 6. Interceptors
 
@@ -852,7 +852,7 @@ public class FluentInterceptorConfig {
 
 Natijasi:
 
-![interceptor](documentation/images/fluent-interceptor.png)
+![interceptor](images/fluent-interceptor.png)
 
 Birinchi `SimpleFluentInterceptor` classi bu interceptor. Fluentda interceptor yozishingiz uchun `FluentInterceptor`
 interfacedan implementatsiya olishingiz va uni ichida kerakli logikangizni yozishingiz mumkin bo'ladi.
