@@ -23,7 +23,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fluent-core.version>1.2.0</fluent-core.version>
-        <gpg.keyname>0x9D13AEE9</gpg.keyname>
+        <gpg.keyname>0x1133439D</gpg.keyname>
     </properties>
 
     <issueManagement>

@@ -11,9 +11,9 @@
     <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-core</artifactId>
     <version>1.2.0</version>
+    <inceptionYear>2023</inceptionYear>
     <name>Fluent Core</name>
     <description>Fluent - Easy Telegram Bots with Spring</description>
-    <inceptionYear>2023</inceptionYear>
 
     <properties>
         <java.version>17</java.version>
@@ -26,7 +26,7 @@
         <telegrambots.version>6.8.0</telegrambots.version>
         <spring-boot.version>3.0.0</spring-boot.version>
         <lombok.version>1.18.24</lombok.version>
-        <gpg.keyname>0x9D13AEE9</gpg.keyname>
+        <gpg.keyname>0x1133439D</gpg.keyname>
     </properties>
 
     <issueManagement>

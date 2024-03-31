@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="removed DefaultFltStateEventService.java #116" />
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="README-UZ.md change images path #117">
+      <change afterPath="$PROJECT_DIR$/fluent-test/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-test/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-test/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-inline-query/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/test/java/org/khasanof/fluentinlinequery/FluentInlineQueryApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/test/java/org/khasanof/fluentstatepostgresql/FluentStatePostgresqlApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/test/java/org/khasanof/SpringBootStarterFluentStateApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/src/test/java/org/khasanof/SpringBootStarterFluentTestApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,8 +133,10 @@
     "Maven.fluent-core [clean,package].executor": "Run",
     "Maven.fluent-core [clean].executor": "Run",
     "Maven.fluent-core [compile].executor": "Run",
+    "Maven.fluent-core [deploy].executor": "Run",
     "Maven.fluent-demo [clean].executor": "Run",
     "Maven.fluent-test [clean,install].executor": "Run",
+    "Maven.fluent-test [clean,package].executor": "Run",
     "Maven.fluent-test [clean].executor": "Run",
     "Maven.spring-boot-starter-fluent [clean...].executor": "Run",
     "Maven.spring-boot-starter-fluent [clean].executor": "Run",
@@ -132,7 +151,7 @@
     "git-widget-placeholder": "development",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Nurislom/Projects/Java/Fluent/etc/images",
+    "last_opened_file_path": "C:/Nurislom/Projects/Java/Fluent/fluent-core/pom.xml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -143,6 +162,7 @@
     "project.structure.side.proportion": "0.0",
     "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
+    "two.files.diff.last.used.file": "C:/Nurislom/Projects/Java/Fluent/fluent-core/pom.xml",
     "vcs.patch.path": "C:/Users/Nurislom/Downloads",
     "vue.rearranger.settings.migration": "true"
   },
@@ -157,6 +177,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Nurislom\Projects\Java\Fluent\fluent-test" />
       <recent name="C:\Nurislom\Projects\Java\Fluent\etc\images" />
       <recent name="C:\Nurislom\Projects\Java\Fluent\documentation\images" />
     </key>
@@ -183,7 +204,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.FluentTestApplication">
+  <component name="RunManager" selected="JUnit.FluentMessageHandleIT">
     <configuration name="FluentCallbackHandlerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-boot-starter-fluent" />
       <extension name="coverage">
@@ -194,21 +215,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.khasanof.handler" />
       <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentCallbackHandlerIT" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FluentDocumentHandlerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spring-boot-starter-fluent" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.khasanof.handler.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.khasanof.handler" />
-      <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentDocumentHandlerIT" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -225,6 +231,14 @@
       <option name="PACKAGE_NAME" value="org.khasanof.handler" />
       <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentMessageHandleIT" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="handler in spring-boot-starter-fluent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-boot-starter-fluent" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/spring-boot-starter-fluent/src/test/java/org/khasanof/handler" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -299,11 +313,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FluentMessageHandleIT" />
+        <item itemvalue="JUnit.FluentCallbackHandlerIT" />
+        <item itemvalue="JUnit.handler in spring-boot-starter-fluent" />
         <item itemvalue="JUnit.org.khasanof.handler in spring-boot-starter-fluent" />
         <item itemvalue="Docker.docker/redis.yml.redis: Compose Deployment" />
-        <item itemvalue="JUnit.FluentMessageHandleIT" />
-        <item itemvalue="JUnit.FluentDocumentHandlerIT" />
-        <item itemvalue="JUnit.FluentCallbackHandlerIT" />
       </list>
     </recent_temporary>
   </component>
@@ -448,15 +462,7 @@
       <workItem from="1711785796885" duration="1344000" />
       <workItem from="1711824959583" duration="3494000" />
       <workItem from="1711871000737" duration="4546000" />
-      <workItem from="1711884650940" duration="2318000" />
-    </task>
-    <task id="LOCAL-00028" summary="added some methods template operations #57">
-      <option name="closed" value="true" />
-      <created>1707848473759</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1707848473759</updated>
+      <workItem from="1711884650940" duration="11111000" />
     </task>
     <task id="LOCAL-00029" summary="added template new operations #58">
       <option name="closed" value="true" />
@@ -842,7 +848,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711886966862</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="README-UZ.md change images path #117">
+      <option name="closed" value="true" />
+      <created>1711887159413</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1711887159413</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -913,7 +927,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="auto restart conflict bot instance problem finished #88" />
     <MESSAGE value="writing documentation #89" />
     <MESSAGE value="writing documentation #90" />
     <MESSAGE value="added chosen inline query #91" />
@@ -938,7 +951,8 @@
     <MESSAGE value="add new README files #114" />
     <MESSAGE value="updated all modules version 1.2.0 #115" />
     <MESSAGE value="removed DefaultFltStateEventService.java #116" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed DefaultFltStateEventService.java #116" />
+    <MESSAGE value="README-UZ.md change images path #117" />
+    <option name="LAST_COMMIT_MESSAGE" value="README-UZ.md change images path #117" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

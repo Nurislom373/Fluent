@@ -12,6 +12,7 @@
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-fluent-postgresql</artifactId>
     <version>1.2.0</version>
+    <inceptionYear>2023</inceptionYear>
     <name>Fluent State Postgresql</name>
     <description>Fluent - Easy Telegram Bots with Spring</description>
 
@@ -21,7 +22,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <fluent.state.version>1.2.0</fluent.state.version>
-        <gpg.keyname>0x9D13AEE9</gpg.keyname>
+        <gpg.keyname>0x1133439D</gpg.keyname>
     </properties>
 
     <issueManagement>
@@ -88,6 +89,13 @@
                 <role>Developer</role>
             </roles>
             <organization>DEVOPS LLC</organization>
+        </developer>
+        <developer>
+            <name>Shoxista Rahimova</name>
+            <email>shoxistarakhimova28@gmail.com</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
         </developer>
         <developer>
             <id>sardorbro</id>
@@ -226,4 +234,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
