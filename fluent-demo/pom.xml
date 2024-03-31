@@ -35,7 +35,7 @@
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.khasanof</groupId>
+            <groupId>io.github.nurislom373</groupId>
             <artifactId>fluent-inline-query</artifactId>
             <version>1.2.0</version>
         </dependency>

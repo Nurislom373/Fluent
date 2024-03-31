@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented lost annotations #111">
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="documented State configure postgresql and Customization #112">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/ConditionBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/ConditionBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/StartState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-inline-query/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -447,15 +450,8 @@
       <workItem from="1711638737163" duration="6957000" />
       <workItem from="1711739005507" duration="4845000" />
       <workItem from="1711785796885" duration="1344000" />
-      <workItem from="1711824959583" duration="2790000" />
-    </task>
-    <task id="LOCAL-00023" summary="everything is ready to use in my opinion and write tests #52">
-      <option name="closed" value="true" />
-      <created>1707071299250</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1707071299250</updated>
+      <workItem from="1711824959583" duration="3494000" />
+      <workItem from="1711871000737" duration="3368000" />
     </task>
     <task id="LOCAL-00024" summary="fluent test module rewriting... #53">
       <option name="closed" value="true" />
@@ -841,7 +837,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711826435104</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="documented State configure postgresql and Customization #112">
+      <option name="closed" value="true" />
+      <created>1711827852464</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1711827852464</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -912,7 +916,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added extra param decorator #84" />
     <MESSAGE value="added new module fluent-inline-query #84" />
     <MESSAGE value="renamed MatcherMediator.java #85" />
     <MESSAGE value="added ConditionOnState annotation #86" />
@@ -937,7 +940,8 @@
     <MESSAGE value="documented State #109" />
     <MESSAGE value="documented State #110" />
     <MESSAGE value="documented lost annotations #111" />
-    <option name="LAST_COMMIT_MESSAGE" value="documented lost annotations #111" />
+    <MESSAGE value="documented State configure postgresql and Customization #112" />
+    <option name="LAST_COMMIT_MESSAGE" value="documented State configure postgresql and Customization #112" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

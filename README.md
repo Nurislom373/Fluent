@@ -1075,7 +1075,170 @@ fluent:
 `fluent.datasource` ichida kerakli sozlamalarni yozishingiz kerak bo'ladi tepadagi misolga o'xshab.
 
 ## 9. Conditions
+
+Fluent kutubxonasi conditionlani yozish imkoniyatni beradi. U ma'lum bir Controller yoki Handler larning belgilangan
+shart asosida ishlashini ko'rsatish uchun ishlatiladi.
+
+Misol uchun sizda controller class bor va undagi barcha handlerlarni ma'lum bir state holatida bo'lgan ishlatishni hohlaysiz.
+Shunda conditiondan foydalanishingiz mumkin.
+
+Quyidagi kodga qarang:
+
+```java
+@UpdateController
+@ConditionOnState({"CHECK"})
+public class FluentController {
+    
+    // ...
+    
+}
+```
+
+Tepadagi kodda state `CHECK` bo'lgandagina faqat ushbu controller classi ichidagi handlerlar ishlaydi.
+
+Endi Fluent tomonidan taqdim etilgan condition annotatsiyalarini birma bir ko'rib chiqamiz.
+
+### 9.1 Expression
+
+`@ConditionOnExpression` annotatsiya yordamida siz expression yozishingiz mumkin. Siz yozgan expression to'g'ri bo'lsagina
+Handler ishlaydi. 
+
+Quyidagi kodga qarang:
+
+```java
+@ConditionOnExpression("1 == 1")
+@ConditionOnExpression("2 == 2")
+@HandleMessage(value = "/start", match = MatchType.STARTS_WITH)
+public void fluent(Update update) {
+    // ...
+}
+```
+
+Tepadagi kodda 2ta condition yozilgan 2lasi ham bajarilsagina ushbu handler ishlaydi.
+
+`@ConditionOnExpression` annotatsiyasida siz boshqa bir bean ni method chaqirishingiz mumkin.
+
+```java
+@HandleMessage("/template")
+@ConditionOnExpression("#{conditionBean.exist()}")
+public void templateExample(Update update) {
+    // ...
+}
+```
+
+ConditionBean
+
+```java
+@Service("conditionBean")
+public class ConditionBean {
+
+    public boolean exist() {
+        return true; 
+    }
+}
+```
+
+### 9.2 State
+
+`@ConditionOnState` annotatsiya yordamida ma'lum bir yoki bir nechta state da bo'lsagina foydalanuvchi ushbu handler ishlaydi.
+
+Quyidagi kodga qarang:
+
+```java
+@ConditionOnState({"CHECK"})
+@HandleMessage(value = "message:", match = MatchType.STARTS_WITH)
+public void startWithExampleHandler() {
+    // ...
+}
+```
+
+### 9.3 Custom
+
+Fluent tomondan taqdim etilgan condition annotatsiyalari sizga yetarli bo'lmasa o'zingizga kerakli annotatsiyasini yozishingiz mumkin.
+
+Quyidagi kodga qarang:
+
+Birinchi qilishingiz kerak bo'lgan ish `FluentCondition` interfacedan implementatsiya olgan class yaratishingiz kerak.
+`matches` method ichida esa o'zingiz kerakli condition yozishingiz mumkin.
+
+- `Attributes`: parameterida sizga kerakli parameterlar kirib keladi misol uchun `update`
+- `AnnotatedTypeMetadata`: parameterida qaysi method yoki classni ustiga qoyilgani haqida ma'lumotlar
+
+```java
+public class CustomFluentCondition implements FluentCondition {
+
+    @Override
+    public boolean matches(Attributes attributes, AnnotatedTypeMetadata metadata) {
+        Update update = (Update) attributes.getAttribute(AttributesConstants.UPDATE_ATTRIBUTE);
+        return update.hasMessage();
+    }
+}
+```
+
+Keyingi qilishingiz kerak bo'lgan ish annotatsiya yozish va unda ushbu tepada yozilgan classni belgilab qoyish.
+
+```java
+@ProcessCondition
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Condition(value = CustomFluentCondition.class)
+public @interface CustomCondition {
+}
+```
+
+```java
+@CustomCondition
+@HandleAny(type = {HandleType.MESSAGE, HandleType.AUDIO})
+private void handleAnyUpdate(Update update) {
+    // ...
+}
+```
+
 ## 10. Inline Query
+
+Inline Query lar ko'p ishlatilmagani uchun uni alohida modul sifatida chiqarilgan yani faqat kerak bo'lganda kerakli
+dependency qo'shish orqali ishlatishingiz mumkin.
+
+### 10.1 Maven
+
+```xml
+<dependency>
+    <groupId>io.github.nurislom373</groupId>
+    <artifactId>fluent-inline-query</artifactId>
+    <version>1.2.0</version>
+</dependency>
+```
+
+### 10.2 Gradle
+
+```groovy
+implementation group: 'io.github.nurislom373', name: 'fluent-inline-query', version: '1.2.0'
+```
+
+### 10.3 Enabling inline mode
+
+By defualt, botingiz uchun inline rejimi o'chirib qo'yilgan bo'ladi. Siz @BotFather bilan bog'lanishingiz va botingiz inline
+querylarni olishni boshlashi uchun inline rejimini yoqishingiz kerak.
+
+### 10.4 Handling
+
+Tepada ko'rsatilgan dependency ni qo'shganingizdan so'ng. `@HandleInlineQuery` va `@HandleChosenInlineQuery` annotatsiyalaridan
+foydalanib inline querylar bilan ishlashingiz mumkin.
+
+```java
+@HandleInlineQuery
+public void handleInlineQuery(Update update, String query) {
+    // ...
+}
+
+@HandleChosenInlineQuery
+public void handleChosenInlineQuery(Update update, ChosenInlineQueryParam param) {
+    log.info("chosen param : {}", param);
+}
+```
+
+`Update` parameterini yonidagi parameter kutishingiz majburiy emas!.
+
 ## 11. Customization
 
 fluent kutubxonasini o'zingizga moslashtirib olishingiz misol uchun kutubxona tomondan taqdim etilgan annotatsiyalar

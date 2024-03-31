@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.khasanof</groupId>
+    <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-inline-query</artifactId>
     <version>1.2.0</version>
     <name>fluent-inline-query</name>
