@@ -4,6 +4,7 @@ import org.khasanof.annotation.UpdateController;
 import org.khasanof.annotation.methods.HandleCallback;
 import org.khasanof.annotation.methods.HandleCallbacks;
 import org.khasanof.annotation.methods.HandleDocument;
+import org.khasanof.annotation.methods.HandleMessage;
 import org.khasanof.enums.MatchType;
 import org.khasanof.enums.scopes.DocumentScope;
 import org.khasanof.service.template.FluentTemplate;
@@ -37,7 +38,7 @@ public class CallbackController {
         this.fluentTemplate = fluentTemplate;
     }
 
-//    @HandleMessage(value = "[1-5]", match = MatchType.REGEX)
+    @HandleMessage(value = "[1-5]", match = MatchType.REGEX)
     public void world(Update update) throws TelegramApiException {
         String text = """
                 <b> What is Lorem Ipsum? </b> \s

@@ -7,6 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.File;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
+import org.telegram.telegrambots.meta.bots.AbsSender;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -151,8 +152,8 @@ public abstract class UpdateUtils {
      * @return
      */
     @SneakyThrows
-    public static InputStream getFileInputStream(String id, TelegramLongPollingBot bot) {
-        return getFileInputStreamInternal(bot.getBotToken(), bot.execute(new GetFile(id)));
+    public static InputStream getFileInputStream(String id, AbsSender bot, String token) {
+        return getFileInputStreamInternal(token, bot.execute(new GetFile(id)));
     }
 
     private static InputStream getFileInputStreamInternal(String token, File file) throws IOException {

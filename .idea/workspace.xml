@@ -4,23 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="README-UZ.md change images path #117">
-      <change afterPath="$PROJECT_DIR$/fluent-test/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-test/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-test/mvnw.cmd" afterDir="false" />
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="maven deployed #118">
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/FluentWebhookBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/enums/BotType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/factories/webhook/DefaultSetWebhookFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/factories/webhook/DefaultWebhookFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/factories/webhook/SetWebhookFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/factories/webhook/WebhookFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/manager/TelegramBotApiFactoryManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/config/manager/TelegramBotApiFactoryManagerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/config/webhook/WebhookFactoryConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/test/java/org/khasanof/fluentinlinequery/FluentInlineQueryApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/test/java/org/khasanof/fluentstatepostgresql/FluentStatePostgresqlApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/test/java/org/khasanof/SpringBootStarterFluentStateApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/src/test/java/org/khasanof/SpringBootStarterFluentTestApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/FluentBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/FluentLongPollingBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/config/FluentProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/config/FluentProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/bot/TelegramBotApiRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/bot/TelegramBotApiRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/template/DefaultFluentTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/service/template/DefaultFluentTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/utils/UpdateUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/utils/UpdateUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/CallbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/CallbackController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/FluentBotSingletonBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/FluentBotSingletonBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/feature/method/ProcessFileExtraParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/feature/method/ProcessFileExtraParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/service/bot/DefaultTelegramBotRegistryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/service/bot/DefaultTelegramBotRegistryService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +150,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.FluentTestApplication.executor": "Run",
+    "Spring Boot.FluentTestApplication.executor": "Debug",
     "git-widget-placeholder": "development",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
@@ -204,7 +207,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.FluentMessageHandleIT">
+  <component name="RunManager" selected="Spring Boot.FluentTestApplication">
     <configuration name="FluentCallbackHandlerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-boot-starter-fluent" />
       <extension name="coverage">
@@ -462,15 +465,10 @@
       <workItem from="1711785796885" duration="1344000" />
       <workItem from="1711824959583" duration="3494000" />
       <workItem from="1711871000737" duration="4546000" />
-      <workItem from="1711884650940" duration="11111000" />
-    </task>
-    <task id="LOCAL-00029" summary="added template new operations #58">
-      <option name="closed" value="true" />
-      <created>1707973616155</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1707973616155</updated>
+      <workItem from="1711884650940" duration="11275000" />
+      <workItem from="1712168685901" duration="1237000" />
+      <workItem from="1712245616160" duration="25000" />
+      <workItem from="1715658911435" duration="5932000" />
     </task>
     <task id="LOCAL-00030" summary="fluent test module removed some classes #59">
       <option name="closed" value="true" />
@@ -856,7 +854,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711887159413</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="maven deployed #118">
+      <option name="closed" value="true" />
+      <created>1711897828467</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1711897828467</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -927,7 +933,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="writing documentation #89" />
     <MESSAGE value="writing documentation #90" />
     <MESSAGE value="added chosen inline query #91" />
     <MESSAGE value="new module spring-boot-fluent-redis #95" />
@@ -952,7 +957,8 @@
     <MESSAGE value="updated all modules version 1.2.0 #115" />
     <MESSAGE value="removed DefaultFltStateEventService.java #116" />
     <MESSAGE value="README-UZ.md change images path #117" />
-    <option name="LAST_COMMIT_MESSAGE" value="README-UZ.md change images path #117" />
+    <MESSAGE value="maven deployed #118" />
+    <option name="LAST_COMMIT_MESSAGE" value="maven deployed #118" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1004,6 +1010,24 @@
           <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/executors/determination/DeterminationHandleUpdateFunction.java</url>
           <line>59</line>
           <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/FluentStarterAutoConfiguration.java</url>
+          <line>35</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/service/bot/DefaultTelegramBotRegistryService.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="134" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/service/bot/DefaultTelegramBotRegistryService.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="135" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

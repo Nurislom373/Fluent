@@ -1,8 +1,7 @@
 package org.khasanof.service.template;
 
 import org.jetbrains.annotations.NotNull;
-import org.khasanof.FluentBot;
-import org.khasanof.context.FluentContextHolder;
+import org.khasanof.FluentLongPollingBot;
 import org.khasanof.context.singleton.GenericSingleton;
 import org.khasanof.models.Round;
 import org.khasanof.utils.UpdateUtils;
@@ -22,6 +21,7 @@ import org.telegram.telegrambots.meta.api.objects.inlinequery.result.InlineQuery
 import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
+import org.telegram.telegrambots.meta.bots.AbsSender;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
@@ -45,10 +45,10 @@ import static org.khasanof.utils.BaseUtils.notNull;
  */
 public class DefaultFluentTemplate implements FluentTemplate {
 
-    private FluentBot instance;
-    private final GenericSingleton<FluentBot> singletonBot;
+    private AbsSender instance;
+    private final GenericSingleton<AbsSender> singletonBot;
 
-    public DefaultFluentTemplate(GenericSingleton<FluentBot> singletonBot) {
+    public DefaultFluentTemplate(GenericSingleton<AbsSender> singletonBot) {
         this.singletonBot = singletonBot;
     }
 
@@ -2859,7 +2859,7 @@ public class DefaultFluentTemplate implements FluentTemplate {
         return getCurrentUpdate();
     }
 
-    protected FluentBot getInstance() {
+    protected AbsSender getInstance() {
         if (Objects.isNull(this.instance)) {
             this.instance = singletonBot.getInstance();
         }
