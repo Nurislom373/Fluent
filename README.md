@@ -93,14 +93,14 @@ start the bot and use it.
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent', version: '1.2.0'
+implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent', version: '1.2.1'
 ```
 
 ### Yaml configuration
@@ -874,7 +874,7 @@ Fluent State dan foydalanish uchun birinchi qo'shimcha dependency qo'shishingiz 
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent-state</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
@@ -1047,7 +1047,7 @@ Qilishingiz kerak bo'lgan birinchi ish dependency qo'shish.
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-fluent-postgresql</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
@@ -1205,7 +1205,7 @@ dependency qo'shish orqali ishlatishingiz mumkin.
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-inline-query</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
