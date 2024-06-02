@@ -18,7 +18,7 @@ project and customize it according to your preferences by using its latest versi
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 

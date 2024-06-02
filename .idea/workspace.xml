@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="webhook configuration #119">
-      <change afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/service/DefaultFltStateEventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/PostgresqlFltStateEventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/PostgresqlFltStateEventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/util/PostgresqlRepositoryStrategyHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/util/PostgresqlRepositoryStrategyHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="updated version 1.2.1 #120" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -469,15 +455,7 @@
       <workItem from="1715704134807" duration="429000" />
       <workItem from="1715706460026" duration="2012000" />
       <workItem from="1715709710191" duration="6000" />
-      <workItem from="1717346690957" duration="3669000" />
-    </task>
-    <task id="LOCAL-00031" summary="change operations methods #63">
-      <option name="closed" value="true" />
-      <created>1708100735153</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1708100735153</updated>
+      <workItem from="1717346690957" duration="4349000" />
     </task>
     <task id="LOCAL-00032" summary="added new operations #67">
       <option name="closed" value="true" />
@@ -863,7 +841,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715664982520</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="updated version 1.2.1 #120">
+      <option name="closed" value="true" />
+      <created>1717351555016</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1717351555016</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -934,7 +920,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added chosen inline query #91" />
     <MESSAGE value="new module spring-boot-fluent-redis #95" />
     <MESSAGE value="HandleAny documented #97" />
     <MESSAGE value="CurrentUpdate documented #98" />
@@ -959,7 +944,8 @@
     <MESSAGE value="README-UZ.md change images path #117" />
     <MESSAGE value="maven deployed #118" />
     <MESSAGE value="webhook configuration #119" />
-    <option name="LAST_COMMIT_MESSAGE" value="webhook configuration #119" />
+    <MESSAGE value="updated version 1.2.1 #120" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated version 1.2.1 #120" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
