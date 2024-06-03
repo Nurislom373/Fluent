@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="updated version 1.2.1 #121">
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="updated README-EN.md #122">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/documentation/README-EN.md" beforeDir="false" afterPath="$PROJECT_DIR$/documentation/README-EN.md" afterDir="false" />
     </list>
@@ -459,15 +459,7 @@
       <workItem from="1715706460026" duration="2012000" />
       <workItem from="1715709710191" duration="6000" />
       <workItem from="1717346690957" duration="4615000" />
-      <workItem from="1717439255823" duration="1375000" />
-    </task>
-    <task id="LOCAL-00033" summary="rewrite README.md #68">
-      <option name="closed" value="true" />
-      <created>1708177116180</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1708177116180</updated>
+      <workItem from="1717439255823" duration="1727000" />
     </task>
     <task id="LOCAL-00034" summary="Added new classes #69">
       <option name="closed" value="true" />
@@ -853,7 +845,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717351617405</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="updated README-EN.md #122">
+      <option name="closed" value="true" />
+      <created>1717440993133</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1717440993133</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -924,7 +924,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="HandleAny documented #97" />
     <MESSAGE value="CurrentUpdate documented #98" />
     <MESSAGE value="added HandleTypeFinds #99" />
     <MESSAGE value="added updating message operations #100" />
@@ -949,7 +948,8 @@
     <MESSAGE value="webhook configuration #119" />
     <MESSAGE value="updated version 1.2.1 #120" />
     <MESSAGE value="updated version 1.2.1 #121" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated version 1.2.1 #121" />
+    <MESSAGE value="updated README-EN.md #122" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated README-EN.md #122" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
