@@ -148,11 +148,12 @@ public void startExample() {
 }
 ```
 
-Tepada yozilgan kodda `@HandleMessage` annotatsiyasidan foydalanib telegramdan kelgan `/start` matnli xabarni ushlovchi method yozilgan.
-Kelgan xabar `/start` bo'lsagina ushbu method ishga tushadi. Kelgan xabarni boshida yoki oxirida `/start` xabar bo'lsa unday bo'lmaydi.
+The code written uses the `@HandleMessage` annotation to create a method that catches a message containing `/start` from 
+Telegram. This method will only be triggered if the received message is exactly `/start`. If the message contains `/start`
+at the beginning or the end but has additional content, the method will not be triggered.
 
-Bunday bo'lishini yani kelgan matnli xabar to'liq `@HandleMessage` berilgan matnga mos bo'lsagina ishga tushishini sababi ko'rib chiqamiz.
-`@HandleMessage` annotatsiyaini ichiga ko'rib ko'rishimiz mumkin.
+Let's consider why this happens, meaning the method is triggered only if the received text message exactly matches the 
+string provided in the `@HandleMessage` annotation. We can look inside the `@HandleMessage` annotation to understand this better.
 
 ```java
 @ProcessUpdate
@@ -166,11 +167,13 @@ public @interface HandleMessage {
 }
 ```
 
-Tepadagi `@HandleMessage` annotatsiyasini kodida ko'zingiz tushgan bo'lishi mumkin `match()` methodiga default qiymati `EQUALS`
-turibdi. Bundan chunishimiz mumkin default holatda ushbu annotatsiyaga berilgan xabar telegramdan kelgan matnli xabar bilan to'liq mos kelishini tekshiradi.
-biz ushbu annotatsiyani match methodiga boshqa `MatchType` berish orqali kelgan xabarni tekshirish strategiyasini o'zgartirishimiz mumkin.
-Misol uchun `message: ` bilan boshlangan istalgan matnli xabarni ulashni ko'ramiz. Buning uchun `@HandleMessage` annotatsiyasi qo'yilgan
-methodni `MatchType` ni o'zgartirishimiz kerak. Pastdagi kodga ergashing:
+In the code above, you might have noticed the match() method within the @HandleMessage annotation has a default value of 
+EQUALS. This means that by default, the annotation checks if the incoming Telegram message exactly matches the text 
+provided in the annotation.
+
+We can change the strategy for checking the incoming message by providing a different MatchType to the match method of 
+this annotation. For example, let's consider handling any message that starts with message:. To achieve this, we need to
+change the MatchType for the method annotated with @HandleMessage. Follow the code below:
 
 ```java
 @HandleMessage(value = "message:", match = MatchType.STARTS_WITH)
@@ -181,7 +184,7 @@ public void startsWithExampleHandler() {
 
 ### 2.3 Handler method add update parameter
 
-Ushbu bo'limda handler methodlarga update parameterni qo'shish ko'ramiz. Pastdagi kodga ergashing:
+In this section, we will see how to add the update parameter to handler methods. Follow the code below:
 
 ```java
 @HandleMessage("/start")
@@ -190,12 +193,12 @@ public void startExample(Update update) {
 }
 ```
 
-Tepadagi kodda ko'rganingizdek handler methodlarga update parameter qo'shish imkoni bor. Telegramdan kelgan update ni
-parameter sifatida kutsangiz, ushbu handler methodga update parameteri kiritilgan holatda chaqiriladi. Bu sizga update
-objectdan o'zingizga kerak qiymatlarni olish imkoni beradi.
+As you can see in the code above, it is possible to add the update parameter to handler methods. If you expect an update 
+from Telegram as a parameter, the handler method will be called with the update parameter included. This allows you to 
+extract the necessary values from the update object.
 
-Bundan tashqari `Update` parameter kutib olmasdan turib ham uni olishingiz mumkin. `FluentContextHolder` classini
-`getCurrentUpdate` methodidan foydalanib.
+Additionally, you can obtain the update object without explicitly receiving it as a parameter. You can use the getCurrentUpdate
+method from the FluentContextHolder class for this purpose.
 
 ```java
 @HandleAny(type = HandleType.MESSAGE, proceed = Proceed.NOT_PROCEED)
