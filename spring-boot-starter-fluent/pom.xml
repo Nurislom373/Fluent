@@ -12,7 +12,7 @@
 
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
-    <version>1.2.1</version>
+    <version>1.2.2</version>
     <inceptionYear>2023</inceptionYear>
     <name>Spring Boot Starter Fluent</name>
     <description>Fluent - Easy Telegram Bots with Spring</description>
@@ -22,10 +22,10 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <fluent-core.version>1.2.1</fluent-core.version>
+        <fluent-core.version>1.2.2</fluent-core.version>
         <reflections.version>0.10.2</reflections.version>
         <gpg.keyname>0x1133439D</gpg.keyname>
-        <spring-boot-starter-fluent-test.version>1.2.1</spring-boot-starter-fluent-test.version>
+        <spring-boot-starter-fluent-test.version>1.2.2</spring-boot-starter-fluent-test.version>
     </properties>
 
     <issueManagement>

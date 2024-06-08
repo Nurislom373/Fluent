@@ -6,5 +6,5 @@ package com.example.fluenttest;
  * @since 10/13/2023 11:19 PM
  */
 public enum SimpleState {
-    START, CHECK, END
+    DEFAULT, START, CHECK, END
 }
