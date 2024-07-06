@@ -4,22 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="README-UZ.md change images path #117">
-      <change afterPath="$PROJECT_DIR$/fluent-test/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-test/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-test/mvnw.cmd" afterDir="false" />
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="updated README-EN.md #123">
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/state/DefaultUserProceedStateRegistryContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/state/UserProceedStateRegistryContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/CheckState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/config/registry/UserProceedStateRegistryContainerConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentTestApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/SimpleState.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/SimpleState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-inline-query/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/src/test/java/org/khasanof/fluentinlinequery/FluentInlineQueryApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/executors/processor/StateChainProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/executors/processor/StateChainProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-test/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/src/test/java/org/khasanof/fluentstatepostgresql/FluentStatePostgresqlApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/test/java/org/khasanof/SpringBootStarterFluentStateApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/executors/determination/HandleStateFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/executors/determination/HandleStateFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/service/runnable/StateChainProcessorRegistryRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/service/runnable/StateChainProcessorRegistryRunnable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/src/test/java/org/khasanof/SpringBootStarterFluentTestApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,7 +51,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Abdulloh" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -147,7 +151,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.FluentTestApplication.executor": "Run",
+    "Spring Boot.FluentTestApplication.executor": "Debug",
     "git-widget-placeholder": "development",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
@@ -157,9 +161,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.37011495",
     "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
     "two.files.diff.last.used.file": "C:/Nurislom/Projects/Java/Fluent/fluent-core/pom.xml",
@@ -192,6 +196,7 @@
       <recent name="org.khasanof.service.annotation.type" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.khasanof.service" />
       <recent name="org.khasanof.collector.loader" />
     </key>
   </component>
@@ -204,7 +209,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.FluentMessageHandleIT">
+  <component name="RunManager" selected="Spring Boot.FluentTestApplication">
     <configuration name="FluentCallbackHandlerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spring-boot-starter-fluent" />
       <extension name="coverage">
@@ -215,6 +220,21 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.khasanof.handler" />
       <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentCallbackHandlerIT" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FluentDocumentHandlerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring-boot-starter-fluent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.khasanof.handler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.khasanof.handler" />
+      <option name="MAIN_CLASS_NAME" value="org.khasanof.handler.FluentDocumentHandlerIT" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -298,26 +318,13 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker/redis.yml.redis: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="redis" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="spring-boot-fluent-redis/src/main/docker/redis.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FluentDocumentHandlerIT" />
         <item itemvalue="JUnit.FluentMessageHandleIT" />
         <item itemvalue="JUnit.FluentCallbackHandlerIT" />
         <item itemvalue="JUnit.handler in spring-boot-starter-fluent" />
         <item itemvalue="JUnit.org.khasanof.handler in spring-boot-starter-fluent" />
-        <item itemvalue="Docker.docker/redis.yml.redis: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -462,55 +469,17 @@
       <workItem from="1711785796885" duration="1344000" />
       <workItem from="1711824959583" duration="3494000" />
       <workItem from="1711871000737" duration="4546000" />
-      <workItem from="1711884650940" duration="11111000" />
-    </task>
-    <task id="LOCAL-00029" summary="added template new operations #58">
-      <option name="closed" value="true" />
-      <created>1707973616155</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1707973616155</updated>
-    </task>
-    <task id="LOCAL-00030" summary="fluent test module removed some classes #59">
-      <option name="closed" value="true" />
-      <created>1708099457360</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1708099457360</updated>
-    </task>
-    <task id="LOCAL-00031" summary="change operations methods #63">
-      <option name="closed" value="true" />
-      <created>1708100735153</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1708100735153</updated>
-    </task>
-    <task id="LOCAL-00032" summary="added new operations #67">
-      <option name="closed" value="true" />
-      <created>1708174995458</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1708174995458</updated>
-    </task>
-    <task id="LOCAL-00033" summary="rewrite README.md #68">
-      <option name="closed" value="true" />
-      <created>1708177116180</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1708177116180</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Added new classes #69">
-      <option name="closed" value="true" />
-      <created>1708284739765</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1708284739765</updated>
+      <workItem from="1711884650940" duration="11275000" />
+      <workItem from="1712168685901" duration="1237000" />
+      <workItem from="1712245616160" duration="25000" />
+      <workItem from="1715658911435" duration="7353000" />
+      <workItem from="1715704134807" duration="429000" />
+      <workItem from="1715706460026" duration="2012000" />
+      <workItem from="1715709710191" duration="6000" />
+      <workItem from="1717346690957" duration="4615000" />
+      <workItem from="1717439255823" duration="2444000" />
+      <workItem from="1717605240724" duration="891000" />
+      <workItem from="1717836040385" duration="4708000" />
     </task>
     <task id="LOCAL-00035" summary="custom annotation is worked 🥳🥳🥳 #71">
       <option name="closed" value="true" />
@@ -856,7 +825,55 @@
       <option name="project" value="LOCAL" />
       <updated>1711887159413</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="maven deployed #118">
+      <option name="closed" value="true" />
+      <created>1711897828467</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1711897828467</updated>
+    </task>
+    <task id="LOCAL-00079" summary="webhook configuration #119">
+      <option name="closed" value="true" />
+      <created>1715664982519</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1715664982520</updated>
+    </task>
+    <task id="LOCAL-00080" summary="updated version 1.2.1 #120">
+      <option name="closed" value="true" />
+      <created>1717351555016</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1717351555016</updated>
+    </task>
+    <task id="LOCAL-00081" summary="updated version 1.2.1 #121">
+      <option name="closed" value="true" />
+      <created>1717351617405</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1717351617405</updated>
+    </task>
+    <task id="LOCAL-00082" summary="updated README-EN.md #122">
+      <option name="closed" value="true" />
+      <created>1717440993133</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1717440993133</updated>
+    </task>
+    <task id="LOCAL-00083" summary="updated README-EN.md #123">
+      <option name="closed" value="true" />
+      <created>1717441117974</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1717441117974</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -889,7 +906,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/development" />
+                        <option value="origin/webhook" />
                       </list>
                     </value>
                   </entry>
@@ -927,12 +944,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="writing documentation #89" />
-    <MESSAGE value="writing documentation #90" />
-    <MESSAGE value="added chosen inline query #91" />
-    <MESSAGE value="new module spring-boot-fluent-redis #95" />
-    <MESSAGE value="HandleAny documented #97" />
-    <MESSAGE value="CurrentUpdate documented #98" />
     <MESSAGE value="added HandleTypeFinds #99" />
     <MESSAGE value="added updating message operations #100" />
     <MESSAGE value="documented FluentTemplate #101" />
@@ -952,7 +963,13 @@
     <MESSAGE value="updated all modules version 1.2.0 #115" />
     <MESSAGE value="removed DefaultFltStateEventService.java #116" />
     <MESSAGE value="README-UZ.md change images path #117" />
-    <option name="LAST_COMMIT_MESSAGE" value="README-UZ.md change images path #117" />
+    <MESSAGE value="maven deployed #118" />
+    <MESSAGE value="webhook configuration #119" />
+    <MESSAGE value="updated version 1.2.1 #120" />
+    <MESSAGE value="updated version 1.2.1 #121" />
+    <MESSAGE value="updated README-EN.md #122" />
+    <MESSAGE value="updated README-EN.md #123" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated README-EN.md #123" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -996,14 +1013,39 @@
           <option name="timeStamp" value="127" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/executors/determination/DeterminationHandleUpdateFunction.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="131" />
+          <url>file://$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/state/FltState.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="137" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/executors/determination/DeterminationHandleUpdateFunction.java</url>
-          <line>59</line>
-          <option name="timeStamp" value="132" />
+          <url>file://$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/PostgresqlFltStateEventService.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="138" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spring-boot-fluent-postgresql/src/main/java/org/khasanof/service/PostgresqlFltStateEventService.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/executors/processor/AbstractUpdateChainProcessor.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/io/github/nurislom373/fluent-state/1.2.1/fluent-state-1.2.1-sources.jar!/org/khasanof/executors/processor/StateChainProcessor.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="145" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/executors/processor/StateChainProcessor.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="146" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/executors/processor/StateChainProcessor.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="147" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

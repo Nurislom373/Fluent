@@ -14,6 +14,8 @@ import org.khasanof.enums.scopes.DocumentScope;
 import org.khasanof.enums.scopes.PhotoScope;
 import org.khasanof.enums.scopes.VideoScope;
 import org.khasanof.service.template.FluentTemplate;
+import org.khasanof.state.repository.StateRepositoryStrategy;
+import org.khasanof.utils.UpdateUtils;
 import org.khasanof.utils.keyboards.inline.InlineKeyboardMarkupBuilder;
 import org.khasanof.utils.keyboards.reply.ReplyKeyboardMarkupBuilder;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -32,9 +34,11 @@ import java.util.Objects;
 public class FluentController {
 
     private final FluentTemplate fluentTemplate;
+    private final StateRepositoryStrategy stateRepositoryStrategy;
 
-    public FluentController(FluentTemplate fluentTemplate) {
+    public FluentController(FluentTemplate fluentTemplate, StateRepositoryStrategy stateRepositoryStrategy) {
         this.fluentTemplate = fluentTemplate;
+        this.stateRepositoryStrategy = stateRepositoryStrategy;
     }
 
     @HandleMessage("/template")
@@ -133,6 +137,10 @@ public class FluentController {
         Attributes attributes = FluentContextHolder.getCurrentAttributes();
         String text = update.getMessage().getText();
         fluentTemplate.sendText(text);
+
+        Long userId = UpdateUtils.getUserId(update);
+        stateRepositoryStrategy.findById(userId)
+                .ifPresent(state -> state.nextState(SimpleState.START));
     }
 
     @HandlePhoto(value = "start: ", match = MatchType.STARTS_WITH, property = PhotoScope.CAPTION)

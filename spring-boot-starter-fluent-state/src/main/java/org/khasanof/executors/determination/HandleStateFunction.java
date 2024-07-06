@@ -3,9 +3,9 @@ package org.khasanof.executors.determination;
 import org.khasanof.collector.context.ContextOperationExecutor;
 import org.khasanof.collector.context.operation.FindHandlerObjectOperation;
 import org.khasanof.condition.Condition;
-import org.khasanof.context.FluentThreadLocalContext;
 import org.khasanof.enums.ProcessType;
 import org.khasanof.models.invoker.SimpleInvoker;
+import org.khasanof.registry.state.UserProceedStateRegistryContainer;
 import org.khasanof.service.interceptor.invoker.PostFindInvokerInterceptorService;
 import org.khasanof.state.StateAction;
 import org.khasanof.state.repository.StateRepositoryStrategy;
@@ -33,12 +33,15 @@ public class HandleStateFunction implements DeterminationFunction {
     public static final String NAME = "handleStateFunction";
     private final ContextOperationExecutor operationExecutor;
     private final PostFindInvokerInterceptorService invokerInterceptorService;
+    private final UserProceedStateRegistryContainer proceedStateRegistryContainer;
 
     public HandleStateFunction(ContextOperationExecutor operationExecutor,
-                               PostFindInvokerInterceptorService invokerInterceptorService) {
+                               PostFindInvokerInterceptorService invokerInterceptorService,
+                               UserProceedStateRegistryContainer proceedStateRegistryContainer) {
 
         this.operationExecutor = operationExecutor;
         this.invokerInterceptorService = invokerInterceptorService;
+        this.proceedStateRegistryContainer = proceedStateRegistryContainer;
     }
 
     @Override
@@ -65,16 +68,21 @@ public class HandleStateFunction implements DeterminationFunction {
     private void findHandlerObject(Set<SimpleInvoker> invokerResults, StateRepositoryStrategy repository, Long id) {
         repository.findById(id)
                 .flatMap(state -> operationExecutor.execute(FindHandlerObjectOperation.class, state.getState()))
-                .ifPresent(simpleInvoker -> checkConditionThenAddResult(invokerResults, simpleInvoker));
+                .ifPresentOrElse(simpleInvoker -> checkConditionThenAddResult(id, invokerResults, simpleInvoker), () -> {
+                    replaceUserProceedState(id, false);
+                });
     }
 
-    private void checkConditionThenAddResult(Set<SimpleInvoker> invokerResults, SimpleInvoker simpleInvoker) {
+    private void checkConditionThenAddResult(Long userId, Set<SimpleInvoker> invokerResults, SimpleInvoker simpleInvoker) {
         if (hasCondition(simpleInvoker) && !invokerInterceptorService.intercept(simpleInvoker)) {
             return;
         }
         invokerResults.add(simpleInvoker);
-        Condition.isTrueThen(isNotProcessedUpdates(simpleInvoker))
-                .thenCall(() -> FluentThreadLocalContext.determinationServiceBoolean.set(true));
+        replaceUserProceedState(userId, isNotProcessedUpdates(simpleInvoker));
+    }
+
+    private void replaceUserProceedState(Long userId, Boolean notProcessedUpdates) {
+        proceedStateRegistryContainer.add(userId.toString(), notProcessedUpdates);
     }
 
     private boolean isNotProcessedUpdates(SimpleInvoker result) {

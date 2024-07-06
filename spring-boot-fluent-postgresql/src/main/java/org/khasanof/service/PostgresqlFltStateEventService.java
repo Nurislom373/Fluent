@@ -3,6 +3,7 @@ package org.khasanof.service;
 import org.khasanof.entity.FltStateEntity;
 import org.khasanof.repository.FltStateRepository;
 import org.khasanof.state.event.FltStateEvent;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
  * @since 3/2/2024 12:16 PM
  */
 @Service
+@Primary
 public class PostgresqlFltStateEventService implements FltStateEventService {
 
     private final FltStateRepository fltStateRepository;

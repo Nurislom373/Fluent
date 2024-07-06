@@ -33,7 +33,7 @@ public class PostgresqlRepositoryStrategyHelper {
      * @return
      */
     public State createState(FltStateEntity fltState) {
-        return new FltState(getState(fltState), fltState.getId(), fltState.getUser().getId(), eventPublisher);
+        return new FltState(getState(fltState), fltState.getUser().getId(), fltState.getId(), eventPublisher);
     }
 
     @NotNull
