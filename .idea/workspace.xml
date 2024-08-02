@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="updated README-EN.md #123">
-      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/state/DefaultUserProceedStateRegistryContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-core/src/main/java/org/khasanof/registry/state/UserProceedStateRegistryContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/state/CheckState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/src/main/java/org/khasanof/config/registry/UserProceedStateRegistryContainerConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentTestApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/FluentTestApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/SimpleState.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-demo/src/main/java/com/example/fluenttest/SimpleState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-inline-query/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-inline-query/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/executors/processor/StateChainProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-state/src/main/java/org/khasanof/executors/processor/StateChainProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/fluent-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-fluent-postgresql/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/executors/determination/HandleStateFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/executors/determination/HandleStateFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/service/runnable/StateChainProcessorRegistryRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-state/src/main/java/org/khasanof/service/runnable/StateChainProcessorRegistryRunnable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-starter-fluent/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f3b03ea3-9e84-4dfb-bebb-a6e2fe85059a" name="Changes" comment="README.md update version. #126" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -481,22 +460,6 @@
       <workItem from="1717605240724" duration="891000" />
       <workItem from="1717836040385" duration="4708000" />
     </task>
-    <task id="LOCAL-00035" summary="custom annotation is worked 🥳🥳🥳 #71">
-      <option name="closed" value="true" />
-      <created>1708459627400</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1708459627400</updated>
-    </task>
-    <task id="LOCAL-00036" summary="custom annotation is worked 🥳🥳🥳 #72">
-      <option name="closed" value="true" />
-      <created>1708543055297</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1708543055297</updated>
-    </task>
     <task id="LOCAL-00037" summary="ExpressionMatcherService finished #73">
       <option name="closed" value="true" />
       <created>1708800419252</created>
@@ -873,7 +836,23 @@
       <option name="project" value="LOCAL" />
       <updated>1717441117974</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="README.md update version. #125">
+      <option name="closed" value="true" />
+      <created>1722570570839</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1722570570840</updated>
+    </task>
+    <task id="LOCAL-00085" summary="README.md update version. #126">
+      <option name="closed" value="true" />
+      <created>1722570822623</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1722570822623</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -944,8 +923,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added HandleTypeFinds #99" />
-    <MESSAGE value="added updating message operations #100" />
     <MESSAGE value="documented FluentTemplate #101" />
     <MESSAGE value="documented FluentTemplate #102" />
     <MESSAGE value="documented Handling Exceptions and Making keyboards #103" />
@@ -969,7 +946,9 @@
     <MESSAGE value="updated version 1.2.1 #121" />
     <MESSAGE value="updated README-EN.md #122" />
     <MESSAGE value="updated README-EN.md #123" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated README-EN.md #123" />
+    <MESSAGE value="README.md update version. #125" />
+    <MESSAGE value="README.md update version. #126" />
+    <option name="LAST_COMMIT_MESSAGE" value="README.md update version. #126" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
