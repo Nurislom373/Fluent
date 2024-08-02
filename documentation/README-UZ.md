@@ -9,7 +9,7 @@ versiyasidan foydalanib, uni oʻzingizning xohishingizga koʻra sozlashingiz mum
 
 ## Prerequisites
 
-* Fluent 1.2.0 kamida Java 17, Spring Boot 3.0.0 yoki undan yuqori versiyasini talab qiladi.
+* Fluent 1.2.2 kamida Java 17, Spring Boot 3.0.0 yoki undan yuqori versiyasini talab qiladi.
 
 ## Getting Started
 
@@ -19,14 +19,14 @@ versiyasidan foydalanib, uni oʻzingizning xohishingizga koʻra sozlashingiz mum
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.2</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent', version: '1.2.0'
+implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent', version: '1.2.2'
 ```
 
 ## How to Use
@@ -94,14 +94,14 @@ tushirish va undan foydalanish uchun buning o'zi kifoya.
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.2</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent', version: '1.2.0'
+implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent', version: '1.2.2'
 ```
 
 ### Yaml configuration
@@ -879,14 +879,14 @@ Fluent State dan foydalanish uchun birinchi qo'shimcha dependency qo'shishingiz 
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-starter-fluent-state</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.2</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```groovy
-implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent-state', version: '1.2.0'
+implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent-state', version: '1.2.2'
 ```
 
 ### 7.2 Process Type
@@ -1052,7 +1052,7 @@ Qilishingiz kerak bo'lgan birinchi ish dependency qo'shish.
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>spring-boot-fluent-postgresql</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.2</version>
 </dependency>
 ```
 
@@ -1210,14 +1210,14 @@ dependency qo'shish orqali ishlatishingiz mumkin.
 <dependency>
     <groupId>io.github.nurislom373</groupId>
     <artifactId>fluent-inline-query</artifactId>
-    <version>1.2.0</version>
+    <version>1.2.2</version>
 </dependency>
 ```
 
 ### 10.2 Gradle
 
 ```groovy
-implementation group: 'io.github.nurislom373', name: 'fluent-inline-query', version: '1.2.0'
+implementation group: 'io.github.nurislom373', name: 'fluent-inline-query', version: '1.2.2'
 ```
 
 ### 10.3 Enabling inline mode
@@ -1250,7 +1250,7 @@ fluent kutubxonasini o'zingizga moslashtirib olishingiz misol uchun kutubxona to
 sizga yetarli bo'lamayabdi o'zngizga kerakli annotatsiyani yozib olishingiz mumkin hech qanday muammosiz. Yana bir misol
 state hozircha faqat postgresql bilan integratsiyasi mavjud bu ham sizga yetarli nosql ma'lumotlar bazasi bilan ishlamoqchisiz
 bu ham muammo emas kerakli interfaceni implementatsiya qilib o'zingizga moslashingiz mumkin. Qisqa qilib aytganda fluent
-kutubxonasini 1.2.0 versiyasini o'zingiz qiynalmasdan kengaytirishingiz mumkin kutubxonadagi kodlar SOLID prinspiga toliq
+kutubxonasini o'zingiz qiynalmasdan kengaytirishingiz mumkin kutubxonadagi kodlar SOLID prinspiga toliq
 holda amal qilib yozilgan :).
 
 # Contributors

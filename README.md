@@ -8,7 +8,7 @@ project and customize it according to your preferences by using its latest versi
 
 ## Prerequisites
 
-* Fluent 1.2.0 requires at least Java 17, Spring Boot version 3.0.0 or above.
+* Fluent 1.2.2 requires at least Java 17, Spring Boot version 3.0.0 or above.
 
 ## Getting Started
 
@@ -25,7 +25,7 @@ project and customize it according to your preferences by using its latest versi
 ### Gradle
 
 ```groovy
-implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent', version: '1.2.0'
+implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent', version: '1.2.2'
 ```
 
 ## How to Use
@@ -83,8 +83,8 @@ public class ExceptionHandler  {
 
 ## 1. Creating your bot
 
-As written in the 'Getting Started' section of the tutorial, after adding the necessary dependency to our first program, 
-you need to write the credentials related to the bot in a properties or YAML file. This alone is sufficient for now to 
+As written in the 'Getting Started' section of the tutorial, after adding the necessary dependency to our first program,
+you need to write the credentials related to the bot in a properties or YAML file. This alone is sufficient for now to
 start the bot and use it.
 
 ### Maven
@@ -119,7 +119,7 @@ Let's see how we can receive requests that have come from Telegram in this secti
 
 ### 2.1 Controllers
 
-We need to apply the `@UpdateController` annotation to classes that process requests coming from Telegram. This is necessary 
+We need to apply the `@UpdateController` annotation to classes that process requests coming from Telegram. This is necessary
 because when your application starts, the classes with the `@UpdateController` annotation are collected by the Fluent provider,
 which then directs incoming requests to the methods of these classes.
 
@@ -137,8 +137,8 @@ public class FluentController {
 Let's explore how we can write methods to process requests coming from Telegram in this section.
 
 Let's start by discussing how to handle text messages that come through Telegram.
-To handle text messages that come through Telegram, we use the @HandleMessage annotation. The @HandleMessage annotation 
-allows us to implement various ways of handling text messages, such as using regex or expressions. It provides us with 
+To handle text messages that come through Telegram, we use the @HandleMessage annotation. The @HandleMessage annotation
+allows us to implement various ways of handling text messages, such as using regex or expressions. It provides us with
 different paths to carry out the handling. Let's take a look at all of these.
 
 ```java
@@ -148,11 +148,12 @@ public void startExample() {
 }
 ```
 
-Tepada yozilgan kodda `@HandleMessage` annotatsiyasidan foydalanib telegramdan kelgan `/start` matnli xabarni ushlovchi method yozilgan.
-Kelgan xabar `/start` bo'lsagina ushbu method ishga tushadi. Kelgan xabarni boshida yoki oxirida `/start` xabar bo'lsa unday bo'lmaydi.
+The code written uses the `@HandleMessage` annotation to create a method that catches a message containing `/start` from
+Telegram. This method will only be triggered if the received message is exactly `/start`. If the message contains `/start`
+at the beginning or the end but has additional content, the method will not be triggered.
 
-Bunday bo'lishini yani kelgan matnli xabar to'liq `@HandleMessage` berilgan matnga mos bo'lsagina ishga tushishini sababi ko'rib chiqamiz.
-`@HandleMessage` annotatsiyaini ichiga ko'rib ko'rishimiz mumkin.
+Let's consider why this happens, meaning the method is triggered only if the received text message exactly matches the
+string provided in the `@HandleMessage` annotation. We can look inside the `@HandleMessage` annotation to understand this better.
 
 ```java
 @ProcessUpdate
@@ -166,11 +167,13 @@ public @interface HandleMessage {
 }
 ```
 
-Tepadagi `@HandleMessage` annotatsiyasini kodida ko'zingiz tushgan bo'lishi mumkin `match()` methodiga default qiymati `EQUALS`
-turibdi. Bundan chunishimiz mumkin default holatda ushbu annotatsiyaga berilgan xabar telegramdan kelgan matnli xabar bilan to'liq mos kelishini tekshiradi.
-biz ushbu annotatsiyani match methodiga boshqa `MatchType` berish orqali kelgan xabarni tekshirish strategiyasini o'zgartirishimiz mumkin.
-Misol uchun `message: ` bilan boshlangan istalgan matnli xabarni ulashni ko'ramiz. Buning uchun `@HandleMessage` annotatsiyasi qo'yilgan
-methodni `MatchType` ni o'zgartirishimiz kerak. Pastdagi kodga ergashing:
+In the code above, you might have noticed the match() method within the @HandleMessage annotation has a default value of
+EQUALS. This means that by default, the annotation checks if the incoming Telegram message exactly matches the text
+provided in the annotation.
+
+We can change the strategy for checking the incoming message by providing a different MatchType to the match method of
+this annotation. For example, let's consider handling any message that starts with message:. To achieve this, we need to
+change the MatchType for the method annotated with @HandleMessage. Follow the code below:
 
 ```java
 @HandleMessage(value = "message:", match = MatchType.STARTS_WITH)
@@ -181,7 +184,7 @@ public void startsWithExampleHandler() {
 
 ### 2.3 Handler method add update parameter
 
-Ushbu bo'limda handler methodlarga update parameterni qo'shish ko'ramiz. Pastdagi kodga ergashing:
+In this section, we will see how to add the update parameter to handler methods. Follow the code below:
 
 ```java
 @HandleMessage("/start")
@@ -190,12 +193,12 @@ public void startExample(Update update) {
 }
 ```
 
-Tepadagi kodda ko'rganingizdek handler methodlarga update parameter qo'shish imkoni bor. Telegramdan kelgan update ni
-parameter sifatida kutsangiz, ushbu handler methodga update parameteri kiritilgan holatda chaqiriladi. Bu sizga update 
-objectdan o'zingizga kerak qiymatlarni olish imkoni beradi.
+As you can see in the code above, it is possible to add the update parameter to handler methods. If you expect an update
+from Telegram as a parameter, the handler method will be called with the update parameter included. This allows you to
+extract the necessary values from the update object.
 
-Bundan tashqari `Update` parameter kutib olmasdan turib ham uni olishingiz mumkin. `FluentContextHolder` classini 
-`getCurrentUpdate` methodidan foydalanib.
+Additionally, you can obtain the update object without explicitly receiving it as a parameter. You can use the getCurrentUpdate
+method from the FluentContextHolder class for this purpose.
 
 ```java
 @HandleAny(type = HandleType.MESSAGE, proceed = Proceed.NOT_PROCEED)
@@ -295,7 +298,7 @@ private void startExample(Update update) {
 
 * `EXPRESSION`
 
-EXPRESSION - match strategiyasi sizga spel yani (Spring Expression Language) dan foydalanib expressionlarni yozish imkoni beradi va ushbu 
+EXPRESSION - match strategiyasi sizga spel yani (Spring Expression Language) dan foydalanib expressionlarni yozish imkoni beradi va ushbu
 expressionga kelgan xabar mos kelsagina handler method chaqiriladi. Pastdagi kodga e'tibor bering. SPEL dan foydalanib
 kelgan xabar boshlanishi 'a' harfdan boshlansa va tugashi esa 'z' harf bilan tugasa ushbu handler chaqiriladi.
 
@@ -354,12 +357,12 @@ public void handleButtonCommand() {
 }
 ```
 
-![first_screen](documentation/images/first_screen.png)
+![first_screen](images/first_screen.png)
 
 `@HandleAny` annotatsiyasi 2ta parameter qabul qiladi.
 
 1. type - orqali biz qaysi typedagi updatelarni handle qilishni ko'rsatish uchun ishlatishimiz mumkin. default holatda biz
-`@HandleAny` type ko'rsatmasak HandleType.MESSAGE ni oladi.
+   `@HandleAny` type ko'rsatmasak HandleType.MESSAGE ni oladi.
 
 Quyidagi kodga qarang
 
@@ -411,10 +414,10 @@ private void handleAnyMessagesWithUpdate(Update update) {
 ```
 
 2. proceed - orqali biz `@HandleAny` annotatsiyasi qoyilgan method bajarilgandan so'ng undan keyingi handler methodlar
-bajarilishi yoki bajarilmasligini belgilashimiz mumkin. Agar Proceed.PROCEED turgan bo'lsa o'zidan keyingi
-method bajarilishiga ruhsat beradi. Agar aksi bo'lsa unda o'zidan keyingi handler methodlarni bajarilishiga ruhsat
-bermaydi. Qiymat belgilanmagan holda `@HandleAny` type parameteri _HandleType.MESSAGE_ ni, proceed parameteri esa
-_Proceed.PROCEED_ oladi.
+   bajarilishi yoki bajarilmasligini belgilashimiz mumkin. Agar Proceed.PROCEED turgan bo'lsa o'zidan keyingi
+   method bajarilishiga ruhsat beradi. Agar aksi bo'lsa unda o'zidan keyingi handler methodlarni bajarilishiga ruhsat
+   bermaydi. Qiymat belgilanmagan holda `@HandleAny` type parameteri _HandleType.MESSAGE_ ni, proceed parameteri esa
+   _Proceed.PROCEED_ oladi.
 
 Quyidagi misolga qarang
 
@@ -437,7 +440,7 @@ public class SimpleController {
 }
 ```
 
-![handle_any_1](documentation/images/handle_any_1.png)
+![handle_any_1](images/handle_any_1.png)
 
 `@HandleAny` annotatsiyani proceed type `NOT_PROCEED` ga o'zgartiramiz va natijasini ko'ramiz.
 
@@ -458,11 +461,11 @@ public class SimpleController {
 }
 ```
 
-![handle_any_2](documentation/images/handle_any_2.png)
+![handle_any_2](images/handle_any_2.png)
 
 rasmdagi natijani ko’rgan bo’lsangiz faqat `@HandleAny` method ishladi va undan keyin handlar method bajarilmadi.
 
-`@HandleAny` annotatsiyasi qoyilgan methodni hech qanday parameterlarsiz ham yozishimiz mumkin. 
+`@HandleAny` annotatsiyasi qoyilgan methodni hech qanday parameterlarsiz ham yozishimiz mumkin.
 
 ```java
 @HandleAny
@@ -529,7 +532,7 @@ public void handleAudioCaption() {
 
 ### 2.6.5 Repeatable
 
-Bazi annotatsiyalarni ko'plik varianti ham mavjud misol uchun `@HandleCallback` annotatsiyasini ko'plik varianti mavjud 
+Bazi annotatsiyalarni ko'plik varianti ham mavjud misol uchun `@HandleCallback` annotatsiyasini ko'plik varianti mavjud
 `@HandleCallbacks` unda siz bir nechta `@HandleCallback` larni e'lon qilishingiz mumkin.
 
 ```java
@@ -635,7 +638,7 @@ public void sendAudioExample() {
 
 ## 4. Handling exceptions
 
-Fluent kutubxonasi xatolar bilan ham ishlash uchun kuchli funksionalikni taqdim etadi. Bu funksionalikdan foydalanib dastur 
+Fluent kutubxonasi xatolar bilan ham ishlash uchun kuchli funksionalikni taqdim etadi. Bu funksionalikdan foydalanib dastur
 ishlash vaqtida yuzagan kelishi mumkin bo'lgan xatolarni osonlik bilan ushlab uni qayta ishlashimiz mumkin.
 
 Quyidagi kodga qarang:
@@ -652,16 +655,16 @@ public class SimpleExceptionHandler {
 
 `@ExceptionController` annotatsiyasi xatolarni qayta ishlovchi class sifatida belgilash uchun qo'yishingiz kerak!.
 ushbu annotatsiyani classni ustiga qo'yganingizdan so'ng. Ushbu class ichida xatolarni qayta ishlovchi methodlarni
-yozishingiz mumkin. 
+yozishingiz mumkin.
 
 Xatolarni qayta ishlovchi method yozish qoidalari.
 
 1. Xatolarni qayta ishlovchi method yozishingiz uchun siz qilishingiz shart bo'lgan ish method ustiga `@HandleException`
-annotatsiyasini qo'yish va annotatsiyada qaysi `Exception`larni handle qilishini ko'rsatishdir.
-2. Methodni hech qanday parametersiz ham yozishingiz ham mumkin. Xatolarni qayta ishlovchi methodlarga 2ta parameter kirib 
-kelishi mumkin birinchisi `Exception`, ikkinchisi esa `Update` bu ikklasini istalgani kutib olishingiz hamda ikkalasini ham 
-kutib olishingiz mumkin. Birinchi `Exception` keyin `Update` kirishi ham majuburiy emas qaysi biri birinchi kirishi ahamiyatsiz asosiysi
-shu 2ta parameterlarni to'g'ir belgilashingiz.
+   annotatsiyasini qo'yish va annotatsiyada qaysi `Exception`larni handle qilishini ko'rsatishdir.
+2. Methodni hech qanday parametersiz ham yozishingiz ham mumkin. Xatolarni qayta ishlovchi methodlarga 2ta parameter kirib
+   kelishi mumkin birinchisi `Exception`, ikkinchisi esa `Update` bu ikklasini istalgani kutib olishingiz hamda ikkalasini ham
+   kutib olishingiz mumkin. Birinchi `Exception` keyin `Update` kirishi ham majuburiy emas qaysi biri birinchi kirishi ahamiyatsiz asosiysi
+   shu 2ta parameterlarni to'g'ir belgilashingiz.
 
 ## 5. Making keyboards
 
@@ -725,7 +728,7 @@ Tepadagi ko'rsatilgan kodlar ikkalasi ham bir xil keyboardlarni yaratish uchun y
 
 Result:
 
-![inline-keyboards](documentation/images/inline-keyboards.png)
+![inline-keyboards](images/inline-keyboards.png)
 
 ### 5.1 Inline keyboard
 
@@ -747,7 +750,7 @@ public InlineKeyboardMarkup inlineKeyboardMarkupExample() {
 
 Natijasi:
 
-![inline-keyboard-result](documentation/images/inline-keyboard-result.png)
+![inline-keyboard-result](images/inline-keyboard-result.png)
 
 `addRow` method foydalanib osongina yangi row qo'shingiz mumkin.
 
@@ -773,7 +776,7 @@ public InlineKeyboardMarkup inlineKeyboardMarkupExample() {
 
 Tepadagi kodni natijasi:
 
-![inline-keyboard-result-2](documentation/images/inline-keyboard-result-2.png)
+![inline-keyboard-result-2](images/inline-keyboard-result-2.png)
 
 ### 5.2 Reply keyboard
 
@@ -801,7 +804,7 @@ public void handleReplyCommand() {
 
 Natijasi:
 
-![reply-keyboard.png](documentation/images/reply-keyboard.png)
+![reply-keyboard.png](images/reply-keyboard.png)
 
 ## 6. Interceptors
 
@@ -847,7 +850,7 @@ public class FluentInterceptorConfig {
 
 Natijasi:
 
-![interceptor](documentation/images/fluent-interceptor.png)
+![interceptor](images/fluent-interceptor.png)
 
 Birinchi `SimpleFluentInterceptor` classi bu interceptor. Fluentda interceptor yozishingiz uchun `FluentInterceptor`
 interfacedan implementatsiya olishingiz va uni ichida kerakli logikangizni yozishingiz mumkin bo'ladi.
@@ -861,7 +864,7 @@ kerak bo'ladi. `FluentInterceptorRegistryContainer` classini siz interceptorlarn
 Fluent kutubxonasi statelardan foydalanish imkoniyatini taqdim etadi. Siz bu imkoniyatdan foydalanib ketma-ket bajarilishi
 kerak bo'lgan murakkabroq jarayonlarni osonlik bilan yozishingiz mumkin. Misol uchun botda authentication qilish jarayoni.
 Ushbu jarayoni commandalar bilan qilish to'g'ri bolmaydi sababi ketma ketlikni buzib yuborish mumkin osonlik bilan state
-bilan shu jarayon qilishingiz mumkin osonlik bilan. fluentni state foydalanmoqchi bo'lsangiz state design pattern o'qib 
+bilan shu jarayon qilishingiz mumkin osonlik bilan. fluentni state foydalanmoqchi bo'lsangiz state design pattern o'qib
 chiqingizni maslahat beramiz. Sababi fluent state, state design pattern bir xil yoziladi va ishlaydi.
 
 ### 7.1 Dependency
@@ -881,13 +884,13 @@ Fluent State dan foydalanish uchun birinchi qo'shimcha dependency qo'shishingiz 
 ### Gradle
 
 ```groovy
-implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent-state', version: '1.2.0'
+implementation group: 'io.github.nurislom373', name: 'spring-boot-starter-fluent-state', version: '1.2.2'
 ```
 
 ### 7.2 Process Type
 
 Ushbu dependency qo'shganingizdan so'ng qilishingiz kerak bo'lgan keyingi ish configration filedan `process-type` ni
-to'g'irlashingiz kerak 
+to'g'irlashingiz kerak
 
 ```yaml
 fluent:
@@ -916,7 +919,7 @@ public enum SimpleState {
 ### 7.4 State configurer
 
 Statelarni e'lon qilib bo'lganingizdan so'ng endi statelarni konfiguratsiya qilishingiz kerak bo'ladi. Buning uchun
-`StateConfigurerAdapter` interfaceda implementatsiya olgan bean yozishingiz kerak. Bean bitta bo'lishi majburiy agar 
+`StateConfigurerAdapter` interfaceda implementatsiya olgan bean yozishingiz kerak. Bean bitta bo'lishi majburiy agar
 yo'q bo'lsa yoki bittadan ko'p bo'lsa xatolik yuzaga keladi.
 
 Quyidagi kodga qarang:
@@ -942,7 +945,7 @@ o'xshatib. Configure methodda parameter sifatida kirib kelgan `StateConfigurer` 
 
 - `initial`: foydalanuvchi botga request yuborishi bilan default holat ushbu `initial` state belgilanadi va saqlab qoyiladi.
 - `states`: methodida esa barcha statelarni ro'yxatdan o'tkazish uchun ishlatiladi. Statesda ko'rsatilgan statelargina
-dasturda ishlatiladi.
+  dasturda ishlatiladi.
 
 ### 7.5 Writing state
 
@@ -976,13 +979,13 @@ public class StartState implements StateAction<SimpleState> {
 }
 ```
 
-- `onReceive`: method ichida o'zingizga kerakli business logikangizni yozishingiz mumkin. 
+- `onReceive`: method ichida o'zingizga kerakli business logikangizni yozishingiz mumkin.
 - `state`: methodida esa qaysi state ekanligini ko'rsatishingiz kerak!.
 
 parameter sifatida kirib kelgan `State` esa bu kirib kelgan updateni state yani updateni yuborgan foydalanuvchini holati.
-Ushbu `State` interfaceni `nextState` method bu enumda yozilgan ketma ketlik bo'yicha foydalanuvchini stateni undan 
-keyingisiga o'tkazadi. Misol uchun `SimpleState` da `START` statedan keyin `CHECK` turibdi `nextState` methodi `START` 
-stateni o'zi `CHECK` o'tkazib qoyadi yani o'zidan keyingisiga. Agar keyingisiga emas oldingisiga yoki bir nechta keyingi 
+Ushbu `State` interfaceni `nextState` method bu enumda yozilgan ketma ketlik bo'yicha foydalanuvchini stateni undan
+keyingisiga o'tkazadi. Misol uchun `SimpleState` da `START` statedan keyin `CHECK` turibdi `nextState` methodi `START`
+stateni o'zi `CHECK` o'tkazib qoyadi yani o'zidan keyingisiga. Agar keyingisiga emas oldingisiga yoki bir nechta keyingi
 statega o'tmoqchi bo'lsangiz huddi shu methodni state qabul qiluvchi varianti ham mavjud. Ushbu variantidan foydalanib
 hohlagan foydalanuvchingizni stateni o'zgartirishingiz mumkin.
 
@@ -1030,15 +1033,15 @@ public class StartState implements StateAction<SimpleState> {
 
 State lar saqlanadigan repositorydan foydalanib foydalanuvchilarni statelarni olishingiz ham mumkin. Ushbu repositorydan
 foydalanib statelarni manipulatsiya qilishingiz ham mumkin. Ushbu repositoryni nomi `StateRepositoryStrategy` interfacesi.
-Ushbu interfacedan implementatsiya olib o'zingiz statelarni hohlagancha boshqarishingiz ham mumkin yani statelar qayerdan 
+Ushbu interfacedan implementatsiya olib o'zingiz statelarni hohlagancha boshqarishingiz ham mumkin yani statelar qayerdan
 saqlanishini va hokazolarni.
 
 ## 8. State configure postgresql
 
-Statelarni default holatda hotirada saqlanadi bu kamchiliklaridan biri dasturni o'chirganingizda barcha foydalanuvchilarni 
+Statelarni default holatda hotirada saqlanadi bu kamchiliklaridan biri dasturni o'chirganingizda barcha foydalanuvchilarni
 statelari o'chib ketadi. Shuning uchun siz statelarni ma'lumotlar bazasidan birida saqlashingiz kerak. fluent sizga postgresql
 bilan osonlik bilan integratsiya qilish imkoni beradi. Sizni qilishingiz kerak bo'lgan narsa faqat ma'lumotlar bazasini
-credentiallarni sozlash shundan so'ng fluent siz sozlagan baza bilan to'g'ridan to'g'ri ishlashni boshlaydi va statelarni 
+credentiallarni sozlash shundan so'ng fluent siz sozlagan baza bilan to'g'ridan to'g'ri ishlashni boshlaydi va statelarni
 ushbu ma'lumotlar bazasida saqlaydi va dasturni ochirib yoqsangiz ham ma'luomotlar o'chib ketmaydi.
 
 Qilishingiz kerak bo'lgan birinchi ish dependency qo'shish.
@@ -1101,7 +1104,7 @@ Endi Fluent tomonidan taqdim etilgan condition annotatsiyalarini birma bir ko'ri
 ### 9.1 Expression
 
 `@ConditionOnExpression` annotatsiya yordamida siz expression yozishingiz mumkin. Siz yozgan expression to'g'ri bo'lsagina
-Handler ishlaydi. 
+Handler ishlaydi.
 
 Quyidagi kodga qarang:
 
@@ -1212,7 +1215,7 @@ dependency qo'shish orqali ishlatishingiz mumkin.
 ### 10.2 Gradle
 
 ```groovy
-implementation group: 'io.github.nurislom373', name: 'fluent-inline-query', version: '1.2.0'
+implementation group: 'io.github.nurislom373', name: 'fluent-inline-query', version: '1.2.2'
 ```
 
 ### 10.3 Enabling inline mode
@@ -1244,8 +1247,8 @@ public void handleChosenInlineQuery(Update update, ChosenInlineQueryParam param)
 fluent kutubxonasini o'zingizga moslashtirib olishingiz misol uchun kutubxona tomondan taqdim etilgan annotatsiyalar
 sizga yetarli bo'lamayabdi o'zngizga kerakli annotatsiyani yozib olishingiz mumkin hech qanday muammosiz. Yana bir misol
 state hozircha faqat postgresql bilan integratsiyasi mavjud bu ham sizga yetarli nosql ma'lumotlar bazasi bilan ishlamoqchisiz
-bu ham muammo emas kerakli interfaceni implementatsiya qilib o'zingizga moslashingiz mumkin. Qisqa qilib aytganda fluent 
-kutubxonasini 1.2.0 versiyasini o'zingiz qiynalmasdan kengaytirishingiz mumkin kutubxonadagi kodlar SOLID prinspiga toliq
+bu ham muammo emas kerakli interfaceni implementatsiya qilib o'zingizga moslashingiz mumkin. Qisqa qilib aytganda fluent
+kutubxonasini o'zingiz qiynalmasdan kengaytirishingiz mumkin kutubxonadagi kodlar SOLID prinspiga toliq
 holda amal qilib yozilgan :).
 
 # Contributors
