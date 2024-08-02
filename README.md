@@ -325,9 +325,9 @@ void startWithAbsHandler(Update update, @BotVariable("name") String username) {
 
 ### 2.5 Handle any
 
-`@HandleAny` annotatsiyasi telegramdan kelgan istalgan update handle qilish uchun ishlatiladi. `@HandleAny` boshqa handler
-annotatsiyalaridan birinchi ishlaydi yani kelgan update birinchi `@HandleAny` annotatsiya bor method kiradi undan keyin
-boshqa handler methodlarga birin ketin kirishni boshlaydi.
+The `@HandleAny` annotation is used to handle any update received from Telegram. `@HandleAny` is processed before other 
+handler annotations, meaning that the incoming update is first routed to methods with the `@HandleAny` annotation before 
+proceeding to other handler methods.
 
 ```java
 @HandleAny(type = HandleType.MESSAGE)
@@ -356,14 +356,14 @@ public void handleButtonCommand() {
 }
 ```
 
-![first_screen](documentation/documentation/images/first_screen.png)
+![first_screen](documentation/images/first_screen.png)
 
-`@HandleAny` annotatsiyasi 2ta parameter qabul qiladi.
+`@HandleAny` annotation accepts 2 parameters.
 
-1. type - orqali biz qaysi typedagi updatelarni handle qilishni ko'rsatish uchun ishlatishimiz mumkin. default holatda biz
-   `@HandleAny` type ko'rsatmasak HandleType.MESSAGE ni oladi.
+1. `type` - This parameter is used to specify which type of updates to handle. By default, if no `type` is specified, 
+   `@HandleAny` will handle `HandleType.MESSAGE`.
 
-Quyidagi kodga qarang
+For example
 
 ```java
 @HandleAny(type = HandleType.STICKER)
@@ -402,7 +402,7 @@ private void handleAnyVideoNote(Update update) {
 }
 ```
 
-bir vaqtni o'zida bir nechta typelarni qabul qilishimiz ham mumkin.
+At the same time, we can accept multiple types.
 
 ```java
 @HandleAny(type = {HandleType.MESSAGE, HandleType.AUDIO})
@@ -412,15 +412,12 @@ private void handleAnyMessagesWithUpdate(Update update) {
 }
 ```
 
-2. proceed - orqali biz `@HandleAny` annotatsiyasi qoyilgan method bajarilgandan so'ng undan keyingi handler methodlar
-   bajarilishi yoki bajarilmasligini belgilashimiz mumkin. Agar Proceed.PROCEED turgan bo'lsa o'zidan keyingi
-   method bajarilishiga ruhsat beradi. Agar aksi bo'lsa unda o'zidan keyingi handler methodlarni bajarilishiga ruhsat
-   bermaydi. Qiymat belgilanmagan holda `@HandleAny` type parameteri _HandleType.MESSAGE_ ni, proceed parameteri esa
-   _Proceed.PROCEED_ oladi.
+2. `proceed` - This parameter allows us to specify whether subsequent handler methods should be executed after the method 
+   with the `@HandleAny` annotation is executed. If `Proceed.PROCEED` is set, it permits the execution of subsequent methods. 
+   If set otherwise, it prevents the execution of subsequent handler methods. By default, the `@HandleAny` annotation has 
+   `type` set to `HandleType.MESSAGE` and `proceed` set to `Proceed.PROCEED`.
 
-Quyidagi misolga qarang
-
-Ushbu misolda `@HandleAny` annotatsiyasini proceed parameteri default holatda turibdi. Yani `Proceed.PROCEED`
+In this example, the `@HandleAny` annotation's `proceed` parameter is set to its default value, which is `Proceed.PROCEED`.
 
 ```java
 @UpdateController
@@ -441,7 +438,7 @@ public class SimpleController {
 
 ![handle_any_1](documentation/images/handle_any_1.png)
 
-`@HandleAny` annotatsiyani proceed type `NOT_PROCEED` ga o'zgartiramiz va natijasini ko'ramiz.
+We will change the `proceed` type of the `@HandleAny` annotation to `NOT_PROCEED` and observe the result.
 
 ```java
 @UpdateController
@@ -462,9 +459,10 @@ public class SimpleController {
 
 ![handle_any_2](documentation/images/handle_any_2.png)
 
-rasmdagi natijani ko’rgan bo’lsangiz faqat `@HandleAny` method ishladi va undan keyin handlar method bajarilmadi.
+From the result shown in the image, you can see that only the `@HandleAny` method was executed, and no subsequent handler
+methods were executed.
 
-`@HandleAny` annotatsiyasi qoyilgan methodni hech qanday parameterlarsiz ham yozishimiz mumkin.
+You can also write a method with the `@HandleAny` annotation without any parameters.
 
 ```java
 @HandleAny
