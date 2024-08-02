@@ -212,16 +212,15 @@ private void handleAnyMessages() {
 
 ### 2.4 MatchType
 
-Ushbu bo'limda MatchType strategiyalarni ko'rib chiqamiz.
+In this section, we will review MatchType strategies.
 
-MatchType strategiyalari telegramdan kelgan xabarlarni tekshirish strategiyasini o'zgartirish uchun ishlatiladi.
-Bu sizga murakkab conditionlarni yozish imkoni beradi.
+MatchType strategies are used to change the strategy for checking messages received from Telegram. This allows you to write complex conditions.
 
 * `STARTS_WITH`
 
-START_WITH - match qilish strategiyasi telegramdan kelgan text xabarlarni match qilish uchun ishlatiladi. Belgilangan qiymatga
-kelgan xabarni boshlanishi belgilangan qiymatga mos kelishiga tekshiradi. Yani kelgan xabar boshlanishi 'abs' bilan boshlanganligiga
-tekshiradi agar mos kelsa ushbu handle ishga tushadi, aks bo'lsa yo'q :(
+STARTS_WITH - The matching strategy is used to match text messages received from Telegram. It checks if the beginning of
+the incoming message matches the specified value. For example, it checks if the incoming message starts with 'abs'.
+If it matches, the handle is triggered; otherwise, it is not.
 
 ```java
 @HandleMessage(value = "abs", match = MatchType.STARTS_WITH)
@@ -232,9 +231,9 @@ public void startsWithExampleHandler() {
 
 * `ENDS_WITH`
 
-END_WITH - match strategiyasi ham `STARTS_WITH` ga o'xshab asosan text xabarlar match qilish uchun ishlatiladi. ENDS_WITH
-strategiyasi STARTS_WITH ga o'xshash faqat ENDS_WITH xabarni boshlanishini emas oxirini belgilangan qiymatga mos kelishini
-tekshiradi.
+ENDS_WITH - The match strategy is also mainly used for matching text messages, similar to STARTS_WITH. The ENDS_WITH
+strategy is similar to STARTS_WITH, but instead of checking the beginning, it checks if the end of the message matches
+the specified value.
 
 ```java
 @HandleMessage(value = "xyz", match = MatchType.ENDS_WITH)
@@ -245,9 +244,9 @@ public void endsWithExampleHandler() {
 
 * `CONTAINS`
 
-CONTAINS - match strategiyasi ham asosan text xabarlar match qilish uchun ishlatiladi. CONTAINS strategiyasi belgilangan qiymatni
-kelgan xabarni ichida bor yoki yoqligiga tekshiradi. Agar belgilangan qiymat telegramdan kelgan xabarni ichida mavjud bo'lsa
-handler chaqiriladi.
+CONTAINS - The match strategy is also mainly used for matching text messages. The CONTAINS strategy checks if the
+specified value exists within the incoming message. If the specified value is present in the message received from
+Telegram, the handler is invoked.
 
 ```java
 @HandleMessage(value = "hello", match = MatchType.CONTAINS)
@@ -258,8 +257,8 @@ public void endsWithExampleHandler() {
 
 * `EQUALS`
 
-EQUALS - match strategiyasi default match strategiyasi hisoblanadi. EQUALS strategiyasi belgilangan qiymatga telegramdan kelgan
-xabar mos kelgan taqdirdagina handler chaqiriladi.
+EQUALS - The match strategy is the default match strategy. The EQUALS strategy triggers the handler only if the message
+received from Telegram exactly matches the specified value.
 
 ```java
 @HandleMessage(value = "/start", match = MatchType.EQUALS)
@@ -270,8 +269,8 @@ private void startExample(Update update) {
 
 * `REGEX`
 
-REGEX - match strategiyasi belgilangan regex qiymatga telegramdan kelgan xabarni mos kelishini tekshiradi.
-Pastdagi kodga e'tibor bering. Ushbu kodda file type `jpeg, png, pdf` bo'lsagina ushbu handler chaqiriladi.
+REGEX - The match strategy checks if the message received from Telegram matches the specified regex value.
+Consider the code below. In this code, the handler is triggered only if the file type is `jpeg`, `png`, or `pdf`.
 
 ```java
 @HandleDocument(
@@ -286,8 +285,8 @@ private void handleDocument() {
 
 * `EQUALS_IGNORE_CASE`
 
-EQUALS_IGNORE_CASE - match strategiyasi `EQUALS` bilan bir xil faqat bitta farqi `EQUALS_IGNORE_CASE` harflarni katta yoki
-kichikligiga qaramaydi.
+EQUALS_IGNORE_CASE - The match strategy is the same as `EQUALS`, with the only difference being that `EQUALS_IGNORE_CASE`
+does not consider the case of the letters.
 
 ```java
 @HandleMessage(value = "/START", match = MatchType.EQUALS_IGNORE_CASE)
@@ -298,12 +297,12 @@ private void startExample(Update update) {
 
 * `EXPRESSION`
 
-EXPRESSION - match strategiyasi sizga spel yani (Spring Expression Language) dan foydalanib expressionlarni yozish imkoni beradi va ushbu
-expressionga kelgan xabar mos kelsagina handler method chaqiriladi. Pastdagi kodga e'tibor bering. SPEL dan foydalanib
-kelgan xabar boshlanishi 'a' harfdan boshlansa va tugashi esa 'z' harf bilan tugasa ushbu handler chaqiriladi.
+EXPRESSION - The match strategy allows you to use SpEL (Spring Expression Language) to write expressions, and the
+handler method is invoked only if the incoming message matches the expression. Consider the code below. Using SpEL,
+the handler is triggered if the incoming message starts with the letter 'a' and ends with the letter 'z'.
 
-'#value' - bu telegramdan kelgan xabar spelga o'zgaruvchi sifatida qo'shib qoyiladi. value o'zgaruvchisiga murojaat qilib o'zingizga
-mos expressionni yozishingiz mumkin.
+'#value' - This adds the message received from Telegram as a variable to SpEL. You can write your desired expression by
+referring to the `value` variable.
 
 ```java
 @HandleMessage(value = "#value.startsWith('a') && #value.endsWith('z')", match = MatchType.EXPRESSION)
@@ -314,8 +313,8 @@ public void handleExpression() {
 
 * `VAR_EXPRESSION`
 
-VAR_EXPRESSION - match strategiyasi ham text xabarlar bilan ishlash uchun ishlatiladi. VAR_EXPRESSION kelgan xabardan
-regex patternga mos kelgan o'zgaruvchilarni ajratib olish uchun ishlatiladi. Pastdagi kodni ko'rishingiz mumkin.
+VAR_EXPRESSION - The match strategy is also used for working with text messages. VAR_EXPRESSION is used to extract
+variables from the incoming message that match a regex pattern. You can see the code below.
 
 ```java
 @HandleMessage(value = "/username : {name:[a-z]}", match = MatchType.VAR_EXPRESSION)
